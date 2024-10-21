@@ -1,0 +1,9 @@
+#include "banana.h"
+
+#define BANANA "Banana"
+#define ALCANCE 5
+#define MUNICIONES 1
+
+Banana::Banana(): Arma(BANANA, ALCANCE, MUNICIONES, false), activa(false) {}
+
+void Banana::disparar() { return; }

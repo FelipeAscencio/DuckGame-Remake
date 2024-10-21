@@ -1,7 +1,7 @@
 # Make file names absolute:
 #
-get_filename_component(filename "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/cc198c9a5657048bee67ece82de620b2d5661084.zip" ABSOLUTE)
-get_filename_component(directory "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-src" ABSOLUTE)
+get_filename_component(filename "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/cc198c9a5657048bee67ece82de620b2d5661084.zip" ABSOLUTE)
+get_filename_component(directory "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

@@ -1,7 +1,7 @@
 CMakeFiles/taller_common.dir/common/socket.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/common/socket.cpp \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/socket.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/common/socket.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/socket.h \
  /usr/include/c++/11/stdexcept /usr/include/c++/11/exception \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -173,5 +173,5 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/common/liberror.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/common/resolver.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/liberror.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/resolver.h

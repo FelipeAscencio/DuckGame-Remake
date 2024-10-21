@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c
+CMAKE_SOURCE_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build
+CMAKE_BINARY_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/CMakeFiles /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -459,6 +459,198 @@ editor/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_editor.dir/build.make CMakeFiles/taller_editor.dir/editor/main.cpp.s
 .PHONY : editor/main.cpp.s
 
+server/ak47.o: server/ak47.cpp.o
+.PHONY : server/ak47.o
+
+# target to build an object file
+server/ak47.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/ak47.cpp.o
+.PHONY : server/ak47.cpp.o
+
+server/ak47.i: server/ak47.cpp.i
+.PHONY : server/ak47.i
+
+# target to preprocess a source file
+server/ak47.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/ak47.cpp.i
+.PHONY : server/ak47.cpp.i
+
+server/ak47.s: server/ak47.cpp.s
+.PHONY : server/ak47.s
+
+# target to generate assembly for a file
+server/ak47.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/ak47.cpp.s
+.PHONY : server/ak47.cpp.s
+
+server/arma.o: server/arma.cpp.o
+.PHONY : server/arma.o
+
+# target to build an object file
+server/arma.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/arma.cpp.o
+.PHONY : server/arma.cpp.o
+
+server/arma.i: server/arma.cpp.i
+.PHONY : server/arma.i
+
+# target to preprocess a source file
+server/arma.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/arma.cpp.i
+.PHONY : server/arma.cpp.i
+
+server/arma.s: server/arma.cpp.s
+.PHONY : server/arma.s
+
+# target to generate assembly for a file
+server/arma.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/arma.cpp.s
+.PHONY : server/arma.cpp.s
+
+server/banana.o: server/banana.cpp.o
+.PHONY : server/banana.o
+
+# target to build an object file
+server/banana.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/banana.cpp.o
+.PHONY : server/banana.cpp.o
+
+server/banana.i: server/banana.cpp.i
+.PHONY : server/banana.i
+
+# target to preprocess a source file
+server/banana.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/banana.cpp.i
+.PHONY : server/banana.cpp.i
+
+server/banana.s: server/banana.cpp.s
+.PHONY : server/banana.s
+
+# target to generate assembly for a file
+server/banana.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/banana.cpp.s
+.PHONY : server/banana.cpp.s
+
+server/cowboy_pistol.o: server/cowboy_pistol.cpp.o
+.PHONY : server/cowboy_pistol.o
+
+# target to build an object file
+server/cowboy_pistol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o
+.PHONY : server/cowboy_pistol.cpp.o
+
+server/cowboy_pistol.i: server/cowboy_pistol.cpp.i
+.PHONY : server/cowboy_pistol.i
+
+# target to preprocess a source file
+server/cowboy_pistol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.i
+.PHONY : server/cowboy_pistol.cpp.i
+
+server/cowboy_pistol.s: server/cowboy_pistol.cpp.s
+.PHONY : server/cowboy_pistol.s
+
+# target to generate assembly for a file
+server/cowboy_pistol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.s
+.PHONY : server/cowboy_pistol.cpp.s
+
+server/duel_pistol.o: server/duel_pistol.cpp.o
+.PHONY : server/duel_pistol.o
+
+# target to build an object file
+server/duel_pistol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o
+.PHONY : server/duel_pistol.cpp.o
+
+server/duel_pistol.i: server/duel_pistol.cpp.i
+.PHONY : server/duel_pistol.i
+
+# target to preprocess a source file
+server/duel_pistol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/duel_pistol.cpp.i
+.PHONY : server/duel_pistol.cpp.i
+
+server/duel_pistol.s: server/duel_pistol.cpp.s
+.PHONY : server/duel_pistol.s
+
+# target to generate assembly for a file
+server/duel_pistol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/duel_pistol.cpp.s
+.PHONY : server/duel_pistol.cpp.s
+
+server/granada.o: server/granada.cpp.o
+.PHONY : server/granada.o
+
+# target to build an object file
+server/granada.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/granada.cpp.o
+.PHONY : server/granada.cpp.o
+
+server/granada.i: server/granada.cpp.i
+.PHONY : server/granada.i
+
+# target to preprocess a source file
+server/granada.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/granada.cpp.i
+.PHONY : server/granada.cpp.i
+
+server/granada.s: server/granada.cpp.s
+.PHONY : server/granada.s
+
+# target to generate assembly for a file
+server/granada.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/granada.cpp.s
+.PHONY : server/granada.cpp.s
+
+server/laser_rifle.o: server/laser_rifle.cpp.o
+.PHONY : server/laser_rifle.o
+
+# target to build an object file
+server/laser_rifle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o
+.PHONY : server/laser_rifle.cpp.o
+
+server/laser_rifle.i: server/laser_rifle.cpp.i
+.PHONY : server/laser_rifle.i
+
+# target to preprocess a source file
+server/laser_rifle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/laser_rifle.cpp.i
+.PHONY : server/laser_rifle.cpp.i
+
+server/laser_rifle.s: server/laser_rifle.cpp.s
+.PHONY : server/laser_rifle.s
+
+# target to generate assembly for a file
+server/laser_rifle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/laser_rifle.cpp.s
+.PHONY : server/laser_rifle.cpp.s
+
+server/magnum.o: server/magnum.cpp.o
+.PHONY : server/magnum.o
+
+# target to build an object file
+server/magnum.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/magnum.cpp.o
+.PHONY : server/magnum.cpp.o
+
+server/magnum.i: server/magnum.cpp.i
+.PHONY : server/magnum.i
+
+# target to preprocess a source file
+server/magnum.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/magnum.cpp.i
+.PHONY : server/magnum.cpp.i
+
+server/magnum.s: server/magnum.cpp.s
+.PHONY : server/magnum.s
+
+# target to generate assembly for a file
+server/magnum.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/magnum.cpp.s
+.PHONY : server/magnum.cpp.s
+
 server/main.o: server/main.cpp.o
 .PHONY : server/main.o
 
@@ -482,6 +674,102 @@ server/main.s: server/main.cpp.s
 server/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/main.cpp.s
 .PHONY : server/main.cpp.s
+
+server/p_p_laser.o: server/p_p_laser.cpp.o
+.PHONY : server/p_p_laser.o
+
+# target to build an object file
+server/p_p_laser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o
+.PHONY : server/p_p_laser.cpp.o
+
+server/p_p_laser.i: server/p_p_laser.cpp.i
+.PHONY : server/p_p_laser.i
+
+# target to preprocess a source file
+server/p_p_laser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/p_p_laser.cpp.i
+.PHONY : server/p_p_laser.cpp.i
+
+server/p_p_laser.s: server/p_p_laser.cpp.s
+.PHONY : server/p_p_laser.s
+
+# target to generate assembly for a file
+server/p_p_laser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/p_p_laser.cpp.s
+.PHONY : server/p_p_laser.cpp.s
+
+server/pato.o: server/pato.cpp.o
+.PHONY : server/pato.o
+
+# target to build an object file
+server/pato.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/pato.cpp.o
+.PHONY : server/pato.cpp.o
+
+server/pato.i: server/pato.cpp.i
+.PHONY : server/pato.i
+
+# target to preprocess a source file
+server/pato.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/pato.cpp.i
+.PHONY : server/pato.cpp.i
+
+server/pato.s: server/pato.cpp.s
+.PHONY : server/pato.s
+
+# target to generate assembly for a file
+server/pato.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/pato.cpp.s
+.PHONY : server/pato.cpp.s
+
+server/shotgun.o: server/shotgun.cpp.o
+.PHONY : server/shotgun.o
+
+# target to build an object file
+server/shotgun.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/shotgun.cpp.o
+.PHONY : server/shotgun.cpp.o
+
+server/shotgun.i: server/shotgun.cpp.i
+.PHONY : server/shotgun.i
+
+# target to preprocess a source file
+server/shotgun.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/shotgun.cpp.i
+.PHONY : server/shotgun.cpp.i
+
+server/shotgun.s: server/shotgun.cpp.s
+.PHONY : server/shotgun.s
+
+# target to generate assembly for a file
+server/shotgun.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/shotgun.cpp.s
+.PHONY : server/shotgun.cpp.s
+
+server/sniper.o: server/sniper.cpp.o
+.PHONY : server/sniper.o
+
+# target to build an object file
+server/sniper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/sniper.cpp.o
+.PHONY : server/sniper.cpp.o
+
+server/sniper.i: server/sniper.cpp.i
+.PHONY : server/sniper.i
+
+# target to preprocess a source file
+server/sniper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/sniper.cpp.i
+.PHONY : server/sniper.cpp.i
+
+server/sniper.s: server/sniper.cpp.s
+.PHONY : server/sniper.s
+
+# target to generate assembly for a file
+server/sniper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/server/sniper.cpp.s
+.PHONY : server/sniper.cpp.s
 
 tests/foo.o: tests/foo.cpp.o
 .PHONY : tests/foo.o
@@ -550,9 +838,45 @@ help:
 	@echo "... editor/main.o"
 	@echo "... editor/main.i"
 	@echo "... editor/main.s"
+	@echo "... server/ak47.o"
+	@echo "... server/ak47.i"
+	@echo "... server/ak47.s"
+	@echo "... server/arma.o"
+	@echo "... server/arma.i"
+	@echo "... server/arma.s"
+	@echo "... server/banana.o"
+	@echo "... server/banana.i"
+	@echo "... server/banana.s"
+	@echo "... server/cowboy_pistol.o"
+	@echo "... server/cowboy_pistol.i"
+	@echo "... server/cowboy_pistol.s"
+	@echo "... server/duel_pistol.o"
+	@echo "... server/duel_pistol.i"
+	@echo "... server/duel_pistol.s"
+	@echo "... server/granada.o"
+	@echo "... server/granada.i"
+	@echo "... server/granada.s"
+	@echo "... server/laser_rifle.o"
+	@echo "... server/laser_rifle.i"
+	@echo "... server/laser_rifle.s"
+	@echo "... server/magnum.o"
+	@echo "... server/magnum.i"
+	@echo "... server/magnum.s"
 	@echo "... server/main.o"
 	@echo "... server/main.i"
 	@echo "... server/main.s"
+	@echo "... server/p_p_laser.o"
+	@echo "... server/p_p_laser.i"
+	@echo "... server/p_p_laser.s"
+	@echo "... server/pato.o"
+	@echo "... server/pato.i"
+	@echo "... server/pato.s"
+	@echo "... server/shotgun.o"
+	@echo "... server/shotgun.i"
+	@echo "... server/shotgun.s"
+	@echo "... server/sniper.o"
+	@echo "... server/sniper.i"
+	@echo "... server/sniper.s"
 	@echo "... tests/foo.o"
 	@echo "... tests/foo.i"
 	@echo "... tests/foo.s"

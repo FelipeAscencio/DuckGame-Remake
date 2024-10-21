@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/tests
+# Install script for directory: /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

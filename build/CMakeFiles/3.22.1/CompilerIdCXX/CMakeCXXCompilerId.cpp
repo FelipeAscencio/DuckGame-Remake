@@ -11,6 +11,7 @@
 #define __has_include(x) 0
 #endif
 
+
 /* Version number components: V=Version, R=Revision, P=Patch
    Version date components:   YYYY=Year, MM=Month,   DD=Day  */
 
@@ -184,6 +185,7 @@
 #define COMPILER_VERSION_PATCH DEC(__ibmxl_modification__)
 #define COMPILER_VERSION_TWEAK DEC(__ibmxl_ptf_fix_level__)
 
+
 #elif defined(__IBMCPP__) && !defined(__COMPILER_VER__) && __IBMCPP__ >= 800
 #define COMPILER_ID "XL"
 /* __IBMCPP__ = VRP */
@@ -233,6 +235,7 @@
 #define COMPILER_VERSION_PATCH DEC(__FCC_patchlevel__)
 #define COMPILER_VERSION_INTERNAL_STR __clang_version__
 
+
 #elif defined(__FUJITSU)
 #define COMPILER_ID "Fujitsu"
 #if defined(__FCC_version__)
@@ -247,6 +250,7 @@
 #elif defined(__FCC_VERSION)
 #define COMPILER_VERSION_INTERNAL DEC(__FCC_VERSION)
 #endif
+
 
 #elif defined(__ghs__)
 #define COMPILER_ID "GHS"
@@ -273,6 +277,7 @@
 #define COMPILER_VERSION_MINOR DEC(__ARMCC_VERSION / 10000 % 10)
 #define COMPILER_VERSION_PATCH DEC(__ARMCC_VERSION % 10000)
 #endif
+
 
 #elif defined(__clang__) && defined(__apple_build_version__)
 #define COMPILER_ID "AppleClang"
@@ -367,6 +372,7 @@
 #define COMPILER_VERSION_PATCH DEC(__SUBVERSION__)
 #define COMPILER_VERSION_INTERNAL DEC(__IAR_SYSTEMS_ICC__)
 #endif
+
 
 /* These compilers are either not known or too old to define an
   identification macro.  Try to identify the platform and guess that
@@ -767,6 +773,7 @@ char const* info_arch = "INFO"
                         ":"
                         "arch[" ARCHITECTURE_ID "]";
 
+
 #if defined(__INTEL_COMPILER) && defined(_MSVC_LANG) && _MSVC_LANG < 201403L
 #if defined(__INTEL_CXX11_MODE__)
 #if defined(__cpp_aggregate_nsdmi)
@@ -789,15 +796,15 @@ const char* info_language_standard_default = "INFO"
 #if CXX_STD > 202002L
                                              "23"
 #elif CXX_STD > 201703L
-                                              "20"
+                                             "20"
 #elif CXX_STD >= 201703L
-                                              "17"
+                                             "17"
 #elif CXX_STD >= 201402L
-                                              "14"
+                                             "14"
 #elif CXX_STD >= 201103L
-                                              "11"
+                                             "11"
 #else
-                                              "98"
+                                             "98"
 #endif
                                              "]";
 
@@ -809,7 +816,7 @@ const char* info_language_extensions_default = "INFO"
         !defined(__STRICT_ANSI__) && !defined(_MSC_VER)
                                                "ON"
 #else
-                                                "OFF"
+                                               "OFF"
 #endif
                                                "]";
 

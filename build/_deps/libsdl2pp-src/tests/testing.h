@@ -249,14 +249,13 @@ public:
                       Stylify(EXPRESSION, exception_str) + " as expected";
         else if (thrown && std_exception)
             message = Stylify(EXPRESSION, expression_str) +
-                      " has thrown unexpected exception derived from std::exception "
-                      "(what(): " +
+                      " has thrown unexpected exception derived from std::exception (what(): " +
                       Stylify(LITERAL, what) + "), while expected " +
                       Stylify(EXPRESSION, exception_str);
         else if (thrown)
             message = Stylify(EXPRESSION, expression_str) +
-                      " has thrown unexpected exception not derived from "
-                      "std::exception, while expected " +
+                      " has thrown unexpected exception not derived from std::exception, while "
+                      "expected " +
                       Stylify(EXPRESSION, exception_str);
         else
             message = Stylify(EXPRESSION, expression_str) + " hasn't thrown expected exception " +
@@ -287,8 +286,7 @@ public:
 
         if (thrown && std_exception)
             message = Stylify(EXPRESSION, expression_str) +
-                      " has thrown unexpected exception derived from std::exception "
-                      "(what(): " +
+                      " has thrown unexpected exception derived from std::exception (what(): " +
                       Stylify(LITERAL, what) + ")";
         else if (thrown)
             message = Stylify(EXPRESSION, expression_str) +

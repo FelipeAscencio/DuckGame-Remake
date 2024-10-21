@@ -1,7 +1,7 @@
 CMakeFiles/taller_common.dir/common/resolvererror.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/common/resolvererror.cpp \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/resolvererror.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/common/resolvererror.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/resolvererror.h \
  /usr/include/c++/11/exception \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

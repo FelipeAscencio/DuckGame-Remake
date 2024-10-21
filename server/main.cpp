@@ -14,7 +14,7 @@ void secuencia_logica_servidor() {
 
 int main(int argc, const char* argv[]) {
     // 'Print' utilizado para ver los parametros recibidos en el servidor.
-    std::cout <<"ARGC: " << argc << " / ARGV: " << argv << std::endl;
+    std::cout << "ARGC: " << argc << " / ARGV: " << argv << std::endl;
 
     try {
         secuencia_logica_servidor();

@@ -14,8 +14,8 @@ project(libsdl2pp-populate NONE)
 include(ExternalProject)
 ExternalProject_Add(libsdl2pp-populate
                      "UPDATE_DISCONNECTED" "False" "URL" "https://github.com/libSDL2pp/libSDL2pp/archive/cc198c9a5657048bee67ece82de620b2d5661084.zip"
-                    SOURCE_DIR          "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-src"
-                    BINARY_DIR          "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-build"
+                    SOURCE_DIR          "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src"
+                    BINARY_DIR          "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

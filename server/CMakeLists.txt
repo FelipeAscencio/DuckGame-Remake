@@ -2,6 +2,32 @@ target_sources(taller_server
     PRIVATE
     # .cpp files
     main.cpp
+    ak47.cpp
+    arma.cpp
+    banana.cpp
+    cowboy_pistol.cpp
+    duel_pistol.cpp
+    granada.cpp
+    laser_rifle.cpp
+    magnum.cpp
+    p_p_laser.cpp
+    pato.cpp
+    shotgun.cpp
+    sniper.cpp
     PUBLIC
     # .h files
+    ak47.h
+    arma.h
+    banana.h
+    cowboy_pistol.h
+    duel_pistol.h
+    granada.h
+    laser_rifle.h
+    magnum.h
+    p_p_laser.h
+    pato.h
+    shotgun.h
+    sniper.h
+    orientacion.h
+    posicion.h
     )
