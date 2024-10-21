@@ -1,0 +1,3 @@
+/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate.dir
+/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-subbuild/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/Taller-de-Programacion-Grupo2-20242c/build/_deps/libsdl2pp-subbuild/CMakeFiles/rebuild_cache.dir

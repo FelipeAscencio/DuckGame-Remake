@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/taller_tests.dir/tests/foo.cpp.o -o taller_tests  libtaller_common.a lib/libgtest_main.a lib/libgtest.a 
