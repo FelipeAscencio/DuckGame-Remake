@@ -6,8 +6,6 @@
 
 - Cairó María Josefina - 101670.
 
-- Retamozo Melina - 110065.
-
 - Zielonka Axel - 110310.
 
 ---
