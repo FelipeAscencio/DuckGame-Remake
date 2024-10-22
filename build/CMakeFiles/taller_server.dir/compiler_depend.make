@@ -1960,6 +1960,7 @@ CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o: ../server/p_p_laser.cpp \
 
 CMakeFiles/taller_server.dir/server/pato.cpp.o: ../server/pato.cpp \
   /usr/include/stdc-predef.h \
+  ../server/pato.h \
   /usr/include/c++/11/iostream \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -2150,10 +2151,9 @@ CMakeFiles/taller_server.dir/server/pato.cpp.o: ../server/pato.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../server/pato.h \
+  ../server/arma.h \
   ../server/posicion.h \
-  ../server/orientacion.h \
-  ../server/arma.h
+  ../server/orientacion.h
 
 CMakeFiles/taller_server.dir/server/shotgun.cpp.o: ../server/shotgun.cpp \
   /usr/include/stdc-predef.h \
