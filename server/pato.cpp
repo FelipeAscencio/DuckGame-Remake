@@ -78,14 +78,21 @@ void Pato::aletear() {
 
 void Pato::caer(Mapa mapa) {
     if (!mapa.piso_bloque(this->posicion)) {
-        this->posicion.coordenada_y -= SALTO_Y_CAIDA;
-        return;
+        if (this->posicion.coordenada_y % TILE_A_METRO >= SALTO_Y_CAIDA){
+            this->posicion.coordenada_y -= SALTO_Y_CAIDA; // si esta a 2 metros o mas, tiene que caer 2 metros por segundo por gravedad
+        } else {
+            this->posicion.coordenada_x -= SALTO_Y_CAIDA / 2; // si esta 1 metro por encima del piso, tiene que caer solo un metro, no mas.
+        }
+        cayendo = true;
     } else {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
         int tile_x = tile_actual[0];
         int tile_y = tile_actual[1];
         if (mapa.mapa[tile_x][tile_y] == 0) {
             this->posicion.coordenada_y -= SALTO_Y_CAIDA;
+            cayendo = true;
+        } else {
+            cayendo = false;
         }
     }
     if (this->posicion.coordenada_y < 0)
@@ -104,8 +111,9 @@ void Pato::cambiar_orientacion(orientacion_e nueva_orientacion) {
     this->orientacion = nueva_orientacion;
 }
 
-bool Pato::agarrar_arma() {
+bool Pato::agarrar_arma(Arma* arma) {
     this->posee_arma = true;
+    this->arma_equipada = arma;
     return true;
 }
 
@@ -125,7 +133,7 @@ bool Pato::agarrar_casco() {
 
 bool Pato::disparar() {
     if (arma_equipada) {
-        arma_equipada->disparar();
+        arma_equipada->disparar(this->orientacion);
         return true;
     } else {
         return false;
@@ -147,20 +155,29 @@ void Pato::control_pre_comando(Mapa mapa) {
             saltando = false;
             cayendo = true;
             iteraciones_subiendo = 0;
-            caer(mapa);
         }
     }
-    if (cayendo)
-        caer(mapa);
+    caer(mapa);
     if (aleteando)
-        aleteando = !aleteando;
+        aleteando = false;
     if (agachado)
-        agachado = !agachado;
+        agachado = false;
     if (posee_arma) {
         if (this->arma_equipada->municiones_restantes() == 0) {
             delete this->arma_equipada;
             arma_equipada = nullptr;
-            posee_arma = !posee_arma;
+            posee_arma = false;
         }
     }
+}
+
+void Pato::recibir_disparo(){
+    if (posee_casco){
+        posee_casco = false; // si le pegan un disparo, pierde el casco pero sigue vivo
+        return;
+    } 
+    if (posee_armadura) {
+        posee_armadura = false; // si le pegan un disparo, pierde el armadura pero sigue vivo
+    }
+    vivo = false; // si llego a este punto, no tenia ni casco ni armadura, entonces muere
 }

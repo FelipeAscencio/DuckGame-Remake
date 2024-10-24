@@ -6,4 +6,4 @@
 
 DuelPistol::DuelPistol(): Arma(DUEL_PISTOL, ALCANCE, MUNICIONES, true) {}
 
-void DuelPistol::disparar() { return; }
+void DuelPistol::disparar(const orientacion_e& direccion) { return; }

@@ -2,32 +2,33 @@
 #define THREAD_USUARIO_H
 
 #include "../common/queue.h"
+
 #include "enviador.h"
 #include "recibidor.h"
 
 class ThreadUsuario {
-    private:
-        Socket skt;
-        Queue<estado_juego_t> queue_sender;
-        std::atomic<bool> vivo;
-        Recibidor r;
-        Enviador e;
-        int id_cliente;
+private:
+    Socket skt;
+    Queue<estado_juego_t> queue_sender;
+    std::atomic<bool> vivo;
+    Recibidor r;
+    Enviador e;
+    int id_cliente;
 
-    public:
-        explicit ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int id);
+public:
+    explicit ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int id);
 
-        void iniciar();
+    void iniciar();
 
-        bool esta_vivo() { return this->vivo; }
+    bool esta_vivo() { return this->vivo; }
 
-        void cortar_conexion();
+    void cortar_conexion();
 
-        Queue<estado_juego_t>& obtener_queue() { return this->queue_sender; }
+    Queue<estado_juego_t>& obtener_queue() { return this->queue_sender; }
 
-        int get_id() { return this->id_cliente; }
+    int get_id() { return this->id_cliente; }
 
-        ~ThreadUsuario();
+    ~ThreadUsuario();
 };
 
 #endif

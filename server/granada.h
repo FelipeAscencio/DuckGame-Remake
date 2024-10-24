@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "arma.h"
+#include "orientacion.h"
 
 class Granada: public Arma {
 private:
@@ -13,7 +14,7 @@ private:
 
 public:
     Granada();
-    void disparar() override;
+    void disparar(const orientacion_e& direccions) override;
 };
 
 

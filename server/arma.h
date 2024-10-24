@@ -22,7 +22,7 @@ public:
 
     virtual ~Arma() = default;
 
-    virtual void disparar() = 0;
+    virtual void disparar(const orientacion_e& direccion) = 0;
 
     void agarrar();
 

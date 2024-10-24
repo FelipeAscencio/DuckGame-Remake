@@ -6,4 +6,4 @@
 
 Sniper::Sniper(): Arma(SNIPER, ALCANCE, MUNICIONES, false) {}
 
-void Sniper::disparar() { return; }
+void Sniper::disparar(const orientacion_e& direccion) { return; }

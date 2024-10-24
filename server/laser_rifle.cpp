@@ -6,4 +6,4 @@
 
 LaserRifle::LaserRifle(): Arma(LASER_RIFLE, ALCANCE, MUNICIONES, false) {}
 
-void LaserRifle::disparar() { return; }
+void LaserRifle::disparar(const orientacion_e& direccion) { return; }

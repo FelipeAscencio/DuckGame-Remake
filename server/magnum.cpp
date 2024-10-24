@@ -6,4 +6,4 @@
 
 Magnum::Magnum(): Arma(MAGNUM, ALCANCE, MUNICIONES, true) {}
 
-void Magnum::disparar() { return; }
+void Magnum::disparar(const orientacion_e& direccion) { return; }

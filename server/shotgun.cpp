@@ -10,4 +10,4 @@ Shotgun::Shotgun():
         debe_recargar(false),
         alcance_maximo(ALCANCE_MAXIMO) {}
 
-void Shotgun::disparar() { return; }
+void Shotgun::disparar(const orientacion_e& direccion) { return; }

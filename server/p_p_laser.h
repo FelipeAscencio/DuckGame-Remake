@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "arma.h"
+#include "orientacion.h"
 
 class PewPewLaser: public Arma {
 private:
@@ -11,7 +12,7 @@ private:
 
 public:
     PewPewLaser();
-    void disparar() override;
+    void disparar(const orientacion_e& direccion) override;
 };
 
 

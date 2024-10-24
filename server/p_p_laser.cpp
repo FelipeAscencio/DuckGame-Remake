@@ -8,4 +8,4 @@
 PewPewLaser::PewPewLaser():
         Arma(PEW_PEW_LASER, ALCANCE_MINIMO, MUNICIONES, false), alcance_maximo(ALCANCE_MAXIMO) {}
 
-void PewPewLaser::disparar() { return; }
+void PewPewLaser::disparar(const orientacion_e& direccion) { return; }

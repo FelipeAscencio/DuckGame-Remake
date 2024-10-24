@@ -6,4 +6,4 @@
 
 Banana::Banana(): Arma(BANANA, ALCANCE, MUNICIONES, false), activa(false) {}
 
-void Banana::disparar() { return; }
+void Banana::disparar(const orientacion_e& direccion) { return; }

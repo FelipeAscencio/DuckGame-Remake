@@ -6,4 +6,4 @@
 
 CowboyPistol::CowboyPistol(): Arma(COWBOY_PISTOL, ALCANCE, MUNICIONES, false) {}
 
-void CowboyPistol::disparar() { return; }
+void CowboyPistol::disparar(const orientacion_e& direccion) { return; }

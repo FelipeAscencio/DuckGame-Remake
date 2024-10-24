@@ -7,8 +7,11 @@
 #include "mapa.h"
 #include "orientacion.h"
 #include "posicion.h"
+#include "protocol.h"
 
+using namespace ServerProtocol;
 class Pato {
+    friend Protocol;  // para poder enviar la informacion del pato sin usar getters
 private:
     int id_jugador;
     posicion_t posicion;
@@ -36,7 +39,7 @@ public:
     void agacharse();
     orientacion_e obtener_orientacion();
     void cambiar_orientacion(orientacion_e nueva_orientacion);
-    bool agarrar_arma();
+    bool agarrar_arma(Arma* arma);
     void soltar_arma();
     bool esta_vivo();
     bool agarrar_armadura();
@@ -46,6 +49,7 @@ public:
     bool disparar();
     void caer(Mapa mapa);
     void control_pre_comando(Mapa mapa);
+    void recibir_disparo();
 
     ~Pato();
 };

@@ -11,4 +11,4 @@ Granada::Granada():
         seguro_puesto(true),
         activa(false) {}
 
-void Granada::disparar() { return; }
+void Granada::disparar(const orientacion_e& direccion) { return; }

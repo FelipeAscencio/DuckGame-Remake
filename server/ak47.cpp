@@ -6,4 +6,4 @@
 
 AK47::AK47(): Arma(AK_47, ALCANCE, MUNICIONES, true) {}
 
-void AK47::disparar() { return; }
+void AK47::disparar(const orientacion_e& direccion) { return; }
