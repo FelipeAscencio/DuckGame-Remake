@@ -4,8 +4,6 @@
 
 - Ascencio Felipe Santino - 110675.
 
-- Cairó María Josefina - 101670.
-
 - Zielonka Axel - 110310.
 
 ---

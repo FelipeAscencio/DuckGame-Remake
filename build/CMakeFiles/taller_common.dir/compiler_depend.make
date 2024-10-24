@@ -7,7 +7,8 @@ CMakeFiles/taller_common.dir/common/foo.cpp.o: ../common/foo.cpp \
 
 CMakeFiles/taller_common.dir/common/liberror.cpp.o: ../common/liberror.cpp \
   /usr/include/stdc-predef.h \
-  /usr/include/c++/11/cstdarg \
+  ../common/liberror.h \
+  /usr/include/c++/11/exception \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/features.h \
@@ -20,11 +21,22 @@ CMakeFiles/taller_common.dir/common/liberror.cpp.o: ../common/liberror.cpp \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/c++/11/pstl/pstl_config.h \
+  /usr/include/c++/11/bits/exception.h \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/exception_defines.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/new \
+  /usr/include/c++/11/bits/move.h \
+  /usr/include/c++/11/type_traits \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/cstdarg \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/types.h \
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/time64.h \
@@ -47,19 +59,7 @@ CMakeFiles/taller_common.dir/common/liberror.cpp.o: ../common/liberror.cpp \
   /usr/include/linux/errno.h \
   /usr/include/x86_64-linux-gnu/asm/errno.h \
   /usr/include/asm-generic/errno.h \
-  /usr/include/asm-generic/errno-base.h \
-  ../common/liberror.h \
-  /usr/include/c++/11/exception \
-  /usr/include/c++/11/bits/exception.h \
-  /usr/include/c++/11/bits/exception_ptr.h \
-  /usr/include/c++/11/bits/exception_defines.h \
-  /usr/include/c++/11/bits/cxxabi_init_exception.h \
-  /usr/include/c++/11/typeinfo \
-  /usr/include/c++/11/bits/hash_bytes.h \
-  /usr/include/c++/11/new \
-  /usr/include/c++/11/bits/move.h \
-  /usr/include/c++/11/type_traits \
-  /usr/include/c++/11/bits/nested_exception.h
+  /usr/include/asm-generic/errno-base.h
 
 CMakeFiles/taller_common.dir/common/resolver.cpp.o: ../common/resolver.cpp \
   /usr/include/stdc-predef.h \
@@ -671,44 +671,6 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 ../common/resolver.cpp:
 
-../common/resolvererror.cpp:
-
-/usr/include/c++/11/bits/nested_exception.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/c++/11/bits/string_view.tcc:
-
-/usr/include/c++/11/numbers:
-
-/usr/include/c++/11/bits/hash_bytes.h:
-
-/usr/include/c++/11/typeinfo:
-
-/usr/include/asm-generic/sockios.h:
-
-/usr/include/c++/11/bits/uniform_int_dist.h:
-
-/usr/include/wchar.h:
-
-/usr/include/c++/11/bits/cxxabi_init_exception.h:
-
-/usr/include/c++/11/bits/exception_defines.h:
-
-/usr/include/c++/11/bits/exception.h:
-
-../common/resolver.h:
-
-/usr/include/c++/11/ext/string_conversions.h:
-
-/usr/include/c++/11/bits/exception_ptr.h:
-
-/usr/include/rpc/netdb.h:
-
-/usr/include/c++/11/bits/concept_check.h:
-
 /usr/include/asm-generic/errno.h:
 
 /usr/include/c++/11/bits/stl_function.h:
@@ -723,29 +685,75 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 /usr/include/c++/11/ext/type_traits.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
-
-/usr/include/errno.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 ../common/liberror.h:
 
-/usr/include/arpa/inet.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+/usr/include/c++/11/bits/stl_tempbuf.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/pthread.h:
+
+/usr/include/c++/11/bits/cpp_type_traits.h:
+
+/usr/include/c++/11/cstdio:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
 
 /usr/include/features-time64.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/asm-generic/socket.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+../common/resolver.h:
+
+/usr/include/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
+
+/usr/include/c++/11/ext/string_conversions.h:
+
+/usr/include/c++/11/bits/exception_ptr.h:
+
+/usr/include/rpc/netdb.h:
+
+/usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
+/usr/include/wchar.h:
+
+/usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
@@ -755,31 +763,35 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 /usr/include/c++/11/ext/numeric_traits.h:
 
-../common/foo.h:
+/usr/include/string.h:
 
-/usr/include/c++/11/bits/iterator_concepts.h:
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
-/usr/include/x86_64-linux-gnu/sys/socket.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
-/usr/include/stdio.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
-/usr/include/asm-generic/socket.h:
+../common/socket.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
 
-/usr/include/c++/11/cstdio:
+/usr/include/stdlib.h:
 
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+/usr/include/x86_64-linux-gnu/asm/socket.h:
 
-/usr/include/pthread.h:
+/usr/include/c++/11/exception:
 
-/usr/include/c++/11/bits/cpp_type_traits.h:
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/c++/11/typeinfo:
+
+/usr/include/asm-generic/sockios.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
@@ -791,11 +803,29 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
+../common/resolvererror.cpp:
+
+/usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/bits/iterator_concepts.h:
+
+../common/foo.h:
+
 /usr/include/c++/11/cstring:
 
-/usr/include/c++/11/bits/stl_tempbuf.h:
+/usr/include/arpa/inet.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/c++/11/bits/basic_string.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -809,21 +839,9 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
-/usr/include/c++/11/exception:
+/usr/include/c++/11/bits/exception.h:
 
-/usr/include/x86_64-linux-gnu/bits/socket.h:
-
-../common/socket.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/x86_64-linux-gnu/asm/socket.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+/usr/include/c++/11/bits/exception_defines.h:
 
 /usr/include/c++/11/type_traits:
 
@@ -833,33 +851,15 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/11/string:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+/usr/include/c++/11/bits/string_view.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+/usr/include/c++/11/numbers:
 
-/usr/include/stdc-predef.h:
-
-/usr/include/asm-generic/posix_types.h:
-
-/usr/include/string.h:
-
-/usr/include/c++/11/bits/basic_string.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+/usr/include/c++/11/bits/hash_bytes.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
@@ -961,9 +961,9 @@ CMakeFiles/taller_common.dir/common/socket.cpp.o: ../common/socket.cpp \
 
 /usr/include/c++/11/bits/memoryfwd.h:
 
-/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
-
 /usr/include/asm-generic/errno-base.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
 /usr/include/c++/11/bits/char_traits.h:
 
