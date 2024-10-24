@@ -95,6 +95,9 @@ taller_editor: CMakeFiles/taller_editor.dir/build.make
 taller_editor: libtaller_common.a
 taller_editor: _deps/libsdl2pp-build/libSDL2pp.so.8.3.0
 taller_editor: /usr/lib/x86_64-linux-gnu/libSDL2main.a
+taller_editor: /usr/local/lib/libSDL2_image-2.0.so.0.600.3
+taller_editor: /usr/local/lib/libSDL2_ttf-2.0.so.0.2000.2
+taller_editor: /usr/local/lib/libSDL2_mixer-2.0.so.0.600.3
 taller_editor: /usr/lib/x86_64-linux-gnu/libSDL2.so
 taller_editor: CMakeFiles/taller_editor.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable taller_editor"

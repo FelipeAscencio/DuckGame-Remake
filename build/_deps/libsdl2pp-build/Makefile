@@ -247,6 +247,30 @@ SDL2pp/AudioSpec.cc.s:
 	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s
 .PHONY : SDL2pp/AudioSpec.cc.s
 
+SDL2pp/Chunk.o: SDL2pp/Chunk.cc.o
+.PHONY : SDL2pp/Chunk.o
+
+# target to build an object file
+SDL2pp/Chunk.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o
+.PHONY : SDL2pp/Chunk.cc.o
+
+SDL2pp/Chunk.i: SDL2pp/Chunk.cc.i
+.PHONY : SDL2pp/Chunk.i
+
+# target to preprocess a source file
+SDL2pp/Chunk.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.i
+.PHONY : SDL2pp/Chunk.cc.i
+
+SDL2pp/Chunk.s: SDL2pp/Chunk.cc.s
+.PHONY : SDL2pp/Chunk.s
+
+# target to generate assembly for a file
+SDL2pp/Chunk.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.s
+.PHONY : SDL2pp/Chunk.cc.s
+
 SDL2pp/Color.o: SDL2pp/Color.cc.o
 .PHONY : SDL2pp/Color.o
 
@@ -294,6 +318,78 @@ SDL2pp/Exception.s: SDL2pp/Exception.cc.s
 SDL2pp/Exception.cc.s:
 	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s
 .PHONY : SDL2pp/Exception.cc.s
+
+SDL2pp/Font.o: SDL2pp/Font.cc.o
+.PHONY : SDL2pp/Font.o
+
+# target to build an object file
+SDL2pp/Font.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o
+.PHONY : SDL2pp/Font.cc.o
+
+SDL2pp/Font.i: SDL2pp/Font.cc.i
+.PHONY : SDL2pp/Font.i
+
+# target to preprocess a source file
+SDL2pp/Font.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i
+.PHONY : SDL2pp/Font.cc.i
+
+SDL2pp/Font.s: SDL2pp/Font.cc.s
+.PHONY : SDL2pp/Font.s
+
+# target to generate assembly for a file
+SDL2pp/Font.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s
+.PHONY : SDL2pp/Font.cc.s
+
+SDL2pp/Mixer.o: SDL2pp/Mixer.cc.o
+.PHONY : SDL2pp/Mixer.o
+
+# target to build an object file
+SDL2pp/Mixer.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o
+.PHONY : SDL2pp/Mixer.cc.o
+
+SDL2pp/Mixer.i: SDL2pp/Mixer.cc.i
+.PHONY : SDL2pp/Mixer.i
+
+# target to preprocess a source file
+SDL2pp/Mixer.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.i
+.PHONY : SDL2pp/Mixer.cc.i
+
+SDL2pp/Mixer.s: SDL2pp/Mixer.cc.s
+.PHONY : SDL2pp/Mixer.s
+
+# target to generate assembly for a file
+SDL2pp/Mixer.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.s
+.PHONY : SDL2pp/Mixer.cc.s
+
+SDL2pp/Music.o: SDL2pp/Music.cc.o
+.PHONY : SDL2pp/Music.o
+
+# target to build an object file
+SDL2pp/Music.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o
+.PHONY : SDL2pp/Music.cc.o
+
+SDL2pp/Music.i: SDL2pp/Music.cc.i
+.PHONY : SDL2pp/Music.i
+
+# target to preprocess a source file
+SDL2pp/Music.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.i
+.PHONY : SDL2pp/Music.cc.i
+
+SDL2pp/Music.s: SDL2pp/Music.cc.s
+.PHONY : SDL2pp/Music.s
+
+# target to generate assembly for a file
+SDL2pp/Music.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.s
+.PHONY : SDL2pp/Music.cc.s
 
 SDL2pp/Point.o: SDL2pp/Point.cc.o
 .PHONY : SDL2pp/Point.o
@@ -414,6 +510,78 @@ SDL2pp/SDL.s: SDL2pp/SDL.cc.s
 SDL2pp/SDL.cc.s:
 	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s
 .PHONY : SDL2pp/SDL.cc.s
+
+SDL2pp/SDLImage.o: SDL2pp/SDLImage.cc.o
+.PHONY : SDL2pp/SDLImage.o
+
+# target to build an object file
+SDL2pp/SDLImage.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o
+.PHONY : SDL2pp/SDLImage.cc.o
+
+SDL2pp/SDLImage.i: SDL2pp/SDLImage.cc.i
+.PHONY : SDL2pp/SDLImage.i
+
+# target to preprocess a source file
+SDL2pp/SDLImage.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i
+.PHONY : SDL2pp/SDLImage.cc.i
+
+SDL2pp/SDLImage.s: SDL2pp/SDLImage.cc.s
+.PHONY : SDL2pp/SDLImage.s
+
+# target to generate assembly for a file
+SDL2pp/SDLImage.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s
+.PHONY : SDL2pp/SDLImage.cc.s
+
+SDL2pp/SDLMixer.o: SDL2pp/SDLMixer.cc.o
+.PHONY : SDL2pp/SDLMixer.o
+
+# target to build an object file
+SDL2pp/SDLMixer.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o
+.PHONY : SDL2pp/SDLMixer.cc.o
+
+SDL2pp/SDLMixer.i: SDL2pp/SDLMixer.cc.i
+.PHONY : SDL2pp/SDLMixer.i
+
+# target to preprocess a source file
+SDL2pp/SDLMixer.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.i
+.PHONY : SDL2pp/SDLMixer.cc.i
+
+SDL2pp/SDLMixer.s: SDL2pp/SDLMixer.cc.s
+.PHONY : SDL2pp/SDLMixer.s
+
+# target to generate assembly for a file
+SDL2pp/SDLMixer.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.s
+.PHONY : SDL2pp/SDLMixer.cc.s
+
+SDL2pp/SDLTTF.o: SDL2pp/SDLTTF.cc.o
+.PHONY : SDL2pp/SDLTTF.o
+
+# target to build an object file
+SDL2pp/SDLTTF.cc.o:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o
+.PHONY : SDL2pp/SDLTTF.cc.o
+
+SDL2pp/SDLTTF.i: SDL2pp/SDLTTF.cc.i
+.PHONY : SDL2pp/SDLTTF.i
+
+# target to preprocess a source file
+SDL2pp/SDLTTF.cc.i:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i
+.PHONY : SDL2pp/SDLTTF.cc.i
+
+SDL2pp/SDLTTF.s: SDL2pp/SDLTTF.cc.s
+.PHONY : SDL2pp/SDLTTF.s
+
+# target to generate assembly for a file
+SDL2pp/SDLTTF.cc.s:
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s
+.PHONY : SDL2pp/SDLTTF.cc.s
 
 SDL2pp/Surface.o: SDL2pp/Surface.cc.o
 .PHONY : SDL2pp/Surface.o
@@ -581,12 +749,24 @@ help:
 	@echo "... SDL2pp/AudioSpec.o"
 	@echo "... SDL2pp/AudioSpec.i"
 	@echo "... SDL2pp/AudioSpec.s"
+	@echo "... SDL2pp/Chunk.o"
+	@echo "... SDL2pp/Chunk.i"
+	@echo "... SDL2pp/Chunk.s"
 	@echo "... SDL2pp/Color.o"
 	@echo "... SDL2pp/Color.i"
 	@echo "... SDL2pp/Color.s"
 	@echo "... SDL2pp/Exception.o"
 	@echo "... SDL2pp/Exception.i"
 	@echo "... SDL2pp/Exception.s"
+	@echo "... SDL2pp/Font.o"
+	@echo "... SDL2pp/Font.i"
+	@echo "... SDL2pp/Font.s"
+	@echo "... SDL2pp/Mixer.o"
+	@echo "... SDL2pp/Mixer.i"
+	@echo "... SDL2pp/Mixer.s"
+	@echo "... SDL2pp/Music.o"
+	@echo "... SDL2pp/Music.i"
+	@echo "... SDL2pp/Music.s"
 	@echo "... SDL2pp/Point.o"
 	@echo "... SDL2pp/Point.i"
 	@echo "... SDL2pp/Point.s"
@@ -602,6 +782,15 @@ help:
 	@echo "... SDL2pp/SDL.o"
 	@echo "... SDL2pp/SDL.i"
 	@echo "... SDL2pp/SDL.s"
+	@echo "... SDL2pp/SDLImage.o"
+	@echo "... SDL2pp/SDLImage.i"
+	@echo "... SDL2pp/SDLImage.s"
+	@echo "... SDL2pp/SDLMixer.o"
+	@echo "... SDL2pp/SDLMixer.i"
+	@echo "... SDL2pp/SDLMixer.s"
+	@echo "... SDL2pp/SDLTTF.o"
+	@echo "... SDL2pp/SDLTTF.i"
+	@echo "... SDL2pp/SDLTTF.s"
 	@echo "... SDL2pp/Surface.o"
 	@echo "... SDL2pp/Surface.i"
 	@echo "... SDL2pp/Surface.s"

@@ -28,8 +28,8 @@
 
 #define SDL2PP_VERSION "0.18.1"
 
-/* #undef SDL2PP_WITH_IMAGE */
-/* #undef SDL2PP_WITH_TTF */
-/* #undef SDL2PP_WITH_MIXER */
+#define SDL2PP_WITH_IMAGE
+#define SDL2PP_WITH_TTF
+#define SDL2PP_WITH_MIXER
 
 #endif

@@ -95,6 +95,9 @@ taller_client: CMakeFiles/taller_client.dir/build.make
 taller_client: libtaller_common.a
 taller_client: _deps/libsdl2pp-build/libSDL2pp.so.8.3.0
 taller_client: /usr/lib/x86_64-linux-gnu/libSDL2main.a
+taller_client: /usr/local/lib/libSDL2_image-2.0.so.0.600.3
+taller_client: /usr/local/lib/libSDL2_ttf-2.0.so.0.2000.2
+taller_client: /usr/local/lib/libSDL2_mixer-2.0.so.0.600.3
 taller_client: /usr/lib/x86_64-linux-gnu/libSDL2.so
 taller_client: CMakeFiles/taller_client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable taller_client"
