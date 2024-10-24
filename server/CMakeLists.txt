@@ -10,24 +10,31 @@ target_sources(taller_server
     granada.cpp
     laser_rifle.cpp
     magnum.cpp
+    mapa.cpp
     p_p_laser.cpp
     pato.cpp
     shotgun.cpp
     sniper.cpp
     PUBLIC
     # .h files
+    aceptador.h
     ak47.h
     arma.h
     banana.h
     cowboy_pistol.h
     duel_pistol.h
+    enviador.h
     granada.h
     laser_rifle.h
     magnum.h
+    mapa.h
     p_p_laser.h
     pato.h
+    protocol.h
+    recibidor.h
     shotgun.h
     sniper.h
+    thread_usuario.h
     orientacion.h
     posicion.h
     )

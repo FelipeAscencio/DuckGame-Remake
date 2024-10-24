@@ -1,6 +1,3 @@
-/*
-    Copyright [2024] Axel Zielonka
-*/
 #include "server/mapa.h"
 
 Mapa::Mapa(int largo, int alto) {
