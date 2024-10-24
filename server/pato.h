@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "arma.h"
+#include "mapa.h"
 #include "orientacion.h"
 #include "posicion.h"
 
@@ -18,13 +19,18 @@ private:
     bool agachado;
     orientacion_e orientacion;
     Arma* arma_equipada;
+    bool saltando;
+    bool aleteando;
+    bool cayendo;
+    int iteraciones_subiendo;
+
+    bool chequeo_bordes(Mapa mapa, const orientacion_e& direccion);
 
 public:
     explicit Pato(int id);
     posicion_t obtener_posicion();
-    bool mover_derecha();
-    bool mover_izquierda();
-    void saltar();
+    bool mover(Mapa mapa, const orientacion_e& direccion);
+    void saltar(Mapa mapa);
     void aletear();
     bool tiene_arma();
     void agacharse();
@@ -38,7 +44,8 @@ public:
     bool tiene_armadura();
     bool tiene_casco();
     bool disparar();
-    void caer();
+    void caer(Mapa mapa);
+    void control_pre_comando(Mapa mapa);
 
     ~Pato();
 };
