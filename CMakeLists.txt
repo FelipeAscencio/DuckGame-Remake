@@ -9,7 +9,7 @@ if (NOT DEFINED CMAKE_CXX_STANDARD)
 endif()
 
 # Definicion del path de los recursos.
-add_definitions(-DDATA_PATH="${PROJECT_SOURCE_DIR}/data")
+add_definitions(-DDATA_PATH="${CMAKE_SOURCE_DIR}/data")
 include_directories(${SDL2PP_INCLUDE_DIRS})
 
 # strongly encouraged to enable this globally to avoid conflicts between
