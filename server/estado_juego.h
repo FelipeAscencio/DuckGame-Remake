@@ -19,7 +19,7 @@ typedef struct EstadoJuego {
     std::vector<bool> cascos_equipados;
     std::vector<bool> armaduras_equipadas;
     std::vector<orientacion_e> orientaciones;
-    std::vector<estado_pato_t> estados_patos;
+    std::vector<estado_pato_e> estados_patos;
 
     EstadoJuego(int jugadores):
             cantidad_jugadores(jugadores),

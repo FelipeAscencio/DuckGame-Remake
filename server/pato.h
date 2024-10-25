@@ -22,7 +22,7 @@ private:
     bool posee_casco;
     orientacion_e orientacion;
     Arma* arma_equipada;
-    estado_pato_t estado_actual;
+    estado_pato_e estado_actual;
     int iteraciones_subiendo;
 
     bool chequeo_bordes(Mapa mapa, const orientacion_e& direccion);
