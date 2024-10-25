@@ -5,9 +5,25 @@
 #include <string>
 
 #include "posicion.h"
+#include "protocol.h"
 
+#define ID_GRANADA 1
+#define ID_BANANA 2
+#define ID_PP_LASER 3
+#define ID_LASER_RIFLE 4
+#define ID_AK47 5
+#define ID_DUEL_PISTOL 6
+#define ID_COWBOY_PISTOL 7
+#define ID_MAGNUM 8
+#define ID_SHOTGUN 9
+#define ID_SNIPER 10
+
+using namespace ServerProtocol;
 class Arma {
+    friend Protocol;
+
 protected:
+    const int id_arma;
     const std::string nombre;
     int alcance;
     int municiones;
@@ -18,7 +34,7 @@ protected:
     bool puede_agarrarse();
 
 public:
-    Arma(std::string nombre, int alcance, int municiones, bool tiene_retroceso);
+    Arma(int id_arma, std::string nombre, int alcance, int municiones, bool tiene_retroceso);
 
     virtual ~Arma() = default;
 

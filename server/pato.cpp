@@ -14,12 +14,9 @@ Pato::Pato(int id):
         posee_arma(false),
         posee_armadura(false),
         posee_casco(false),
-        agachado(true),
         orientacion(orientacion_e::DERECHA),
         arma_equipada(nullptr),
-        saltando(false),
-        aleteando(false),
-        cayendo(false),
+        estado_actual(PARADO),
         iteraciones_subiendo(0) {}
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
@@ -64,38 +61,41 @@ bool Pato::mover(Mapa mapa, const orientacion_e& direccion) {
 }
 
 void Pato::saltar(Mapa mapa) {
-    saltando = true;
-    this->posicion.coordenada_y += SALTO_Y_CAIDA;
+    estado_actual = SALTANDO;
+    this->posicion.coordenada_y -= SALTO_Y_CAIDA;
     this->iteraciones_subiendo = 1;
 }
 
 void Pato::aletear() {
-    if (cayendo) {
-        this->aleteando = true;
-        this->posicion.coordenada_y += SALTO_Y_CAIDA / 2;
+    if (estado_actual = CAYENDO) {
+        estado_actual = ALETEANDO;
+        this->posicion.coordenada_y -= SALTO_Y_CAIDA / 2;
     }
 }
 
 void Pato::caer(Mapa mapa) {
     if (!mapa.piso_bloque(this->posicion)) {
-        if (this->posicion.coordenada_y % TILE_A_METRO >= SALTO_Y_CAIDA){
-            this->posicion.coordenada_y -= SALTO_Y_CAIDA; // si esta a 2 metros o mas, tiene que caer 2 metros por segundo por gravedad
+        if (this->posicion.coordenada_y % TILE_A_METRO >= SALTO_Y_CAIDA) {
+            this->posicion.coordenada_y += SALTO_Y_CAIDA;  // si esta a 2 metros o mas, tiene que
+                                                           // caer 2 metros por segundo por gravedad
         } else {
-            this->posicion.coordenada_x -= SALTO_Y_CAIDA / 2; // si esta 1 metro por encima del piso, tiene que caer solo un metro, no mas.
+            this->posicion.coordenada_x +=
+                    SALTO_Y_CAIDA / 2;  // si esta 1 metro por encima del piso, tiene que caer solo
+                                        // un metro, no mas.
         }
-        cayendo = true;
+        estado_actual = CAYENDO;
     } else {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
         int tile_x = tile_actual[0];
         int tile_y = tile_actual[1];
         if (mapa.mapa[tile_x][tile_y] == 0) {
-            this->posicion.coordenada_y -= SALTO_Y_CAIDA;
-            cayendo = true;
+            this->posicion.coordenada_y += SALTO_Y_CAIDA;
+            estado_actual = CAYENDO;
         } else {
-            cayendo = false;
+            estado_actual = PARADO;
         }
     }
-    if (this->posicion.coordenada_y < 0)
+    if (this->posicion.coordenada_y > mapa.largo)
         this->vivo = false;
 }
 
@@ -140,28 +140,43 @@ bool Pato::disparar() {
     }
 }
 
-void Pato::agacharse() { this->agachado = true; }
+void Pato::agacharse() { estado_actual = AGACHADO; }
+
+void Pato::chequear_estado(Mapa mapa) {
+    switch (estado_actual) {
+        case AGACHADO:
+            estado_actual = PARADO;
+            break;
+
+        case SALTANDO:
+            if (iteraciones_subiendo <
+                (TILE_A_METRO /
+                 SALTO_Y_CAIDA)) {  // Como los tiles miden 10 y sube de a 2 metros, se
+                                    // necesitan 5 iteraciones para realizar un salto
+                posicion.coordenada_y -= SALTO_Y_CAIDA;
+                iteraciones_subiendo += 1;
+            } else {
+                estado_actual = CAYENDO;
+                iteraciones_subiendo = 0;
+            }
+            break;
+
+        case ALETEANDO:
+            estado_actual = CAYENDO;
+            break;
+
+        default:
+            break;
+    }
+}
 
 void Pato::control_pre_comando(Mapa mapa) {
-    if (posicion.coordenada_x < 0 || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
+    if (posicion.coordenada_x > mapa.alto || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
     }
-    if (saltando) {
-        if (iteraciones_subiendo < 5) {  // Como los tiles miden 10 y sube de a 2 metros, se
-                                         // necesitan 5 iteraciones para realizar un salto
-            this->posicion.coordenada_y += SALTO_Y_CAIDA;
-            this->iteraciones_subiendo += 1;
-        } else {
-            saltando = false;
-            cayendo = true;
-            iteraciones_subiendo = 0;
-        }
-    }
-    caer(mapa);
-    if (aleteando)
-        aleteando = false;
-    if (agachado)
-        agachado = false;
+    if (estado_actual != SALTANDO)
+        caer(mapa);
+    chequear_estado(mapa);
     if (posee_arma) {
         if (this->arma_equipada->municiones_restantes() == 0) {
             delete this->arma_equipada;
@@ -171,13 +186,13 @@ void Pato::control_pre_comando(Mapa mapa) {
     }
 }
 
-void Pato::recibir_disparo(){
-    if (posee_casco){
-        posee_casco = false; // si le pegan un disparo, pierde el casco pero sigue vivo
+void Pato::recibir_disparo() {
+    if (posee_casco) {
+        posee_casco = false;  // si le pegan un disparo, pierde el casco pero sigue vivo
         return;
-    } 
-    if (posee_armadura) {
-        posee_armadura = false; // si le pegan un disparo, pierde el armadura pero sigue vivo
     }
-    vivo = false; // si llego a este punto, no tenia ni casco ni armadura, entonces muere
+    if (posee_armadura) {
+        posee_armadura = false;  // si le pegan un disparo, pierde el armadura pero sigue vivo
+    }
+    vivo = false;  // si llego a este punto, no tenia ni casco ni armadura, entonces muere
 }

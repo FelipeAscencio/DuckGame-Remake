@@ -6,7 +6,7 @@
 #define MUNICIONES 2
 
 Shotgun::Shotgun():
-        Arma(SHOTGUN, ALCANCE_MINIMO, MUNICIONES, true),
+        Arma(ID_SHOTGUN, SHOTGUN, ALCANCE_MINIMO, MUNICIONES, true),
         debe_recargar(false),
         alcance_maximo(ALCANCE_MAXIMO) {}
 

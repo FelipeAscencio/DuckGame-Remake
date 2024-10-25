@@ -4,6 +4,6 @@
 #define ALCANCE 5
 #define MUNICIONES 1
 
-DuelPistol::DuelPistol(): Arma(DUEL_PISTOL, ALCANCE, MUNICIONES, true) {}
+DuelPistol::DuelPistol(): Arma(ID_DUEL_PISTOL, DUEL_PISTOL, ALCANCE, MUNICIONES, true) {}
 
 void DuelPistol::disparar(const orientacion_e& direccion) { return; }

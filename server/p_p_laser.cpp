@@ -6,6 +6,7 @@
 #define ALCANCE_MAXIMO 38
 
 PewPewLaser::PewPewLaser():
-        Arma(PEW_PEW_LASER, ALCANCE_MINIMO, MUNICIONES, false), alcance_maximo(ALCANCE_MAXIMO) {}
+        Arma(ID_PP_LASER, PEW_PEW_LASER, ALCANCE_MINIMO, MUNICIONES, false),
+        alcance_maximo(ALCANCE_MAXIMO) {}
 
 void PewPewLaser::disparar(const orientacion_e& direccion) { return; }

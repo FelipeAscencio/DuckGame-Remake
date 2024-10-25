@@ -6,13 +6,10 @@
 #include "../common/queue.h"
 #include "../common/thread.h"
 
+#include "estado_juego.h"
 #include "protocol.h"
 
 using namespace ServerProtocol;
-
-typedef struct EstadoJuego {
-    int a;  // aca tengo que ver bien que es lo que se envia
-} estado_juego_t;
 
 class Enviador: public Thread {
 private:

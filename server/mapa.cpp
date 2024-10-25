@@ -24,8 +24,8 @@ std::vector<int> Mapa::posicion_en_mapa(const posicion_t& pos) {
         posicion[0] = -1;
         posicion[1] = -1;
     } else {
-        posicion[0] = pos.coordenada_x / 10;
-        posicion[1] = pos.coordenada_y / 10;
+        posicion[0] = pos.coordenada_x / TILE_A_METRO;
+        posicion[1] = pos.coordenada_y / TILE_A_METRO;
     }
     return posicion;
 }
@@ -34,7 +34,7 @@ bool Mapa::borde_bloque(const posicion_t& pos, const orientacion_e& orientacion)
     bool borde;
     switch (orientacion) {
         case orientacion_e::DERECHA:
-            borde = (pos.coordenada_x % TILE_A_METRO) == 9;
+            borde = (pos.coordenada_x % TILE_A_METRO) == (TILE_A_METRO - 1);
             break;
 
         case orientacion_e::IZQUIERDA:
@@ -47,7 +47,9 @@ bool Mapa::borde_bloque(const posicion_t& pos, const orientacion_e& orientacion)
     return borde;
 }
 
-bool Mapa::piso_bloque(const posicion_t& pos) { return (pos.coordenada_y % TILE_A_METRO == 0); }
+bool Mapa::piso_bloque(const posicion_t& pos) {
+    return (pos.coordenada_y % TILE_A_METRO == (TILE_A_METRO - 1));
+}
 
 Mapa::~Mapa() {
     for (int i = 0; i < largo; i++) {
