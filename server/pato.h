@@ -13,6 +13,7 @@
 using namespace ServerProtocol;
 class Pato {
     friend Protocol;  // para poder enviar la informacion del pato sin usar getters
+    friend estado_juego_t;
 private:
     int id_jugador;
     posicion_t posicion;

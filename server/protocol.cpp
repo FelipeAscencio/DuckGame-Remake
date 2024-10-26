@@ -13,26 +13,30 @@ using namespace ServerProtocol;
 
 Protocol::Protocol(Socket& skt): s(skt) {}
 
-std::vector<uint8_t> Protocol::serializar(Pato& pato) {
+std::vector<uint8_t> Protocol::serializar(const estado_juego_t& estado_actual, int indice) {
     std::vector<uint8_t> informacion_pato;
     informacion_pato.push_back(CODIGO_PATO);
-    informacion_pato.push_back(pato.id_jugador);
-    informacion_pato.push_back(pato.posicion.coordenada_x);
-    informacion_pato.push_back(pato.posicion.coordenada_y);
-    informacion_pato.push_back(pato.posee_arma ? 0x01 : 0x00);
-    informacion_pato.push_back(pato.arma_equipada ? pato.arma_equipada->id_arma : 0x00);
-    informacion_pato.push_back(pato.posee_casco ? 0x01 : 0x00);
-    informacion_pato.push_back(pato.posee_armadura ? 0x01 : 0x00);
-    informacion_pato.push_back(pato.orientacion);
-    informacion_pato.push_back(pato.estado_actual);
+    informacion_pato.push_back(estado_actual.id_jugadores[indice]);
+    informacion_pato.push_back(estado_actual.posiciones[indice].coordenada_x);
+    informacion_pato.push_back(estado_actual.posiciones[indice].coordenada_y);
+    informacion_pato.push_back((uint8_t)estado_actual.poseen_armas[indice]);
+    if (estado_actual.armas_equipadas[indice]){
+        informacion_pato.push_back(estado_actual.armas_equipadas[indice]->id_arma);
+    } else {
+        informacion_pato.push_back(0x00);
+    }
+    informacion_pato.push_back((uint8_t)estado_actual.cascos_equipados[indice]);
+    informacion_pato.push_back((uint8_t)estado_actual.armaduras_equipadas[indice]);
+    informacion_pato.push_back(estado_actual.orientaciones[indice]);
+    informacion_pato.push_back(estado_actual.estados_patos[indice]);
     informacion_pato.push_back(FIN_MENSAJE);
     return informacion_pato;
 }
 
-bool Protocol::enviar(std::list<Pato>& patos) {
+bool Protocol::enviar(const estado_juego_t& estado_actual) {
     bool was_closed = false;
-    for (Pato p: patos) {
-        std::vector<uint8_t> informacion_pato = serializar(p);
+    for (int i = 0; i < estado_actual.cantidad_jugadores; i++) {
+        std::vector<uint8_t> informacion_pato = serializar(estado_actual, i);
         s.sendall(informacion_pato.data(), informacion_pato.size(), &was_closed);
         if (was_closed)
             break;

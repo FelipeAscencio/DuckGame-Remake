@@ -31,6 +31,17 @@ typedef struct EstadoJuego {
             armaduras_equipadas(cantidad_jugadores),
             orientaciones(cantidad_jugadores),
             estados_patos(cantidad_jugadores) {}
+
+    void agregar_info_pato(const Pato& pato, int indice){
+        id_jugadores[indice] = pato.id_jugador;
+        posiciones[indice] = pato.posicion;
+        poseen_armas[indice] = pato.posee_arma;
+        armas_equipadas[indice] = pato.arma_equipada;
+        cascos_equipados[indice] = pato.posee_casco;
+        armaduras_equipadas[indice] = pato.posee_armadura;
+        orientaciones[indice] = pato.orientacion;
+        estados_patos[indice] = pato.estado_actual;
+    }
 } estado_juego_t;
 
 
