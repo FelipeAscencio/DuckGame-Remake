@@ -16,16 +16,16 @@ private:
     Parseador parseador;
 
     // Funcion provisoria (TESTING).
-    void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheetPato, 
-                          const std::vector<SDL_Rect>& spritesPato, 
-                          int anchoVentana, int altoVentana);
+    void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet, 
+                          const std::vector<SDL_Rect>& sprites, 
+                          int anchoVentana, int altoVentana, float x, float y, float escala, float separacion);
 
 public:
     // Constructor de la clase.
     explicit Dibujador();
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
-    void renderizar(Renderer& renderer, Window& window);
+    void renderizar(Renderer& renderer, Window& window, const int estado);
 
     // Deshabilito las copias.
     Dibujador(const Dibujador&) = delete;

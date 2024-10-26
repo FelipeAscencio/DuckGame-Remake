@@ -18,6 +18,7 @@ private:
     bool jugador_activo;
     Controlador controlador;
     Dibujador dibujador;
+    int estado; // PROVISORIO PARA TESTING.
 
 public:
     // Constructor de la clase.

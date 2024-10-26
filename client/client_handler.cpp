@@ -8,7 +8,7 @@
 using namespace SDL2pp;
 
 Client::Client(const char* hostname, const char* servicio):
-        hostname(hostname), servicio(servicio), jugador_activo(true), controlador(), dibujador() {}
+        hostname(hostname), servicio(servicio), jugador_activo(true), controlador(), dibujador(), estado(0) {}
 
 void Client::controlar_loop_juego() {
     SDL sdl(SDL_INIT_VIDEO);
@@ -16,8 +16,8 @@ void Client::controlar_loop_juego() {
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
 
     while (this->jugador_activo) {
-        controlador.manejarEventos(this->jugador_activo);
-        dibujador.renderizar(renderer, window);
+        controlador.manejarEventos(this->jugador_activo, this->estado);
+        dibujador.renderizar(renderer, window, this->estado);
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
