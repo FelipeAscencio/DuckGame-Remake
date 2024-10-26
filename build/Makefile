@@ -291,6 +291,54 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+client/client_controlador.o: client/client_controlador.cpp.o
+.PHONY : client/client_controlador.o
+
+# target to build an object file
+client/client_controlador.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_controlador.cpp.o
+.PHONY : client/client_controlador.cpp.o
+
+client/client_controlador.i: client/client_controlador.cpp.i
+.PHONY : client/client_controlador.i
+
+# target to preprocess a source file
+client/client_controlador.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_controlador.cpp.i
+.PHONY : client/client_controlador.cpp.i
+
+client/client_controlador.s: client/client_controlador.cpp.s
+.PHONY : client/client_controlador.s
+
+# target to generate assembly for a file
+client/client_controlador.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_controlador.cpp.s
+.PHONY : client/client_controlador.cpp.s
+
+client/client_dibujador.o: client/client_dibujador.cpp.o
+.PHONY : client/client_dibujador.o
+
+# target to build an object file
+client/client_dibujador.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_dibujador.cpp.o
+.PHONY : client/client_dibujador.cpp.o
+
+client/client_dibujador.i: client/client_dibujador.cpp.i
+.PHONY : client/client_dibujador.i
+
+# target to preprocess a source file
+client/client_dibujador.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_dibujador.cpp.i
+.PHONY : client/client_dibujador.cpp.i
+
+client/client_dibujador.s: client/client_dibujador.cpp.s
+.PHONY : client/client_dibujador.s
+
+# target to generate assembly for a file
+client/client_dibujador.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_dibujador.cpp.s
+.PHONY : client/client_dibujador.cpp.s
+
 client/client_handler.o: client/client_handler.cpp.o
 .PHONY : client/client_handler.o
 
@@ -314,6 +362,30 @@ client/client_handler.s: client/client_handler.cpp.s
 client/client_handler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_handler.cpp.s
 .PHONY : client/client_handler.cpp.s
+
+client/client_parseador.o: client/client_parseador.cpp.o
+.PHONY : client/client_parseador.o
+
+# target to build an object file
+client/client_parseador.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_parseador.cpp.o
+.PHONY : client/client_parseador.cpp.o
+
+client/client_parseador.i: client/client_parseador.cpp.i
+.PHONY : client/client_parseador.i
+
+# target to preprocess a source file
+client/client_parseador.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_parseador.cpp.i
+.PHONY : client/client_parseador.cpp.i
+
+client/client_parseador.s: client/client_parseador.cpp.s
+.PHONY : client/client_parseador.s
+
+# target to generate assembly for a file
+client/client_parseador.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_parseador.cpp.s
+.PHONY : client/client_parseador.cpp.s
 
 client/main.o: client/main.cpp.o
 .PHONY : client/main.o
@@ -841,9 +913,18 @@ help:
 	@echo "... taller_editor"
 	@echo "... taller_server"
 	@echo "... taller_tests"
+	@echo "... client/client_controlador.o"
+	@echo "... client/client_controlador.i"
+	@echo "... client/client_controlador.s"
+	@echo "... client/client_dibujador.o"
+	@echo "... client/client_dibujador.i"
+	@echo "... client/client_dibujador.s"
 	@echo "... client/client_handler.o"
 	@echo "... client/client_handler.i"
 	@echo "... client/client_handler.s"
+	@echo "... client/client_parseador.o"
+	@echo "... client/client_parseador.i"
+	@echo "... client/client_parseador.s"
 	@echo "... client/main.o"
 	@echo "... client/main.i"
 	@echo "... client/main.s"
