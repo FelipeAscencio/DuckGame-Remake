@@ -10,7 +10,6 @@ using namespace SDL2pp;
 // del control de los eventos del 'Cliente'.
 class Controlador {
 private:
-
 public:
     // Constructor de la clase.
     explicit Controlador();

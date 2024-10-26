@@ -1,9 +1,10 @@
 #ifndef CLIENT_DIBUJADOR_H
 #define CLIENT_DIBUJADOR_H
 
+#include <vector>
+
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
-#include <vector>
 
 #include "client_parseador.h"
 
@@ -19,11 +20,15 @@ private:
     Texture spriteSheetCaja;
     Texture spriteSheetArmadura;
     Texture mapa;
+    std::vector<SDL_Rect> spritesPato;
+    std::vector<SDL_Rect> spritesAK;
+    std::vector<SDL_Rect> spritesCaja;
+    std::vector<SDL_Rect> spritesArmadura;
 
     // Funcion provisoria (TESTING).
-    void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet, 
-                          const std::vector<SDL_Rect>& sprites, 
-                          int anchoVentana, int altoVentana, float x, float y, float escala, float separacion);
+    void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
+                              const std::vector<SDL_Rect>& sprites, int anchoVentana,
+                              int altoVentana, float x, float y, float escala, float separacion);
 
 public:
     // Constructor de la clase.

@@ -1,5 +1,6 @@
 #include <exception>
 #include <iostream>
+
 #include <stdbool.h>
 
 #include "client_handler.h"
@@ -26,7 +27,7 @@ bool argumentos_validos(int argumentos) {
     return true;
 }
 
-int main(int argc, const char* argv[]){
+int main(int argc, const char* argv[]) {
     try {
         if (!argumentos_validos(argc)) {
             return FALLA;

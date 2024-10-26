@@ -1,9 +1,10 @@
 #ifndef CLIENT_PARSEADOR_H
 #define CLIENT_PARSEADOR_H
 
+#include <vector>
+
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
-#include <vector>
 
 using namespace SDL2pp;
 
@@ -11,9 +12,9 @@ using namespace SDL2pp;
 // y agrupar todos los 'sprites' a utilizar.
 class Parseador {
 private:
-
     // Agrega los "Rect" al vector de "sprites" en base a los parametros recibidos.
-    void iterador_de_parseo(std::vector<SDL_Rect>& sprites, int cantidad_sprites, int x, int y, int tamanio_sprite);
+    void iterador_de_parseo(std::vector<SDL_Rect>& sprites, int cantidad_sprites, int x, int y,
+                            int tamanio_sprite);
 
 public:
     // Constructor de la clase.

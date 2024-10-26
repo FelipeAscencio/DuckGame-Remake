@@ -18,7 +18,7 @@ private:
     bool jugador_activo;
     Controlador controlador;
     std::optional<Dibujador> dibujador;
-    int estado; // PROVISORIO PARA
+    int estado;  // PROVISORIO PARA
 
 public:
     // Constructor de la clase.

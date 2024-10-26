@@ -8,13 +8,13 @@
 
 using namespace SDL2pp;
 
-Client::Client(const char* hostname, const char* servicio)
-    : hostname(hostname), servicio(servicio), jugador_activo(true), controlador(),
-      estado(0) {}
+Client::Client(const char* hostname, const char* servicio):
+        hostname(hostname), servicio(servicio), jugador_activo(true), controlador(), estado(0) {}
 
 void Client::controlar_loop_juego() {
     SDL sdl(SDL_INIT_VIDEO);
-    Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ANCHO_MIN, ALTO_MIN, SDL_WINDOW_RESIZABLE);
+    Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ANCHO_MIN,
+                  ALTO_MIN, SDL_WINDOW_RESIZABLE);
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     std::string ruta_mapa = RUTA_MAPA_1;
     dibujador.emplace(renderer, ruta_mapa);
