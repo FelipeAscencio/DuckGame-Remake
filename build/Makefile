@@ -291,6 +291,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+client/client_handler.o: client/client_handler.cpp.o
+.PHONY : client/client_handler.o
+
+# target to build an object file
+client/client_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_handler.cpp.o
+.PHONY : client/client_handler.cpp.o
+
+client/client_handler.i: client/client_handler.cpp.i
+.PHONY : client/client_handler.i
+
+# target to preprocess a source file
+client/client_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_handler.cpp.i
+.PHONY : client/client_handler.cpp.i
+
+client/client_handler.s: client/client_handler.cpp.s
+.PHONY : client/client_handler.s
+
+# target to generate assembly for a file
+client/client_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/client/client_handler.cpp.s
+.PHONY : client/client_handler.cpp.s
+
 client/main.o: client/main.cpp.o
 .PHONY : client/main.o
 
@@ -817,6 +841,9 @@ help:
 	@echo "... taller_editor"
 	@echo "... taller_server"
 	@echo "... taller_tests"
+	@echo "... client/client_handler.o"
+	@echo "... client/client_handler.i"
+	@echo "... client/client_handler.s"
 	@echo "... client/main.o"
 	@echo "... client/main.i"
 	@echo "... client/main.s"

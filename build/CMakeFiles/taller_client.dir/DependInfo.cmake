@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/client/client_handler.cpp" "CMakeFiles/taller_client.dir/client/client_handler.cpp.o" "gcc" "CMakeFiles/taller_client.dir/client/client_handler.cpp.o.d"
   "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/client/main.cpp" "CMakeFiles/taller_client.dir/client/main.cpp.o" "gcc" "CMakeFiles/taller_client.dir/client/main.cpp.o.d"
   )
 
