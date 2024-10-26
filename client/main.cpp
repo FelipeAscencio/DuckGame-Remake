@@ -1,40 +1,47 @@
 #include <exception>
 #include <iostream>
+#include <stdbool.h>
 
-#include <SDL2/SDL.h>
-#include <SDL2pp/SDL2pp.hh>
+#include "client_handler.h"
 
 #define EXITO 0
 #define FALLA 1
-#define MENOS_UNO -1
-#define WIDTH_MIN 640
-#define HEIGHT_MIN 480
-#define DUCK_GAME_STR "Duck Game"
+#define POS_HOSTNAME 1
+#define POS_SERVICIO 2
+#define ARGUMENTOS_ESPERADOS 3
+#define MSJ_ERROR_FORMATO "Error de formato: El esperado es './client <hostname> <servicio>'."
+#define MSJ_EXCEPCION_CONOCIDA "Hubo un error y se capturo la excepcion: "
+#define MSJ_EXCEPCION_DESCONOCIDA "Hubo un error pero no se conoce la excepcion capturada."
 
-using namespace SDL2pp;
+// PRE: - .
+// POST: Devuelve 'true' si la cantidad de argumentos recibida por consola es la correcta.
+bool argumentos_validos(int argumentos);
 
-int main() try {
-    SDL sdl(SDL_INIT_VIDEO);
-    Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH_MIN,
-                  HEIGHT_MIN, SDL_WINDOW_RESIZABLE);
-    Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
-    Texture mapa(renderer, DATA_PATH "/mapa1.png");
-    bool running = true;
-    SDL_Event sdlEvent;
-    while (running) {
-        while (SDL_PollEvent(&sdlEvent)) {
-            if (sdlEvent.type == SDL_QUIT) {
-                running = false;
-            }
-        }
-
-        renderer.Clear();
-        renderer.Copy(mapa);
-        renderer.Present();
+bool argumentos_validos(int argumentos) {
+    if (argumentos != ARGUMENTOS_ESPERADOS) {
+        std::cout << MSJ_ERROR_FORMATO << std::endl;
+        return false;
     }
 
-    return EXITO;
-} catch (std::exception& error) {
-    std::cerr << error.what() << std::endl;
-    return FALLA;
+    return true;
+}
+
+int main(int argc, const char* argv[]){
+    try {
+        if (!argumentos_validos(argc)) {
+            return FALLA;
+        }
+
+        const char* hostname = argv[POS_HOSTNAME];
+        const char* servicio = argv[POS_SERVICIO];
+        Client client(hostname, servicio);
+        client.controlar_loop_juego();
+        return EXITO;
+    } catch (const std::exception& error) {
+        std::cerr << MSJ_EXCEPCION_CONOCIDA << error.what() << std::endl;
+        return FALLA;
+    } catch (...) {
+        std::cerr << MSJ_EXCEPCION_DESCONOCIDA << std::endl;
+        return FALLA;
+    }
 }
