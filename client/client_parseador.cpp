@@ -18,7 +18,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pato() {
         rect.h = TAMANIO_SPRITE;
         spritesPato.push_back(rect);
     }
-    for (int i = 1; i < 3; ++i) {
+    for (int i = 0; i < 3; ++i) {
         SDL_Rect rect;
         rect.x = xInicial + i * TAMANIO_SPRITE;
         rect.y = yInicial + TAMANIO_SPRITE;
@@ -34,6 +34,34 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pato() {
         rect.h = TAMANIO_SPRITE;
         spritesPato.push_back(rect);
     }
+
+    xInicial = 194;
+    yInicial = 10;
+    for (int i = 0; i < 6; ++i) {
+        SDL_Rect rect;
+        rect.x = xInicial + i * TAMANIO_SPRITE;
+        rect.y = yInicial;
+        rect.w = TAMANIO_SPRITE;
+        rect.h = TAMANIO_SPRITE;
+        spritesPato.push_back(rect);
+    }
+    for (int i = 0; i < 3; ++i) {
+        SDL_Rect rect;
+        rect.x = xInicial + i * TAMANIO_SPRITE;
+        rect.y = yInicial + TAMANIO_SPRITE;
+        rect.w = TAMANIO_SPRITE;
+        rect.h = TAMANIO_SPRITE;
+        spritesPato.push_back(rect);
+    }
+    for (int i = 0; i < 3; ++i) {
+        SDL_Rect rect;
+        rect.x = xInicial + i * TAMANIO_SPRITE;
+        rect.y = yInicial + 2 * TAMANIO_SPRITE;
+        rect.w = TAMANIO_SPRITE;
+        rect.h = TAMANIO_SPRITE;
+        spritesPato.push_back(rect);
+    }
+    
 
     return spritesPato;
 }
