@@ -22,6 +22,15 @@ public:
     // Devuelve los 'sprites' de movimiento del 'pato blanco'.
     std::vector<SDL_Rect> obtener_sprites_pato();
 
+    // Devuelve los 'sprites' del 'ak47'.
+    std::vector<SDL_Rect> obtener_sprites_ak();
+
+    // Devuelve los 'sprites' de la 'caja'.
+    std::vector<SDL_Rect> obtener_sprites_caja();
+
+    // Devuelve los 'sprites' de la 'armadura'.
+    std::vector<SDL_Rect> obtener_sprites_armadura();
+
     // Deshabilito las copias.
     Parseador(const Parseador&) = delete;
     Parseador& operator=(const Parseador&) = delete;

@@ -1,12 +1,23 @@
 #include "client_parseador.h"
 
 #define CERO 0
+#define UNO 1
+#define DOS 2
+#define TRES 3
 #define BORDE_FINO_SPRITESHEET 1
 #define BORDE_GRUESO_SPRITESHEET 10
 #define TIRA_COMPLETA_SPRITES 6
 #define MEDIA_TIRA_SPRITES 3
+#define TIRA_COMPLETA_CAJAS 4
 #define TAMANIO_SPRITE_GRANDE 32
-#define INICIO_PATO_QUACK 194
+#define TAMANIO_SPRITE_MEDIANO 16
+#define TAMANIO_SPRITE_CHICHO 8
+#define INICIO_PATO_QUACK_X 194
+#define INICIO_AK_47_Y 19
+#define INICIO_CAJA_X 183
+#define INICIO_CAJA_Y 20
+#define INICIO_ARMADURA_X 387
+#define INICIO_ARMADURA_Y 13
 
 using namespace SDL2pp;
 
@@ -37,7 +48,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pato() {
     iterador_de_parseo(spritesPato, MEDIA_TIRA_SPRITES, xInicial, yInicial, tamanio_sprite);
 
     // Parseo de los sprites del pato haciendo 'quack'.
-    xInicial = INICIO_PATO_QUACK;
+    xInicial = INICIO_PATO_QUACK_X;
     yInicial = BORDE_GRUESO_SPRITESHEET;
     iterador_de_parseo(spritesPato, TIRA_COMPLETA_SPRITES, xInicial, yInicial, tamanio_sprite);
     yInicial += tamanio_sprite;
@@ -46,4 +57,44 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pato() {
     iterador_de_parseo(spritesPato, MEDIA_TIRA_SPRITES, xInicial, yInicial, tamanio_sprite);  
 
     return spritesPato;
+}
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_ak() {
+    std::vector<SDL_Rect> spritesAK;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    
+    int xInicial = BORDE_FINO_SPRITESHEET;
+    int yInicial = INICIO_AK_47_Y;
+    iterador_de_parseo(spritesAK, UNO, xInicial, yInicial, tamanio_sprite);
+
+    return spritesAK;
+}
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_caja() {
+    std::vector<SDL_Rect> spritesCaja;
+    int tamanio_sprite = TAMANIO_SPRITE_MEDIANO;
+    
+    int xInicial = INICIO_CAJA_X;
+    int yInicial = INICIO_CAJA_Y;
+    iterador_de_parseo(spritesCaja, TIRA_COMPLETA_CAJAS, xInicial, yInicial, tamanio_sprite);
+
+    return spritesCaja;
+}
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_armadura() {
+    std::vector<SDL_Rect> spritesArmadura;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    int xInicial = INICIO_ARMADURA_X;
+    int yInicial = INICIO_ARMADURA_Y;
+
+    // Correccion porque el 'sprite' de la tira esta mal en relacion a la posicion del Pato.
+    iterador_de_parseo(spritesArmadura, UNO, xInicial + (TAMANIO_SPRITE_GRANDE * TRES), yInicial, tamanio_sprite);
+    
+    iterador_de_parseo(spritesArmadura, TIRA_COMPLETA_SPRITES - UNO, xInicial + TAMANIO_SPRITE_GRANDE, yInicial, tamanio_sprite);
+    yInicial += tamanio_sprite;
+    iterador_de_parseo(spritesArmadura, MEDIA_TIRA_SPRITES, xInicial, yInicial, tamanio_sprite);
+    yInicial += tamanio_sprite;
+    iterador_de_parseo(spritesArmadura, MEDIA_TIRA_SPRITES, xInicial, yInicial, tamanio_sprite);
+
+    return spritesArmadura;
 }
