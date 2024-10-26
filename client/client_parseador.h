@@ -12,7 +12,7 @@ using namespace SDL2pp;
 class Parseador {
 private:
 
-    // Agrega los "Rect" al vector de "sprites" (32 x 32) en base a los parametros recibidos.
+    // Agrega los "Rect" al vector de "sprites" en base a los parametros recibidos.
     void iterador_de_parseo(std::vector<SDL_Rect>& sprites, int cantidad_sprites, int x, int y, int tamanio_sprite);
 
 public:

@@ -14,6 +14,11 @@ using namespace SDL2pp;
 class Dibujador {
 private:
     Parseador parseador;
+    Texture spriteSheetPato;
+    Texture spriteSheetAK;
+    Texture spriteSheetCaja;
+    Texture spriteSheetArmadura;
+    Texture mapa;
 
     // Funcion provisoria (TESTING).
     void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet, 
@@ -22,7 +27,7 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Dibujador();
+    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa);
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
     void renderizar(Renderer& renderer, Window& window, const int estado);

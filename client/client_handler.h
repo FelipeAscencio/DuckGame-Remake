@@ -17,8 +17,8 @@ private:
     const char* servicio;
     bool jugador_activo;
     Controlador controlador;
-    Dibujador dibujador;
-    int estado; // PROVISORIO PARA TESTING.
+    std::optional<Dibujador> dibujador;
+    int estado; // PROVISORIO PARA
 
 public:
     // Constructor de la clase.

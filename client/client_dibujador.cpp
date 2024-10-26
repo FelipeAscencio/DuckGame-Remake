@@ -3,14 +3,19 @@
 #include <iostream>
 
 #define RUTA_SPR_PATO "/sprites-pato-blanco.png"
-#define RUTA_MAPA_1 "/mapa1.png"
 #define RUTA_SPR_AK "/sprites-ak47.png"
 #define RUTA_SPR_CAJAS "/sprites-cajas.png"
 #define RUTA_SPR_ARMADURAS "/sprites-armaduras.png"
+#define MAPA_1_STR "mapa 1"
 
 using namespace SDL2pp;
 
-Dibujador::Dibujador(): parseador() {}
+Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa) : parseador(),
+    spriteSheetPato(renderer, DATA_PATH RUTA_SPR_PATO),
+    spriteSheetAK(renderer, DATA_PATH RUTA_SPR_AK),
+    spriteSheetCaja(renderer, DATA_PATH RUTA_SPR_CAJAS),
+    spriteSheetArmadura(renderer, DATA_PATH RUTA_SPR_ARMADURAS),
+    mapa(renderer, (DATA_PATH + ruta_mapa).c_str()) {}
 
 void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet, 
                           const std::vector<SDL_Rect>& sprites, 
@@ -38,11 +43,6 @@ void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture
 }
 
 void Dibujador::renderizar(Renderer& renderer, Window& window, const int estado) {
-    Texture spriteSheetPato(renderer, DATA_PATH RUTA_SPR_PATO);
-    Texture spriteSheetAK(renderer, DATA_PATH RUTA_SPR_AK);
-    Texture spriteSheetCaja(renderer, DATA_PATH RUTA_SPR_CAJAS);
-    Texture spriteSheetArmadura(renderer, DATA_PATH RUTA_SPR_ARMADURAS);
-    Texture mapa(renderer, DATA_PATH RUTA_MAPA_1);
     if (estado == 0){
         int anchoVentana, altoVentana;
         SDL_GetWindowSize(window.Get(), &anchoVentana, &altoVentana);
