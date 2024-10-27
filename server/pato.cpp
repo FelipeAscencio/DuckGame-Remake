@@ -10,8 +10,9 @@
 #define COMANDO_DERECHA 1
 #define COMANDO_IZQUIERDA 2
 #define COMANDO_AGACHARSE 3
-#define COMANDO_SALTO_Y_ALETEO 4
-#define COMANDO_DISPARO_Y_PICKUP 5
+#define COMANDO_MIRAR_HACIA_ARRIBA 4
+#define COMANDO_SALTO_Y_ALETEO 5
+#define COMANDO_DISPARO_Y_PICKUP 6
 
 Pato::Pato(int id):
         id_jugador(id),
@@ -20,7 +21,7 @@ Pato::Pato(int id):
         posee_arma(false),
         posee_armadura(false),
         posee_casco(false),
-        orientacion(orientacion_e::DERECHA),
+        orientacion(DERECHA),
         arma_equipada(nullptr),
         estado_actual(PARADO),
         iteraciones_subiendo(0) {}
@@ -35,7 +36,7 @@ bool Pato::chequeo_bordes(Mapa& mapa, const orientacion_e& direccion) {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
         int bloque_x = tile_actual[0];
         int bloque_y = tile_actual[1];
-        int lado = (direccion == orientacion_e::DERECHA) ? 1 : -1;
+        int lado = (direccion == DERECHA) ? 1 : -1;
         se_movio = (mapa.mapa[bloque_x + lado][bloque_y] == 0);
     }
     return se_movio;
@@ -48,9 +49,9 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
 
     bool fuera_del_mapa_por_derecha =
             (this->posicion.coordenada_x > (mapa.largo * TILE_A_METRO) - MOVER_DERECHA) &&
-            (direccion == orientacion_e::DERECHA);
+            (direccion == DERECHA);
     bool fuera_del_mapa_por_izquierda = (this->posicion.coordenada_x < -MOVER_IZQUIERDA) &&
-                                        (direccion == orientacion_e::IZQUIERDA);
+                                        (direccion == IZQUIERDA);
 
     if (fuera_del_mapa_por_derecha || fuera_del_mapa_por_izquierda) {
         this->vivo = false;  // se va del mapa, muere
@@ -60,7 +61,7 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
     }
     if (se_movio) {
         int pasos_caminados =
-                (direccion == orientacion_e::DERECHA) ? MOVER_DERECHA : MOVER_IZQUIERDA;
+                (direccion == DERECHA) ? MOVER_DERECHA : MOVER_IZQUIERDA;
         this->posicion.coordenada_x += pasos_caminados;
     }
     return se_movio;
@@ -222,6 +223,9 @@ void Pato::recibir_disparo() {
 
 void Pato::realizar_accion(int accion, Mapa& mapa) {
     switch (accion) {
+        case COMANDO_MIRAR_HACIA_ARRIBA:
+            cambiar_orientacion(ARRIBA);
+            break;
         case COMANDO_AGACHARSE:
             agacharse();
             break;

@@ -20,7 +20,7 @@ void Recibidor::run(){
             syslog(LOG_INFO, "%s\n", e.what());
             break;
         } catch (std::exception& e){
-            syslog(LOG_ERR, "%s%s'n", EXCEPCION_INESPERADA, e.what());
+            syslog(LOG_ERR, "%s%s\n", EXCEPCION_INESPERADA, e.what());
             break;
         } catch (...) {
             syslog(LOG_ERR, "%s\n", EXCEPCION_DESCONOCIDA);

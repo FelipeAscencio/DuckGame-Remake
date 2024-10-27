@@ -8,8 +8,9 @@ using namespace ServerProtocol;
 #define MOVER_DERECHA 1
 #define MOVER_IZQUIERDA 2
 #define AGACHARSE 3
-#define SALTAR_O_ALETEAR 4
-#define DISPARAR_O_AGARRAR 5
+#define MIRAR_HACIA_ARRIBA 4
+#define SALTAR_O_ALETEAR 5
+#define DISPARAR_O_AGARRAR 6
 
 Protocol::Protocol(Socket& skt): s(skt) {}
 
