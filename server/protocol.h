@@ -8,8 +8,8 @@
 #include "../common/socket.h"
 
 #include "comando.h"
-#include "pato.h"
 #include "estado_juego.h"
+#include "pato.h"
 namespace ServerProtocol {
 
 class Protocol {

@@ -7,12 +7,14 @@ target_sources(taller_server
     banana.cpp
     cowboy_pistol.cpp
     duel_pistol.cpp
+    gameloop.cpp
     granada.cpp
     laser_rifle.cpp
     magnum.cpp
     mapa.cpp
     p_p_laser.cpp
     pato.cpp
+    protocol.cpp
     shotgun.cpp
     sniper.cpp
     PUBLIC
@@ -21,9 +23,12 @@ target_sources(taller_server
     ak47.h
     arma.h
     banana.h
+    comando.h
     cowboy_pistol.h
     duel_pistol.h
     enviador.h
+    estado_juego.h
+    estado_fisico.h
     granada.h
     laser_rifle.h
     magnum.h

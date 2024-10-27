@@ -7,6 +7,12 @@
 #define MOVER_IZQUIERDA -2
 #define SALTO_Y_CAIDA 2
 
+#define COMANDO_DERECHA 1
+#define COMANDO_IZQUIERDA 2
+#define COMANDO_AGACHARSE 3
+#define COMANDO_SALTO_Y_ALETEO 4
+#define COMANDO_DISPARO_Y_PICKUP 5
+
 Pato::Pato(int id):
         id_jugador(id),
         posicion(0, 0),
@@ -21,7 +27,7 @@ Pato::Pato(int id):
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
-bool Pato::chequeo_bordes(Mapa mapa, const orientacion_e& direccion) {
+bool Pato::chequeo_bordes(Mapa& mapa, const orientacion_e& direccion) {
     bool se_movio;
     if (!mapa.borde_bloque(this->posicion, direccion)) {
         se_movio = true;
@@ -35,7 +41,7 @@ bool Pato::chequeo_bordes(Mapa mapa, const orientacion_e& direccion) {
     return se_movio;
 }
 
-bool Pato::mover(Mapa mapa, const orientacion_e& direccion) {
+bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
     if (direccion != this->orientacion)
         cambiar_orientacion(direccion);
     bool se_movio;
@@ -60,7 +66,7 @@ bool Pato::mover(Mapa mapa, const orientacion_e& direccion) {
     return se_movio;
 }
 
-void Pato::saltar(Mapa mapa) {
+void Pato::saltar() {
     estado_actual = SALTANDO;
     this->posicion.coordenada_y -= SALTO_Y_CAIDA;
     this->iteraciones_subiendo = 1;
@@ -73,7 +79,7 @@ void Pato::aletear() {
     }
 }
 
-void Pato::caer(Mapa mapa) {
+void Pato::caer(Mapa& mapa) {
     if (!mapa.piso_bloque(this->posicion)) {
         if (this->posicion.coordenada_y % TILE_A_METRO >= SALTO_Y_CAIDA) {
             this->posicion.coordenada_y += SALTO_Y_CAIDA;  // si esta a 2 metros o mas, tiene que
@@ -142,7 +148,7 @@ bool Pato::disparar() {
 
 void Pato::agacharse() { estado_actual = AGACHADO; }
 
-void Pato::chequear_estado(Mapa mapa) {
+void Pato::chequear_estado() {
     switch (estado_actual) {
         case AGACHADO:
             estado_actual = PARADO;
@@ -170,13 +176,13 @@ void Pato::chequear_estado(Mapa mapa) {
     }
 }
 
-void Pato::control_pre_comando(Mapa mapa) {
+void Pato::control_pre_comando(Mapa& mapa) {
     if (posicion.coordenada_x > mapa.alto || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
     }
     if (estado_actual != SALTANDO)
         caer(mapa);
-    chequear_estado(mapa);
+    chequear_estado();
     if (posee_arma) {
         if (this->arma_equipada->municiones_restantes() == 0) {
             delete this->arma_equipada;
@@ -195,4 +201,28 @@ void Pato::recibir_disparo() {
         posee_armadura = false;  // si le pegan un disparo, pierde el armadura pero sigue vivo
     }
     vivo = false;  // si llego a este punto, no tenia ni casco ni armadura, entonces muere
+}
+
+void Pato::realizar_accion(int accion, Mapa& mapa) {
+    switch (accion) {
+        case COMANDO_AGACHARSE:
+            agacharse();
+            break;
+        case COMANDO_SALTO_Y_ALETEO:
+            if (estado_actual == PARADO) {
+                saltar();
+            } else {
+                aletear();
+            }
+        case COMANDO_DISPARO_Y_PICKUP:
+            if (arma_equipada) {
+                disparar();
+            } else {
+                // logica para ver si el arma/casco/armadura esta en la misma posicion para agarrar
+            }
+        default:
+            orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
+            mover(mapa, sentido);
+            break;
+    }
 }

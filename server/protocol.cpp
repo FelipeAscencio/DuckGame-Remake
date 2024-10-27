@@ -20,7 +20,7 @@ std::vector<uint8_t> Protocol::serializar(const estado_juego_t& estado_actual, i
     informacion_pato.push_back(estado_actual.posiciones[indice].coordenada_x);
     informacion_pato.push_back(estado_actual.posiciones[indice].coordenada_y);
     informacion_pato.push_back((uint8_t)estado_actual.poseen_armas[indice]);
-    if (estado_actual.armas_equipadas[indice]){
+    if (estado_actual.armas_equipadas[indice]) {
         informacion_pato.push_back(estado_actual.armas_equipadas[indice]->id_arma);
     } else {
         informacion_pato.push_back(0x00);

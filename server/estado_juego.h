@@ -32,7 +32,7 @@ typedef struct EstadoJuego {
             orientaciones(cantidad_jugadores),
             estados_patos(cantidad_jugadores) {}
 
-    void agregar_info_pato(const Pato& pato, int indice){
+    void agregar_info_pato(const Pato& pato, int indice) {
         id_jugadores[indice] = pato.id_jugador;
         posiciones[indice] = pato.posicion;
         poseen_armas[indice] = pato.posee_arma;
