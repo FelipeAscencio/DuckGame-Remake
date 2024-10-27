@@ -198,6 +198,9 @@ void Pato::control_pre_comando(Mapa& mapa) {
     if (posicion.coordenada_x > mapa.alto || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
     }
+    if (orientacion == ARRIBA){
+        cambiar_orientacion(DERECHA);
+    }
     if (estado_actual != SALTANDO)
         caer(mapa);
     chequear_estado();

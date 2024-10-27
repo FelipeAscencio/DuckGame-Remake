@@ -5,7 +5,7 @@
 
 #define RW_CLOSE 2
 
-ThreadUsuario::ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int id) : skt(std::move(s)), queue_sender(10), vivo(true), r(skt, queue_comandos), e(skt, queue_sender, vivo), id_cliente(id) {} 
+ThreadUsuario::ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int id) : skt(std::move(s)), queue_sender(CANTIDAD_MAXIMA_ACCIONES), vivo(true), r(skt, queue_comandos), e(skt, queue_sender, vivo), id_cliente(id) {} 
 
 void ThreadUsuario::iniciar(){
     r.start();

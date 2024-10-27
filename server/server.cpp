@@ -1,6 +1,6 @@
 #include "server.h"
 
-Server::Server(const char* servname): queue_juego(10), lista_queues(), a(servname, queue_juego, lista_queues, ids_clientes), g(queue_juego, lista_queues) {}
+Server::Server(const char* servname): queue_juego(CANTIDAD_MAXIMA_ACCIONES), lista_queues(), a(servname, queue_juego, lista_queues, ids_clientes), g(queue_juego, lista_queues) {}
 
 void Server::comenzar_a_aceptar() { a.start(); }
 
