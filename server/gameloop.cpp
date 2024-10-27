@@ -1,10 +1,18 @@
 #include "gameloop.h"
 
-Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l, std::vector<int> ids_clientes):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(25, 15) {
-    for (int i = 0; i < ids_clientes.size(); i++) {
-        jugadores.push_back(new Pato(ids_clientes[i]));
+Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
+        queue(q), juego_activo(true), queues_clientes(l), mapa(20, 16) {}
+
+void Gameloop::intentar_agregar_jugador(int id){
+    bool id_existente = false;
+    for (Pato* p : jugadores){
+        if (p->id_jugador == id){
+            id_existente = true;
+            break;
+        }
     }
+    if (!id_existente)
+        jugadores.push_back(new Pato(id));
 }
 
 void Gameloop::actualizar_estado_jugadores() {
@@ -23,11 +31,13 @@ void Gameloop::enviar_estado_juego() {
 
 void Gameloop::run() {
     while (juego_activo) {
-        comando_t cmd;
-        while (queue.try_pop(cmd)) {
-            for (Pato* p: jugadores) {
-                if (cmd.id_cliente == p->id_jugador) {
-                    p->realizar_accion(cmd.accion, mapa);
+        if (!jugadores.empty()){
+            comando_t cmd;
+            if (queue.try_pop(cmd)){
+                for (Pato* p: jugadores){
+                    if(cmd.id_cliente == p->id_jugador){
+                        p->realizar_accion(cmd.accion, mapa);
+                    }
                 }
             }
             actualizar_estado_jugadores();

@@ -14,8 +14,8 @@ using namespace ServerProtocol;
 class Enviador: public Thread {
 private:
     Protocol protocol;
-    Queue<estado_juego_t>& queue_snapshots;
-    std::atomic<bool> vivo;
+    Queue<estado_juego_t>& queue_estados;
+    std::atomic<bool>& vivo;
 
 public:
     explicit Enviador(Socket& s, Queue<estado_juego_t>& q, std::atomic<bool>& esta_vivo);

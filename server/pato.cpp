@@ -85,7 +85,7 @@ void Pato::caer(Mapa& mapa) {
             this->posicion.coordenada_y += SALTO_Y_CAIDA;  // si esta a 2 metros o mas, tiene que
                                                            // caer 2 metros por segundo por gravedad
         } else {
-            this->posicion.coordenada_x +=
+            this->posicion.coordenada_y=
                     SALTO_Y_CAIDA / 2;  // si esta 1 metro por encima del piso, tiene que caer solo
                                         // un metro, no mas.
         }
@@ -93,10 +93,27 @@ void Pato::caer(Mapa& mapa) {
     } else {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
         int tile_x = tile_actual[0];
-        int tile_y = tile_actual[1];
+        int tile_y = tile_actual[1] + 1;
+        if (tile_y > mapa.alto) {
+            posicion.coordenada_y += SALTO_Y_CAIDA;
+            return;
+        }
         if (mapa.mapa[tile_x][tile_y] == 0) {
+            if (tile_x > 0 && mapa.mapa[tile_x - 1][tile_y] == 1){
+                if ((posicion.coordenada_x % TILE_A_METRO <= MOVER_DERECHA) || posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO + MOVER_IZQUIERDA)){
+                    estado_actual = PARADO;
+                    return; //ya pase de bloque en el mapa pero el pato todavia tiene una parte del cuerpo en el borde anterior
+                }
+        }
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
             estado_actual = CAYENDO;
+        } else if (mapa.mapa[tile_x][tile_y] == 2){
+            int posicion_en_bloque = posicion.coordenada_y % TILE_A_METRO;
+            int mitad_bloque = TILE_A_METRO / 2;
+            if (posicion_en_bloque < mitad_bloque){
+                posicion.coordenada_y += (mitad_bloque - posicion_en_bloque > SALTO_Y_CAIDA) ? SALTO_Y_CAIDA : (mitad_bloque - posicion_en_bloque);
+                estado_actual = CAYENDO;
+            }
         } else {
             estado_actual = PARADO;
         }

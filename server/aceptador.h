@@ -8,24 +8,26 @@
 #include "../common/thread.h"
 
 #include "thread_usuario.h"
+#include "queues_jugadores.h"
 
 class Aceptador: public Thread {
 private:
     Socket skt;
-    std::list<ThreadUsuario> jugadores;
+    std::list<ThreadUsuario*> jugadores;
     std::atomic<bool> aceptando_jugadores;
-    Queue<comando_t> queue_juego;
-
+    Queue<comando_t>& queue_juego;
+    ListaQueues& queues_clientes;
+    std::vector<int>& ids_clientes;
 
     void recolectar();
-    void eliminar_cliente();
+    void eliminar_cliente(ThreadUsuario* jugador);
 
 public:
-    explicit Aceptador(const char* servname, Queue<comando_t>& q);
+    explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l, std::vector<int>& ids_clientes);
 
     virtual void run();
 
-    void dejar_de_aceptar();
+    void dejar_de_aceptar() { this->aceptando_jugadores = false; };
 
     virtual ~Aceptador();
 };

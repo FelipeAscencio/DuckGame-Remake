@@ -50,15 +50,9 @@ bool Protocol::accion_valida(const uint8_t& accion) {
 
 bool Protocol::recibir(comando_t& cmd) {
     bool was_closed = false;
-    uint8_t id_player;
-    s.recvall(&id_player, sizeof(id_player), &was_closed);
+    s.recvall(&(cmd.id_cliente), sizeof(cmd.id_cliente), &was_closed);
     if (was_closed)
         return false;
-    uint8_t accion_leida;
-    s.recvall(&accion_leida, sizeof(accion_leida), &was_closed);
-    if (was_closed)
-        return false;
-    cmd.id_cliente = id_player;
-    cmd.accion = accion_leida;
-    return true;
+    s.recvall(&(cmd.accion), sizeof(cmd.accion), &was_closed);
+    return !was_closed;
 }

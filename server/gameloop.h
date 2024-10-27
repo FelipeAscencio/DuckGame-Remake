@@ -26,11 +26,15 @@ private:
     void enviar_estado_juego();
 
 public:
-    explicit Gameloop(Queue<comando_t>& q, ListaQueues& l, std::vector<int> id_clientes);
+    explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);
 
     virtual void run() override;
 
+    void intentar_agregar_jugador(int id);
+
     void finalizar_juego() { this->juego_activo = false; }
+
+    bool jugando() { return juego_activo; }
 
     ~Gameloop();
 };
