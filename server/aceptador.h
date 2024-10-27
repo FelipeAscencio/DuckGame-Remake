@@ -7,8 +7,8 @@
 #include "../common/queue.h"
 #include "../common/thread.h"
 
-#include "thread_usuario.h"
 #include "queues_jugadores.h"
+#include "thread_usuario.h"
 
 class Aceptador: public Thread {
 private:
@@ -23,7 +23,8 @@ private:
     void eliminar_cliente(ThreadUsuario* jugador);
 
 public:
-    explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l, std::vector<int>& ids_clientes);
+    explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l,
+                       std::vector<int>& ids_clientes);
 
     virtual void run();
 

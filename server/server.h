@@ -3,35 +3,35 @@
 
 #include <iostream>
 #include <vector>
-#include "comando.h"
+
 #include "../common/queue.h"
-#include "queues_jugadores.h"
+
 #include "aceptador.h"
+#include "comando.h"
 #include "gameloop.h"
+#include "queues_jugadores.h"
 
 
 class Server {
-    private: 
-        Queue<comando_t> queue_juego;
-        ListaQueues lista_queues;
-        std::vector<int> ids_clientes;
-        Aceptador a;
-        Gameloop g;
+private:
+    Queue<comando_t> queue_juego;
+    ListaQueues lista_queues;
+    std::vector<int> ids_clientes;
+    Aceptador a;
+    Gameloop g;
 
-        void comenzar_a_aceptar();
+    void comenzar_a_aceptar();
 
-        void comenzar_juego();
+    void comenzar_juego();
 
-        void agregar_nuevos_jugadores();
+    void agregar_nuevos_jugadores();
 
-    public:
-        explicit Server(const char* servname);
+public:
+    explicit Server(const char* servname);
 
-        void start();
+    void start();
 
-        ~Server();
-
+    ~Server();
 };
 
-#endif 
-
+#endif
