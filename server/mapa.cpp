@@ -1,4 +1,4 @@
-#include "server/mapa.h"
+#include "mapa.h"
 
 Mapa::Mapa(int largo, int alto) {
     this->largo = largo;

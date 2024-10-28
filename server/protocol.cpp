@@ -1,4 +1,3 @@
-#include "estado_juego.h"
 #include "protocol.h"
 
 using namespace ServerProtocol;
