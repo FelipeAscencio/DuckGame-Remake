@@ -10,6 +10,14 @@
 #include "estado_fisico.h"
 #include "orientacion.h"
 
+// struct juego total {
+/*
+    struct informacion patos
+    struct informacion armas tiradas
+    struct informacion cjas
+    ...
+*/
+
 typedef struct EstadoJuego {
     int cantidad_jugadores;
     std::vector<int> id_jugadores;

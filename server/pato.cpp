@@ -94,12 +94,12 @@ void Pato::caer(Mapa& mapa) {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
         int tile_x = tile_actual[0];
         int tile_y = tile_actual[1] + 1;
-        if (tile_y > mapa.alto) {
-            posicion.coordenada_y += SALTO_Y_CAIDA;
+        if (tile_y > mapa.alto) {                      
+            posicion.coordenada_y += SALTO_Y_CAIDA;    
             return;
         }
         if (mapa.mapa[tile_x][tile_y] == 0) {
-            if (tile_x > 0 && mapa.mapa[tile_x - 1][tile_y] == 1) {
+            if ((tile_x > 0 && mapa.mapa[tile_x - 1][tile_y] == 1) || tile_x < mapa.largo && mapa.mapa[tile_x+1][tile_y] == 1) {
                 if ((posicion.coordenada_x % TILE_A_METRO <= MOVER_DERECHA) ||
                     posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO + MOVER_IZQUIERDA)) {
                     estado_actual = PARADO;
@@ -139,12 +139,17 @@ void Pato::cambiar_orientacion(orientacion_e nueva_orientacion) {
 }
 
 bool Pato::agarrar_arma(Arma* arma) {
+    // chequeo de que esten en la misma posicion
+    // if (arma_equipaad) --> delete arma
     this->posee_arma = true;
     this->arma_equipada = arma;
     return true;
 }
 
-void Pato::soltar_arma() { this->posee_arma = false; }
+void Pato::soltar_arma() { 
+    // if (arma_qeuipada) delete
+    this->posee_arma = false; 
+}
 
 bool Pato::esta_vivo() { return this->vivo; }
 
@@ -198,7 +203,7 @@ void Pato::chequear_estado() {
 }
 
 void Pato::control_pre_comando(Mapa& mapa) {
-    if (posicion.coordenada_x > mapa.alto || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
+    if (posicion.coordenada_y > mapa.alto * TILE_A_METRO || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
     }
     if (orientacion == ARRIBA) {
