@@ -160,4 +160,10 @@ CMakeFiles/taller_server.dir/server/pato.cpp.o: \
  /usr/include/c++/11/bits/istream.tcc \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc

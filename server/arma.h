@@ -51,6 +51,10 @@ public:
     bool en_uso();
 
     posicion_t obtener_posicion_inicial();
+
+    int obtener_id() const {
+        return id_arma;
+    }
 };
 
 #endif

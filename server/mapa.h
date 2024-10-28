@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "orientacion.h"
-#include "pato.h"
 #include "posicion.h"
 
 #define TILE_A_METRO 10

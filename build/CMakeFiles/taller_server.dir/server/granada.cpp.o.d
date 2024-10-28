@@ -159,4 +159,5 @@ CMakeFiles/taller_server.dir/server/granada.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h

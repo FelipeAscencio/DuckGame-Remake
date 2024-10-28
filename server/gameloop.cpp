@@ -22,8 +22,8 @@ void Gameloop::actualizar_estado_jugadores() {
 }
 
 void Gameloop::enviar_estado_juego() {
-    estado_juego_t estado_actual(jugadores.size());
-    for (int indice = 0; indice < jugadores.size(); indice++) {
+    EstadoJuego estado_actual(jugadores.size());
+    for (size_t indice = 0; indice < jugadores.size(); indice++) {
         estado_actual.agregar_info_pato(*jugadores[indice], indice);
     }
     queues_clientes.broadcast(estado_actual);

@@ -1,7 +1,7 @@
-CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.cpp \
+CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -157,7 +157,66 @@ CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
+ /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/mutex \
+ /usr/include/c++/11/tuple /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/array \
+ /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/limits \
+ /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/c++/11/bits/unique_lock.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/queue.h \
+ /usr/include/c++/11/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+ /usr/include/c++/11/condition_variable \
+ /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/bits/refwrap.h /usr/include/c++/11/bits/unique_ptr.h \
+ /usr/include/c++/11/ext/concurrence.h /usr/include/c++/11/stop_token \
+ /usr/include/c++/11/atomic /usr/include/c++/11/bits/atomic_base.h \
+ /usr/include/c++/11/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/11/bits/atomic_wait.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/syscall.h \
+ /usr/include/x86_64-linux-gnu/sys/syscall.h \
+ /usr/include/x86_64-linux-gnu/asm/unistd.h \
+ /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
+ /usr/include/x86_64-linux-gnu/bits/syscall.h \
+ /usr/include/c++/11/bits/std_thread.h /usr/include/c++/11/semaphore \
+ /usr/include/c++/11/bits/semaphore_base.h \
+ /usr/include/c++/11/bits/atomic_timed_wait.h \
+ /usr/include/c++/11/bits/this_thread_sleep.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/queue /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_queue.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_juego.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
+ /usr/include/syslog.h /usr/include/x86_64-linux-gnu/sys/syslog.h \
+ /usr/include/x86_64-linux-gnu/bits/syslog-path.h

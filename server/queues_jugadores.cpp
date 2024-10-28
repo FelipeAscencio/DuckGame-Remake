@@ -11,7 +11,7 @@ void ListaQueues::broadcast(const EstadoJuego& estado_actual) {
         return;
 
     for (auto& p: lista_queues) {
-        Queue<estado_juego_t>& q = p.first;
+        Queue<EstadoJuego>& q = p.first;
         try {
             q.try_push(estado_actual);
         } catch (const ClosedQueue& e) {

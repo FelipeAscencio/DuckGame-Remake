@@ -73,7 +73,7 @@ void Pato::saltar() {
 }
 
 void Pato::aletear() {
-    if (estado_actual = CAYENDO) {
+    if (estado_actual == CAYENDO) {
         estado_actual = ALETEANDO;
         this->posicion.coordenada_y -= SALTO_Y_CAIDA / 2;
     }
@@ -241,15 +241,19 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             } else {
                 aletear();
             }
+            break;
         case COMANDO_DISPARO_Y_PICKUP:
             if (arma_equipada) {
                 disparar();
             } else {
                 // logica para ver si el arma/casco/armadura esta en la misma posicion para agarrar
             }
+            break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
             mover(mapa, sentido);
             break;
     }
 }
+
+Pato::~Pato() {}
