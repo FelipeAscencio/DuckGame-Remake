@@ -1,5 +1,3 @@
-add_subdirectory(armas)
-
 target_sources(taller_server
     PRIVATE
     # .cpp files

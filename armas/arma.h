@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-#include "../../common/posicion.h"
-#include "../../common/estado_juego.h"
-#include "../protocol.h"
+#include "../common/posicion.h"
+#include "../common/estado_juego.h"
+#include "../server/protocol.h"
 
 
 #define ID_GRANADA 1

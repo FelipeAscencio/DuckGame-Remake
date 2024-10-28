@@ -90,6 +90,8 @@ if(TALLER_SERVER)
     # HEY!! TODO XXX: add more subfolders here
     add_subdirectory(server)
 
+    add_subdirectory(armas)
+
     set_project_warnings(taller_server ${TALLER_MAKE_WARNINGS_AS_ERRORS} FALSE)
 
     # Link the taller_common lib target

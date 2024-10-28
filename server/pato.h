@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "armas/arma.h"
+#include "../armas/arma.h"
 #include "../common/estado_juego.h"
 #include "gameloop.h"
 #include "mapa.h"
