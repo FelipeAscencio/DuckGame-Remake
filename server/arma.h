@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "posicion.h"
 #include "orientacion.h"
+#include "posicion.h"
 
 #define ID_GRANADA 1
 #define ID_BANANA 2
@@ -52,9 +52,7 @@ public:
 
     posicion_t obtener_posicion_inicial();
 
-    int obtener_id() const {
-        return id_arma;
-    }
+    int obtener_id() const { return id_arma; }
 };
 
 #endif

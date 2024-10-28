@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <list>
+
 #include "../common/socket.h"
-#include "estado_juego.h"
+
 #include "comando.h"
+#include "estado_juego.h"
 
 namespace ServerProtocol {
 

@@ -12,8 +12,7 @@ PewPewLaser::PewPewLaser():
         alcance_maximo(ALCANCE_MAXIMO) {}
 
 void PewPewLaser::disparar(const orientacion_e& direccion) {
-    if (direccion == DERECHA || direccion == IZQUIERDA ||
-        direccion == ARRIBA) {
+    if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
         std::cout << "Direccion valida" << std::endl;
     } else {
         std::cout << "Direccion invalida" << std::endl;

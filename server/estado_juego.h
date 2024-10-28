@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <vector>
-#include "posicion.h"
+
 #include "arma.h"
 #include "estado_fisico.h"
 #include "orientacion.h"
 #include "pato.h"
+#include "posicion.h"
 
 struct EstadoJuego {
     int cantidad_jugadores;
