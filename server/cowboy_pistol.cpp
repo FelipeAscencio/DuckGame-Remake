@@ -4,6 +4,6 @@
 #define ALCANCE 20
 #define MUNICIONES 6
 
-CowboyPistol::CowboyPistol(): Arma(COWBOY_PISTOL, ALCANCE, MUNICIONES, false) {}
+CowboyPistol::CowboyPistol(): Arma(ID_COWBOY_PISTOL, COWBOY_PISTOL, ALCANCE, MUNICIONES, false) {}
 
-void CowboyPistol::disparar() { return; }
+void CowboyPistol::disparar(const orientacion_e& direccion) { return; }

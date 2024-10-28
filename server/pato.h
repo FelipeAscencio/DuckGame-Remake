@@ -3,11 +3,19 @@
 
 #include <iostream>
 
+#include "protocol.h"
 #include "arma.h"
+#include "estado_fisico.h"
+#include "mapa.h"
 #include "orientacion.h"
 #include "posicion.h"
 
+using namespace ServerProtocol;
 class Pato {
+    friend class Protocol;
+    friend struct EstadoJuego;
+    friend class Gameloop;
+
 private:
     int id_jugador;
     posicion_t posicion;
@@ -15,31 +23,36 @@ private:
     bool posee_arma;
     bool posee_armadura;
     bool posee_casco;
-    bool agachado;
     orientacion_e orientacion;
     Arma* arma_equipada;
+    estado_pato_e estado_actual;
+    int iteraciones_subiendo;
 
-public:
-    explicit Pato(int id);
-    posicion_t obtener_posicion();
-    bool mover_derecha();
-    bool mover_izquierda();
+    bool chequeo_bordes(Mapa& mapa, const orientacion_e& direccion);
+    void chequear_estado();
+    bool mover(Mapa& mapa, const orientacion_e& direccion);
     void saltar();
     void aletear();
     bool tiene_arma();
     void agacharse();
-    orientacion_e obtener_orientacion();
     void cambiar_orientacion(orientacion_e nueva_orientacion);
-    bool agarrar_arma();
+    bool agarrar_arma(Arma* arma);
     void soltar_arma();
     bool esta_vivo();
     bool agarrar_armadura();
     bool agarrar_casco();
+    void caer(Mapa& mapa);
+    void recibir_disparo();
+    bool disparar();
+
+public:
+    explicit Pato(int id);
+    posicion_t obtener_posicion();
+    orientacion_e obtener_orientacion();
     bool tiene_armadura();
     bool tiene_casco();
-    bool disparar();
-    void caer();
-
+    void control_pre_comando(Mapa& mapa);
+    void realizar_accion(int accion, Mapa& mapa);
     ~Pato();
 };
 

@@ -7,6 +7,9 @@ typedef struct Posicion {
     int coordenada_x;
     int coordenada_y;
 
+    // Constructor por defecto
+    Posicion() : coordenada_x(0), coordenada_y(0) {}
+
     // Constructor por parámetros
     Posicion(int x, int y): coordenada_x(x), coordenada_y(y) {}
 

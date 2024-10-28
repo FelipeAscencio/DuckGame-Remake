@@ -4,11 +4,12 @@
 #include <iostream>
 
 #include "arma.h"
+#include "orientacion.h"
 
 class Magnum: public Arma {
 public:
     Magnum();
-    void disparar() override;
+    void disparar(const orientacion_e& direccion) override;
 };
 
 

@@ -4,11 +4,12 @@
 #include <iostream>
 
 #include "arma.h"
+#include "orientacion.h"
 
 class LaserRifle: public Arma {
 public:
     LaserRifle();
-    void disparar() override;
+    void disparar(const orientacion_e& direccion) override;
 };
 
 

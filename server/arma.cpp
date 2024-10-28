@@ -1,6 +1,7 @@
 #include "arma.h"
 
-Arma::Arma(std::string nombre_arma, int alcance, int municiones, bool retroceso):
+Arma::Arma(int id, std::string nombre_arma, int alcance, int municiones, bool retroceso):
+        id_arma(id),
         nombre(nombre_arma),
         alcance(alcance),
         municiones(municiones),

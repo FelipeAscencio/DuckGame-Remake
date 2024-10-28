@@ -2,32 +2,53 @@ target_sources(taller_server
     PRIVATE
     # .cpp files
     main.cpp
+    aceptador.cpp
     ak47.cpp
     arma.cpp
     banana.cpp
     cowboy_pistol.cpp
     duel_pistol.cpp
+    enviador.cpp
+    gameloop.cpp
     granada.cpp
     laser_rifle.cpp
     magnum.cpp
+    mapa.cpp
     p_p_laser.cpp
     pato.cpp
+    protocol.cpp
+    queues_jugadores.cpp
+    recibidor.cpp
+    server.cpp
     shotgun.cpp
     sniper.cpp
+    thread_usuario.cpp
     PUBLIC
     # .h files
+    aceptador.h
     ak47.h
     arma.h
     banana.h
+    comando.h
     cowboy_pistol.h
     duel_pistol.h
+    enviador.h
+    estado_fisico.h
+    estado_juego.h
+    gameloop.h
     granada.h
     laser_rifle.h
     magnum.h
+    mapa.h
+    orientacion.h
     p_p_laser.h
     pato.h
+    posicion.h
+    protocol.h
+    queues_jugadores.h
+    recibidor.h
+    server.h
     shotgun.h
     sniper.h
-    orientacion.h
-    posicion.h
+    thread_usuario.h
     )
