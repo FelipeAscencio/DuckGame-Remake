@@ -1,7 +1,6 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
-
 #include <iostream>
 #include <list>
 #include "../common/socket.h"

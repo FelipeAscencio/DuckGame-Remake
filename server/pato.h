@@ -3,16 +3,13 @@
 
 #include <iostream>
 
-#include "protocol.h"
 #include "arma.h"
 #include "estado_fisico.h"
 #include "mapa.h"
 #include "orientacion.h"
 #include "posicion.h"
 
-using namespace ServerProtocol;
 class Pato {
-    friend class Protocol;
     friend struct EstadoJuego;
     friend class Gameloop;
 

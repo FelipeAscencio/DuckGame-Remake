@@ -5,7 +5,6 @@
 #include <string>
 
 #include "posicion.h"
-#include "protocol.h"
 #include "orientacion.h"
 
 #define ID_GRANADA 1
@@ -19,9 +18,7 @@
 #define ID_SHOTGUN 9
 #define ID_SNIPER 10
 
-using namespace ServerProtocol;
 class Arma {
-    friend Protocol;
 
 protected:
     const int id_arma;

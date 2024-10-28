@@ -273,15 +273,15 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_juego.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.h
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/socket.h
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/comando.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/socket.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/comando.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.h
  /usr/include/syslog.h
  /usr/include/x86_64-linux-gnu/sys/syslog.h
@@ -484,6 +484,7 @@ CMakeFiles/taller_server.dir/server/ak47.cpp.o
  /usr/include/c++/11/bits/istream.tcc
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h
 
 CMakeFiles/taller_server.dir/server/arma.cpp.o
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.cpp

@@ -272,15 +272,15 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: ../server/aceptador.cpp \
   ../server/estado_juego.h \
   ../server/posicion.h \
   ../server/arma.h \
-  ../server/protocol.h \
-  ../common/socket.h \
-  ../server/comando.h \
   ../server/orientacion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
   ../server/thread_usuario.h \
   ../server/enviador.h \
+  ../server/protocol.h \
+  ../common/socket.h \
+  ../server/comando.h \
   ../server/recibidor.h \
   /usr/include/syslog.h \
   /usr/include/x86_64-linux-gnu/sys/syslog.h \
@@ -481,7 +481,8 @@ CMakeFiles/taller_server.dir/server/ak47.cpp.o: ../server/ak47.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h
+  ../server/posicion.h \
+  ../server/orientacion.h
 
 CMakeFiles/taller_server.dir/server/arma.cpp.o: ../server/arma.cpp \
   /usr/include/stdc-predef.h \
@@ -2870,13 +2871,13 @@ CMakeFiles/taller_server.dir/server/sniper.cpp.o: ../server/sniper.cpp \
 
 ../server/recibidor.h:
 
-../server/magnum.cpp:
-
-../server/thread_usuario.h:
-
 ../server/comando.h:
 
 ../server/protocol.h:
+
+../server/magnum.cpp:
+
+../server/thread_usuario.h:
 
 ../server/arma.h:
 

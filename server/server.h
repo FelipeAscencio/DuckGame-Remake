@@ -11,7 +11,6 @@
 #include "gameloop.h"
 #include "queues_jugadores.h"
 
-
 class Server {
 private:
     Queue<comando_t> queue_juego;

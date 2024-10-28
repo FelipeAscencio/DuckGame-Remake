@@ -1,5 +1,7 @@
 #include "granada.h"
 
+#include <iostream>
+
 #define GRANADA "Granada"
 #define ALCANCE 5
 #define MUNICION 1
@@ -11,4 +13,11 @@ Granada::Granada():
         seguro_puesto(true),
         activa(false) {}
 
-void Granada::disparar(const orientacion_e& direccion) { return; }
+void Granada::disparar(const orientacion_e& direccion) {
+    if (direccion == DERECHA || direccion == IZQUIERDA ||
+        direccion == ARRIBA) {
+        std::cout << "Direccion valida" << std::endl;
+    } else {
+        std::cout << "Direccion invalida" << std::endl;
+    }
+}

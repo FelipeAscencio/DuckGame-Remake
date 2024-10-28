@@ -1,7 +1,7 @@
-CMakeFiles/taller_server.dir/server/aceptador.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/aceptador.cpp \
+CMakeFiles/taller_server.dir/server/enviador.cpp.o: \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/aceptador.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.h \
  /usr/include/c++/11/atomic /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -164,11 +164,7 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/c++/11/bits/charconv.h \
- /usr/include/c++/11/bits/basic_string.tcc /usr/include/c++/11/list \
- /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/list.tcc \
+ /usr/include/c++/11/bits/basic_string.tcc \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/queue.h \
  /usr/include/c++/11/condition_variable /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/limits \
@@ -176,6 +172,7 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: \
  /usr/include/c++/11/bits/unique_lock.h \
  /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
  /usr/include/c++/11/bits/refwrap.h /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/tuple \
@@ -194,6 +191,7 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc \
+ /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/ext/concurrence.h /usr/include/c++/11/stop_token \
  /usr/include/c++/11/bits/std_thread.h /usr/include/c++/11/semaphore \
  /usr/include/c++/11/bits/semaphore_base.h \
@@ -210,7 +208,6 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/thread.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/thread \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_juego.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
@@ -218,12 +215,11 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.h \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/socket.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/comando.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.h \
  /usr/include/syslog.h /usr/include/x86_64-linux-gnu/sys/syslog.h \
  /usr/include/x86_64-linux-gnu/bits/syslog-path.h \
  /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/liberror.h
