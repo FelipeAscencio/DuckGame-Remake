@@ -3,19 +3,20 @@
 
 #include <iostream>
 
-#include "arma.h"
-#include "estado_fisico.h"
+#include "armas/arma.h"
+#include "../common/estado_juego.h"
 #include "gameloop.h"
 #include "mapa.h"
-#include "orientacion.h"
-#include "posicion.h"
+#include "../common/orientacion.h"
+#include "../common/posicion.h"
 #include "protocol.h"
 
 using namespace ServerProtocol;
 class Pato {
-    friend Protocol;  // para poder enviar la informacion del pato sin usar getters
-    friend estado_juego_t;
-    friend Gameloop;
+    friend class Protocol;  // para poder enviar la informacion del pato sin usar getters
+    friend struct EstadoJuego;
+    friend struct InformacionPato;
+    friend class Gameloop;
 
 private:
     int id_jugador;
@@ -29,7 +30,7 @@ private:
     estado_pato_e estado_actual;
     int iteraciones_subiendo;
 
-    bool chequeo_bordes(Mapa& mapa, const orientacion_e& direccion);
+    bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);
     void chequear_estado();
     bool mover(Mapa& mapa, const orientacion_e& direccion);
     void saltar();
@@ -45,6 +46,7 @@ private:
     void caer(Mapa& mapa);
     void recibir_disparo();
     bool disparar();
+    static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion, const posicion_t& posicion_a_chequearmapa);
 
 public:
     explicit Pato(int id);

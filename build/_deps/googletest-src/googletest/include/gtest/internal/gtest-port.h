@@ -693,7 +693,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 #define GTEST_ATTRIBUTE_PRINTF_(string_index, first_to_check) \
   __attribute__((format(__MINGW_PRINTF_FORMAT, string_index, first_to_check)))
 #elif GTEST_HAVE_ATTRIBUTE_(format)
-#define GTEST_ATTRIBUTE_PRINTF_(string_index, first_to_check) \
+#define GTEST_ATTRIBUTE_PRINTF_(string_index, first_to_check)   \
   __attribute__((format(printf, string_index, first_to_check)))
 #else
 #define GTEST_ATTRIBUTE_PRINTF_(string_index, first_to_check)
@@ -2415,8 +2415,7 @@ template <typename... T>
 using Variant = ::std::variant<T...>;
 }  // namespace internal
 }  // namespace testing
-   // The case where absl is configured NOT to alias std::variant is not
-   // supported.
+// The case where absl is configured NOT to alias std::variant is not supported.
 #endif  // __has_include(<variant>) && __cplusplus >= 201703L
 #endif  // __has_include
 #endif  // GTEST_HAS_ABSL

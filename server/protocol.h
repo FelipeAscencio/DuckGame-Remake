@@ -7,8 +7,8 @@
 
 #include "../common/socket.h"
 
-#include "comando.h"
-#include "estado_juego.h"
+#include "../common/comando.h"
+#include "../common/estado_juego.h"
 #include "pato.h"
 namespace ServerProtocol {
 
@@ -16,7 +16,9 @@ class Protocol {
 private:
     Socket& s;
 
-    std::vector<uint8_t> serializar(const estado_juego_t& estado_actual, int indice);
+    std::vector<uint8_t> serializar_pato(const informacion_pato_t& estado_actual);
+
+    std::vector<uint8_t> serializar_cantidades(const estado_juego_t& estado_actual);
 
 public:
     explicit Protocol(Socket& skt);

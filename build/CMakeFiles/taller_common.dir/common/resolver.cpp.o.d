@@ -1,7 +1,7 @@
 CMakeFiles/taller_common.dir/common/resolver.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/resolver.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/common/resolver.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/resolver.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/common/resolver.h \
  /usr/include/netdb.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -173,5 +173,5 @@ CMakeFiles/taller_common.dir/common/resolver.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/liberror.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/resolvererror.h
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/common/liberror.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/common/resolvererror.h

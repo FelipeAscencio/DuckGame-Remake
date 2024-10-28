@@ -28,16 +28,22 @@ Pato::Pato(int id):
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
-bool Pato::chequeo_bordes(Mapa& mapa, const orientacion_e& direccion) {
+bool Pato::buscar_pared(Mapa& mapa, const orientacion_e& direccion, const posicion_t& posicion_a_chequear){
+    std::vector<int> tile_actual = mapa.posicion_en_mapa(posicion_a_chequear);
+    int bloque_x = tile_actual[0];
+    int bloque_y = tile_actual[1];
+    int lado = (direccion == DERECHA) ? 1 : -1;
+    if (direccion == DERECHA && bloque_x >= mapa.largo) return false;
+    if (direccion == IZQUIERDA && bloque_x == 0) return false;
+    return (mapa.mapa[bloque_x + lado][bloque_y] == 1);
+}
+
+bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
     bool se_movio;
     if (!mapa.borde_bloque(this->posicion, direccion)) {
         se_movio = true;
     } else {
-        std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
-        int bloque_x = tile_actual[0];
-        int bloque_y = tile_actual[1];
-        int lado = (direccion == DERECHA) ? 1 : -1;
-        se_movio = (mapa.mapa[bloque_x + lado][bloque_y] == 0);
+        se_movio = Pato::buscar_pared(mapa, direccion, this->posicion);
     }
     return se_movio;
 }
@@ -57,12 +63,20 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
         this->vivo = false;  // se va del mapa, muere
         se_movio = true;
     } else {
-        se_movio = chequeo_bordes(mapa, direccion);
+        se_movio = chequeo_movimiento(mapa, direccion);
     }
     if (se_movio) {
         int pasos_caminados = (direccion == DERECHA) ? MOVER_DERECHA : MOVER_IZQUIERDA;
+        // si estaba en el metro 1 u 8, no lo toma como que esta en el borde, pero aun asi me tengo que fijar si hay una pared, ya que como se mueve de a 2 metros me voy a saltear una posicion. Si hay una pared solo me tengo que mover 1 metro
+        if (posicion.coordenada_x == TILE_A_METRO - MOVER_DERECHA || posicion.coordenada_x == -(MOVER_IZQUIERDA/2)){
+            int sentido = direccion == DERECHA? 1:-1;
+            posicion_t posicion_a_chequear(posicion.coordenada_x + sentido, posicion.coordenada_y);
+            if (Pato::buscar_pared(mapa, direccion, posicion_a_chequear)){
+                pasos_caminados /= 2;
+            }
+        }
         this->posicion.coordenada_x += pasos_caminados;
-    }
+    } 
     return se_movio;
 }
 
@@ -80,6 +94,7 @@ void Pato::aletear() {
 }
 
 void Pato::caer(Mapa& mapa) {
+    //Si no esta en el piso del bloque, tiene que caer si o si
     if (!mapa.piso_bloque(this->posicion)) {
         if (this->posicion.coordenada_y % TILE_A_METRO >= SALTO_Y_CAIDA) {
             this->posicion.coordenada_y += SALTO_Y_CAIDA;  // si esta a 2 metros o mas, tiene que
@@ -95,10 +110,13 @@ void Pato::caer(Mapa& mapa) {
         int tile_x = tile_actual[0];
         int tile_y = tile_actual[1] + 1;
         if (tile_y > mapa.alto) {                      
-            posicion.coordenada_y += SALTO_Y_CAIDA;    
+            posicion.coordenada_y += SALTO_Y_CAIDA;    // como el eje Y positivo es hacia "abajo" si me pase del alto del mapa es que me cai del piso
             return;
         }
+        // si en el bloque de abajo no hay piso
         if (mapa.mapa[tile_x][tile_y] == 0) {
+            
+            //Tecnicamente estoy en un bloque que no tiene piso abajo pero el cuerpo del pato no cruzo del todo, si en el bloque anterior hay piso debo quedarme en el lugar, no caer
             if ((tile_x > 0 && mapa.mapa[tile_x - 1][tile_y] == 1) || tile_x < mapa.largo && mapa.mapa[tile_x+1][tile_y] == 1) {
                 if ((posicion.coordenada_x % TILE_A_METRO <= MOVER_DERECHA) ||
                     posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO + MOVER_IZQUIERDA)) {
@@ -109,6 +127,8 @@ void Pato::caer(Mapa& mapa) {
             }
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
             estado_actual = CAYENDO;
+
+            // el bloque de abajo en el que estoy tiene su piso a mitad del bloque
         } else if (mapa.mapa[tile_x][tile_y] == 2) {
             int posicion_en_bloque = posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;

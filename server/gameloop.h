@@ -7,8 +7,8 @@
 #include "../common/queue.h"
 #include "../common/thread.h"
 
-#include "comando.h"
-#include "estado_juego.h"
+#include "../common/comando.h"
+#include "../common/estado_juego.h"
 #include "mapa.h"
 #include "pato.h"
 #include "queues_jugadores.h"

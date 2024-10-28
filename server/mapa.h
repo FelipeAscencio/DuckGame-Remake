@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 
-#include "orientacion.h"
+#include "../common/orientacion.h"
 #include "pato.h"
-#include "posicion.h"
+#include "../common/posicion.h"
 
 #define TILE_A_METRO 10
 

@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c
+# Install script for directory: /home/axelon/Documents/Taller/DuckGame-g2-20242c
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,13 +44,13 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/common/cmake_install.cmake")
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/cmake_install.cmake")
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/client/cmake_install.cmake")
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/server/cmake_install.cmake")
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/editor/cmake_install.cmake")
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/googletest-build/cmake_install.cmake")
-  include("/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/tests/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/common/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/client/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/server/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/editor/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/googletest-build/cmake_install.cmake")
+  include("/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/tests/cmake_install.cmake")
 
 endif()
 
@@ -62,5 +62,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

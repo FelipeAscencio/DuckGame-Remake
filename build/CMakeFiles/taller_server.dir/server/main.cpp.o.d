@@ -1,5 +1,5 @@
 CMakeFiles/taller_server.dir/server/main.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/main.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/exception \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

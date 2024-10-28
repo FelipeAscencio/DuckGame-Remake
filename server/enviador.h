@@ -6,7 +6,7 @@
 #include "../common/queue.h"
 #include "../common/thread.h"
 
-#include "estado_juego.h"
+#include "../common/estado_juego.h"
 #include "protocol.h"
 
 using namespace ServerProtocol;

@@ -7,7 +7,7 @@
 #include "../common/queue.h"
 
 #include "aceptador.h"
-#include "comando.h"
+#include "../common/comando.h"
 #include "gameloop.h"
 #include "queues_jugadores.h"
 
