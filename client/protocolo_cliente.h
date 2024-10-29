@@ -3,6 +3,7 @@
 #define CLIENT_PROTOCOLO_CLIENTE_H_
 
 #include <iostream>
+#include <vector>
 
 #include "../common/comando.h"
 #include "../common/estado_juego.h"
@@ -25,10 +26,12 @@ private:
 
     bool procesar_cantidades(EstadoJuego& estado_actual);
 
+    uint8_t parsear_comando(char accion);
+
 public:
     explicit ProtocoloCliente(Socket& s);
 
-    bool enviar(const uint8_t& accion);
+    bool enviar(const char& accion);
 
     bool recibir(EstadoJuego& estado_actual);
 };
