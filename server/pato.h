@@ -1,17 +1,20 @@
-#ifndef PATO_H
-#define PATO_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef SERVER_PATO_H_
+#define SERVER_PATO_H_
 
 #include <iostream>
 
-#include "arma.h"
-#include "estado_fisico.h"
-#include "mapa.h"
-#include "orientacion.h"
-#include "posicion.h"
+#include "../common/estado_fisico.h"
+#include "../common/orientacion.h"
+#include "../common/posicion.h"
+#include "server/arma.h"
+#include "server/mapa.h"
 
 class Pato {
     friend struct EstadoJuego;
     friend class Gameloop;
+    friend struct InformacionPato;
+    friend struct MismoID;
 
 private:
     int id_jugador;
@@ -25,7 +28,7 @@ private:
     estado_pato_e estado_actual;
     int iteraciones_subiendo;
 
-    bool chequeo_bordes(Mapa& mapa, const orientacion_e& direccion);
+    bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);
     void chequear_estado();
     bool mover(Mapa& mapa, const orientacion_e& direccion);
     void saltar();
@@ -41,6 +44,9 @@ private:
     void caer(Mapa& mapa);
     void recibir_disparo();
     bool disparar();
+    int obtener_id_arma() { return arma_equipada ? arma_equipada->obtener_id() : 0; }
+    static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion,
+                             const posicion_t& posicion_a_chequear);
 
 public:
     explicit Pato(int id);
@@ -54,4 +60,4 @@ public:
 };
 
 
-#endif
+#endif  // SERVER_PATO_H_

@@ -1,7 +1,7 @@
 CMakeFiles/taller_server.dir/server/server.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/server.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/server.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/server.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/server.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -162,7 +162,7 @@ CMakeFiles/taller_server.dir/server/server.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/queue.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/queue.h \
  /usr/include/c++/11/climits \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
@@ -209,23 +209,23 @@ CMakeFiles/taller_server.dir/server/server.cpp.o: \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/mutex /usr/include/c++/11/queue \
  /usr/include/c++/11/bits/stl_queue.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/aceptador.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/aceptador.h \
  /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
  /usr/include/c++/11/bits/list.tcc \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/thread.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/thread.h \
  /usr/include/c++/11/thread \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_juego.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/socket.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/comando.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/gameloop.h
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/queues_jugadores.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/estado_juego.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/orientacion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/posicion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/estado_fisico.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/pato.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/thread_usuario.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/enviador.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/protocol.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/socket.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/comando.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/recibidor.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/gameloop.h

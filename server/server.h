@@ -1,15 +1,15 @@
-#ifndef SERVER_H
-#define SERVER_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef SERVER_SERVER_H_
+#define SERVER_SERVER_H_
 
 #include <iostream>
 #include <vector>
 
+#include "../common/comando.h"
 #include "../common/queue.h"
-
-#include "aceptador.h"
-#include "comando.h"
-#include "gameloop.h"
-#include "queues_jugadores.h"
+#include "server/aceptador.h"
+#include "server/gameloop.h"
+#include "server/queues_jugadores.h"
 
 class Server {
 private:
@@ -33,4 +33,4 @@ public:
     ~Server();
 };
 
-#endif
+#endif  // SERVER_SERVER_H_

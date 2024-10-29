@@ -1,7 +1,7 @@
 CMakeFiles/taller_server.dir/server/arma.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -158,5 +158,5 @@ CMakeFiles/taller_server.dir/server/arma.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/orientacion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/posicion.h

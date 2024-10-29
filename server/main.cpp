@@ -1,7 +1,8 @@
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include <exception>
 #include <iostream>
 
-#include <stdbool.h>
+#include "server/server.h"
 
 #define MSJ_ERROR_FORMATO "Error de formato: El esperado es './server <puerto>'.\n"
 #define MSJ_EXCEPCION_CONOCIDA "Hubo un error y se capturo la excepcion: "
@@ -25,6 +26,8 @@ bool argumentos_validos(int argumentos) {
 
 void secuencia_logica_servidor(const char* servicio) {
     std::cout << "Entrando a secuencia logica del servidor." << servicio << std::endl;
+    Server servidor(servicio);
+    servidor.start();
 }
 
 int main(int argc, const char* argv[]) {

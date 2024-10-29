@@ -1,5 +1,6 @@
-#ifndef POSICION_H
-#define POSICION_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef COMMON_POSICION_H_
+#define COMMON_POSICION_H_
 
 #include <iostream>
 
@@ -31,4 +32,4 @@ typedef struct Posicion {
     }
 } posicion_t;
 
-#endif
+#endif  // COMMON_POSICION_H_

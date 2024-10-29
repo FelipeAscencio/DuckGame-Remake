@@ -1,11 +1,12 @@
-#ifndef ARMA_H
-#define ARMA_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef SERVER_ARMA_H_
+#define SERVER_ARMA_H_
 
 #include <iostream>
 #include <string>
 
-#include "orientacion.h"
-#include "posicion.h"
+#include "../common/orientacion.h"
+#include "../common/posicion.h"
 
 #define ID_GRANADA 1
 #define ID_BANANA 2
@@ -19,6 +20,7 @@
 #define ID_SNIPER 10
 
 class Arma {
+    friend struct InformacionPato;
 
 protected:
     const int id_arma;
@@ -55,4 +57,4 @@ public:
     int obtener_id() const { return id_arma; }
 };
 
-#endif
+#endif  // SERVER_ARMA_H_

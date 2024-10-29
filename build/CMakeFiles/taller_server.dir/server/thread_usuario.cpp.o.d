@@ -1,8 +1,8 @@
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/thread_usuario.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/queue.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/thread_usuario.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/queue.h \
  /usr/include/c++/11/climits \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -208,23 +208,23 @@ CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_queue.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/thread.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/enviador.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/thread.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/thread \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_juego.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/estado_juego.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/orientacion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/posicion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/estado_fisico.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/pato.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/protocol.h \
  /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
  /usr/include/c++/11/bits/list.tcc \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/socket.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/comando.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/socket.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/comando.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/recibidor.h \
  /usr/include/syslog.h /usr/include/x86_64-linux-gnu/sys/syslog.h \
  /usr/include/x86_64-linux-gnu/bits/syslog-path.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/liberror.h
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/liberror.h

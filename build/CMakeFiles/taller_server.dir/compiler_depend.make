@@ -270,9 +270,9 @@ CMakeFiles/taller_server.dir/server/aceptador.cpp.o: ../server/aceptador.cpp \
   /usr/include/c++/11/thread \
   ../server/queues_jugadores.h \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
@@ -481,8 +481,8 @@ CMakeFiles/taller_server.dir/server/ak47.cpp.o: ../server/ak47.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/arma.cpp.o: ../server/arma.cpp \
   /usr/include/stdc-predef.h \
@@ -677,8 +677,8 @@ CMakeFiles/taller_server.dir/server/arma.cpp.o: ../server/arma.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/banana.cpp.o: ../server/banana.cpp \
   /usr/include/stdc-predef.h \
@@ -874,8 +874,8 @@ CMakeFiles/taller_server.dir/server/banana.cpp.o: ../server/banana.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o: ../server/cowboy_pistol.cpp \
   /usr/include/stdc-predef.h \
@@ -1071,8 +1071,8 @@ CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o: ../server/cowboy_pistol
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o: ../server/duel_pistol.cpp \
   /usr/include/stdc-predef.h \
@@ -1268,8 +1268,8 @@ CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o: ../server/duel_pistol.cpp
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/enviador.cpp.o: ../server/enviador.cpp \
   /usr/include/stdc-predef.h \
@@ -1536,9 +1536,9 @@ CMakeFiles/taller_server.dir/server/enviador.cpp.o: ../server/enviador.cpp \
   /usr/include/c++/11/bits/istream.tcc \
   /usr/include/c++/11/thread \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
@@ -1819,9 +1819,9 @@ CMakeFiles/taller_server.dir/server/gameloop.cpp.o: ../server/gameloop.cpp \
   /usr/include/c++/11/thread \
   ../server/comando.h \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
@@ -2024,8 +2024,8 @@ CMakeFiles/taller_server.dir/server/granada.cpp.o: ../server/granada.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: ../server/laser_rifle.cpp \
   /usr/include/stdc-predef.h \
@@ -2221,8 +2221,8 @@ CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: ../server/laser_rifle.cpp
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/magnum.cpp.o: ../server/magnum.cpp \
   /usr/include/stdc-predef.h \
@@ -2418,8 +2418,8 @@ CMakeFiles/taller_server.dir/server/magnum.cpp.o: ../server/magnum.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/main.cpp.o: ../server/main.cpp \
   /usr/include/stdc-predef.h \
@@ -3010,8 +3010,8 @@ CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o: ../server/p_p_laser.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/pato.cpp.o: ../server/pato.cpp \
   /usr/include/stdc-predef.h \
@@ -3207,8 +3207,8 @@ CMakeFiles/taller_server.dir/server/pato.cpp.o: ../server/pato.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/mapa.h \
   /usr/include/c++/11/vector \
@@ -3416,19 +3416,19 @@ CMakeFiles/taller_server.dir/server/protocol.cpp.o: ../server/protocol.cpp \
   /usr/include/c++/11/ext/aligned_buffer.h \
   /usr/include/c++/11/bits/list.tcc \
   ../common/socket.h \
+  ../server/comando.h \
   ../server/estado_juego.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
-  ../server/mapa.h \
-  ../server/comando.h
+  ../server/mapa.h
 
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: ../server/queues_jugadores.cpp \
   /usr/include/stdc-predef.h \
@@ -3696,9 +3696,9 @@ CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: ../server/queues_jug
   /usr/include/c++/11/bits/vector.tcc \
   /usr/include/c++/11/bits/stl_queue.h \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
@@ -3975,14 +3975,14 @@ CMakeFiles/taller_server.dir/server/recibidor.cpp.o: ../server/recibidor.cpp \
   /usr/include/c++/11/bits/stl_list.h \
   /usr/include/c++/11/bits/list.tcc \
   ../common/socket.h \
+  ../server/comando.h \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
-  ../server/comando.h \
   /usr/include/syslog.h \
   /usr/include/x86_64-linux-gnu/sys/syslog.h \
   /usr/include/x86_64-linux-gnu/bits/syslog-path.h
@@ -4257,9 +4257,9 @@ CMakeFiles/taller_server.dir/server/server.cpp.o: ../server/server.cpp \
   /usr/include/c++/11/thread \
   ../server/queues_jugadores.h \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
@@ -4465,8 +4465,8 @@ CMakeFiles/taller_server.dir/server/shotgun.cpp.o: ../server/shotgun.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/sniper.cpp.o: ../server/sniper.cpp \
   /usr/include/stdc-predef.h \
@@ -4662,8 +4662,8 @@ CMakeFiles/taller_server.dir/server/sniper.cpp.o: ../server/sniper.cpp \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../server/arma.h \
-  ../server/posicion.h \
-  ../server/orientacion.h
+  ../server/orientacion.h \
+  ../server/posicion.h
 
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: ../server/thread_usuario.cpp \
   /usr/include/stdc-predef.h \
@@ -4931,9 +4931,9 @@ CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: ../server/thread_usuar
   /usr/include/c++/11/bits/istream.tcc \
   /usr/include/c++/11/thread \
   ../server/estado_juego.h \
-  ../server/posicion.h \
   ../server/arma.h \
   ../server/orientacion.h \
+  ../server/posicion.h \
   ../server/estado_fisico.h \
   ../server/pato.h \
   ../server/mapa.h \
@@ -5008,9 +5008,9 @@ CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: ../server/thread_usuar
 
 ../server/thread_usuario.h:
 
-../server/arma.h:
-
 ../server/posicion.h:
+
+../server/arma.h:
 
 ../server/estado_juego.h:
 

@@ -8,8 +8,13 @@ target_sources(taller_common
     socket.cpp
     PUBLIC
     # .h files
+    comando.h
+    estado_fisico.h
+    estado_juego.h
     foo.h
     liberror.h
+    orientacion.h
+    posicion.h
     resolver.h
     resolvererror.h
     socket.h

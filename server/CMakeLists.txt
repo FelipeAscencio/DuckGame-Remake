@@ -29,21 +29,16 @@ target_sources(taller_server
     ak47.h
     arma.h
     banana.h
-    comando.h
     cowboy_pistol.h
     duel_pistol.h
     enviador.h
-    estado_fisico.h
-    estado_juego.h
     gameloop.h
     granada.h
     laser_rifle.h
     magnum.h
     mapa.h
-    orientacion.h
     p_p_laser.h
     pato.h
-    posicion.h
     protocol.h
     queues_jugadores.h
     recibidor.h

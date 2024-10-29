@@ -1,4 +1,7 @@
-#include "thread_usuario.h"
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#include "server/thread_usuario.h"
+
+#include <utility>
 
 #include <syslog.h>
 
@@ -10,7 +13,7 @@ ThreadUsuario::ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int i
         skt(std::move(s)),
         queue_sender(CANTIDAD_MAXIMA_ACCIONES),
         vivo(true),
-        r(skt, queue_comandos),
+        r(skt, queue_comandos, id),
         e(skt, queue_sender, vivo),
         id_cliente(id) {}
 

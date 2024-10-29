@@ -1,7 +1,7 @@
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/queues_jugadores.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/queues_jugadores.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -170,7 +170,7 @@ CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
  /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/queue.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/../common/queue.h \
  /usr/include/c++/11/climits \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
@@ -211,12 +211,12 @@ CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_queue.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_juego.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/estado_fisico.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/estado_juego.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/orientacion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/posicion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/estado_fisico.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/pato.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.h \
  /usr/include/syslog.h /usr/include/x86_64-linux-gnu/sys/syslog.h \
  /usr/include/x86_64-linux-gnu/bits/syslog-path.h

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c
+CMAKE_SOURCE_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build
+CMAKE_BINARY_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c/build
 
 # Include any dependencies generated for this target.
 include _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/depend.make
@@ -72,324 +72,324 @@ include _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o: _deps/libsdl2pp-src/SDL2pp/AudioDevice.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.cc > CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.cc > CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioDevice.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o: _deps/libsdl2pp-src/SDL2pp/AudioLock.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc > CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc > CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o: _deps/libsdl2pp-src/SDL2pp/AudioSpec.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc > CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc > CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o: _deps/libsdl2pp-src/SDL2pp/Color.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Color.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o: _deps/libsdl2pp-src/SDL2pp/Exception.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Exception.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o: _deps/libsdl2pp-src/SDL2pp/Point.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o: _deps/libsdl2pp-src/SDL2pp/RWops.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.cc > CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.cc > CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/RWops.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o: _deps/libsdl2pp-src/SDL2pp/Rect.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Rect.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o: _deps/libsdl2pp-src/SDL2pp/Renderer.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Renderer.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o: _deps/libsdl2pp-src/SDL2pp/SDL.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDL.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDL.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDL.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDL.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDL.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDL.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o: _deps/libsdl2pp-src/SDL2pp/Surface.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: _deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: _deps/libsdl2pp-src/SDL2pp/Texture.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o: _deps/libsdl2pp-src/SDL2pp/TextureLock.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/TextureLock.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/TextureLock.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/TextureLock.cc > CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/TextureLock.cc > CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/TextureLock.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/TextureLock.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/TextureLock.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o: _deps/libsdl2pp-src/SDL2pp/Wav.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Wav.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Wav.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Wav.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Wav.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Wav.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Wav.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Wav.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o: _deps/libsdl2pp-src/SDL2pp/Window.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Window.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Window.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Window.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Window.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Window.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Window.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Window.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o: _deps/libsdl2pp-src/SDL2pp/SDLTTF.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLTTF.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLTTF.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLTTF.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLTTF.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLTTF.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLTTF.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o: _deps/libsdl2pp-src/SDL2pp/Font.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Font.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Font.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Font.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Font.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Font.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Font.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: _deps/libsdl2pp-src/SDL2pp/SDLImage.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o: _deps/libsdl2pp-src/SDL2pp/Chunk.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Chunk.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Chunk.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Chunk.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Chunk.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Chunk.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Chunk.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o: _deps/libsdl2pp-src/SDL2pp/Mixer.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Mixer.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Mixer.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Mixer.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Mixer.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Mixer.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Mixer.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o: _deps/libsdl2pp-src/SDL2pp/Music.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Music.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Music.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Music.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Music.cc > CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Music.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Music.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.s
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/flags.make
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2pp-src/SDL2pp/SDLMixer.cc
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLMixer.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o -MF CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o.d -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLMixer.cc
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.i"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLMixer.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.i
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLMixer.cc > CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.i
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.s"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLMixer.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.s
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLMixer.cc -o CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.s
 
 # Object files for target SDL2pp
 SDL2pp_OBJECTS = \
@@ -450,9 +450,9 @@ _deps/libsdl2pp-build/libSDL2pp.so.8.3.0: /usr/local/lib/libSDL2_ttf-2.0.so.0.20
 _deps/libsdl2pp-build/libSDL2pp.so.8.3.0: /usr/local/lib/libSDL2_mixer-2.0.so.0.600.3
 _deps/libsdl2pp-build/libSDL2pp.so.8.3.0: /usr/lib/x86_64-linux-gnu/libSDL2.so
 _deps/libsdl2pp-build/libSDL2pp.so.8.3.0: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX shared library libSDL2pp.so"
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL2pp.dir/link.txt --verbose=$(VERBOSE)
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && $(CMAKE_COMMAND) -E cmake_symlink_library libSDL2pp.so.8.3.0 libSDL2pp.so.8 libSDL2pp.so
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX shared library libSDL2pp.so"
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL2pp.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && $(CMAKE_COMMAND) -E cmake_symlink_library libSDL2pp.so.8.3.0 libSDL2pp.so.8 libSDL2pp.so
 
 _deps/libsdl2pp-build/libSDL2pp.so.8: _deps/libsdl2pp-build/libSDL2pp.so.8.3.0
 	@$(CMAKE_COMMAND) -E touch_nocreate _deps/libsdl2pp-build/libSDL2pp.so.8
@@ -465,10 +465,10 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build: _deps/libsdl2pp-build/libSDL2
 .PHONY : _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/clean:
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && $(CMAKE_COMMAND) -P CMakeFiles/SDL2pp.dir/cmake_clean.cmake
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build && $(CMAKE_COMMAND) -P CMakeFiles/SDL2pp.dir/cmake_clean.cmake
 .PHONY : _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/clean
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/depend:
-	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axelon/Documents/Taller/DuckGame-g2-20242c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src /home/axelon/Documents/Taller/DuckGame-g2-20242c/build /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/depend
 

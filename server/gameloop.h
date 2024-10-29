@@ -1,24 +1,24 @@
-#ifndef GAMELOOP_H
-#define GAMELOOP_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef SERVER_GAMELOOP_H_
+#define SERVER_GAMELOOP_H_
 
 #include <atomic>
 #include <vector>
 
+#include "../common/comando.h"
+#include "../common/estado_juego.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
-
-#include "comando.h"
-#include "estado_juego.h"
-#include "mapa.h"
-#include "pato.h"
-#include "queues_jugadores.h"
+#include "server/mapa.h"
+#include "server/pato.h"
+#include "server/queues_jugadores.h"
 
 class Gameloop: public Thread {
 private:
     Queue<comando_t>& queue;
     std::atomic<bool> juego_activo;
     ListaQueues& queues_clientes;
-    std::vector<Pato*> jugadores;
+    std::vector<Pato> jugadores;
     Mapa mapa;
 
     void actualizar_estado_jugadores();
@@ -39,4 +39,4 @@ public:
     ~Gameloop();
 };
 
-#endif
+#endif  // SERVER_GAMELOOP_H_

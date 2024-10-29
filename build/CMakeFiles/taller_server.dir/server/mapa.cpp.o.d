@@ -1,7 +1,7 @@
 CMakeFiles/taller_server.dir/server/mapa.cpp.o: \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.cpp \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -162,5 +162,5 @@ CMakeFiles/taller_server.dir/server/mapa.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/orientacion.h \
- /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/posicion.h
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/orientacion.h \
+ /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/posicion.h

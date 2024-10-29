@@ -1,4 +1,11 @@
-#include "mapa.h"
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#include "server/mapa.h"
+
+#include <fstream>
+#include <string>
+
+#define ARCHIVO_MAPA "../data/mapa_"
+#define TXT ".txt"
 
 Mapa::Mapa(int largo, int alto) {
     this->largo = largo;
@@ -36,6 +43,34 @@ Mapa::Mapa(int largo, int alto) {
             mapa[14][14] = mapa[14][18] = mapa[14][19] = 1;
     mapa[15][3] = mapa[15][10] = mapa[15][11] = mapa[15][12] = mapa[15][13] = mapa[15][18] =
             mapa[15][19] = 1;
+}
+
+Mapa::Mapa(int mapa) {
+    std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(mapa) + TXT;
+    std::ifstream archivo_mapa(ruta_mapa);
+    if (!archivo_mapa.is_open()) {
+        std::cerr << "Error leyendo archivo del mapa \n";
+        throw ErrorMapa();
+    }
+    int leido;
+    archivo_mapa >> leido;
+    this->alto = leido;
+    archivo_mapa >> leido;
+    this->largo = leido;
+    this->mapa = new int*[alto];
+    for (int i = 0; i < alto; i++) {
+        this->mapa[i] = new int[largo];
+    }
+    int i, j;
+    i = j = 0;
+    while (i < alto) {
+        while (j < largo) {
+            archivo_mapa >> leido;
+            this->mapa[i][j] = leido;
+            j++;
+        }
+        i++;
+    }
 }
 
 std::vector<int> Mapa::posicion_en_mapa(const posicion_t& pos) {

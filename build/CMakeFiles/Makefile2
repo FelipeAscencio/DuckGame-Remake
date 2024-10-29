@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c
+CMAKE_SOURCE_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build
+CMAKE_BINARY_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -250,14 +250,14 @@ tests/clean:
 CMakeFiles/taller_common.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_common.dir/build.make CMakeFiles/taller_common.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_common.dir/build.make CMakeFiles/taller_common.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=39,40,41,42,43,44 "Built target taller_common"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=39,40,41,42,43,44 "Built target taller_common"
 .PHONY : CMakeFiles/taller_common.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/taller_common.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/taller_common.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : CMakeFiles/taller_common.dir/rule
 
 # Convenience name for target.
@@ -277,14 +277,14 @@ CMakeFiles/taller_client.dir/all: CMakeFiles/taller_common.dir/all
 CMakeFiles/taller_client.dir/all: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_client.dir/build.make CMakeFiles/taller_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=33,34,35,36,37,38 "Built target taller_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=33,34,35,36,37,38 "Built target taller_client"
 .PHONY : CMakeFiles/taller_client.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/taller_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 36
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 36
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/taller_client.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : CMakeFiles/taller_client.dir/rule
 
 # Convenience name for target.
@@ -303,14 +303,14 @@ CMakeFiles/taller_client.dir/clean:
 CMakeFiles/taller_server.dir/all: CMakeFiles/taller_common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_server.dir/build.make CMakeFiles/taller_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69 "Built target taller_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69 "Built target taller_server"
 .PHONY : CMakeFiles/taller_server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/taller_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 29
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/taller_server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : CMakeFiles/taller_server.dir/rule
 
 # Convenience name for target.
@@ -330,14 +330,14 @@ CMakeFiles/taller_editor.dir/all: CMakeFiles/taller_common.dir/all
 CMakeFiles/taller_editor.dir/all: _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_editor.dir/build.make CMakeFiles/taller_editor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_editor.dir/build.make CMakeFiles/taller_editor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=45,46 "Built target taller_editor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=45,46 "Built target taller_editor"
 .PHONY : CMakeFiles/taller_editor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/taller_editor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/taller_editor.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : CMakeFiles/taller_editor.dir/rule
 
 # Convenience name for target.
@@ -358,14 +358,14 @@ CMakeFiles/taller_tests.dir/all: _deps/googletest-build/googletest/CMakeFiles/gt
 CMakeFiles/taller_tests.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_tests.dir/build.make CMakeFiles/taller_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taller_tests.dir/build.make CMakeFiles/taller_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=70,71 "Built target taller_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=70,71 "Built target taller_tests"
 .PHONY : CMakeFiles/taller_tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/taller_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/taller_tests.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : CMakeFiles/taller_tests.dir/rule
 
 # Convenience name for target.
@@ -384,14 +384,14 @@ CMakeFiles/taller_tests.dir/clean:
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 "Built target SDL2pp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 "Built target SDL2pp"
 .PHONY : _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 24
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/rule
 
 # Convenience name for target.
@@ -410,14 +410,14 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/clean:
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=25,26 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=25,26 "Built target gmock"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule
 
 # Convenience name for target.
@@ -437,14 +437,14 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletes
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=27,28 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=27,28 "Built target gmock_main"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule
 
 # Convenience name for target.
@@ -463,14 +463,14 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=29,30 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=29,30 "Built target gtest"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.
@@ -489,14 +489,14 @@ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=31,32 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=31,32 "Built target gtest_main"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
