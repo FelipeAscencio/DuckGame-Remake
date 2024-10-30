@@ -1,8 +1,8 @@
 #include "client_handler.h"
 
 #define MENOS_UNO -1
-#define ANCHO_MIN 640
-#define ALTO_MIN 480
+#define ANCHO_MIN 960
+#define ALTO_MIN 720
 #define DUCK_GAME_STR "Duck Game"
 #define RUTA_MAPA_1 "/mapa1.png"
 
@@ -14,7 +14,7 @@ Client::Client(const char* hostname, const char* servicio):
 void Client::controlar_loop_juego() {
     SDL sdl(SDL_INIT_VIDEO);
     Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ANCHO_MIN,
-                  ALTO_MIN, SDL_WINDOW_RESIZABLE);
+                  ALTO_MIN, SDL_WINDOW_SHOWN);
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     std::string ruta_mapa = RUTA_MAPA_1;
     dibujador.emplace(renderer, ruta_mapa);
