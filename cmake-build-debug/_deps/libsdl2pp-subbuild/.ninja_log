@@ -1,0 +1,21 @@
+# ninja log v6
+1	25	1730077603265714240	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-mkdir	2aa7f4ad561a8113
+1	25	1730077603265714240	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-mkdir	2aa7f4ad561a8113
+25	1300	1730077604541600231	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-download	ebbb60ff1b86f7b7
+25	1300	1730077604541600231	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-download	ebbb60ff1b86f7b7
+1301	1314	1730077604555320533	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-update	f1aac41cbb39fd2e
+1301	1314	1730077604555320533	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-update	f1aac41cbb39fd2e
+1314	1326	1730077604566953922	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-patch	2700c98863c55146
+1314	1326	1730077604566953922	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-patch	2700c98863c55146
+1326	1339	1730077604580936547	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-configure	5fb73c1090896651
+1326	1339	1730077604580936547	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-configure	5fb73c1090896651
+1340	1354	1730077604595326696	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-build	e77ca04fb76213b3
+1340	1354	1730077604595326696	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-build	e77ca04fb76213b3
+1354	1370	1730077604610896796	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-install	f4c472b3b62c158f
+1354	1370	1730077604610896796	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-install	f4c472b3b62c158f
+1370	1383	1730077604624302070	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-test	44d1b6b0195ebb30
+1370	1383	1730077604624302070	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-test	44d1b6b0195ebb30
+1383	1400	1730077604641048621	CMakeFiles/libsdl2pp-populate-complete	55de4042cb472a89
+1383	1400	1730077604641048621	libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-done	55de4042cb472a89
+1383	1400	1730077604641048621	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate-complete	55de4042cb472a89
+1383	1400	1730077604641048621	/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-done	55de4042cb472a89

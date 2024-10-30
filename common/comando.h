@@ -1,11 +1,12 @@
-#ifndef COMANDO_H
-#define COMANDO_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef COMMON_COMANDO_H_
+#define COMMON_COMANDO_H_
 
 #include <iostream>
 
 typedef struct Comando {
-    uint8_t id_cliente;
-    uint8_t accion;
+    uint8_t id_cliente;  // cppcheck-suppress unusedStructMember
+    uint8_t accion;      // cppcheck-suppress unusedStructMember
 } comando_t;
 
-#endif
+#endif  // COMMON_COMANDO_H_

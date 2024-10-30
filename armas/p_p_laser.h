@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "arma.h"
-#include "orientacion.h"
+#include "../common/orientacion.h"
 
 class PewPewLaser: public Arma {
 private:

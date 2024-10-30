@@ -1,7 +1,6 @@
 #ifndef QUEUES_JUGADORES_H
 #define QUEUES_JUGADORES_H
 
-
 #include <iostream>
 #include <list>
 #include <mutex>
@@ -10,19 +9,19 @@
 
 #include "../common/queue.h"
 
-#include "estado_juego.h"
+#include "../common/estado_juego.h"
 
 class ListaQueues {
 private:
     std::mutex mtx;
-    std::list<std::pair<Queue<estado_juego_t>&, int>> lista_queues;
+    std::list<std::pair<Queue<EstadoJuego>&, int>> lista_queues;
 
 public:
     ListaQueues();
 
-    void broadcast(const estado_juego_t& estado_actual);
+    void broadcast(const EstadoJuego& estado_actual);
 
-    void agregar_queue(Queue<estado_juego_t>& q, int id_cliente);
+    void agregar_queue(Queue<EstadoJuego>& q, int id_cliente);
 
     void eliminar_queue(int id_cliente);
 };

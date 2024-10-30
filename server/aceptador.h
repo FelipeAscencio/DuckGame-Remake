@@ -26,7 +26,7 @@ public:
     explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l,
                        std::vector<int>& ids_clientes);
 
-    virtual void run();
+    virtual void run() override;
 
     void dejar_de_aceptar() { this->aceptando_jugadores = false; };
 

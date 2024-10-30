@@ -11,4 +11,4 @@ run-tests: compile-debug
 all: clean run-tests
 
 clean:
-	rm -Rf build-*/
+	rm -rf build/

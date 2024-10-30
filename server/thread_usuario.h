@@ -9,7 +9,7 @@
 class ThreadUsuario {
 private:
     Socket skt;
-    Queue<estado_juego_t> queue_sender;
+    Queue<EstadoJuego> queue_sender;
     std::atomic<bool> vivo;
     Recibidor r;
     Enviador e;
@@ -24,7 +24,7 @@ public:
 
     void cortar_conexion();
 
-    Queue<estado_juego_t>& obtener_queue() { return this->queue_sender; }
+    Queue<EstadoJuego>& obtener_queue() { return this->queue_sender; }
 
     int get_id() { return this->id_cliente; }
 

@@ -1,37 +1,48 @@
 #include <exception>
 #include <iostream>
 
-#include <SDL2/SDL.h>
-#include <SDL2pp/SDL2pp.hh>
+#include <stdbool.h>
 
-#include "common/foo.h"
+#include "client_handler.h"
 
-using namespace SDL2pp;
+#define EXITO 0
+#define FALLA 1
+#define POS_HOSTNAME 1
+#define POS_SERVICIO 2
+#define ARGUMENTOS_ESPERADOS 3
+#define MSJ_ERROR_FORMATO "Error de formato: El esperado es './client <hostname> <servicio>'."
+#define MSJ_EXCEPCION_CONOCIDA "Hubo un error y se capturo la excepcion: "
+#define MSJ_EXCEPCION_DESCONOCIDA "Hubo un error pero no se conoce la excepcion capturada."
 
-int main() try {
-    // Initialize SDL library
-    SDL sdl(SDL_INIT_VIDEO);
+// PRE: - .
+// POST: Devuelve 'true' si la cantidad de argumentos recibida por consola es la correcta.
+bool argumentos_validos(int argumentos);
 
-    // Create main window: 640x480 dimensions, resizable, "SDL2pp demo" title
-    Window window("SDL2pp demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480,
-                  SDL_WINDOW_RESIZABLE);
+bool argumentos_validos(int argumentos) {
+    if (argumentos != ARGUMENTOS_ESPERADOS) {
+        std::cout << MSJ_ERROR_FORMATO << std::endl;
+        return false;
+    }
 
-    // Create accelerated video renderer with default driver
-    Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
+    return true;
+}
 
-    // Clear screen
-    renderer.Clear();
+int main(int argc, const char* argv[]) {
+    try {
+        if (!argumentos_validos(argc)) {
+            return FALLA;
+        }
 
-    // Show rendered frame
-    renderer.Present();
-
-    // 5 second delay
-    SDL_Delay(5000);
-
-    // Here all resources are automatically released and library deinitialized
-    return 0;
-} catch (std::exception& e) {
-    // If case of error, print it and exit with error
-    std::cerr << e.what() << std::endl;
-    return 1;
+        const char* hostname = argv[POS_HOSTNAME];
+        const char* servicio = argv[POS_SERVICIO];
+        Client client(hostname, servicio);
+        client.controlar_loop_juego();
+        return EXITO;
+    } catch (const std::exception& error) {
+        std::cerr << MSJ_EXCEPCION_CONOCIDA << error.what() << std::endl;
+        return FALLA;
+    } catch (...) {
+        std::cerr << MSJ_EXCEPCION_DESCONOCIDA << std::endl;
+        return FALLA;
+    }
 }

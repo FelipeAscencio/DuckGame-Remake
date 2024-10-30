@@ -1,11 +1,15 @@
-#ifndef POSICION_H
-#define POSICION_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef COMMON_POSICION_H_
+#define COMMON_POSICION_H_
 
 #include <iostream>
 
 typedef struct Posicion {
     int coordenada_x;
     int coordenada_y;
+
+    // Constructor por defecto
+    Posicion(): coordenada_x(0), coordenada_y(0) {}
 
     // Constructor por parámetros
     Posicion(int x, int y): coordenada_x(x), coordenada_y(y) {}
@@ -28,4 +32,4 @@ typedef struct Posicion {
     }
 } posicion_t;
 
-#endif
+#endif  // COMMON_POSICION_H_

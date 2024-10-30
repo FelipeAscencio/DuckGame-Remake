@@ -1,8 +1,7 @@
-#ifndef ORIENTACION_H
-#define ORIENTACION_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef COMMON_ORIENTACION_H_
+#define COMMON_ORIENTACION_H_
 
-typedef enum Orientacion { 
-    DERECHA, IZQUIERDA, ARRIBA    
-} orientacion_e;
+enum orientacion_e { DERECHA, IZQUIERDA, ARRIBA };
 
-#endif
+#endif  // COMMON_ORIENTACION_H_

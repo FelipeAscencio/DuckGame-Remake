@@ -1,22 +1,20 @@
-#ifndef PATO_H
-#define PATO_H
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef SERVER_PATO_H_
+#define SERVER_PATO_H_
 
 #include <iostream>
 
-#include "../armas/arma.h"
-#include "../common/estado_juego.h"
-#include "gameloop.h"
-#include "mapa.h"
+#include "../common/estado_fisico.h"
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
-#include "protocol.h"
+#include "server/arma.h"
+#include "server/mapa.h"
 
-using namespace ServerProtocol;
 class Pato {
-    friend class Protocol;  // para poder enviar la informacion del pato sin usar getters
     friend struct EstadoJuego;
-    friend struct InformacionPato;
     friend class Gameloop;
+    friend struct InformacionPato;
+    friend struct MismoID;
 
 private:
     int id_jugador;
@@ -46,7 +44,9 @@ private:
     void caer(Mapa& mapa);
     void recibir_disparo();
     bool disparar();
-    static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion, const posicion_t& posicion_a_chequearmapa);
+    int obtener_id_arma() { return arma_equipada ? arma_equipada->obtener_id() : 0; }
+    static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion,
+                             const posicion_t& posicion_a_chequear);
 
 public:
     explicit Pato(int id);
@@ -60,4 +60,4 @@ public:
 };
 
 
-#endif
+#endif  // SERVER_PATO_H_

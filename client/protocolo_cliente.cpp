@@ -1,8 +1,26 @@
-#include "protocolo_cliente.h"
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#include "client/protocolo_cliente.h"
+
+#include <vector>
+#include <map>
+
+#define ACCION_DERECHA 0x01
+#define ACCION_IZQUIERDA 0x02
+#define ACCION_AGACHARSE 0x03
+#define ACCION_ARRIBA 0x04
+#define ACCION_SALTO 0x05
+#define ACCION_DISPARAR 0x06
+
+#define DERECHA 'D'
+#define IZQUIERDA 'A'
+#define ARRIBA 'W'
+#define AGACHARSE 'S'
+#define SALTO ' '
+#define DISPARO 'C'
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
-#define CODIGO_BALAS 0x07
+#define CODIGO_BALA 0x07
 #define CODIGO_ARMADURA 0x08
 #define CODIGO_CASCO 0x09
 #define CODIGO_CAJA 0x0A
@@ -10,29 +28,40 @@
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
-ProtocoloCliente::ProtocoloCliente(Socket& skt) : s(skt) {}
+static std::map <char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE}, {ARRIBA, ACCION_ARRIBA}, {SALTO, ACCION_SALTO}, {DISPARO, ACCION_DISPARAR}}; 
 
-bool ProtocoloCliente::enviar(comando_t& cmd){
-    bool was_closed;
-    uint8_t id = cmd.id_cliente;
-    s.sendall(&id, sizeof(id), &was_closed);
-    if (was_closed) return false;
-
-    uint8_t accion = cmd.accion;
-    s.sendall(&accion, sizeof(accion), &was_closed);
-    return !was_closed;    
+ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt){
+    bool closed = false;
+    s.recvall(&id_cliente, sizeof(id_cliente), &closed);
+    if (closed)
+        throw ErrorConstructor();
 }
 
-bool ProtocoloCliente::procesar_cantidades(estado_juego_t& estado_actual){
-    bool was_closed;
+uint8_t ProtocoloCliente::parsear_comando(char accion){
+    std::map<char, uint8_t>::iterator it = acciones.find(accion);
+    if (it == acciones.end()) return 0;
+    else return acciones.at(accion);
+}
+
+bool ProtocoloCliente::enviar(const char& accion) {
+    bool was_closed = false;
+    uint8_t comando = parsear_comando(accion);
+    if (comando == 0) return false;
+    s.sendall(&comando, sizeof(comando), &was_closed);
+    return !was_closed;
+}
+
+bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
+    bool was_closed = false;
     uint8_t leido = 0x00;
     std::vector<uint8_t> cantidades;
-    while (leido != FIN_MENSAJE){
+    while (leido != FIN_MENSAJE && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);
-        if (was_closed) break;
-        cantidades.push_back(leido);
+        if (!was_closed)
+            cantidades.push_back(leido);
     }
-    if (!was_closed){
+
+    if (!was_closed) {
         estado_actual.cantidad_jugadores = cantidades[0];
         estado_actual.cantidad_armas = cantidades[1];
         estado_actual.cantidad_balas = cantidades[2];
@@ -40,64 +69,74 @@ bool ProtocoloCliente::procesar_cantidades(estado_juego_t& estado_actual){
         estado_actual.cantidad_cascos = cantidades[4];
         estado_actual.cantidad_cajas = cantidades[5];
         return true;
-    } else return false;
-}
-
-bool ProtocoloCliente::procesar_patos(estado_juego_t& estado_actual){
-    bool was_closed;
-    uint8_t leido = 0;
-    std::vector<int> info;
-    while (leido != FIN_MENSAJE) {
-        s.recvall(&leido, sizeof(leido), &was_closed);
-        if (was_closed) break;
-        info.push_back(leido);
+    } else {
+        return false;
     }
-    if (!was_closed){
-        posicion_t posicion(info[1], info[2]);
-        informacion_pato_t pato_actual(info[0], posicion, (bool)info[3], (bool)info[4], info[5], (bool)info[6], (bool)info[7], (orientacion_e)info[8], (estado_pato_e)info[9]);
-        estado_actual.agregar_info_pato(pato_actual);
-        return true;
-    } else return false;
 }
 
-bool ProtocoloCliente::procesar_leido(const uint8_t& leido, estado_juego_t& estado_actual){
-    switch (leido)
-        {
+bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
+    bool was_closed = false;
+    uint8_t leido = 0x00;
+    std::vector<uint8_t> info;
+    while (leido != FIN_MENSAJE && !was_closed) {
+        s.recvall(&leido, sizeof(leido), &was_closed);
+        if (!was_closed)
+            info.push_back(leido);
+    }
+
+    if (!was_closed) {
+        posicion_t posicion(info[1], info[2]);
+        InformacionPato pato(info[0], posicion, static_cast<bool>(info[3]),
+                             static_cast<bool>(info[4]), info[5], static_cast<bool>(info[6]),
+                             static_cast<bool>(info[7]), static_cast<orientacion_e>(info[8]),
+                             static_cast<estado_pato_e>(info[9]));
+        estado_actual.agregar_info_pato(pato);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual) {
+    bool resultado = false;
+    switch (leido) {
         case CODIGO_PATO:
-            procesar_patos(estado_actual);
+            resultado = procesar_patos(estado_actual);
             break;
-        
+
         case CODIGO_ARMA:
             break;
-        
-        case CODIGO_BALAS:
+
+        case CODIGO_BALA:
             break;
-        
+
         case CODIGO_ARMADURA:
             break;
-        
+
         case CODIGO_CASCO:
             break;
-        
+
         case CODIGO_CAJA:
             break;
 
         case CODIGO_CANTIDADES:
-            procesar_cantidades(estado_actual);
+            resultado = procesar_cantidades(estado_actual);
             break;
-        }
+
+        default:
+            resultado = false;
+            break;
+    }
+    return resultado;
 }
 
-bool ProtocoloCliente::recibir(estado_juego_t& estado_actual){
+bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
-    bool was_closed;
-    while (leido != FIN_COMUNICACION){
-        std::vector<uint8_t> datos_leidos;
+    bool was_closed = false;
+    while (leido != FIN_COMUNICACION && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);
-        if (was_closed) break;
-        procesar_leido(leido, estado_actual);
+        if (!was_closed)
+            was_closed = procesar_leido(leido, estado_actual);
     }
     return !was_closed;
 }
-
-
