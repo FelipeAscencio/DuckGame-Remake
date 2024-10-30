@@ -15,7 +15,7 @@ public:
     explicit Controlador();
 
     // Esta funcion maneja los eventos que el 'Cliente' efectua durante el juego.
-    void manejarEventos(bool& jugador_activo, int& estado);
+    void manejar_eventos(bool& jugador_activo, int& estado);
 
     // Deshabilito las copias.
     Controlador(const Controlador&) = delete;

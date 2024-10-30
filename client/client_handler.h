@@ -21,7 +21,13 @@ private:
     bool jugador_activo;
     Controlador controlador;
     std::optional<Dibujador> dibujador;
-    int estado;  // PROVISORIO PARA
+    int estado;  // PROVISORIO PARA TESTEAR.
+
+    // Inicia la musica de fondo y devuelve un puntero a la misma.
+    Mix_Music* iniciar_musica();
+
+    // Finaliza la musica y libera la memoria de la misma.
+    void terminar_musica(Mix_Music* musica_fondo);
 
 public:
     // Constructor de la clase.
