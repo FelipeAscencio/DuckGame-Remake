@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "orientacion.h"
-#include "posicion.h"
+#include "../common/orientacion.h"
+#include "../common/posicion.h"
 
 #define ID_GRANADA 1
 #define ID_BANANA 2

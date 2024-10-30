@@ -3,7 +3,8 @@
 
 #include <stdbool.h>
 
-#include "client_handler.h"
+// #include "client_handler.h"
+#include "client_mock.h"
 
 #define EXITO 0
 #define FALLA 1
@@ -35,8 +36,10 @@ int main(int argc, const char* argv[]) {
 
         const char* hostname = argv[POS_HOSTNAME];
         const char* servicio = argv[POS_SERVICIO];
-        Client client(hostname, servicio);
-        client.controlar_loop_juego();
+        // Client client(hostname, servicio);
+        // client.controlar_loop_juego();
+        ClientMock cliente_prueba(hostname, servicio);
+        cliente_prueba.start();
         return EXITO;
     } catch (const std::exception& error) {
         std::cerr << MSJ_EXCEPCION_CONOCIDA << error.what() << std::endl;

@@ -1,8 +1,8 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "client/protocolo_cliente.h"
 
-#include <vector>
 #include <map>
+#include <vector>
 
 #define ACCION_DERECHA 0x01
 #define ACCION_IZQUIERDA 0x02
@@ -28,25 +28,31 @@
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
-static std::map <char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE}, {ARRIBA, ACCION_ARRIBA}, {SALTO, ACCION_SALTO}, {DISPARO, ACCION_DISPARAR}}; 
+static std::map<char, uint8_t> acciones = {
+        {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
+        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}};
 
-ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt){
+ProtocoloCliente::ProtocoloCliente(const char* hostname, const char* servname):
+        s(hostname, servname) {
     bool closed = false;
     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
     if (closed)
         throw ErrorConstructor();
 }
 
-uint8_t ProtocoloCliente::parsear_comando(char accion){
+uint8_t ProtocoloCliente::parsear_comando(char accion) {
     std::map<char, uint8_t>::iterator it = acciones.find(accion);
-    if (it == acciones.end()) return 0;
-    else return acciones.at(accion);
+    if (it == acciones.end())
+        return 0;
+    else
+        return acciones.at(accion);
 }
 
 bool ProtocoloCliente::enviar(const char& accion) {
     bool was_closed = false;
     uint8_t comando = parsear_comando(accion);
-    if (comando == 0) return false;
+    if (comando == 0)
+        return false;
     s.sendall(&comando, sizeof(comando), &was_closed);
     return !was_closed;
 }

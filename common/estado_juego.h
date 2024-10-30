@@ -4,6 +4,8 @@
 
 #include <algorithm>
 #include <iostream>
+#include <sstream>
+#include <string>
 #include <vector>
 
 #include "../server/arma.h"
@@ -90,6 +92,63 @@ struct EstadoJuego {
             info_patos.push_back(info);
             cantidad_jugadores++;
         }
+    }
+
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
+        oss << cantidad_balas << "\n. Armaduras: " << cantidad_armaduras
+            << ". Cascos: " << cantidad_cascos;
+        oss << ". Cajas: " << cantidad_cajas << "\n";
+
+        for (InformacionPato info: info_patos) {
+            oss << "PATO: \n ID: " << info.id << ". POSICION: (" << info.posicion.coordenada_x
+                << "," << info.posicion.coordenada_y << ")\n";
+            oss << "VIVO: " << (info.vivo ? "SI" : "NO")
+                << ". TIENE ARMA: " << (info.arma ? "SI" : "NO")
+                << ". ID ARMA: " << info.id_arma_equipada;
+            oss << "\nCASCO: " << (info.casco ? "SI" : "NO")
+                << ". ARMADURA: " << (info.armadura ? "SI" : "NO");
+            std::string sentido;
+            switch (info.orientacion) {
+                case DERECHA:
+                    sentido = "Derecha";
+                    break;
+
+                case IZQUIERDA:
+                    sentido = "Izquierda";
+                    break;
+
+                default:
+                    sentido = "Arriba";
+                    break;
+            }
+            std::string estado_pato;
+            switch (info.estado) {
+                case PARADO:
+                    estado_pato = "Parado";
+                    break;
+
+                case AGACHADO:
+                    estado_pato = "Agachado";
+                    break;
+
+                case SALTANDO:
+                    estado_pato = "Saltando";
+                    break;
+
+                case CAYENDO:
+                    estado_pato = "Cayendo";
+                    break;
+
+                case ALETEANDO:
+                    estado_pato = "Aleteando";
+                    break;
+            }
+            oss << "\nSENTIDO: " << sentido << ". ESTADO ACTUAL: " << estado_pato;
+            oss << "\n---------------------------------\n";
+        }
+        return oss.str();
     }
 };
 

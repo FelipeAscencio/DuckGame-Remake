@@ -1,5 +1,8 @@
 #include "aceptador.h"
 
+#include <utility>
+#include <vector>
+
 #include <syslog.h>
 
 #include "../common/liberror.h"
@@ -22,6 +25,12 @@ void Aceptador::run() {
     while (aceptando_jugadores) {
         try {
             Socket peer = skt.accept();
+            bool error_envio_id = false;
+            peer.sendall(&(id), sizeof(id), &error_envio_id);
+            if (error_envio_id) {
+                aceptando_jugadores = false;
+            }
+            std::cout << "Antes de crear el ThreadUsuario\n";
             ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
             ids_clientes.push_back(id);
             queues_clientes.agregar_queue(jugador->obtener_queue(), id);

@@ -1,7 +1,9 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/pato.h"
 
+#include <cstdlib>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -29,7 +31,7 @@
 
 Pato::Pato(int id):
         id_jugador(id),
-        posicion(0, 0),
+        posicion(rand() % 20, rand() % 16),
         vivo(true),
         posee_arma(false),
         posee_armadura(false),
@@ -279,6 +281,10 @@ void Pato::recibir_disparo() {
 }
 
 void Pato::realizar_accion(int accion, Mapa& mapa) {
+    std::ostringstream oss;
+    oss << "ID PATO: " << this->id_jugador;
+    oss << ". Realizando accion: " << accion << "\n";
+    std::cout << oss.str();
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
             cambiar_orientacion(ARRIBA);
@@ -302,9 +308,13 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
+            std::cout << "MOVIENDOSE\n";
             mover(mapa, sentido);
             break;
     }
+    oss.clear();
+    oss << "POSICION: (" << posicion.coordenada_x << "," << posicion.coordenada_y << ")\n";
+    std::cout << oss.str();
 }
 
 Pato::~Pato() {}

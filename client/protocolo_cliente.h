@@ -17,7 +17,7 @@ struct ErrorConstructor: public std::runtime_error {
 
 class ProtocoloCliente {
 private:
-    Socket& s;
+    Socket s;
     int id_cliente;
 
     bool procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual);
@@ -29,11 +29,13 @@ private:
     uint8_t parsear_comando(char accion);
 
 public:
-    explicit ProtocoloCliente(Socket& s);
+    explicit ProtocoloCliente(const char* hostname, const char* servname);
 
     bool enviar(const char& accion);
 
     bool recibir(EstadoJuego& estado_actual);
+
+    int get_id() { return this->id_cliente; }
 };
 
 #endif  // CLIENT_PROTOCOLO_CLIENTE_H_
