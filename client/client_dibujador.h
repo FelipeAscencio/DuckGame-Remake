@@ -7,6 +7,7 @@
 #include <SDL2pp/SDL2pp.hh>
 
 #include "client_parseador.h"
+#include "../common/orientacion.h"
 
 using namespace SDL2pp;
 
@@ -25,16 +26,16 @@ private:
     std::vector<SDL_Rect> spritesCaja;
     std::vector<SDL_Rect> spritesArmadura;
 
-    // Funcion provisoria (TESTING).
-    void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
-                              const std::vector<SDL_Rect>& sprites, float x, float y, float escala, float separacion);
+    // Devuelve el 'Rect' correspondiente segun los parametros recibidos.
+    SDL2pp::Rect calcularDstRect(float x, float y, float escala);
 
     // Convierte el 'X' e 'Y' recibido en valor relativo en relacion al 'X' e 'Y' maximos.
     std::pair<float, float> convertir_a_relativo(int x, int y);
 
     // Dibuja un sprite en la posicion correspondiente de la ventana.
     void dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
-                               const SDL_Rect& sprite, float x, float y, float escala);
+                               const SDL_Rect& sprite, float x, float y, float escala,
+                               orientacion_e orientacion);
 
 public:
     // Constructor de la clase.

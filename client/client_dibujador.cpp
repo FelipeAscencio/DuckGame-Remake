@@ -9,6 +9,9 @@
 #define MAX_COORD_X 250
 #define MAX_COORD_Y 160
 #define DOS 2
+#define ANGULO_NULO 0.0
+#define ANGULO_270 270.0
+#define ESCALA_SPRITES_GRANDES 0.07
 
 using namespace SDL2pp;
 
@@ -30,98 +33,78 @@ std::pair<float, float> Dibujador::convertir_a_relativo(int x, int y) {
     return {x_convertido, y_convertido};
 }
 
-void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
-                                     const std::vector<SDL_Rect>& sprites, float x, float y, float escala,
-                                     float separacion) {
+SDL2pp::Rect Dibujador::calcularDstRect(float x, float y, float escala) {
     int anchoVentana = ANCHO_VENTANA;
     int altoVentana = ALTO_VENTANA;
-    int startX = static_cast<int>(anchoVentana * x);
-    int startY = static_cast<int>(altoVentana * y);
     int scaledWidth = static_cast<int>(anchoVentana * escala);
     int scaledHeight = static_cast<int>(altoVentana * escala);
-    int gap = static_cast<int>(anchoVentana * separacion);
-    int contador = 0;
 
-    for (size_t i = 0; i < sprites.size(); ++i) {
-        if (contador >= 12) {
-            contador = 0;
-            startY += 50;
-        }
-        SDL_Rect dstRect;
-        dstRect.x = startX + contador * (scaledWidth + gap);
-        dstRect.y = startY;
-        dstRect.w = scaledWidth;
-        dstRect.h = scaledHeight;
-        renderer.Copy(spriteSheet, sprites[i], dstRect);
-        contador++;
-    }
+    // Centramos el sprite en el eje 'X' y ponemos el '0' del eje 'Y' en la parte inferior del sprite.
+    int dstX = static_cast<int>(anchoVentana * x) - (scaledWidth / DOS);
+    int dstY = static_cast<int>(altoVentana * y) - scaledHeight;
+    return SDL2pp::Rect(dstX, dstY, scaledWidth, scaledHeight);
 }
 
 void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
-                               const SDL_Rect& sprite, float x, float y, float escala) {
-    int anchoVentana = ANCHO_VENTANA;
-    int altoVentana = ALTO_VENTANA;
-    int scaledWidth = static_cast<int>(anchoVentana * escala);
-    int scaledHeight = static_cast<int>(altoVentana * escala);
-    
-    // Centramos el 'sprite' en 'X', y establecemos el piso del sprite como el '0' en 'Y'.
-    int dstX = static_cast<int>(anchoVentana * x) - (scaledWidth / DOS);
-    int dstY = static_cast<int>(altoVentana * y) - scaledHeight;
-    SDL_Rect dstRect;
-    dstRect.x = dstX;
-    dstRect.y = dstY;
-    dstRect.w = scaledWidth;
-    dstRect.h = scaledHeight;
+                               const SDL_Rect& sprite, float x, float y, float escala,
+                               orientacion_e orientacion) {
+    SDL2pp::Rect dstRect = calcularDstRect(x, y, escala);
+    double angle = ANGULO_NULO;
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    if (orientacion == IZQUIERDA) {
+        flip = SDL_FLIP_HORIZONTAL;
+    } else if (orientacion == ARRIBA) {
+        angle = ANGULO_270;
+    }
 
-    renderer.Copy(spriteSheet, sprite, dstRect);
+    renderer.Copy(spriteSheet, SDL2pp::Optional<SDL2pp::Rect>(sprite), SDL2pp::Optional<SDL2pp::Rect>(dstRect), angle, SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer, const int estado) {
     renderer.Clear();
     renderer.Copy(this->mapa);
-    
-    float escala = 0.07;  // Ajustar escala como desees para cada sprite
-    float x = 0.01;        // Coordenada X (entre 0.0 y 1.0)
-    float y = 0.2;        // Coordenada Y (entre 0.0 y 1.0)
+    float escala = ESCALA_SPRITES_GRANDES;
 
     if (estado == 0) {
-        float separacion = 0.01;
-        dibujar_sprites_fila(renderer, this->spriteSheetPato, this->spritesPato, x, y, escala, separacion);
+        int x = 100;
+        int y = 100;
+        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, DERECHA);
     } else if (estado == 1) {
-        int x = 0;
-        int y = 0;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, DERECHA);
     } else if (estado == 2) {
-        int x = 10;
-        int y = 0;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, IZQUIERDA);
     } else if (estado == 3) {
-        int x = 0;
-        int y = 10;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, ARRIBA);
     } else if (estado == 4){
-        int x = 250;
-        int y = 160;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[1], x_rel, y_rel, escala, DERECHA);
     } else if (estado == 5) {
-        int x = 240;
-        int y = 160;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[1], x_rel, y_rel, escala, IZQUIERDA);
     } else if (estado == 6) {
-        int x = 260;
-        int y = 150;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[1], x_rel, y_rel, escala, ARRIBA);
     } else if (estado == 7) {
-        int x = 240;
-        int y = 150;
+        int x = 100;
+        int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, DERECHA);
     }
 
     renderer.Present();

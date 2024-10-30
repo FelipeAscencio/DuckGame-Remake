@@ -942,7 +942,8 @@ CMakeFiles/taller_client.dir/client/client_dibujador.cpp.o: ../client/client_dib
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   _deps/libsdl2pp-src/SDL2pp/Music.hh \
   _deps/libsdl2pp-src/SDL2pp/SDLMixer.hh \
-  ../client/client_parseador.h
+  ../client/client_parseador.h \
+  ../common/orientacion.h
 
 CMakeFiles/taller_client.dir/client/client_handler.cpp.o: ../client/client_handler.cpp \
   /usr/include/stdc-predef.h \
@@ -1435,7 +1436,8 @@ CMakeFiles/taller_client.dir/client/client_handler.cpp.o: ../client/client_handl
   _deps/libsdl2pp-src/SDL2pp/Music.hh \
   _deps/libsdl2pp-src/SDL2pp/SDLMixer.hh \
   ../client/client_dibujador.h \
-  ../client/client_parseador.h
+  ../client/client_parseador.h \
+  ../common/orientacion.h
 
 CMakeFiles/taller_client.dir/client/client_parseador.cpp.o: ../client/client_parseador.cpp \
   /usr/include/stdc-predef.h \
@@ -2400,7 +2402,8 @@ CMakeFiles/taller_client.dir/client/main.cpp.o: ../client/main.cpp \
   _deps/libsdl2pp-src/SDL2pp/Music.hh \
   _deps/libsdl2pp-src/SDL2pp/SDLMixer.hh \
   ../client/client_dibujador.h \
-  ../client/client_parseador.h
+  ../client/client_parseador.h \
+  ../common/orientacion.h
 
 
 ../client/client_parseador.cpp:
@@ -2982,6 +2985,8 @@ _deps/libsdl2pp-src/SDL2pp/Music.hh:
 /usr/include/c++/11/bits/stl_iterator.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+../common/orientacion.h:
 
 /usr/include/SDL2/SDL_stdinc.h:
 
