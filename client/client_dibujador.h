@@ -27,15 +27,21 @@ private:
 
     // Funcion provisoria (TESTING).
     void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
-                              const std::vector<SDL_Rect>& sprites, int anchoVentana,
-                              int altoVentana, float x, float y, float escala, float separacion);
+                              const std::vector<SDL_Rect>& sprites, float x, float y, float escala, float separacion);
+
+    // Convierte el 'X' e 'Y' recibido en valor relativo en relacion al 'X' e 'Y' maximos.
+    std::pair<float, float> convertir_a_relativo(int x, int y);
+
+    // Dibuja un sprite en la posicion correspondiente de la ventana.
+    void dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
+                               const SDL_Rect& sprite, float x, float y, float escala);
 
 public:
     // Constructor de la clase.
     explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa);
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
-    void renderizar(Renderer& renderer, Window& window, const int estado);
+    void renderizar(Renderer& renderer, const int estado);
 
     // Deshabilito las copias.
     Dibujador(const Dibujador&) = delete;

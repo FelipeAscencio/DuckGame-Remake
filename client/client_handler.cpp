@@ -52,7 +52,7 @@ void Client::controlar_loop_juego() {
     while (this->jugador_activo) {
         controlador.manejar_eventos(this->jugador_activo, this->estado);
         if (dibujador) {
-            dibujador->renderizar(renderer, window, this->estado);
+            dibujador->renderizar(renderer, this->estado);
         }
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }

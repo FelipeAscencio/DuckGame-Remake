@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
+#include <iostream>
 
 using namespace SDL2pp;
 
