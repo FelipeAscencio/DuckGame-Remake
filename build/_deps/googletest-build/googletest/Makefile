@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c
+CMAKE_SOURCE_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c/build
+CMAKE_BINARY_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/googletest-build/googletest//CMakeFiles/progress.marks
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles 0
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/googletest-build/googletest//CMakeFiles/progress.marks
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/clean
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/preinstall
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/preinstall
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.
@@ -172,12 +172,12 @@ gtest: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
 
 # fast build rule for target.
 gtest/fast:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
 # Convenience name for target.
 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -186,7 +186,7 @@ gtest_main: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
 
 # fast build rule for target.
 gtest_main/fast:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
 src/gtest-all.o: src/gtest-all.cc.o
@@ -194,7 +194,7 @@ src/gtest-all.o: src/gtest-all.cc.o
 
 # target to build an object file
 src/gtest-all.cc.o:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 .PHONY : src/gtest-all.cc.o
 
 src/gtest-all.i: src/gtest-all.cc.i
@@ -202,7 +202,7 @@ src/gtest-all.i: src/gtest-all.cc.i
 
 # target to preprocess a source file
 src/gtest-all.cc.i:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
 .PHONY : src/gtest-all.cc.i
 
 src/gtest-all.s: src/gtest-all.cc.s
@@ -210,7 +210,7 @@ src/gtest-all.s: src/gtest-all.cc.s
 
 # target to generate assembly for a file
 src/gtest-all.cc.s:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
 .PHONY : src/gtest-all.cc.s
 
 src/gtest_main.o: src/gtest_main.cc.o
@@ -218,7 +218,7 @@ src/gtest_main.o: src/gtest_main.cc.o
 
 # target to build an object file
 src/gtest_main.cc.o:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
 .PHONY : src/gtest_main.cc.o
 
 src/gtest_main.i: src/gtest_main.cc.i
@@ -226,7 +226,7 @@ src/gtest_main.i: src/gtest_main.cc.i
 
 # target to preprocess a source file
 src/gtest_main.cc.i:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 .PHONY : src/gtest_main.cc.i
 
 src/gtest_main.s: src/gtest_main.cc.s
@@ -234,7 +234,7 @@ src/gtest_main.s: src/gtest_main.cc.s
 
 # target to generate assembly for a file
 src/gtest_main.cc.s:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 .PHONY : src/gtest_main.cc.s
 
 # Help Target
@@ -268,6 +268,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

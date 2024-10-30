@@ -1,5 +1,5 @@
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc \
  /usr/include/stdc-predef.h /usr/include/SDL2/SDL_surface.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -109,7 +109,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: \
  /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_endian.h \
  /usr/include/SDL2/SDL_rect.h /usr/include/SDL2/SDL_error.h \
  /usr/include/SDL2/SDL_rwops.h /usr/include/SDL2/SDL_blendmode.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.hh \
  /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/memoryfwd.h \
  /usr/include/c++/11/bits/char_traits.h \
@@ -162,15 +162,15 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: \
  /usr/include/c++/11/exception /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/typeinfo /usr/include/c++/11/bits/nested_exception.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.hh \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_blendmode.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Config.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Optional.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Config.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Optional.hh \
  /usr/include/c++/11/optional /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/enable_special_members.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.hh \
  /usr/include/c++/11/functional /usr/include/c++/11/tuple \
  /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/refwrap.h \
@@ -190,7 +190,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h /usr/include/SDL2/SDL_rect.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.hh \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -208,5 +208,5 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SurfaceLock.cc.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.hh \
  /usr/include/SDL2/SDL_pixels.h

@@ -1,6 +1,6 @@
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc \
- /usr/include/stdc-predef.h /usr/local/include/SDL2/SDL_image.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.cc \
+ /usr/include/stdc-predef.h /usr/include/SDL2/SDL_image.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -213,11 +213,9 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
- /usr/include/SDL2/SDL_version.h /usr/include/SDL2/begin_code.h \
- /usr/include/SDL2/close_code.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.hh \
  /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/memoryfwd.h \
  /usr/include/c++/11/bits/char_traits.h \

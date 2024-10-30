@@ -1,7 +1,7 @@
 CMakeFiles/taller_common.dir/common/liberror.cpp.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/common/liberror.cpp \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/liberror.cpp \
  /usr/include/stdc-predef.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/common/liberror.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/common/liberror.h \
  /usr/include/c++/11/exception \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

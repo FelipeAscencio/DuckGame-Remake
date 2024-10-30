@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c
+CMAKE_SOURCE_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axelon/Documents/Taller/DuckGame-g2-20242c/build
+CMAKE_BINARY_DIR = /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/taller_server.dir/depend.make
@@ -72,310 +72,310 @@ include CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/main.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/main.cpp.o: ../server/main.cpp
 CMakeFiles/taller_server.dir/server/main.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/taller_server.dir/server/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/main.cpp.o -MF CMakeFiles/taller_server.dir/server/main.cpp.o.d -o CMakeFiles/taller_server.dir/server/main.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/taller_server.dir/server/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/main.cpp.o -MF CMakeFiles/taller_server.dir/server/main.cpp.o.d -o CMakeFiles/taller_server.dir/server/main.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/main.cpp
 
 CMakeFiles/taller_server.dir/server/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/main.cpp > CMakeFiles/taller_server.dir/server/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/main.cpp > CMakeFiles/taller_server.dir/server/main.cpp.i
 
 CMakeFiles/taller_server.dir/server/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/main.cpp -o CMakeFiles/taller_server.dir/server/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/main.cpp -o CMakeFiles/taller_server.dir/server/main.cpp.s
 
 CMakeFiles/taller_server.dir/server/aceptador.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/aceptador.cpp.o: ../server/aceptador.cpp
 CMakeFiles/taller_server.dir/server/aceptador.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/taller_server.dir/server/aceptador.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/aceptador.cpp.o -MF CMakeFiles/taller_server.dir/server/aceptador.cpp.o.d -o CMakeFiles/taller_server.dir/server/aceptador.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/aceptador.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/taller_server.dir/server/aceptador.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/aceptador.cpp.o -MF CMakeFiles/taller_server.dir/server/aceptador.cpp.o.d -o CMakeFiles/taller_server.dir/server/aceptador.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/aceptador.cpp
 
 CMakeFiles/taller_server.dir/server/aceptador.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/aceptador.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/aceptador.cpp > CMakeFiles/taller_server.dir/server/aceptador.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/aceptador.cpp > CMakeFiles/taller_server.dir/server/aceptador.cpp.i
 
 CMakeFiles/taller_server.dir/server/aceptador.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/aceptador.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/aceptador.cpp -o CMakeFiles/taller_server.dir/server/aceptador.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/aceptador.cpp -o CMakeFiles/taller_server.dir/server/aceptador.cpp.s
 
 CMakeFiles/taller_server.dir/server/ak47.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/ak47.cpp.o: ../server/ak47.cpp
 CMakeFiles/taller_server.dir/server/ak47.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/taller_server.dir/server/ak47.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/ak47.cpp.o -MF CMakeFiles/taller_server.dir/server/ak47.cpp.o.d -o CMakeFiles/taller_server.dir/server/ak47.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/ak47.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/taller_server.dir/server/ak47.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/ak47.cpp.o -MF CMakeFiles/taller_server.dir/server/ak47.cpp.o.d -o CMakeFiles/taller_server.dir/server/ak47.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/ak47.cpp
 
 CMakeFiles/taller_server.dir/server/ak47.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/ak47.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/ak47.cpp > CMakeFiles/taller_server.dir/server/ak47.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/ak47.cpp > CMakeFiles/taller_server.dir/server/ak47.cpp.i
 
 CMakeFiles/taller_server.dir/server/ak47.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/ak47.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/ak47.cpp -o CMakeFiles/taller_server.dir/server/ak47.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/ak47.cpp -o CMakeFiles/taller_server.dir/server/ak47.cpp.s
 
 CMakeFiles/taller_server.dir/server/arma.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/arma.cpp.o: ../server/arma.cpp
 CMakeFiles/taller_server.dir/server/arma.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/taller_server.dir/server/arma.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/arma.cpp.o -MF CMakeFiles/taller_server.dir/server/arma.cpp.o.d -o CMakeFiles/taller_server.dir/server/arma.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/taller_server.dir/server/arma.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/arma.cpp.o -MF CMakeFiles/taller_server.dir/server/arma.cpp.o.d -o CMakeFiles/taller_server.dir/server/arma.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.cpp
 
 CMakeFiles/taller_server.dir/server/arma.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/arma.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.cpp > CMakeFiles/taller_server.dir/server/arma.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.cpp > CMakeFiles/taller_server.dir/server/arma.cpp.i
 
 CMakeFiles/taller_server.dir/server/arma.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/arma.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.cpp -o CMakeFiles/taller_server.dir/server/arma.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.cpp -o CMakeFiles/taller_server.dir/server/arma.cpp.s
 
 CMakeFiles/taller_server.dir/server/banana.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/banana.cpp.o: ../server/banana.cpp
 CMakeFiles/taller_server.dir/server/banana.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/taller_server.dir/server/banana.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/banana.cpp.o -MF CMakeFiles/taller_server.dir/server/banana.cpp.o.d -o CMakeFiles/taller_server.dir/server/banana.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/banana.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/taller_server.dir/server/banana.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/banana.cpp.o -MF CMakeFiles/taller_server.dir/server/banana.cpp.o.d -o CMakeFiles/taller_server.dir/server/banana.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/banana.cpp
 
 CMakeFiles/taller_server.dir/server/banana.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/banana.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/banana.cpp > CMakeFiles/taller_server.dir/server/banana.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/banana.cpp > CMakeFiles/taller_server.dir/server/banana.cpp.i
 
 CMakeFiles/taller_server.dir/server/banana.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/banana.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/banana.cpp -o CMakeFiles/taller_server.dir/server/banana.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/banana.cpp -o CMakeFiles/taller_server.dir/server/banana.cpp.s
 
 CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o: ../server/cowboy_pistol.cpp
 CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o -MF CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o.d -o CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/cowboy_pistol.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o -MF CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o.d -o CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/cowboy_pistol.cpp
 
 CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/cowboy_pistol.cpp > CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/cowboy_pistol.cpp > CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.i
 
 CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/cowboy_pistol.cpp -o CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/cowboy_pistol.cpp -o CMakeFiles/taller_server.dir/server/cowboy_pistol.cpp.s
 
 CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o: ../server/duel_pistol.cpp
 CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o -MF CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o.d -o CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/duel_pistol.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o -MF CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o.d -o CMakeFiles/taller_server.dir/server/duel_pistol.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/duel_pistol.cpp
 
 CMakeFiles/taller_server.dir/server/duel_pistol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/duel_pistol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/duel_pistol.cpp > CMakeFiles/taller_server.dir/server/duel_pistol.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/duel_pistol.cpp > CMakeFiles/taller_server.dir/server/duel_pistol.cpp.i
 
 CMakeFiles/taller_server.dir/server/duel_pistol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/duel_pistol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/duel_pistol.cpp -o CMakeFiles/taller_server.dir/server/duel_pistol.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/duel_pistol.cpp -o CMakeFiles/taller_server.dir/server/duel_pistol.cpp.s
 
 CMakeFiles/taller_server.dir/server/enviador.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/enviador.cpp.o: ../server/enviador.cpp
 CMakeFiles/taller_server.dir/server/enviador.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/taller_server.dir/server/enviador.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/enviador.cpp.o -MF CMakeFiles/taller_server.dir/server/enviador.cpp.o.d -o CMakeFiles/taller_server.dir/server/enviador.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/enviador.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/taller_server.dir/server/enviador.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/enviador.cpp.o -MF CMakeFiles/taller_server.dir/server/enviador.cpp.o.d -o CMakeFiles/taller_server.dir/server/enviador.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.cpp
 
 CMakeFiles/taller_server.dir/server/enviador.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/enviador.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/enviador.cpp > CMakeFiles/taller_server.dir/server/enviador.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.cpp > CMakeFiles/taller_server.dir/server/enviador.cpp.i
 
 CMakeFiles/taller_server.dir/server/enviador.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/enviador.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/enviador.cpp -o CMakeFiles/taller_server.dir/server/enviador.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/enviador.cpp -o CMakeFiles/taller_server.dir/server/enviador.cpp.s
 
 CMakeFiles/taller_server.dir/server/gameloop.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/gameloop.cpp.o: ../server/gameloop.cpp
 CMakeFiles/taller_server.dir/server/gameloop.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/taller_server.dir/server/gameloop.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/gameloop.cpp.o -MF CMakeFiles/taller_server.dir/server/gameloop.cpp.o.d -o CMakeFiles/taller_server.dir/server/gameloop.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/gameloop.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/taller_server.dir/server/gameloop.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/gameloop.cpp.o -MF CMakeFiles/taller_server.dir/server/gameloop.cpp.o.d -o CMakeFiles/taller_server.dir/server/gameloop.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/gameloop.cpp
 
 CMakeFiles/taller_server.dir/server/gameloop.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/gameloop.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/gameloop.cpp > CMakeFiles/taller_server.dir/server/gameloop.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/gameloop.cpp > CMakeFiles/taller_server.dir/server/gameloop.cpp.i
 
 CMakeFiles/taller_server.dir/server/gameloop.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/gameloop.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/gameloop.cpp -o CMakeFiles/taller_server.dir/server/gameloop.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/gameloop.cpp -o CMakeFiles/taller_server.dir/server/gameloop.cpp.s
 
 CMakeFiles/taller_server.dir/server/granada.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/granada.cpp.o: ../server/granada.cpp
 CMakeFiles/taller_server.dir/server/granada.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/taller_server.dir/server/granada.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/granada.cpp.o -MF CMakeFiles/taller_server.dir/server/granada.cpp.o.d -o CMakeFiles/taller_server.dir/server/granada.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/granada.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/taller_server.dir/server/granada.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/granada.cpp.o -MF CMakeFiles/taller_server.dir/server/granada.cpp.o.d -o CMakeFiles/taller_server.dir/server/granada.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/granada.cpp
 
 CMakeFiles/taller_server.dir/server/granada.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/granada.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/granada.cpp > CMakeFiles/taller_server.dir/server/granada.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/granada.cpp > CMakeFiles/taller_server.dir/server/granada.cpp.i
 
 CMakeFiles/taller_server.dir/server/granada.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/granada.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/granada.cpp -o CMakeFiles/taller_server.dir/server/granada.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/granada.cpp -o CMakeFiles/taller_server.dir/server/granada.cpp.s
 
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: ../server/laser_rifle.cpp
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o -MF CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o.d -o CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/laser_rifle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o -MF CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o.d -o CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.cpp
 
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/laser_rifle.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/laser_rifle.cpp > CMakeFiles/taller_server.dir/server/laser_rifle.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.cpp > CMakeFiles/taller_server.dir/server/laser_rifle.cpp.i
 
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/laser_rifle.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/laser_rifle.cpp -o CMakeFiles/taller_server.dir/server/laser_rifle.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.cpp -o CMakeFiles/taller_server.dir/server/laser_rifle.cpp.s
 
 CMakeFiles/taller_server.dir/server/magnum.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/magnum.cpp.o: ../server/magnum.cpp
 CMakeFiles/taller_server.dir/server/magnum.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/taller_server.dir/server/magnum.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/magnum.cpp.o -MF CMakeFiles/taller_server.dir/server/magnum.cpp.o.d -o CMakeFiles/taller_server.dir/server/magnum.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/magnum.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/taller_server.dir/server/magnum.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/magnum.cpp.o -MF CMakeFiles/taller_server.dir/server/magnum.cpp.o.d -o CMakeFiles/taller_server.dir/server/magnum.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/magnum.cpp
 
 CMakeFiles/taller_server.dir/server/magnum.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/magnum.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/magnum.cpp > CMakeFiles/taller_server.dir/server/magnum.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/magnum.cpp > CMakeFiles/taller_server.dir/server/magnum.cpp.i
 
 CMakeFiles/taller_server.dir/server/magnum.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/magnum.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/magnum.cpp -o CMakeFiles/taller_server.dir/server/magnum.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/magnum.cpp -o CMakeFiles/taller_server.dir/server/magnum.cpp.s
 
 CMakeFiles/taller_server.dir/server/mapa.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/mapa.cpp.o: ../server/mapa.cpp
 CMakeFiles/taller_server.dir/server/mapa.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/taller_server.dir/server/mapa.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/mapa.cpp.o -MF CMakeFiles/taller_server.dir/server/mapa.cpp.o.d -o CMakeFiles/taller_server.dir/server/mapa.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/taller_server.dir/server/mapa.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/mapa.cpp.o -MF CMakeFiles/taller_server.dir/server/mapa.cpp.o.d -o CMakeFiles/taller_server.dir/server/mapa.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.cpp
 
 CMakeFiles/taller_server.dir/server/mapa.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/mapa.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.cpp > CMakeFiles/taller_server.dir/server/mapa.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.cpp > CMakeFiles/taller_server.dir/server/mapa.cpp.i
 
 CMakeFiles/taller_server.dir/server/mapa.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/mapa.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/mapa.cpp -o CMakeFiles/taller_server.dir/server/mapa.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/mapa.cpp -o CMakeFiles/taller_server.dir/server/mapa.cpp.s
 
 CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o: ../server/p_p_laser.cpp
 CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o -MF CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o.d -o CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/p_p_laser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o -MF CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o.d -o CMakeFiles/taller_server.dir/server/p_p_laser.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/p_p_laser.cpp
 
 CMakeFiles/taller_server.dir/server/p_p_laser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/p_p_laser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/p_p_laser.cpp > CMakeFiles/taller_server.dir/server/p_p_laser.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/p_p_laser.cpp > CMakeFiles/taller_server.dir/server/p_p_laser.cpp.i
 
 CMakeFiles/taller_server.dir/server/p_p_laser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/p_p_laser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/p_p_laser.cpp -o CMakeFiles/taller_server.dir/server/p_p_laser.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/p_p_laser.cpp -o CMakeFiles/taller_server.dir/server/p_p_laser.cpp.s
 
 CMakeFiles/taller_server.dir/server/pato.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/pato.cpp.o: ../server/pato.cpp
 CMakeFiles/taller_server.dir/server/pato.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/taller_server.dir/server/pato.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/pato.cpp.o -MF CMakeFiles/taller_server.dir/server/pato.cpp.o.d -o CMakeFiles/taller_server.dir/server/pato.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/pato.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/taller_server.dir/server/pato.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/pato.cpp.o -MF CMakeFiles/taller_server.dir/server/pato.cpp.o.d -o CMakeFiles/taller_server.dir/server/pato.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.cpp
 
 CMakeFiles/taller_server.dir/server/pato.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/pato.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/pato.cpp > CMakeFiles/taller_server.dir/server/pato.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.cpp > CMakeFiles/taller_server.dir/server/pato.cpp.i
 
 CMakeFiles/taller_server.dir/server/pato.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/pato.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/pato.cpp -o CMakeFiles/taller_server.dir/server/pato.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/pato.cpp -o CMakeFiles/taller_server.dir/server/pato.cpp.s
 
 CMakeFiles/taller_server.dir/server/protocol.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/protocol.cpp.o: ../server/protocol.cpp
 CMakeFiles/taller_server.dir/server/protocol.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/taller_server.dir/server/protocol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/protocol.cpp.o -MF CMakeFiles/taller_server.dir/server/protocol.cpp.o.d -o CMakeFiles/taller_server.dir/server/protocol.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/protocol.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/taller_server.dir/server/protocol.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/protocol.cpp.o -MF CMakeFiles/taller_server.dir/server/protocol.cpp.o.d -o CMakeFiles/taller_server.dir/server/protocol.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.cpp
 
 CMakeFiles/taller_server.dir/server/protocol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/protocol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/protocol.cpp > CMakeFiles/taller_server.dir/server/protocol.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.cpp > CMakeFiles/taller_server.dir/server/protocol.cpp.i
 
 CMakeFiles/taller_server.dir/server/protocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/protocol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/protocol.cpp -o CMakeFiles/taller_server.dir/server/protocol.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/protocol.cpp -o CMakeFiles/taller_server.dir/server/protocol.cpp.s
 
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: ../server/queues_jugadores.cpp
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o -MF CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o.d -o CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/queues_jugadores.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o -MF CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o.d -o CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.cpp
 
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/queues_jugadores.cpp > CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.cpp > CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.i
 
 CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/queues_jugadores.cpp -o CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/queues_jugadores.cpp -o CMakeFiles/taller_server.dir/server/queues_jugadores.cpp.s
 
 CMakeFiles/taller_server.dir/server/recibidor.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/recibidor.cpp.o: ../server/recibidor.cpp
 CMakeFiles/taller_server.dir/server/recibidor.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/taller_server.dir/server/recibidor.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/recibidor.cpp.o -MF CMakeFiles/taller_server.dir/server/recibidor.cpp.o.d -o CMakeFiles/taller_server.dir/server/recibidor.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/recibidor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/taller_server.dir/server/recibidor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/recibidor.cpp.o -MF CMakeFiles/taller_server.dir/server/recibidor.cpp.o.d -o CMakeFiles/taller_server.dir/server/recibidor.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.cpp
 
 CMakeFiles/taller_server.dir/server/recibidor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/recibidor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/recibidor.cpp > CMakeFiles/taller_server.dir/server/recibidor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.cpp > CMakeFiles/taller_server.dir/server/recibidor.cpp.i
 
 CMakeFiles/taller_server.dir/server/recibidor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/recibidor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/recibidor.cpp -o CMakeFiles/taller_server.dir/server/recibidor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/recibidor.cpp -o CMakeFiles/taller_server.dir/server/recibidor.cpp.s
 
 CMakeFiles/taller_server.dir/server/server.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/server.cpp.o: ../server/server.cpp
 CMakeFiles/taller_server.dir/server/server.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/taller_server.dir/server/server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/server.cpp.o -MF CMakeFiles/taller_server.dir/server/server.cpp.o.d -o CMakeFiles/taller_server.dir/server/server.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/taller_server.dir/server/server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/server.cpp.o -MF CMakeFiles/taller_server.dir/server/server.cpp.o.d -o CMakeFiles/taller_server.dir/server/server.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/server.cpp
 
 CMakeFiles/taller_server.dir/server/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/server.cpp > CMakeFiles/taller_server.dir/server/server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/server.cpp > CMakeFiles/taller_server.dir/server/server.cpp.i
 
 CMakeFiles/taller_server.dir/server/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/server.cpp -o CMakeFiles/taller_server.dir/server/server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/server.cpp -o CMakeFiles/taller_server.dir/server/server.cpp.s
 
 CMakeFiles/taller_server.dir/server/shotgun.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/shotgun.cpp.o: ../server/shotgun.cpp
 CMakeFiles/taller_server.dir/server/shotgun.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/taller_server.dir/server/shotgun.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/shotgun.cpp.o -MF CMakeFiles/taller_server.dir/server/shotgun.cpp.o.d -o CMakeFiles/taller_server.dir/server/shotgun.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/shotgun.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/taller_server.dir/server/shotgun.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/shotgun.cpp.o -MF CMakeFiles/taller_server.dir/server/shotgun.cpp.o.d -o CMakeFiles/taller_server.dir/server/shotgun.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/shotgun.cpp
 
 CMakeFiles/taller_server.dir/server/shotgun.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/shotgun.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/shotgun.cpp > CMakeFiles/taller_server.dir/server/shotgun.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/shotgun.cpp > CMakeFiles/taller_server.dir/server/shotgun.cpp.i
 
 CMakeFiles/taller_server.dir/server/shotgun.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/shotgun.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/shotgun.cpp -o CMakeFiles/taller_server.dir/server/shotgun.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/shotgun.cpp -o CMakeFiles/taller_server.dir/server/shotgun.cpp.s
 
 CMakeFiles/taller_server.dir/server/sniper.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/sniper.cpp.o: ../server/sniper.cpp
 CMakeFiles/taller_server.dir/server/sniper.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/taller_server.dir/server/sniper.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/sniper.cpp.o -MF CMakeFiles/taller_server.dir/server/sniper.cpp.o.d -o CMakeFiles/taller_server.dir/server/sniper.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/sniper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/taller_server.dir/server/sniper.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/sniper.cpp.o -MF CMakeFiles/taller_server.dir/server/sniper.cpp.o.d -o CMakeFiles/taller_server.dir/server/sniper.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/sniper.cpp
 
 CMakeFiles/taller_server.dir/server/sniper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/sniper.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/sniper.cpp > CMakeFiles/taller_server.dir/server/sniper.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/sniper.cpp > CMakeFiles/taller_server.dir/server/sniper.cpp.i
 
 CMakeFiles/taller_server.dir/server/sniper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/sniper.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/sniper.cpp -o CMakeFiles/taller_server.dir/server/sniper.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/sniper.cpp -o CMakeFiles/taller_server.dir/server/sniper.cpp.s
 
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: CMakeFiles/taller_server.dir/flags.make
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: ../server/thread_usuario.cpp
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o: CMakeFiles/taller_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o -MF CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o.d -o CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o -c /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/thread_usuario.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o -MF CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o.d -o CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o -c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.cpp
 
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/taller_server.dir/server/thread_usuario.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/thread_usuario.cpp > CMakeFiles/taller_server.dir/server/thread_usuario.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.cpp > CMakeFiles/taller_server.dir/server/thread_usuario.cpp.i
 
 CMakeFiles/taller_server.dir/server/thread_usuario.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/taller_server.dir/server/thread_usuario.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/thread_usuario.cpp -o CMakeFiles/taller_server.dir/server/thread_usuario.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/thread_usuario.cpp -o CMakeFiles/taller_server.dir/server/thread_usuario.cpp.s
 
 # Object files for target taller_server
 taller_server_OBJECTS = \
@@ -430,7 +430,7 @@ taller_server: CMakeFiles/taller_server.dir/server/thread_usuario.cpp.o
 taller_server: CMakeFiles/taller_server.dir/build.make
 taller_server: libtaller_common.a
 taller_server: CMakeFiles/taller_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable taller_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable taller_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/taller_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -442,6 +442,6 @@ CMakeFiles/taller_server.dir/clean:
 .PHONY : CMakeFiles/taller_server.dir/clean
 
 CMakeFiles/taller_server.dir/depend:
-	cd /home/axelon/Documents/Taller/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axelon/Documents/Taller/DuckGame-g2-20242c /home/axelon/Documents/Taller/DuckGame-g2-20242c /home/axelon/Documents/Taller/DuckGame-g2-20242c/build /home/axelon/Documents/Taller/DuckGame-g2-20242c/build /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles/taller_server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles/taller_server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/taller_server.dir/depend
 

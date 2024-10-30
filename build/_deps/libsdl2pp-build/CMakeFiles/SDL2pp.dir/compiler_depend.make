@@ -810,7 +810,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o: _deps/libsdl2pp-s
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
-  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_config.h \
   /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -849,7 +849,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o: _deps/libsdl2pp-s
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
   /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_error.h \
   /usr/include/SDL2/SDL_audio.h \
   /usr/include/SDL2/SDL_endian.h \
@@ -857,13 +856,10 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Chunk.cc.o: _deps/libsdl2pp-s
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_atomic.h \
   /usr/include/SDL2/SDL_platform.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_endian.h \
   /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-build/SDL2pp/Export.hh \
   _deps/libsdl2pp-src/SDL2pp/RWops.hh \
+  /usr/include/SDL2/SDL_rwops.h \
   _deps/libsdl2pp-src/SDL2pp/Exception.hh \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/exception \
@@ -1468,7 +1464,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o: _deps/libsdl2pp-sr
   /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/range_access.h \
   /usr/include/c++/11/bits/vector.tcc \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_stdinc.h \
@@ -1692,8 +1688,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Font.cc.o: _deps/libsdl2pp-sr
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/Font.hh \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/stringfwd.h \
@@ -2022,9 +2016,9 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o: _deps/libsdl2pp-s
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-  /usr/local/include/SDL2/SDL_mixer.h \
-  /usr/include/SDL2/SDL_rwops.h \
+  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_stdinc.h \
+  /usr/include/SDL2/SDL_rwops.h \
   /usr/include/SDL2/SDL_error.h \
   /usr/include/SDL2/SDL_audio.h \
   /usr/include/SDL2/SDL_endian.h \
@@ -2032,11 +2026,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Mixer.cc.o: _deps/libsdl2pp-s
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_atomic.h \
   /usr/include/SDL2/SDL_platform.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_endian.h \
   /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-build/SDL2pp/Export.hh \
   _deps/libsdl2pp-src/SDL2pp/Chunk.hh \
   /usr/include/c++/11/string \
@@ -2231,7 +2221,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o: _deps/libsdl2pp-s
   /usr/include/c++/11/bits/nested_exception.h \
   _deps/libsdl2pp-build/SDL2pp/Export.hh \
   _deps/libsdl2pp-src/SDL2pp/Music.hh \
-  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_config.h \
   /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -2270,7 +2260,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o: _deps/libsdl2pp-s
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
   /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_error.h \
   /usr/include/SDL2/SDL_audio.h \
   /usr/include/SDL2/SDL_endian.h \
@@ -2278,12 +2267,9 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Music.cc.o: _deps/libsdl2pp-s
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_atomic.h \
   /usr/include/SDL2/SDL_platform.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_endian.h \
   /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  _deps/libsdl2pp-src/SDL2pp/RWops.hh
+  _deps/libsdl2pp-src/SDL2pp/RWops.hh \
+  /usr/include/SDL2/SDL_rwops.h
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Point.cc.o: _deps/libsdl2pp-src/SDL2pp/Point.cc \
   /usr/include/stdc-predef.h \
@@ -3725,7 +3711,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDL.cc.o: _deps/libsdl2pp-src
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: _deps/libsdl2pp-src/SDL2pp/SDLImage.cc \
   /usr/include/stdc-predef.h \
-  /usr/local/include/SDL2/SDL_image.h \
+  /usr/include/SDL2/SDL_image.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_stdinc.h \
@@ -3978,9 +3964,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: _deps/libsdl2p
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
   _deps/libsdl2pp-build/SDL2pp/Export.hh \
   _deps/libsdl2pp-src/SDL2pp/Exception.hh \
@@ -4056,7 +4039,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLImage.cc.o: _deps/libsdl2p
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2pp-src/SDL2pp/SDLMixer.cc \
   /usr/include/stdc-predef.h \
-  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_mixer.h \
   /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_config.h \
   /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -4181,7 +4164,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2p
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
   /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_error.h \
   /usr/include/SDL2/SDL_audio.h \
   /usr/include/SDL2/SDL_endian.h \
@@ -4189,11 +4171,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2p
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_atomic.h \
   /usr/include/SDL2/SDL_platform.h \
-  /usr/include/SDL2/SDL_rwops.h \
-  /usr/include/SDL2/SDL_endian.h \
   /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLMixer.hh \
   _deps/libsdl2pp-build/SDL2pp/Export.hh \
   _deps/libsdl2pp-src/SDL2pp/Exception.hh \
@@ -4269,7 +4247,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLMixer.cc.o: _deps/libsdl2p
 
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o: _deps/libsdl2pp-src/SDL2pp/SDLTTF.cc \
   /usr/include/stdc-predef.h \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_stdinc.h \
@@ -4522,8 +4500,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/SDLTTF.cc.o: _deps/libsdl2pp-
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLTTF.hh \
   _deps/libsdl2pp-build/SDL2pp/Export.hh \
   _deps/libsdl2pp-src/SDL2pp/Exception.hh \
@@ -4750,7 +4726,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o: _deps/libsdl2pp
   /usr/include/SDL2/SDL_error.h \
   /usr/include/SDL2/SDL_rwops.h \
   /usr/include/SDL2/SDL_blendmode.h \
-  /usr/local/include/SDL2/SDL_image.h \
+  /usr/include/SDL2/SDL_image.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -4874,9 +4850,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Surface.cc.o: _deps/libsdl2pp
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/Surface.hh \
   /usr/include/SDL2/SDL_stdinc.h \
   /usr/include/SDL2/SDL_blendmode.h \
@@ -5441,7 +5414,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: _deps/libsdl2pp
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/SDL_surface.h \
   /usr/include/SDL2/SDL_blendmode.h \
-  /usr/local/include/SDL2/SDL_image.h \
+  /usr/include/SDL2/SDL_image.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -5563,9 +5536,6 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: _deps/libsdl2pp
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
-  /usr/include/SDL2/SDL_version.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/Texture.hh \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/stringfwd.h \
@@ -6542,6 +6512,8 @@ _deps/libsdl2pp-src/SDL2pp/SDLMixer.cc:
 
 _deps/libsdl2pp-src/SDL2pp/SDLImage.hh:
 
+/usr/include/SDL2/SDL_image.h:
+
 _deps/libsdl2pp-src/SDL2pp/SDL.hh:
 
 _deps/libsdl2pp-src/SDL2pp/Texture.hh:
@@ -6749,8 +6721,6 @@ _deps/libsdl2pp-src/SDL2pp/Exception.cc:
 /usr/include/SDL2/SDL_mouse.h:
 
 /usr/include/c++/11/bits/ostream.tcc:
-
-/usr/local/include/SDL2/SDL_image.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
@@ -6992,8 +6962,6 @@ _deps/libsdl2pp-src/SDL2pp/Mixer.hh:
 
 /usr/include/wchar.h:
 
-/usr/local/include/SDL2/SDL_ttf.h:
-
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
@@ -7023,8 +6991,6 @@ _deps/libsdl2pp-src/SDL2pp/Music.hh:
 /usr/include/c++/11/debug/debug.h:
 
 /usr/include/features-time64.h:
-
-/usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/bits/exception_ptr.h:
 
@@ -7148,6 +7114,10 @@ _deps/libsdl2pp-src/SDL2pp/Exception.hh:
 
 /usr/include/alloca.h:
 
+/usr/include/c++/11/ext/string_conversions.h:
+
+/usr/include/SDL2/SDL_mixer.h:
+
 /usr/include/c++/11/cstdio:
 
 /usr/include/stdio.h:
@@ -7226,6 +7196,8 @@ _deps/libsdl2pp-src/SDL2pp/AudioSpec.hh:
 
 /usr/include/string.h:
 
+/usr/include/SDL2/SDL_ttf.h:
+
 /usr/include/inttypes.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
@@ -7259,8 +7231,6 @@ _deps/libsdl2pp-src/SDL2pp/Optional.hh:
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2intrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/local/include/SDL2/SDL_mixer.h:
 
 _deps/libsdl2pp-src/SDL2pp/SurfaceLock.cc:
 

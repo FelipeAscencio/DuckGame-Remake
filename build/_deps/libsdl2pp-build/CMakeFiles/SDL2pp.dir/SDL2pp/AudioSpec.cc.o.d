@@ -1,5 +1,5 @@
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.cc \
  /usr/include/stdc-predef.h /usr/include/c++/11/algorithm \
  /usr/include/c++/11/utility \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -99,7 +99,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioSpec.hh \
  /usr/include/SDL2/SDL_audio.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -150,4 +150,4 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioSpec.cc.o: \
  /usr/include/SDL2/SDL_mutex.h /usr/include/SDL2/SDL_thread.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/SDL_rwops.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh

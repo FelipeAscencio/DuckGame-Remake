@@ -422,14 +422,11 @@ CMakeFiles/taller_client.dir/client/client_controlador.cpp.o: ../client/client_c
   /usr/include/assert.h \
   _deps/libsdl2pp-src/SDL2pp/SDLTTF.hh \
   _deps/libsdl2pp-src/SDL2pp/Font.hh \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
   _deps/libsdl2pp-src/SDL2pp/Chunk.hh \
-  /usr/local/include/SDL2/SDL_mixer.h \
-  /usr/include/SDL2/SDL_endian.h \
+  /usr/include/SDL2/SDL_mixer.h \
   _deps/libsdl2pp-src/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -896,14 +893,11 @@ CMakeFiles/taller_client.dir/client/client_dibujador.cpp.o: ../client/client_dib
   /usr/include/assert.h \
   _deps/libsdl2pp-src/SDL2pp/SDLTTF.hh \
   _deps/libsdl2pp-src/SDL2pp/Font.hh \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
   _deps/libsdl2pp-src/SDL2pp/Chunk.hh \
-  /usr/local/include/SDL2/SDL_mixer.h \
-  /usr/include/SDL2/SDL_endian.h \
+  /usr/include/SDL2/SDL_mixer.h \
   _deps/libsdl2pp-src/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -1415,14 +1409,11 @@ CMakeFiles/taller_client.dir/client/client_handler.cpp.o: ../client/client_handl
   /usr/include/assert.h \
   _deps/libsdl2pp-src/SDL2pp/SDLTTF.hh \
   _deps/libsdl2pp-src/SDL2pp/Font.hh \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
   _deps/libsdl2pp-src/SDL2pp/Chunk.hh \
-  /usr/local/include/SDL2/SDL_mixer.h \
-  /usr/include/SDL2/SDL_endian.h \
+  /usr/include/SDL2/SDL_mixer.h \
   _deps/libsdl2pp-src/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -1863,14 +1854,11 @@ CMakeFiles/taller_client.dir/client/client_parseador.cpp.o: ../client/client_par
   /usr/include/assert.h \
   _deps/libsdl2pp-src/SDL2pp/SDLTTF.hh \
   _deps/libsdl2pp-src/SDL2pp/Font.hh \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
   _deps/libsdl2pp-src/SDL2pp/Chunk.hh \
-  /usr/local/include/SDL2/SDL_mixer.h \
-  /usr/include/SDL2/SDL_endian.h \
+  /usr/include/SDL2/SDL_mixer.h \
   _deps/libsdl2pp-src/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -2382,14 +2370,11 @@ CMakeFiles/taller_client.dir/client/main.cpp.o: ../client/main.cpp \
   /usr/include/assert.h \
   _deps/libsdl2pp-src/SDL2pp/SDLTTF.hh \
   _deps/libsdl2pp-src/SDL2pp/Font.hh \
-  /usr/local/include/SDL2/SDL_ttf.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
   _deps/libsdl2pp-src/SDL2pp/SDLImage.hh \
   _deps/libsdl2pp-src/SDL2pp/Chunk.hh \
-  /usr/local/include/SDL2/SDL_mixer.h \
-  /usr/include/SDL2/SDL_endian.h \
+  /usr/include/SDL2/SDL_mixer.h \
   _deps/libsdl2pp-src/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -2471,8 +2456,6 @@ _deps/libsdl2pp-src/SDL2pp/SDLMixer.hh:
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
 /usr/include/c++/11/memory:
-
-/usr/local/include/SDL2/SDL_mixer.h:
 
 _deps/libsdl2pp-src/SDL2pp/Chunk.hh:
 
@@ -2558,8 +2541,6 @@ _deps/libsdl2pp-src/SDL2pp/Optional.hh:
 
 /usr/include/c++/11/bits/nested_exception.h:
 
-/usr/local/include/SDL2/SDL_ttf.h:
-
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/c++/11/bits/exception_ptr.h:
@@ -2589,6 +2570,8 @@ _deps/libsdl2pp-src/SDL2pp/Mixer.hh:
 /usr/include/errno.h:
 
 /usr/include/c++/11/cstdio:
+
+/usr/include/SDL2/SDL_mixer.h:
 
 /usr/include/c++/11/ext/string_conversions.h:
 
@@ -2861,6 +2844,8 @@ _deps/libsdl2pp-src/SDL2pp/Music.hh:
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/include/c++/11/tr1/modified_bessel_func.tcc:
+
+/usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/inttypes.h:
 

@@ -1,7 +1,7 @@
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioLock.cc \
  /usr/include/stdc-predef.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/AudioDevice.hh \
  /usr/include/c++/11/functional \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -181,10 +181,10 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/AudioLock.cc.o: \
  /usr/include/SDL2/SDL_mutex.h /usr/include/SDL2/SDL_thread.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/SDL_rwops.h /usr/include/SDL2/SDL_version.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Optional.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Config.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Optional.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Config.hh \
  /usr/include/c++/11/optional /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/bits/nested_exception.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh

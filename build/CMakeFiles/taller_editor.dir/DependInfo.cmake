@@ -8,13 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/axelon/Documents/Taller/DuckGame-g2-20242c/editor/main.cpp" "CMakeFiles/taller_editor.dir/editor/main.cpp.o" "gcc" "CMakeFiles/taller_editor.dir/editor/main.cpp.o.d"
+  "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/editor/main.cpp" "CMakeFiles/taller_editor.dir/editor/main.cpp.o" "gcc" "CMakeFiles/taller_editor.dir/editor/main.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/CMakeFiles/taller_common.dir/DependInfo.cmake"
-  "/home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/DependInfo.cmake"
+  "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/CMakeFiles/taller_common.dir/DependInfo.cmake"
+  "/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

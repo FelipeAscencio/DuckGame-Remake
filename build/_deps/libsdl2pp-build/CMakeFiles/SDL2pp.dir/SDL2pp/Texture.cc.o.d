@@ -1,5 +1,5 @@
 _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.cc \
  /usr/include/stdc-predef.h /usr/include/c++/11/utility \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -99,7 +99,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: \
  /usr/include/c++/11/bits/vector.tcc \
  /usr/include/c++/11/pstl/execution_defs.h /usr/include/c++/11/cassert \
  /usr/include/assert.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Config.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Config.hh \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -150,7 +150,7 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: \
  /usr/include/SDL2/SDL_pixels.h /usr/include/SDL2/SDL_endian.h \
  /usr/include/SDL2/SDL_rwops.h /usr/include/SDL2/SDL_video.h \
  /usr/include/SDL2/SDL_surface.h /usr/include/SDL2/SDL_blendmode.h \
- /usr/local/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_assert.h \
  /usr/include/SDL2/SDL_atomic.h /usr/include/SDL2/SDL_platform.h \
  /usr/include/SDL2/SDL_audio.h /usr/include/SDL2/SDL_mutex.h \
@@ -253,9 +253,8 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_version.h \
- /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.hh \
+ /usr/include/SDL2/SDL_misc.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Texture.hh \
  /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/char_traits.h \
  /usr/include/c++/11/bits/postypes.h /usr/include/c++/11/cwchar \
@@ -292,14 +291,14 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_blendmode.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Optional.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Optional.hh \
  /usr/include/c++/11/optional /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/bits/nested_exception.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Rect.hh \
  /usr/include/SDL2/SDL_rect.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Point.hh \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -318,11 +317,11 @@ _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/SDL2pp/Texture.cc.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-build/SDL2pp/Export.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Color.hh \
  /usr/include/SDL2/SDL_pixels.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.hh \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Renderer.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Exception.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/Surface.hh \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src/SDL2pp/RWops.hh \
  /usr/include/SDL2/SDL_rwops.h

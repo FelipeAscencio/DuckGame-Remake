@@ -1,4 +1,4 @@
-# Install script for directory: /home/axelon/Documents/Taller/DuckGame-g2-20242c/build/_deps/libsdl2pp-src
+# Install script for directory: /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

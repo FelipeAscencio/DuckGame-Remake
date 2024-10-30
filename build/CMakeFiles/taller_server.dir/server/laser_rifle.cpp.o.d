@@ -1,7 +1,7 @@
 CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/laser_rifle.cpp \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.cpp \
  /usr/include/stdc-predef.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/laser_rifle.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/laser_rifle.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -158,6 +158,6 @@ CMakeFiles/taller_server.dir/server/laser_rifle.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/arma.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/orientacion.h \
- /home/axelon/Documents/Taller/DuckGame-g2-20242c/server/posicion.h
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/arma.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/orientacion.h \
+ /mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/server/../common/posicion.h
