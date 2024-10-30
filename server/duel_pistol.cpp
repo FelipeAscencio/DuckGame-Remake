@@ -1,14 +1,14 @@
-#include "banana.h"
+#include "duel_pistol.h"
 
 #include <iostream>
 
-#define BANANA "Banana"
+#define DUEL_PISTOL "Duel Pistol"
 #define ALCANCE 5
 #define MUNICIONES 1
 
-Banana::Banana(): Arma(ID_BANANA, BANANA, ALCANCE, MUNICIONES, false), activa(false) {}
+DuelPistol::DuelPistol(): Arma(ID_DUEL_PISTOL, DUEL_PISTOL, ALCANCE, MUNICIONES, true) {}
 
-void Banana::disparar(const orientacion_e& direccion) {
+void DuelPistol::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
         std::cout << "Direccion valida" << std::endl;
     } else {

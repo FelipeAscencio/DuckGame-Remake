@@ -1,14 +1,15 @@
-#ifndef SNIPER_H
-#define SNIPER_H
+#ifndef LASER_RIFLE_H
+#define LASER_RIFLE_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class Sniper: public Arma {
+#include "arma.h"
+
+class LaserRifle: public Arma {
 public:
-    Sniper();
+    LaserRifle();
     void disparar(const orientacion_e& direccion) override;
 };
 

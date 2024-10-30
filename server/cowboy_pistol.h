@@ -1,14 +1,15 @@
-#ifndef DUEL_PISTOL_H
-#define DUEL_PISTOL_H
+#ifndef COWBOY_PISTOL_H
+#define COWBOY_PISTOL_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class DuelPistol: public Arma {
+#include "arma.h"
+
+class CowboyPistol: public Arma {
 public:
-    DuelPistol();
+    CowboyPistol();
     void disparar(const orientacion_e& direccion) override;
 };
 

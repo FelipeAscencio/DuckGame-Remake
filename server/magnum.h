@@ -1,19 +1,17 @@
-#ifndef BANANA_H
-#define BANANA_H
+#ifndef MAGNUM_H
+#define MAGNUM_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class Banana: public Arma {
-private:
-    bool activa;
+#include "arma.h"
 
+class Magnum: public Arma {
 public:
-    Banana();
-
+    Magnum();
     void disparar(const orientacion_e& direccion) override;
 };
+
 
 #endif

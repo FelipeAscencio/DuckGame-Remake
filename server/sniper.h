@@ -1,14 +1,15 @@
-#ifndef COWBOY_PISTOL_H
-#define COWBOY_PISTOL_H
+#ifndef SNIPER_H
+#define SNIPER_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class CowboyPistol: public Arma {
+#include "arma.h"
+
+class Sniper: public Arma {
 public:
-    CowboyPistol();
+    Sniper();
     void disparar(const orientacion_e& direccion) override;
 };
 

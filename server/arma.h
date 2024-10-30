@@ -4,10 +4,8 @@
 #include <iostream>
 #include <string>
 
-#include "../common/posicion.h"
-#include "../common/estado_juego.h"
-#include "../server/protocol.h"
-
+#include "orientacion.h"
+#include "posicion.h"
 
 #define ID_GRANADA 1
 #define ID_BANANA 2
@@ -20,10 +18,8 @@
 #define ID_SHOTGUN 9
 #define ID_SNIPER 10
 
-using namespace ServerProtocol;
 class Arma {
-    friend class Protocol;
-    friend struct EstadoJuego;
+
 protected:
     const int id_arma;
     const std::string nombre;
@@ -36,7 +32,8 @@ protected:
     bool puede_agarrarse();
 
 public:
-    Arma(int id_arma, std::string nombre, int alcance, int municiones, bool tiene_retroceso);
+    Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,
+         bool tiene_retroceso);
 
     virtual ~Arma() = default;
 
@@ -55,6 +52,8 @@ public:
     bool en_uso();
 
     posicion_t obtener_posicion_inicial();
+
+    int obtener_id() const { return id_arma; }
 };
 
 #endif

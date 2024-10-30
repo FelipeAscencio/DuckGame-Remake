@@ -1,14 +1,14 @@
-#include "magnum.h"
+#include "cowboy_pistol.h"
 
 #include <iostream>
 
-#define MAGNUM "Magnum"
+#define COWBOY_PISTOL "Cowboy Pistol"
 #define ALCANCE 20
 #define MUNICIONES 6
 
-Magnum::Magnum(): Arma(ID_MAGNUM, MAGNUM, ALCANCE, MUNICIONES, true) {}
+CowboyPistol::CowboyPistol(): Arma(ID_COWBOY_PISTOL, COWBOY_PISTOL, ALCANCE, MUNICIONES, false) {}
 
-void Magnum::disparar(const orientacion_e& direccion) {
+void CowboyPistol::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
         std::cout << "Direccion valida" << std::endl;
     } else {

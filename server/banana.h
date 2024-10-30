@@ -1,16 +1,20 @@
-#ifndef AK47_H
-#define AK47_H
+#ifndef BANANA_H
+#define BANANA_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class AK47: public Arma {
+#include "arma.h"
+
+class Banana: public Arma {
+private:
+    bool activa;
+
 public:
-    AK47();
+    Banana();
+
     void disparar(const orientacion_e& direccion) override;
 };
-
 
 #endif

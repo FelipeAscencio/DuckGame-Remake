@@ -1,14 +1,15 @@
-#ifndef MAGNUM_H
-#define MAGNUM_H
+#ifndef AK47_H
+#define AK47_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class Magnum: public Arma {
+#include "arma.h"
+
+class AK47: public Arma {
 public:
-    Magnum();
+    AK47();
     void disparar(const orientacion_e& direccion) override;
 };
 

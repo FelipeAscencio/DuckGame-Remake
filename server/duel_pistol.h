@@ -1,14 +1,15 @@
-#ifndef LASER_RIFLE_H
-#define LASER_RIFLE_H
+#ifndef DUEL_PISTOL_H
+#define DUEL_PISTOL_H
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
 
-class LaserRifle: public Arma {
+#include "arma.h"
+
+class DuelPistol: public Arma {
 public:
-    LaserRifle();
+    DuelPistol();
     void disparar(const orientacion_e& direccion) override;
 };
 
