@@ -3,6 +3,9 @@
 
 #include <chrono>
 #include <thread>
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #include "client_controlador.h"
 #include "client_dibujador.h"
