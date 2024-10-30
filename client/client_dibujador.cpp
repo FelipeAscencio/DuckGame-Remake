@@ -94,6 +94,7 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, const int estado) {
     renderer.Clear();
     renderer.Copy(this->mapa);
     float escala = ESCALA_SPRITES_GRANDES;
+    unsigned int current_ticks = SDL_GetTicks();
 
     if (estado == 0) {
         int x = 100;
@@ -117,11 +118,12 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, const int estado) {
         int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
         dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, DERECHA, 1);
-    } else if (estado == 2) {
+    } if (estado == 2) {
         int x = 100;
         int y = 100;
         auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, IZQUIERDA, 1);
+        int spriteIndex = 1 + (current_ticks / 10) % 6;
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[spriteIndex], x_rel, y_rel, escala, DERECHA, 1);
     } else if (estado == 3) {
         int x = 100;
         int y = 100;
