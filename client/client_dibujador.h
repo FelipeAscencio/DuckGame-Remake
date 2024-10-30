@@ -15,6 +15,7 @@ using namespace SDL2pp;
 // del dibujo de la partida para el 'Cliente'.
 class Dibujador {
 private:
+    const int id_jugador;
     Parseador parseador;
     Texture spriteSheetPato;
     Texture spriteSheetAK;
@@ -27,19 +28,23 @@ private:
     std::vector<SDL_Rect> spritesArmadura;
 
     // Devuelve el 'Rect' correspondiente segun los parametros recibidos.
-    SDL2pp::Rect calcularDstRect(float x, float y, float escala);
+    SDL2pp::Rect calcular_dst_rect(float x, float y, float escala);
 
-    // Convierte el 'X' e 'Y' recibido en valor relativo en relacion al 'X' e 'Y' maximos.
+    // Convierte el 'X' e 'Y' recibido en el valor relativo en relacion al 'X' e 'Y' maximos.
     std::pair<float, float> convertir_a_relativo(int x, int y);
+
+    // Dibuja el pato enemigo con el color correspondiente segun su id.
+    void dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
+                               const SDL_Rect& sprite, SDL2pp::Rect& dstRect, const int id, const double angle, SDL_RendererFlip& flip);
 
     // Dibuja un sprite en la posicion correspondiente de la ventana.
     void dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
                     const SDL_Rect& sprite, float x, float y, float escala,
-                    orientacion_e orientacion, SDL_Color colorMod = {255, 255, 255, 255});
+                    orientacion_e orientacion, const int id);
 
 public:
     // Constructor de la clase.
-    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa);
+    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id_jugador);
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
     void renderizar(Renderer& renderer, const int estado);

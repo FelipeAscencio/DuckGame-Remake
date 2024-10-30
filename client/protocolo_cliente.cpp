@@ -10,13 +10,15 @@
 #define ACCION_ARRIBA 0x04
 #define ACCION_SALTO 0x05
 #define ACCION_DISPARAR 0x06
+#define ACCION_AGARRAR 0x07
 
 #define DERECHA 'D'
 #define IZQUIERDA 'A'
 #define ARRIBA 'W'
 #define AGACHARSE 'S'
 #define SALTO ' '
-#define DISPARO 'C'
+#define DISPARO 'J'
+#define AGARRAR 'K'
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
@@ -28,11 +30,11 @@
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
-static std::map <char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE}, {ARRIBA, ACCION_ARRIBA}, {SALTO, ACCION_SALTO}, {DISPARO, ACCION_DISPARAR}}; 
+static std::map <char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE}, {ARRIBA, ACCION_ARRIBA}, {SALTO, ACCION_SALTO}, {DISPARO, ACCION_DISPARAR},  {AGARRAR, ACCION_AGARRAR}}; 
 
-ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt){
+ProtocoloCliente::ProtocoloCliente(Socket& skt): socket(skt){
     bool closed = false;
-    s.recvall(&id_cliente, sizeof(id_cliente), &closed);
+    socket.recvall(&id_cliente, sizeof(id_cliente), &closed);
     if (closed)
         throw ErrorConstructor();
 }
@@ -47,7 +49,7 @@ bool ProtocoloCliente::enviar(const char& accion) {
     bool was_closed = false;
     uint8_t comando = parsear_comando(accion);
     if (comando == 0) return false;
-    s.sendall(&comando, sizeof(comando), &was_closed);
+    socket.sendall(&comando, sizeof(comando), &was_closed);
     return !was_closed;
 }
 
@@ -56,7 +58,7 @@ bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     std::vector<uint8_t> cantidades;
     while (leido != FIN_MENSAJE && !was_closed) {
-        s.recvall(&leido, sizeof(leido), &was_closed);
+        socket.recvall(&leido, sizeof(leido), &was_closed);
         if (!was_closed)
             cantidades.push_back(leido);
     }
@@ -79,7 +81,7 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     std::vector<uint8_t> info;
     while (leido != FIN_MENSAJE && !was_closed) {
-        s.recvall(&leido, sizeof(leido), &was_closed);
+        socket.recvall(&leido, sizeof(leido), &was_closed);
         if (!was_closed)
             info.push_back(leido);
     }
@@ -134,7 +136,7 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     bool was_closed = false;
     while (leido != FIN_COMUNICACION && !was_closed) {
-        s.recvall(&leido, sizeof(leido), &was_closed);
+        socket.recvall(&leido, sizeof(leido), &was_closed);
         if (!was_closed)
             was_closed = procesar_leido(leido, estado_actual);
     }

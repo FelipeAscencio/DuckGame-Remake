@@ -22,7 +22,7 @@ public:
 
     // Devuelve los 'sprites' de movimiento del 'pato blanco'.
     std::vector<SDL_Rect> obtener_sprites_pato();
-
+    
     // Devuelve los 'sprites' del 'ak47'.
     std::vector<SDL_Rect> obtener_sprites_ak();
 

@@ -1,3 +1,0 @@
-/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate.dir
-/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-subbuild/CMakeFiles/edit_cache.dir
-/mnt/c/Users/Usuario/Desktop/TPS/Duck-Game/DuckGame-g2-20242c/build/_deps/libsdl2pp-subbuild/CMakeFiles/rebuild_cache.dir

@@ -12,7 +12,7 @@
 #define RUTA_MAPA_1 "/mapa1.png"
 #define MUSICA_FONDO "/arcade-song.mp3"
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
-#define ERROR_CARGAR_MUSICA "Error al cargar la música de fondo: "
+#define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
 
 using namespace SDL2pp;
 
@@ -47,7 +47,8 @@ void Client::controlar_loop_juego() {
                   ALTO_MIN, SDL_WINDOW_SHOWN);
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     std::string ruta_mapa = RUTA_MAPA_1;
-    dibujador.emplace(renderer, ruta_mapa);
+    int id = 1;
+    dibujador.emplace(renderer, ruta_mapa, id);
 
     while (this->jugador_activo) {
         controlador.manejar_eventos(this->jugador_activo, this->estado);
