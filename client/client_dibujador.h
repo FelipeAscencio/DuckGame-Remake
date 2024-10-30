@@ -34,8 +34,8 @@ private:
 
     // Dibuja un sprite en la posicion correspondiente de la ventana.
     void dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
-                               const SDL_Rect& sprite, float x, float y, float escala,
-                               orientacion_e orientacion);
+                    const SDL_Rect& sprite, float x, float y, float escala,
+                    orientacion_e orientacion, SDL_Color colorMod = {255, 255, 255, 255});
 
 public:
     // Constructor de la clase.

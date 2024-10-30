@@ -47,17 +47,28 @@ SDL2pp::Rect Dibujador::calcularDstRect(float x, float y, float escala) {
 
 void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spriteSheet,
                                const SDL_Rect& sprite, float x, float y, float escala,
-                               orientacion_e orientacion) {
+                               orientacion_e orientacion, SDL_Color colorMod) {
+    // Calculamos el rectángulo de destino
     SDL2pp::Rect dstRect = calcularDstRect(x, y, escala);
+
     double angle = ANGULO_NULO;
     SDL_RendererFlip flip = SDL_FLIP_NONE;
+
+    // Ajustamos el ángulo y el flip según la orientación
     if (orientacion == IZQUIERDA) {
         flip = SDL_FLIP_HORIZONTAL;
     } else if (orientacion == ARRIBA) {
         angle = ANGULO_270;
     }
 
+    // Cambiamos el color del sprite
+    SDL_SetTextureColorMod(spriteSheet.Get(), colorMod.r, colorMod.g, colorMod.b);
+
+    // Dibujamos el sprite
     renderer.Copy(spriteSheet, SDL2pp::Optional<SDL2pp::Rect>(sprite), SDL2pp::Optional<SDL2pp::Rect>(dstRect), angle, SDL2pp::Optional<SDL2pp::Point>(), flip);
+
+    // Restablecemos el color a blanco
+    SDL_SetTextureColorMod(spriteSheet.Get(), 255, 255, 255);
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer, const int estado) {
@@ -68,8 +79,17 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, const int estado) {
     if (estado == 0) {
         int x = 100;
         int y = 100;
-        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, DERECHA);
+        auto [x_1, y_1] = convertir_a_relativo(x, y);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_1, y_1, escala, DERECHA);
+        x = 150;
+        y = 100;
+        auto [x_2, y_2] = convertir_a_relativo(x, y);
+        SDL_Color rojo = {255, 0, 0, 255};
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_2, y_2, escala, DERECHA, rojo);
+        x = 50;
+        y = 100;
+        auto [x_3, y_3] = convertir_a_relativo(x, y);
+        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_3, y_3, escala, DERECHA);
     } else if (estado == 1) {
         int x = 100;
         int y = 100;
