@@ -100,3 +100,36 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_armadura() {
 
     return spritesArmadura;
 }
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
+    std::vector<SDL_Rect> spritesAK;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+
+    int xInicial = BORDE_FINO_SPRITESHEET;
+    int yInicial = INICIO_AK_47_Y;
+    iterador_de_parseo(spritesAK, UNO, xInicial, yInicial, tamanio_sprite);
+
+    return spritesAK;
+}
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_laser() {
+    std::vector<SDL_Rect> spritesAK;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+
+    int xInicial = BORDE_FINO_SPRITESHEET;
+    int yInicial = INICIO_AK_47_Y;
+    iterador_de_parseo(spritesAK, UNO, xInicial, yInicial, tamanio_sprite);
+
+    return spritesAK;
+}
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_pistola() {
+    std::vector<SDL_Rect> spritesAK;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+
+    int xInicial = BORDE_FINO_SPRITESHEET;
+    int yInicial = INICIO_AK_47_Y;
+    iterador_de_parseo(spritesAK, UNO, xInicial, yInicial, tamanio_sprite);
+
+    return spritesAK;
+}
