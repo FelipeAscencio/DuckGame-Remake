@@ -51,7 +51,8 @@ bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
         se_movio = true;
     } else {
         std::cout << "Cambio de bloque\n";
-        se_movio = Pato::buscar_pared(mapa, direccion, this->posicion);
+        se_movio = !(Pato::buscar_pared(mapa, direccion, this->posicion));
+        std::cout << (se_movio ? "Cruzo" : "No cruzo") << std::endl;
     }
     return se_movio;
 }
@@ -261,34 +262,36 @@ void Pato::recibir_disparo() {
 void Pato::realizar_accion(int accion, Mapa& mapa) {
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
-            cambiar_orientacion(ARRIBA);
-            std::cout << "Deberia estar mirando para arriba\n";
-            if (this->orientacion == ARRIBA)
-                std::cout << "Funciono\n";
-            else
-                std::cout << "No funciono\n";
+            // cambiar_orientacion(ARRIBA);
+            // std::cout << "Deberia estar mirando para arriba\n";
+            // if (this->orientacion == ARRIBA)
+            //     std::cout << "Funciono\n";
+            // else
+            //     std::cout << "No funciono\n";
             break;
         case COMANDO_AGACHARSE:
-            agacharse();
+            // agacharse();
             break;
         case COMANDO_SALTO_Y_ALETEO:
-            if (estado_actual == PARADO) {
-                saltar();
-            } else {
-                aletear();
-            }
+            // if (estado_actual == PARADO) {
+            //     saltar();
+            // } else {
+            //     aletear();
+            // }
             break;
         case COMANDO_DISPARO_Y_PICKUP:
-            if (arma_equipada) {
-                disparar();
-            } else {
-                // logica para ver si el arma/casco/armadura esta en la misma posicion para agarrar
-            }
+            // if (arma_equipada) {
+            //     disparar();
+            // } else {
+            //     // logica para ver si el arma/casco/armadura esta en la misma posicion para
+            //     agarrar
+            // }
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
-            std::cout << "MOVIENDOSE\n";
+            std::cout << "Posicion vieja: " << this->posicion.to_string();
             mover(mapa, sentido);
+            std::cout << "Posicion nueva: " << this->posicion.to_string();
             break;
     }
 }

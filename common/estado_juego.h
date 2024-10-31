@@ -82,15 +82,15 @@ struct EstadoJuego {
     void agregar_info_pato(Pato* p) {
         if (!chequear_id(p->id_jugador)) {
             InformacionPato nuevo_pato(p);
-            info_patos.push_back(nuevo_pato);
-            cantidad_jugadores++;
+            this->info_patos.push_back(nuevo_pato);
+            this->cantidad_jugadores++;
         }
     }
 
     void agregar_info_pato(const InformacionPato& info) {
         if (!chequear_id(info.id)) {
-            info_patos.push_back(info);
-            cantidad_jugadores++;
+            this->info_patos.push_back(info);
+            this->cantidad_jugadores++;
         }
     }
 
@@ -150,6 +150,8 @@ struct EstadoJuego {
         }
         return oss.str();
     }
+
+    void vaciar() { this->info_patos.clear(); }
 };
 
 #endif  // COMMON_ESTADO_JUEGO_H_

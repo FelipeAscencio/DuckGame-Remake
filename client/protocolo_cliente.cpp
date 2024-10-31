@@ -139,10 +139,32 @@ bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_
 bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     bool was_closed = false;
-    while (leido != FIN_COMUNICACION && !was_closed) {
-        s.recvall(&leido, sizeof(leido), &was_closed);
-        if (!was_closed)
-            was_closed = procesar_leido(leido, estado_actual);
+
+    std::vector<uint8_t> cantidades(6);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
+    s.recvall(cantidades.data(), cantidades.size(), &was_closed);
+
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
+    int i = 0;
+    std::vector<uint8_t> info_pato(10);
+    posicion_t pos;
+    while (i < cantidades[0]) {
+        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo del pato
+        s.recvall(info_pato.data(), info_pato.size(), &was_closed);
+        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo fin mensaje
+        pos.set_posicion(info_pato[1], info_pato[2]);
+        std::cout << pos.to_string();
+        InformacionPato pato_actual(info_pato[0], pos, info_pato[3], info_pato[4], info_pato[5],
+                                    info_pato[6], info_pato[7], (orientacion_e)info_pato[8],
+                                    (estado_pato_e)info_pato[9]);
+        estado_actual.agregar_info_pato(pato_actual);
+        info_pato.clear();
+        info_pato.resize(10);
+        i++;
     }
+    s.recvall(&leido, sizeof(leido), &was_closed);  // leo fin de comunicacion
+
     return !was_closed;
 }
