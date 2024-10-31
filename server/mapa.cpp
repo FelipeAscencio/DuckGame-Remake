@@ -111,7 +111,7 @@ bool Mapa::piso_bloque(const posicion_t& pos) {
 }
 
 Mapa::~Mapa() {
-    for (int i = 0; i < largo; i++) {
+    for (int i = 0; i < alto; i++) {
         delete mapa[i];
     }
     delete mapa;

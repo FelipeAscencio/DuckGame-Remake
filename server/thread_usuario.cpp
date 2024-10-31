@@ -25,8 +25,8 @@ void ThreadUsuario::iniciar() {
 void ThreadUsuario::cortar_conexion() { vivo = false; }
 
 ThreadUsuario::~ThreadUsuario() {
-    r.terminar_ejecucion();
     e.terminar_ejecucion();
+    r.terminar_ejecucion();
     queue_sender.close();
     skt.shutdown(RW_CLOSE);
     skt.close();

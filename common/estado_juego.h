@@ -25,16 +25,16 @@ struct InformacionPato {
     orientacion_e orientacion;
     estado_pato_e estado;
 
-    explicit InformacionPato(Pato& p):
-            id(p.id_jugador),
-            posicion(p.posicion),
-            vivo(p.vivo),
-            arma(p.posee_arma),
-            id_arma_equipada(p.obtener_id_arma()),
-            casco(p.posee_casco),
-            armadura(p.posee_armadura),
-            orientacion(p.orientacion),
-            estado(p.estado_actual) {}
+    explicit InformacionPato(Pato* p):
+            id(p->id_jugador),
+            posicion(p->posicion),
+            vivo(p->vivo),
+            arma(p->posee_arma),
+            id_arma_equipada(p->obtener_id_arma()),
+            casco(p->posee_casco),
+            armadura(p->posee_armadura),
+            orientacion(p->orientacion),
+            estado(p->estado_actual) {}
 
     explicit InformacionPato(const uint8_t& id_pato, const posicion_t& pos, bool esta_vivo,
                              bool tiene_arma, const uint8_t& id_arma, bool tiene_casco,
@@ -55,7 +55,7 @@ struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
     bool operator()(const InformacionPato& i) const { return i.id == id; }
-    bool operator()(const Pato& p) const { return p.id_jugador == id; }
+    bool operator()(Pato* p) const { return p->id_jugador == id; }
 };
 
 struct EstadoJuego {
@@ -79,8 +79,8 @@ struct EstadoJuego {
         return std::any_of(info_patos.cbegin(), info_patos.cend(), MismoID(id));
     }
 
-    void agregar_info_pato(Pato& p) {
-        if (!chequear_id(p.id_jugador)) {
+    void agregar_info_pato(Pato* p) {
+        if (!chequear_id(p->id_jugador)) {
             InformacionPato nuevo_pato(p);
             info_patos.push_back(nuevo_pato);
             cantidad_jugadores++;

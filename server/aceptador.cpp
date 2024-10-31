@@ -12,13 +12,8 @@
 #define EXCEPCION_DESCONOCIDA "Se produjo una excepcion desconocida. "
 #define RW_CLOSE 2
 
-Aceptador::Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l,
-                     std::vector<int>& ids_jugadores):
-        skt(servname),
-        aceptando_jugadores(true),
-        queue_juego(q),
-        queues_clientes(l),
-        ids_clientes(ids_jugadores) {}
+Aceptador::Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l):
+        skt(servname), aceptando_jugadores(true), queue_juego(q), queues_clientes(l) {}
 
 void Aceptador::run() {
     int id = 0;
@@ -32,7 +27,6 @@ void Aceptador::run() {
             }
             std::cout << "Antes de crear el ThreadUsuario\n";
             ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
-            ids_clientes.push_back(id);
             queues_clientes.agregar_queue(jugador->obtener_queue(), id);
             jugadores.push_back(jugador);
             jugador->iniciar();

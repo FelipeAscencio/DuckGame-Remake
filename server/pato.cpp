@@ -317,4 +317,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
     std::cout << oss.str();
 }
 
-Pato::~Pato() {}
+Pato::~Pato() {
+    if (arma_equipada)
+        delete arma_equipada;
+}

@@ -1,21 +1,23 @@
 #include "server.h"
 
+#include <string>
+
+#define EXIT "q"
+
 Server::Server(const char* servname):
         queue_juego(CANTIDAD_MAXIMA_ACCIONES),
         lista_queues(),
-        a(servname, queue_juego, lista_queues, ids_clientes),
+        a(servname, queue_juego, lista_queues),
         g(queue_juego, lista_queues) {}
 
 void Server::comenzar_a_aceptar() { a.start(); }
 
 void Server::comenzar_juego() { g.start(); }
 
-void Server::agregar_nuevos_jugadores() {
-    while (true) {
-        for (int id: ids_clientes) {
-            g.intentar_agregar_jugador(id);
-        }
-        if (!g.jugando())
+void Server::leer_entrada() {
+    std::string leido;
+    while (std::getline(std::cin, leido)) {
+        if (leido == EXIT)
             break;
     }
 }
@@ -23,7 +25,7 @@ void Server::agregar_nuevos_jugadores() {
 void Server::start() {
     comenzar_a_aceptar();
     comenzar_juego();
-    agregar_nuevos_jugadores();
+    leer_entrada();
 }
 
 Server::~Server() {

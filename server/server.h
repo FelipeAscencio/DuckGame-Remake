@@ -15,7 +15,6 @@ class Server {
 private:
     Queue<comando_t> queue_juego;
     ListaQueues lista_queues;
-    std::vector<int> ids_clientes;
     Aceptador a;
     Gameloop g;
 
@@ -23,7 +22,7 @@ private:
 
     void comenzar_juego();
 
-    void agregar_nuevos_jugadores();
+    void leer_entrada();
 
 public:
     explicit Server(const char* servname);
