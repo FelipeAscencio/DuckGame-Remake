@@ -18,10 +18,6 @@ void Recibidor::run() {
             if (protocol.recibir(cmd, id_cliente)) {
                 if (Protocol::accion_valida(cmd.accion)) {
                     queue_comandos.push(cmd);
-                    std::ostringstream oss;
-                    oss << "Recibi comando: " << cmd.accion << " del cliente: " << id_cliente
-                        << "\n";
-                    std::cout << oss.str();
                 }
             }
         } catch (const ClosedQueue& e) {

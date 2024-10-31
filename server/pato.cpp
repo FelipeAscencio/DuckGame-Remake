@@ -7,19 +7,8 @@
 #include <string>
 #include <vector>
 
-#define MOVER_DERECHA 2
-#define MOVER_IZQUIERDA -2
-#define SALTO_Y_CAIDA 2
-
-#define COMANDO_DERECHA 1
-#define COMANDO_IZQUIERDA 2
-#define COMANDO_AGACHARSE 3
-#define COMANDO_MIRAR_HACIA_ARRIBA 4
-#define COMANDO_SALTO_Y_ALETEO 5
-#define COMANDO_DISPARO_Y_PICKUP 6
-
-#define MOVER_DERECHA 2
-#define MOVER_IZQUIERDA -2
+#define MOVER_DERECHA 1
+#define MOVER_IZQUIERDA -1
 #define SALTO_Y_CAIDA 2
 
 #define COMANDO_DERECHA 1
@@ -31,7 +20,7 @@
 
 Pato::Pato(int id):
         id_jugador(id),
-        posicion(rand() % 20, rand() % 16),
+        posicion(5, 89),
         vivo(true),
         posee_arma(false),
         posee_armadura(false),
@@ -53,7 +42,7 @@ bool Pato::buscar_pared(Mapa& mapa, const orientacion_e& direccion,
         return false;
     if (direccion == IZQUIERDA && bloque_x == 0)
         return false;
-    return (mapa.mapa[bloque_x + lado][bloque_y] == 1);
+    return (mapa.mapa[bloque_y][bloque_x + lado] == 1);
 }
 
 bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
@@ -61,6 +50,7 @@ bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
     if (!mapa.borde_bloque(this->posicion, direccion)) {
         se_movio = true;
     } else {
+        std::cout << "Cambio de bloque\n";
         se_movio = Pato::buscar_pared(mapa, direccion, this->posicion);
     }
     return se_movio;
@@ -84,20 +74,8 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
     }
 
     if (se_movio) {
-        int pasos_caminados = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
-        // si estaba en el metro 1 yendo para la izquierda o en el metro 8 yendo para la derecha, el
-        // chequeo anterior no me decia si habia una pared, pero como el movimiento es de a 2
-        // metros, tengo que volver a chequear por las dudas
-        if (posicion.coordenada_x == TILE_A_METRO - MOVER_DERECHA ||
-            posicion.coordenada_x == (-MOVER_IZQUIERDA) / 2) {
-            int sentido = derecha ? 1 : -1;
-            posicion_t posicion_a_chequear(posicion.coordenada_x + sentido, posicion.coordenada_y);
-            if (Pato::buscar_pared(mapa, direccion, posicion_a_chequear)) {
-                pasos_caminados /= 2;  // so efectivamente hay una pared, tengo que caminar solo la
-                                       // distancia que falta hasta chocar con esa pared
-            }
-        }
-        posicion.coordenada_x += pasos_caminados;
+        int pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
+        this->posicion.coordenada_x += pasos;
     }
     return se_movio;
 }
@@ -139,12 +117,12 @@ void Pato::caer(Mapa& mapa) {
             return;
         }
         // si en el bloque de abajo no hay piso
-        if (mapa.mapa[tile_x][tile_y] == 0) {
+        if (mapa.mapa[tile_y][tile_x] == 0) {
             // tecnicamente estoy en un bloque que no tiene piso abajo, pero el cuerpo del pato no
             // paso por completo a ese nuevo bloque entonces no debe caer
 
-            bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_x - 1][tile_y] == 1));
-            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_x + 1][tile_y] == 1));
+            bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
+            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
             if (piso_a_la_izquierda || piso_a_la_derecha) {
                 if ((posicion.coordenada_x % TILE_A_METRO <= MOVER_DERECHA) ||
                     (posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO + MOVER_IZQUIERDA))) {
@@ -157,7 +135,7 @@ void Pato::caer(Mapa& mapa) {
 
             // el bloque de abajo en el que estoy tiene su piso a "mitad del bloque" (el piso no
             // esta alineado con el cambio de bloques)
-        } else if (mapa.mapa[tile_x][tile_y] == 2) {
+        } else if (mapa.mapa[tile_y][tile_x] == 2) {
             int posicion_en_bloque = posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;
             if (posicion_en_bloque < mitad_bloque) {
@@ -281,13 +259,14 @@ void Pato::recibir_disparo() {
 }
 
 void Pato::realizar_accion(int accion, Mapa& mapa) {
-    std::ostringstream oss;
-    oss << "ID PATO: " << this->id_jugador;
-    oss << ". Realizando accion: " << accion << "\n";
-    std::cout << oss.str();
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
             cambiar_orientacion(ARRIBA);
+            std::cout << "Deberia estar mirando para arriba\n";
+            if (this->orientacion == ARRIBA)
+                std::cout << "Funciono\n";
+            else
+                std::cout << "No funciono\n";
             break;
         case COMANDO_AGACHARSE:
             agacharse();
@@ -312,9 +291,6 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             mover(mapa, sentido);
             break;
     }
-    oss.clear();
-    oss << "POSICION: (" << posicion.coordenada_x << "," << posicion.coordenada_y << ")\n";
-    std::cout << oss.str();
 }
 
 Pato::~Pato() {

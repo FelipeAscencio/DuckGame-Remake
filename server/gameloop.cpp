@@ -5,7 +5,7 @@
 #define SLEEP 200
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(20, 16) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -38,9 +38,8 @@ void Gameloop::enviar_estado_juego() {
 }
 
 void Gameloop::run() {
-    chequear_nuevos_jugadores();
-    enviar_estado_juego();  // primer envio del estado del juego para inicializar todo
     while (juego_activo) {
+        enviar_estado_juego();
         chequear_nuevos_jugadores();
         if (!jugadores.empty()) {
             actualizar_estado_jugadores();
@@ -52,7 +51,6 @@ void Gameloop::run() {
                     }
                 }
             }
-            enviar_estado_juego();
         }
         // sleep
         std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));

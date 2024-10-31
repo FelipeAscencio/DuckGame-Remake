@@ -7,44 +7,6 @@
 #define ARCHIVO_MAPA "../data/mapa_"
 #define TXT ".txt"
 
-Mapa::Mapa(int largo, int alto) {
-    this->largo = largo;
-    this->alto = alto;
-    this->mapa = new int*[alto];
-    for (int i = 0; i < alto; i++) {
-        mapa[i] = new int[largo];
-    }
-    for (int i = 0; i < alto; i++) {
-        for (int j = 0; j < largo; j++) {
-            mapa[i][j] = 0;
-        }
-    }
-
-    mapa[3][15] = mapa[3][16] = mapa[3][17] = 1;
-    mapa[5][4] = mapa[5][5] = mapa[5][6] = mapa[5][7] = mapa[5][8] = 1;
-    mapa[7][10] = mapa[7][11] = mapa[7][14] = 1;
-    mapa[8][10] = mapa[8][11] = mapa[8][14] = mapa[8][18] = mapa[8][19] = 1;
-    mapa[9][0] = mapa[9][1] = mapa[9][2] = mapa[9][3] = mapa[9][10] = mapa[9][11] = mapa[9][14] =
-            mapa[9][18] = mapa[9][19] = 1;
-    mapa[10][0] = mapa[10][1] = mapa[10][2] = mapa[10][3] = mapa[10][10] = mapa[10][11] =
-            mapa[10][14] = mapa[10][18] = mapa[10][19] = 1;
-    mapa[10][7] = mapa[10][8] = mapa[10][9] = mapa[10][12] = mapa[10][13] =
-            2;  // el piso no coincide con el piso del bloque
-    mapa[11][0] = mapa[11][1] = mapa[11][2] = mapa[11][3] = mapa[11][7] = mapa[11][8] =
-            mapa[11][9] = mapa[11][10] = mapa[11][11] = mapa[11][12] = mapa[11][13] = mapa[11][14] =
-                    mapa[11][18] = mapa[11][19] = 1;
-    mapa[11][15] = mapa[11][16] = mapa[11][17] = 2;
-    mapa[12][0] = mapa[12][1] = mapa[12][3] = mapa[12][7] = mapa[12][8] = mapa[12][9] =
-            mapa[12][10] = mapa[12][11] = mapa[12][12] = mapa[12][13] = mapa[12][14] =
-                    mapa[12][15] = mapa[12][16] = mapa[12][17] = mapa[12][18] = mapa[12][19] = 1;
-    mapa[13][0] = mapa[13][3] = mapa[13][8] = mapa[13][9] = mapa[13][10] = mapa[13][11] =
-            mapa[13][12] = mapa[13][13] = mapa[13][14] = mapa[13][18] = mapa[13][19] = 1;
-    mapa[14][3] = mapa[14][9] = mapa[14][10] = mapa[14][11] = mapa[14][12] = mapa[14][13] =
-            mapa[14][14] = mapa[14][18] = mapa[14][19] = 1;
-    mapa[15][3] = mapa[15][10] = mapa[15][11] = mapa[15][12] = mapa[15][13] = mapa[15][18] =
-            mapa[15][19] = 1;
-}
-
 Mapa::Mapa(int mapa) {
     std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(mapa) + TXT;
     std::ifstream archivo_mapa(ruta_mapa);
@@ -61,12 +23,13 @@ Mapa::Mapa(int mapa) {
     for (int i = 0; i < alto; i++) {
         this->mapa[i] = new int[largo];
     }
-    int i, j;
-    i = j = 0;
+    int i = 0;
     while (i < alto) {
+        int j = 0;
         while (j < largo) {
-            archivo_mapa >> leido;
-            this->mapa[i][j] = leido;
+            char c;
+            archivo_mapa >> c;
+            this->mapa[i][j] = ((int)c - 48);
             j++;
         }
         i++;

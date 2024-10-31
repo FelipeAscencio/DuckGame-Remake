@@ -31,15 +31,18 @@ bool ClientMock::recibir_respuesta_juego(EstadoJuego& estado_actual) {
 
 void ClientMock::loop_juego() {
     bool loop = true;
-    EstadoJuego estado;
-    recibir_respuesta_juego(estado);
-    std::cout << estado.to_string() << std::endl;
+    EstadoJuego estado_inicial;
+    recibir_respuesta_juego(estado_inicial);
+    // if (!primer_contacto) return;
+
+    std::cout << estado_inicial.to_string() << std::endl;
     while (loop) {
+        EstadoJuego estado_actual;
         char accion = leer_entrada();
         loop = realizar_accion(accion);
         if (loop) {
-            recibir_respuesta_juego(estado);
-            std::cout << estado.to_string() << std::endl;
+            recibir_respuesta_juego(estado_actual);
+            std::cout << estado_actual.to_string() << std::endl;
         }
     }
 }
