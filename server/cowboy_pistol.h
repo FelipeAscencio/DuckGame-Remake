@@ -3,8 +3,9 @@
 
 #include <iostream>
 
-#include "arma.h"
 #include "../common/orientacion.h"
+
+#include "arma.h"
 
 class CowboyPistol: public Arma {
 public:

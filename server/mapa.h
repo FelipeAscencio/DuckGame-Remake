@@ -23,7 +23,6 @@ private:
     int** mapa;
 
 public:
-    explicit Mapa(int largo, int alto);
     explicit Mapa(int mapa);
     std::vector<int> posicion_en_mapa(const posicion_t& posicion);
     bool borde_bloque(const posicion_t& pos, const orientacion_e& orientacion);

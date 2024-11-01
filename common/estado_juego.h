@@ -1,9 +1,11 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef COMMON_ESTADO_JUEGO_H_
 #define COMMON_ESTADO_JUEGO_H_
 
 #include <algorithm>
 #include <iostream>
+#include <sstream>
+#include <string>
 #include <vector>
 
 #include "../server/arma.h"
@@ -12,6 +14,7 @@
 #include "common/orientacion.h"
 #include "common/posicion.h"
 
+// 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
     int id;
     posicion_t posicion;
@@ -23,17 +26,19 @@ struct InformacionPato {
     orientacion_e orientacion;
     estado_pato_e estado;
 
-    explicit InformacionPato(Pato& p):
-            id(p.id_jugador),
-            posicion(p.posicion),
-            vivo(p.vivo),
-            arma(p.posee_arma),
-            id_arma_equipada(p.obtener_id_arma()),
-            casco(p.posee_casco),
-            armadura(p.posee_armadura),
-            orientacion(p.orientacion),
-            estado(p.estado_actual) {}
+    // Constructor del struct con punteros.
+    explicit InformacionPato(Pato* p):
+            id(p->id_jugador),
+            posicion(p->posicion),
+            vivo(p->vivo),
+            arma(p->posee_arma),
+            id_arma_equipada(p->obtener_id_arma()),
+            casco(p->posee_casco),
+            armadura(p->posee_armadura),
+            orientacion(p->orientacion),
+            estado(p->estado_actual) {}
 
+    // Constructor del struct con parametros.
     explicit InformacionPato(const uint8_t& id_pato, const posicion_t& pos, bool esta_vivo,
                              bool tiene_arma, const uint8_t& id_arma, bool tiene_casco,
                              bool tiene_armadura, const orientacion_e& orientacion_pato,
@@ -49,13 +54,15 @@ struct InformacionPato {
             estado(estado_pato) {}
 };
 
+// 'struct' que compara 'ids', e indica si son iguales.
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
     bool operator()(const InformacionPato& i) const { return i.id == id; }
-    bool operator()(const Pato& p) const { return p.id_jugador == id; }
+    bool operator()(Pato* p) const { return p->id_jugador == id; }
 };
 
+// 'struct' que encapsula el estado actual del juego para enviarlo al 'Cliente'.
 struct EstadoJuego {
     int cantidad_jugadores;
     int cantidad_armas;
@@ -65,6 +72,7 @@ struct EstadoJuego {
     int cantidad_cajas;
     std::vector<InformacionPato> info_patos;
 
+    // Constructor del struct.
     EstadoJuego():
             cantidad_jugadores(0),
             cantidad_armas(0),
@@ -73,24 +81,97 @@ struct EstadoJuego {
             cantidad_cascos(0),
             cantidad_cajas(0) {}
 
+    // Verifica la existencia de la id recibida por parametro.
     bool chequear_id(const int& id) {
         return std::any_of(info_patos.cbegin(), info_patos.cend(), MismoID(id));
     }
 
-    void agregar_info_pato(Pato& p) {
-        if (!chequear_id(p.id_jugador)) {
+    // Agrega la informacion de un pato en el vector de informacion de todos los patos.
+    // Utilizando un puntero al pato.
+    void agregar_info_pato(Pato* p) {
+        if (!chequear_id(p->id_jugador)) {
             InformacionPato nuevo_pato(p);
-            info_patos.push_back(nuevo_pato);
-            cantidad_jugadores++;
+            this->info_patos.push_back(nuevo_pato);
+            this->cantidad_jugadores++;
         }
     }
 
+    // Agrega la informacion de un pato en el vector de informacion de todos los patos.
+    // Utilizando una referencia a la informacion del pato.
     void agregar_info_pato(const InformacionPato& info) {
         if (!chequear_id(info.id)) {
-            info_patos.push_back(info);
-            cantidad_jugadores++;
+            this->info_patos.push_back(info);
+            this->cantidad_jugadores++;
         }
     }
+
+    // Convierte en string al 'estado' del juego creado (utilizado para testear y debugear).
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
+        oss << cantidad_balas << "\n. Armaduras: " << cantidad_armaduras
+            << ". Cascos: " << cantidad_cascos;
+        oss << ". Cajas: " << cantidad_cajas << "\n";
+
+        for (InformacionPato info: info_patos) {
+            oss << "PATO: \n ID: " << info.id << ". POSICION: (" << info.posicion.coordenada_x
+                << "," << info.posicion.coordenada_y << ")\n";
+            oss << "VIVO: " << (info.vivo ? "SI" : "NO")
+                << ". TIENE ARMA: " << (info.arma ? "SI" : "NO")
+                << ". ID ARMA: " << info.id_arma_equipada;
+            oss << "\nCASCO: " << (info.casco ? "SI" : "NO")
+                << ". ARMADURA: " << (info.armadura ? "SI" : "NO");
+            std::string sentido;
+            switch (info.orientacion) {
+                case DERECHA:
+                    sentido = "Derecha";
+                    break;
+
+                case IZQUIERDA:
+                    sentido = "Izquierda";
+                    break;
+
+                default:
+                    sentido = "Arriba";
+                    break;
+            }
+
+            std::string estado_pato;
+            switch (info.estado) {
+                case PARADO:
+                    estado_pato = "Parado";
+                    break;
+
+                case AGACHADO:
+                    estado_pato = "Agachado";
+                    break;
+
+                case SALTANDO:
+                    estado_pato = "Saltando";
+                    break;
+
+                case CAYENDO:
+                    estado_pato = "Cayendo";
+                    break;
+
+                case ALETEANDO:
+                    estado_pato = "Aleteando";
+                    break;
+
+                case CAMINANDO:
+                    estado_pato = "Caminando";
+                    break;
+            }
+
+            oss << "\nSENTIDO: " << sentido << ". ESTADO ACTUAL: " << estado_pato;
+            oss << "\n---------------------------------\n";
+        }
+
+        return oss.str();
+    }
+
+    // Vacia la informacion de los patos.
+    void vaciar() { this->info_patos.clear(); }
 };
 
 #endif  // COMMON_ESTADO_JUEGO_H_

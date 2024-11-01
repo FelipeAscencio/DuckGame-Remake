@@ -18,19 +18,19 @@ private:
     Queue<comando_t>& queue;
     std::atomic<bool> juego_activo;
     ListaQueues& queues_clientes;
-    std::vector<Pato> jugadores;
+    std::vector<Pato*> jugadores;
     Mapa mapa;
 
     void actualizar_estado_jugadores();
 
     void enviar_estado_juego();
 
+    void chequear_nuevos_jugadores();
+
 public:
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);
 
     virtual void run() override;
-
-    void intentar_agregar_jugador(int id);
 
     void finalizar_juego() { this->juego_activo = false; }
 

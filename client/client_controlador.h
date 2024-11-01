@@ -1,8 +1,11 @@
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef CLIENT_CONTROLADOR_H
 #define CLIENT_CONTROLADOR_H
 
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
+#include <iostream>
+#include "../common/queue.h"
 
 using namespace SDL2pp;
 
@@ -10,12 +13,14 @@ using namespace SDL2pp;
 // del control de los eventos del 'Cliente'.
 class Controlador {
 private:
+    Queue<char>& cola_eventos;
+
 public:
     // Constructor de la clase.
-    explicit Controlador();
+    explicit Controlador(Queue<char>& cola_enviador);
 
     // Esta funcion maneja los eventos que el 'Cliente' efectua durante el juego.
-    void manejarEventos(bool& jugador_activo, int& estado);
+    void manejar_eventos(bool& jugador_activo);
 
     // Deshabilito las copias.
     Controlador(const Controlador&) = delete;
@@ -26,4 +31,4 @@ public:
     Controlador& operator=(Controlador&&) = default;
 };
 
-#endif
+#endif  // CLIENT_CONTROLADOR_H
