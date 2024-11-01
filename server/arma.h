@@ -22,6 +22,8 @@
 #define ID_SNIPER 10
 
 class Arma {
+    friend struct InformacionArma;
+    friend struct EstadoJuego;
 
 protected:
     const int id_arma;

@@ -111,6 +111,24 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
     }
 }
 
+bool ProtocoloCliente::procesar_armas(EstadoJuego& estado_actual) {
+    bool was_closed = false;
+    uint8_t leido = 0x00;
+    std::vector<uint8_t> info;
+    while (leido != FIN_MENSAJE && !was_closed) {
+        s.recvall(&leido, sizeof(leido), &was_closed);
+        if (!was_closed)
+            info.push_back(leido);
+    }
+    if (!was_closed) {
+        InformacionArma arma_nueva(info[0], info[1], info[2]);
+        estado_actual.agregar_arma(arma_nueva);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual) {
     bool resultado = false;
     switch (leido) {
@@ -119,6 +137,7 @@ bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_
             break;
 
         case CODIGO_ARMA:
+            resultado = procesar_armas(estado_actual);
             break;
 
         case CODIGO_BALA:
@@ -148,31 +167,10 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     bool was_closed = false;
 
-    std::vector<uint8_t> cantidades(6);
-    s.recvall(&leido, sizeof(leido), &was_closed);
-
-    s.recvall(cantidades.data(), cantidades.size(), &was_closed);
-
-    s.recvall(&leido, sizeof(leido), &was_closed);
-
-    int i = 0;
-    std::vector<uint8_t> info_pato(10);
-    posicion_t pos;
-    while (i < cantidades[0]) {
-        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo del pato
-        s.recvall(info_pato.data(), info_pato.size(), &was_closed);
-        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo fin mensaje
-        pos.set_posicion(info_pato[1], info_pato[2]);
-        std::cout << pos.to_string();
-        InformacionPato pato_actual(info_pato[0], pos, info_pato[3], info_pato[4], info_pato[5],
-                                    info_pato[6], info_pato[7], (orientacion_e)info_pato[8],
-                                    (estado_pato_e)info_pato[9]);
-        estado_actual.agregar_info_pato(pato_actual);
-        info_pato.clear();
-        info_pato.resize(10);
-        i++;
+    while (leido != FIN_COMUNICACION && !was_closed) {
+        s.recvall(&leido, sizeof(leido), &was_closed);
+        if (!was_closed)
+            was_closed = procesar_leido(leido, estado_actual);
     }
-    s.recvall(&leido, sizeof(leido), &was_closed);  // leo fin de comunicacion
-
     return !was_closed;
 }

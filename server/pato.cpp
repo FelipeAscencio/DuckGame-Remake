@@ -198,8 +198,7 @@ bool Pato::agarrar_casco() {
 
 bool Pato::disparar() {
     if (arma_equipada) {
-        arma_equipada->disparar(this->orientacion);
-        return true;
+        return arma_equipada->disparar(this->orientacion);
     } else {
         return false;
     }
@@ -284,7 +283,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            this->cambiar_orientacion(ARRIBA);
+            this->cambiar_orientacion(orientacion_e::ARRIBA);
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
             break;
         case COMANDO_AGACHARSE:
@@ -302,8 +301,12 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             break;
         case COMANDO_DISPARO_Y_PICKUP:
             if (arma_equipada) {
-                std::cout << "Disparo\n";
-                disparar();
+                if (disparar()) {
+                    std::cout << "Disparo\n";
+                } else {
+                    delete arma_equipada;
+                    std::cout << "No tiene mas balas\n";
+                }
             } else {
                 std::cout << "No puedo disparar, no tengo arma bro\n";
                 // logica para ver si el arma/casco/armadura esta en la misma posicion para

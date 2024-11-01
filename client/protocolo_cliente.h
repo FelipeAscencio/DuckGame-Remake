@@ -28,6 +28,8 @@ private:
 
     bool procesar_cantidades(EstadoJuego& estado_actual);
 
+    bool procesar_armas(EstadoJuego& estado_actual);
+
     uint8_t parsear_comando(char accion);
 
 public:

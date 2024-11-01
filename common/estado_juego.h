@@ -1,6 +1,6 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
-#ifndef COMMON_ESTADO_JUEGO_H_
-#define COMMON_ESTADO_JUEGO_H_
+#ifndef ESTADO_JUEGO_H_
+#define ESTADO_JUEGO_H_
 
 #include <algorithm>
 #include <iostream>
@@ -51,6 +51,17 @@ struct InformacionPato {
             estado(estado_pato) {}
 };
 
+struct InformacionArma {
+    int id_arma;
+    posicion_t posicion;
+
+    explicit InformacionArma(Arma* a): id_arma(a->id_arma), posicion(a->posicion_spawn) {}
+
+    explicit InformacionArma(uint8_t id, uint8_t x, uint8_t y): id_arma(id), posicion(x, y);
+
+    explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
+};
+
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
@@ -66,6 +77,7 @@ struct EstadoJuego {
     int cantidad_cascos;
     int cantidad_cajas;
     std::vector<InformacionPato> info_patos;
+    std::vector<InformacionArma> info_armas;
 
     EstadoJuego():
             cantidad_jugadores(0),
@@ -92,6 +104,17 @@ struct EstadoJuego {
             this->info_patos.push_back(info);
             this->cantidad_jugadores++;
         }
+    }
+
+    void agregar_arma(const InformacionArma info) {
+        info_armas.push_back(info);
+        this->cantidad_armas++;
+    }
+
+    void agregar_arma(Arma* a) {
+        InformacionArma nueva(a);
+        info_armas.push_back(nueva);
+        this->cantidad_armas++;
     }
 
     std::string to_string() {
@@ -152,10 +175,17 @@ struct EstadoJuego {
             oss << "\nSENTIDO: " << sentido << ". ESTADO ACTUAL: " << estado_pato;
             oss << "\n---------------------------------\n";
         }
+
+        for (size_t i = 0; i < cantidad_armas; i++) {
+            oss << i << ". ID arma: " << this->info_armas[i].id_arma;
+            oss << "\nPosicion: " << this->info_armas[i].posicion.to_string();
+            oss << "----------------------------------\n";
+        }
+
         return oss.str();
     }
 
     void vaciar() { this->info_patos.clear(); }
 };
 
-#endif  // COMMON_ESTADO_JUEGO_H_
+#endif
