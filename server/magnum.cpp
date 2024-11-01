@@ -8,10 +8,17 @@
 
 Magnum::Magnum(): Arma(ID_MAGNUM, MAGNUM, ALCANCE, MUNICIONES, true) {}
 
-void Magnum::disparar(const orientacion_e& direccion) {
+bool Magnum::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
         std::cout << "Direccion valida" << std::endl;
+        return true;
     } else {
         std::cout << "Direccion invalida" << std::endl;
+        return false;
     }
+}
+
+void Magnum::chequeo_balas() {
+    std::cout << "Nada por ahora" << std::endl;
+    return;
 }

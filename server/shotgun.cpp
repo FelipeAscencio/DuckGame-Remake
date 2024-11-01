@@ -12,10 +12,17 @@ Shotgun::Shotgun():
         debe_recargar(false),
         alcance_maximo(ALCANCE_MAXIMO) {}
 
-void Shotgun::disparar(const orientacion_e& direccion) {
+bool Shotgun::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
         std::cout << "Direccion valida" << std::endl;
+        return true;
     } else {
         std::cout << "Direccion invalida" << std::endl;
+        return false;
     }
+}
+
+void Shotgun::chequeo_balas() {
+    std::cout << "Nada aun" << std::endl;
+    return;
 }

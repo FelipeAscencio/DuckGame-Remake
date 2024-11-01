@@ -8,10 +8,17 @@
 
 Sniper::Sniper(): Arma(ID_SNIPER, SNIPER, ALCANCE, MUNICIONES, false) {}
 
-void Sniper::disparar(const orientacion_e& direccion) {
+bool Sniper::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
         std::cout << "Direccion valida" << std::endl;
+        return true;
     } else {
         std::cout << "Direccion invalida" << std::endl;
+        return false;
     }
+}
+
+void Sniper::chequeo_balas() {
+    std::cout << "Nada todavia" << std::endl;
+    return;
 }

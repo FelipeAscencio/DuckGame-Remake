@@ -3,9 +3,12 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
+
+#include "municion.h"
 
 #define ID_GRANADA 1
 #define ID_BANANA 2
@@ -31,13 +34,17 @@ protected:
     bool soltada;
     bool puede_agarrarse();
 
+    std::vector<Municion*> balas;
+
 public:
     Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,
          bool tiene_retroceso);
 
     virtual ~Arma() = default;
 
-    virtual void disparar(const orientacion_e& direccion) = 0;
+    virtual bool disparar(const orientacion_e& direccion) = 0;
+
+    virtual void chequeo_balas() = 0;
 
     void agarrar();
 

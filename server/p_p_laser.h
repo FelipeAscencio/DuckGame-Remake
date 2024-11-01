@@ -13,7 +13,8 @@ private:
 
 public:
     PewPewLaser();
-    void disparar(const orientacion_e& direccion) override;
+    bool disparar(const orientacion_e& direccion) override;
+    void chequeo_balas() override;
 };
 
 
