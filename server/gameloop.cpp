@@ -31,7 +31,8 @@ void Gameloop::enviar_estado_juego() {
 
     } else {
         for (Pato* p: jugadores) {
-            estado_actual.agregar_info_pato(p);
+            if (p->vivo)
+                estado_actual.agregar_info_pato(p);
         }
     }
     queues_clientes.broadcast(estado_actual);

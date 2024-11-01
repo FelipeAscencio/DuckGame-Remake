@@ -82,29 +82,33 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
 }
 
 void Pato::saltar() {
+    std::cout << "Empiezo salto\n";
     estado_actual = SALTANDO;
     this->posicion.coordenada_y -= SALTO_Y_CAIDA;
     this->iteraciones_subiendo = 1;
+    std::cout << "Posicion ni bien salto: " << this->posicion.to_string();
 }
 
 void Pato::aletear() {
     if (estado_actual == CAYENDO) {
         estado_actual = ALETEANDO;
-        this->posicion.coordenada_y -= SALTO_Y_CAIDA / 2;
+        std::cout << "Aleteando. ";
+        this->posicion.coordenada_y -= SALTO_Y_CAIDA;
+        std::cout << "Posicion: " << this->posicion.to_string();
     }
 }
 
 void Pato::caer(Mapa& mapa) {
+    if (!this->vivo)
+        return;
+    if (this->posicion.coordenada_y == (mapa.alto * TILE_A_METRO) - 1) {
+        std::cout << "Me fui del mapa\n";
+        this->vivo = false;
+        return;
+    }
     // si no esta en el piso del bloque, tiene que caer si o si
     if (!mapa.piso_bloque(this->posicion)) {
-        if (this->posicion.coordenada_y % TILE_A_METRO >= SALTO_Y_CAIDA) {
-            this->posicion.coordenada_y += SALTO_Y_CAIDA;  // si esta a 2 metros o mas, tiene que
-                                                           // caer 2 metros por segundo por gravedad
-        } else {
-            this->posicion.coordenada_y =
-                    SALTO_Y_CAIDA / 2;  // si esta 1 metro por encima del piso, tiene que caer solo
-                                        // un metro, no mas.
-        }
+        this->posicion.coordenada_y += SALTO_Y_CAIDA;
         estado_actual = CAYENDO;
     } else {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
@@ -140,17 +144,19 @@ void Pato::caer(Mapa& mapa) {
             int posicion_en_bloque = posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;
             if (posicion_en_bloque < mitad_bloque) {
-                posicion.coordenada_y += (mitad_bloque - posicion_en_bloque > SALTO_Y_CAIDA) ?
-                                                 SALTO_Y_CAIDA :
-                                                 (mitad_bloque - posicion_en_bloque);
+                posicion.coordenada_y += SALTO_Y_CAIDA;
                 estado_actual = CAYENDO;
             }
         } else {
             estado_actual = PARADO;
         }
     }
-    if (this->posicion.coordenada_y > mapa.largo)
+    if (this->posicion.coordenada_y > mapa.alto * TILE_A_METRO)
         this->vivo = false;
+
+    if (estado_actual == CAYENDO) {
+        std::cout << "Cayendo. Posicion actual: " << this->posicion.to_string();
+    }
 }
 
 bool Pato::tiene_arma() { return this->posee_arma; }
@@ -214,6 +220,7 @@ void Pato::chequear_estado() {
                                     // necesitan 5 iteraciones para realizar un salto
                 posicion.coordenada_y -= SALTO_Y_CAIDA;
                 iteraciones_subiendo += 1;
+                std::cout << "Subiendo. Posicion: " << this->posicion.to_string();
             } else {
                 estado_actual = CAYENDO;
                 iteraciones_subiendo = 0;
@@ -230,14 +237,16 @@ void Pato::chequear_estado() {
 }
 
 void Pato::control_pre_comando(Mapa& mapa) {
-    if (posicion.coordenada_x > mapa.alto || posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
+    if (this->posicion.coordenada_x > mapa.largo * TILE_A_METRO ||
+        this->posicion.coordenada_y > mapa.alto * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
     }
     if (orientacion == ARRIBA) {
         cambiar_orientacion(DERECHA);
     }
-    if (estado_actual != SALTANDO)
+    if (estado_actual != SALTANDO) {
         caer(mapa);
+    }
     chequear_estado();
     if (posee_arma) {
         if (this->arma_equipada->municiones_restantes() == 0) {
@@ -259,39 +268,51 @@ void Pato::recibir_disparo() {
     vivo = false;  // si llego a este punto, no tenia ni casco ni armadura, entonces muere
 }
 
+std::string orientacion_texto(const orientacion_e& direccion) {
+    if (direccion == DERECHA)
+        return "Derecha\n";
+    if (direccion == IZQUIERDA)
+        return "Izquierda\n";
+    return "Arriba\n";
+}
+
 void Pato::realizar_accion(int accion, Mapa& mapa) {
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
-            // cambiar_orientacion(ARRIBA);
-            // std::cout << "Deberia estar mirando para arriba\n";
-            // if (this->orientacion == ARRIBA)
-            //     std::cout << "Funciono\n";
-            // else
-            //     std::cout << "No funciono\n";
+            std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
+            this->cambiar_orientacion(ARRIBA);
+            std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
             break;
         case COMANDO_AGACHARSE:
-            // agacharse();
+            std::cout << "Estoy parado\n";
+            agacharse();
+            if (this->estado_actual == AGACHADO)
+                std::cout << "Estoy agachado\n";
             break;
         case COMANDO_SALTO_Y_ALETEO:
-            // if (estado_actual == PARADO) {
-            //     saltar();
-            // } else {
-            //     aletear();
-            // }
+            if (estado_actual == PARADO) {
+                saltar();
+            } else {
+                aletear();
+            }
             break;
         case COMANDO_DISPARO_Y_PICKUP:
-            // if (arma_equipada) {
-            //     disparar();
-            // } else {
-            //     // logica para ver si el arma/casco/armadura esta en la misma posicion para
-            //     agarrar
-            // }
+            if (arma_equipada) {
+                std::cout << "Disparo\n";
+                disparar();
+            } else {
+                std::cout << "No puedo disparar, no tengo arma bro\n";
+                // logica para ver si el arma/casco/armadura esta en la misma posicion para
+                // agarrar
+            }
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
             std::cout << "Posicion vieja: " << this->posicion.to_string();
+            std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
             mover(mapa, sentido);
             std::cout << "Posicion nueva: " << this->posicion.to_string();
+            std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
             break;
     }
 }

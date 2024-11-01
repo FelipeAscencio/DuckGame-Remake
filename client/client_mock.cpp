@@ -15,12 +15,11 @@ struct MismaLetra {
 ClientMock::ClientMock(const char* hostname, const char* servname): protocolo(hostname, servname) {}
 
 char ClientMock::leer_entrada() {
-    char leido = '.';
-    std::cin >> leido;
-    while (std::none_of(acciones_validas.cbegin(), acciones_validas.cend(), MismaLetra(leido))) {
-        std::cin >> leido;
+    std::string linea = ".";
+    while (std::none_of(acciones_validas.cbegin(), acciones_validas.cend(), MismaLetra(linea[0]))) {
+        std::getline(std::cin, linea);
     }
-    return leido;
+    return linea[0];
 }
 
 bool ClientMock::realizar_accion(const char& accion) { return protocolo.enviar(accion); }
