@@ -40,7 +40,7 @@ static std::map<char, uint8_t> acciones = {
 //         throw ErrorConstructor();
 // }
 
-ProtocoloCliente::ProtocoloCliente(Socket& s) : skt(s) {
+ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;
     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
     if (closed)
