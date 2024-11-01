@@ -16,7 +16,8 @@ struct ErrorConstructor: public std::runtime_error {
 };
 
 class ProtocoloCliente {
-    friend class ClientMock;
+    friend class Client;
+
 private:
     Socket& s;
     int id_cliente;

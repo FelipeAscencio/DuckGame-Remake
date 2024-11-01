@@ -144,6 +144,10 @@ struct EstadoJuego {
                 case ALETEANDO:
                     estado_pato = "Aleteando";
                     break;
+
+                case CAMINANDO:
+                    estado_pato = "Caminando";
+                    break;
             }
             oss << "\nSENTIDO: " << sentido << ". ESTADO ACTUAL: " << estado_pato;
             oss << "\n---------------------------------\n";

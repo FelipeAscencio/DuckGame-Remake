@@ -2,28 +2,40 @@
 
 using namespace SDL2pp;
 
-Controlador::Controlador() {}
+Controlador::Controlador(Queue<char>& queue_enviador) : queue(queue_enviador) {}
 
-void Controlador::manejarEventos(bool& jugador_activo, int& estado) {
+void Controlador::manejar_eventos(bool& jugador_activo) {
     SDL_Event sdlEvent;
     while (SDL_PollEvent(&sdlEvent)) {
         if (sdlEvent.type == SDL_QUIT) {
             jugador_activo = false;
-        } else if (sdlEvent.type == SDL_KEYDOWN) {    // Detecta cuando una tecla es presionada
-            if (sdlEvent.key.keysym.sym == SDLK_q) {  // Verifica si la tecla presionada es "e"
-                estado = 0;                           // Cambia el valor de "estado" a 0
+        } else if (sdlEvent.type == SDL_KEYDOWN) {
+            if (sdlEvent.key.keysym.sym == SDLK_d) {
+                std::cout << "D" << std::endl;
+                queue.try_push('D');
             } else if (sdlEvent.key.keysym.sym ==
-                       SDLK_w) {  // Verifica si la tecla presionada es "e"
-                estado = 1;       // Cambia el valor de "estado" a 1
+                       SDLK_a) {
+                std::cout << "A" << std::endl;
+                queue.try_push('A');
             } else if (sdlEvent.key.keysym.sym ==
-                       SDLK_e) {  // Verifica si la tecla presionada es "e"
-                estado = 2;       // Cambia el valor de "estado" a 2
+                       SDLK_s) {
+                std::cout << "S" << std::endl;
+                queue.try_push('S');
             } else if (sdlEvent.key.keysym.sym ==
-                       SDLK_r) {  // Verifica si la tecla presionada es "e"
-                estado = 3;       // Cambia el valor de "estado" a 3
+                       SDLK_w) {
+                std::cout << "W" << std::endl;
+                queue.try_push('W');
             } else if (sdlEvent.key.keysym.sym ==
-                       SDLK_a) {  // Verifica si la tecla presionada es "e"
-                estado = 4;       // Cambia el valor de "estado" a 4
+                       SDLK_SPACE) {
+                std::cout << "SPACE" << std::endl;
+                queue.try_push(' ');
+            } else if (sdlEvent.key.keysym.sym ==
+                       SDLK_j){
+                std::cout << "J" << std::endl;
+                queue.try_push('C');
+            } else if (sdlEvent.key.keysym.sym ==
+                       SDLK_k){
+                std::cout << "K" << std::endl;
             }
         }
     }

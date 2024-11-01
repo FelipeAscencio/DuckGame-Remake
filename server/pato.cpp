@@ -231,6 +231,10 @@ void Pato::chequear_estado() {
             estado_actual = CAYENDO;
             break;
 
+        case CAMINANDO:
+            estado_actual = PARADO;
+            break;
+
         default:
             break;
     }
@@ -313,6 +317,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             mover(mapa, sentido);
             std::cout << "Posicion nueva: " << this->posicion.to_string();
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
+            this->estado_actual = CAMINANDO;
             break;
     }
 }
