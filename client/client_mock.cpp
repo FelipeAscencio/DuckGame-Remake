@@ -12,7 +12,7 @@ struct MismaLetra {
     bool operator()(const char& c) { return letra == c; }
 };
 
-ClientMock::ClientMock(const char* hostname, const char* servname): protocolo(hostname, servname) {}
+ClientMock::ClientMock(const char* hostname, const char* servname) : s(hostname, servname), protocolo(s), id(protocolo.id_cliente), queue_enviador(), queue_recibidor(), e(protocolo, queue_enviador, id), r(protocolo, queue_recibidor) {}
 
 char ClientMock::leer_entrada() {
     std::string linea = ".";
@@ -46,4 +46,13 @@ void ClientMock::loop_juego() {
     }
 }
 
-void ClientMock::start() { loop_juego(); }
+void ClientMock::start() { 
+    r.start();
+    e.start();
+    loop_juego(); 
+}
+
+ClientMock::~ClientMock(){
+    e.dejar_de_enviar();
+    r.dejar_de_recibir();
+}

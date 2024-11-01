@@ -32,13 +32,21 @@ static std::map<char, uint8_t> acciones = {
         {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
         {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}};
 
-ProtocoloCliente::ProtocoloCliente(const char* hostname, const char* servname):
-        s(hostname, servname) {
+// ProtocoloCliente::ProtocoloCliente(const char* hostname, const char* servname):
+//         s(hostname, servname) {
+//     bool closed = false;
+//     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
+//     if (closed)
+//         throw ErrorConstructor();
+// }
+
+ProtocoloCliente::ProtocoloCliente(Socket& s) : skt(s) {
     bool closed = false;
     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
     if (closed)
         throw ErrorConstructor();
 }
+
 
 uint8_t ProtocoloCliente::parsear_comando(char accion) {
     std::map<char, uint8_t>::iterator it = acciones.find(accion);

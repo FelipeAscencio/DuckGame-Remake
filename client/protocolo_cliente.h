@@ -16,8 +16,9 @@ struct ErrorConstructor: public std::runtime_error {
 };
 
 class ProtocoloCliente {
+    friend class ClientMock;
 private:
-    Socket s;
+    Socket& s;
     int id_cliente;
 
     bool procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual);
@@ -29,7 +30,10 @@ private:
     uint8_t parsear_comando(char accion);
 
 public:
-    explicit ProtocoloCliente(const char* hostname, const char* servname);
+    // explicit ProtocoloCliente(const char* hostname, const char* servname);
+
+    explicit ProtocoloCliente(Socket& s);
+
 
     bool enviar(const char& accion);
 
