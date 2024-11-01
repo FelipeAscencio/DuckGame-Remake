@@ -1,4 +1,4 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef COMMON_ESTADO_JUEGO_H_
 #define COMMON_ESTADO_JUEGO_H_
 
@@ -14,6 +14,7 @@
 #include "common/orientacion.h"
 #include "common/posicion.h"
 
+// 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
     int id;
     posicion_t posicion;
@@ -25,6 +26,7 @@ struct InformacionPato {
     orientacion_e orientacion;
     estado_pato_e estado;
 
+    // Constructor del struct con punteros.
     explicit InformacionPato(Pato* p):
             id(p->id_jugador),
             posicion(p->posicion),
@@ -36,6 +38,7 @@ struct InformacionPato {
             orientacion(p->orientacion),
             estado(p->estado_actual) {}
 
+    // Constructor del struct con parametros.
     explicit InformacionPato(const uint8_t& id_pato, const posicion_t& pos, bool esta_vivo,
                              bool tiene_arma, const uint8_t& id_arma, bool tiene_casco,
                              bool tiene_armadura, const orientacion_e& orientacion_pato,
@@ -51,6 +54,7 @@ struct InformacionPato {
             estado(estado_pato) {}
 };
 
+// 'struct' que compara 'ids', e indica si son iguales.
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
@@ -58,6 +62,7 @@ struct MismoID {
     bool operator()(Pato* p) const { return p->id_jugador == id; }
 };
 
+// 'struct' que encapsula el estado actual del juego para enviarlo al 'Cliente'.
 struct EstadoJuego {
     int cantidad_jugadores;
     int cantidad_armas;
@@ -67,6 +72,7 @@ struct EstadoJuego {
     int cantidad_cajas;
     std::vector<InformacionPato> info_patos;
 
+    // Constructor del struct.
     EstadoJuego():
             cantidad_jugadores(0),
             cantidad_armas(0),
@@ -75,10 +81,13 @@ struct EstadoJuego {
             cantidad_cascos(0),
             cantidad_cajas(0) {}
 
+    // Verifica la existencia de la id recibida por parametro.
     bool chequear_id(const int& id) {
         return std::any_of(info_patos.cbegin(), info_patos.cend(), MismoID(id));
     }
 
+    // Agrega la informacion de un pato en el vector de informacion de todos los patos.
+    // Utilizando un puntero al pato.
     void agregar_info_pato(Pato* p) {
         if (!chequear_id(p->id_jugador)) {
             InformacionPato nuevo_pato(p);
@@ -87,6 +96,8 @@ struct EstadoJuego {
         }
     }
 
+    // Agrega la informacion de un pato en el vector de informacion de todos los patos.
+    // Utilizando una referencia a la informacion del pato.
     void agregar_info_pato(const InformacionPato& info) {
         if (!chequear_id(info.id)) {
             this->info_patos.push_back(info);
@@ -94,6 +105,7 @@ struct EstadoJuego {
         }
     }
 
+    // Convierte en string al 'estado' del juego creado (utilizado para testear y debugear).
     std::string to_string() {
         std::ostringstream oss;
         oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
@@ -123,6 +135,7 @@ struct EstadoJuego {
                     sentido = "Arriba";
                     break;
             }
+
             std::string estado_pato;
             switch (info.estado) {
                 case PARADO:
@@ -149,12 +162,15 @@ struct EstadoJuego {
                     estado_pato = "Caminando";
                     break;
             }
+
             oss << "\nSENTIDO: " << sentido << ". ESTADO ACTUAL: " << estado_pato;
             oss << "\n---------------------------------\n";
         }
+
         return oss.str();
     }
 
+    // Vacia la informacion de los patos.
     void vaciar() { this->info_patos.clear(); }
 };
 

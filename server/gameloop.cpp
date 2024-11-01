@@ -2,7 +2,7 @@
 #include "server/gameloop.h"
 
 #include <algorithm>
-#define SLEEP 200
+#define SLEEP 20
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
         queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}

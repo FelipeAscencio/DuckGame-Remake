@@ -7,7 +7,8 @@ target_sources(taller_client
     client_dibujador.cpp
     client_parseador.cpp
     protocolo_cliente.cpp
-    client_mock.h
+    client_enviador.cpp
+    client_recibidor.cpp
     PUBLIC
     # .h files
     client_handler.h
@@ -15,5 +16,6 @@ target_sources(taller_client
     client_dibujador.h
     client_parseador.h
     protocolo_cliente.h
-    client_mock.h
+    client_enviador.h
+    client_recibidor.h
     )

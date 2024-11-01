@@ -1,8 +1,22 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "client/protocolo_cliente.h"
 
 #include <map>
 #include <vector>
+
+#define CERO 0
+#define SEIS 6
+#define BYTE_NULO 0x00
+#define PRIMERA_POSICION 0
+#define SEGUNDA_POSICION 1
+#define TERCERA_POSICION 2
+#define CUARTA_POSICION 3
+#define QUINTA_POSICION 4
+#define SEXTA_POSICION 5
+#define SEPTIMA_POSICION 6
+#define OCTAVA_POSICION 7
+#define NOVENA_POSICION 8
+#define DECIMA_POSICION 9
+#define TAMANIO_INFO_PATOS 10
 
 #define ACCION_DERECHA 0x01
 #define ACCION_IZQUIERDA 0x02
@@ -32,14 +46,6 @@ static std::map<char, uint8_t> acciones = {
         {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
         {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}};
 
-// ProtocoloCliente::ProtocoloCliente(const char* hostname, const char* servname):
-//         s(hostname, servname) {
-//     bool closed = false;
-//     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
-//     if (closed)
-//         throw ErrorConstructor();
-// }
-
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;
     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
@@ -47,11 +53,10 @@ ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
         throw ErrorConstructor();
 }
 
-
 uint8_t ProtocoloCliente::parsear_comando(char accion) {
     std::map<char, uint8_t>::iterator it = acciones.find(accion);
     if (it == acciones.end())
-        return 0;
+        return CERO;
     else
         return acciones.at(accion);
 }
@@ -59,15 +64,16 @@ uint8_t ProtocoloCliente::parsear_comando(char accion) {
 bool ProtocoloCliente::enviar(const char& accion) {
     bool was_closed = false;
     uint8_t comando = parsear_comando(accion);
-    if (comando == 0)
+    if (comando == CERO)
         return false;
+
     s.sendall(&comando, sizeof(comando), &was_closed);
     return !was_closed;
 }
 
 bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
     bool was_closed = false;
-    uint8_t leido = 0x00;
+    uint8_t leido = BYTE_NULO;
     std::vector<uint8_t> cantidades;
     while (leido != FIN_MENSAJE && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);
@@ -76,12 +82,12 @@ bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
     }
 
     if (!was_closed) {
-        estado_actual.cantidad_jugadores = cantidades[0];
-        estado_actual.cantidad_armas = cantidades[1];
-        estado_actual.cantidad_balas = cantidades[2];
-        estado_actual.cantidad_armaduras = cantidades[3];
-        estado_actual.cantidad_cascos = cantidades[4];
-        estado_actual.cantidad_cajas = cantidades[5];
+        estado_actual.cantidad_jugadores = cantidades[PRIMERA_POSICION];
+        estado_actual.cantidad_armas = cantidades[SEGUNDA_POSICION];
+        estado_actual.cantidad_balas = cantidades[TERCERA_POSICION];
+        estado_actual.cantidad_armaduras = cantidades[CUARTA_POSICION];
+        estado_actual.cantidad_cascos = cantidades[QUINTA_POSICION];
+        estado_actual.cantidad_cajas = cantidades[SEXTA_POSICION];
         return true;
     } else {
         return false;
@@ -90,7 +96,7 @@ bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
 
 bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
     bool was_closed = false;
-    uint8_t leido = 0x00;
+    uint8_t leido = BYTE_NULO;
     std::vector<uint8_t> info;
     while (leido != FIN_MENSAJE && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);
@@ -99,11 +105,11 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
     }
 
     if (!was_closed) {
-        posicion_t posicion(info[1], info[2]);
-        InformacionPato pato(info[0], posicion, static_cast<bool>(info[3]),
-                             static_cast<bool>(info[4]), info[5], static_cast<bool>(info[6]),
-                             static_cast<bool>(info[7]), static_cast<orientacion_e>(info[8]),
-                             static_cast<estado_pato_e>(info[9]));
+        posicion_t posicion(info[SEGUNDA_POSICION], info[TERCERA_POSICION]);
+        InformacionPato pato(info[PRIMERA_POSICION], posicion, static_cast<bool>(info[CUARTA_POSICION]),
+                             static_cast<bool>(info[QUINTA_POSICION]), info[SEXTA_POSICION], static_cast<bool>(info[SEPTIMA_POSICION]),
+                             static_cast<bool>(info[OCTAVA_POSICION]), static_cast<orientacion_e>(info[NOVENA_POSICION]),
+                             static_cast<estado_pato_e>(info[DECIMA_POSICION]));
         estado_actual.agregar_info_pato(pato);
         return true;
     } else {
@@ -117,62 +123,52 @@ bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_
         case CODIGO_PATO:
             resultado = procesar_patos(estado_actual);
             break;
-
         case CODIGO_ARMA:
             break;
-
         case CODIGO_BALA:
             break;
-
         case CODIGO_ARMADURA:
             break;
-
         case CODIGO_CASCO:
             break;
-
         case CODIGO_CAJA:
             break;
-
         case CODIGO_CANTIDADES:
             resultado = procesar_cantidades(estado_actual);
             break;
-
         default:
             resultado = false;
             break;
     }
+
     return resultado;
 }
 
 bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
-    uint8_t leido = 0x00;
+    uint8_t leido = BYTE_NULO;
     bool was_closed = false;
-
-    std::vector<uint8_t> cantidades(6);
+    std::vector<uint8_t> cantidades(SEIS);
     s.recvall(&leido, sizeof(leido), &was_closed);
-
     s.recvall(cantidades.data(), cantidades.size(), &was_closed);
-
     s.recvall(&leido, sizeof(leido), &was_closed);
-
     int i = 0;
-    std::vector<uint8_t> info_pato(10);
+    std::vector<uint8_t> info_pato(TAMANIO_INFO_PATOS);
     posicion_t pos;
-    while (i < cantidades[0]) {
-        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo del pato
+    while (i < cantidades[PRIMERA_POSICION]) {
+        s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo del pato.
         s.recvall(info_pato.data(), info_pato.size(), &was_closed);
-        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo fin mensaje
-        pos.set_posicion(info_pato[1], info_pato[2]);
+        s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo fin mensaje.
+        pos.set_posicion(info_pato[SEGUNDA_POSICION], info_pato[TERCERA_POSICION]);
         std::cout << pos.to_string();
-        InformacionPato pato_actual(info_pato[0], pos, info_pato[3], info_pato[4], info_pato[5],
-                                    info_pato[6], info_pato[7], (orientacion_e)info_pato[8],
-                                    (estado_pato_e)info_pato[9]);
+        InformacionPato pato_actual(info_pato[PRIMERA_POSICION], pos, info_pato[CUARTA_POSICION], info_pato[QUINTA_POSICION], info_pato[SEXTA_POSICION],
+                                    info_pato[SEPTIMA_POSICION], info_pato[OCTAVA_POSICION], (orientacion_e)info_pato[NOVENA_POSICION],
+                                    (estado_pato_e)info_pato[DECIMA_POSICION]);
         estado_actual.agregar_info_pato(pato_actual);
         info_pato.clear();
-        info_pato.resize(10);
+        info_pato.resize(TAMANIO_INFO_PATOS);
         i++;
     }
-    s.recvall(&leido, sizeof(leido), &was_closed);  // leo fin de comunicacion
 
+    s.recvall(&leido, sizeof(leido), &was_closed);  // Lee el fin de  la comunicacion.
     return !was_closed;
 }

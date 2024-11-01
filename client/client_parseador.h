@@ -1,3 +1,4 @@
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef CLIENT_PARSEADOR_H
 #define CLIENT_PARSEADOR_H
 
@@ -50,4 +51,4 @@ public:
     Parseador& operator=(Parseador&&) = default;
 };
 
-#endif
+#endif  // CLIENT_PARSEADOR_H
