@@ -3,6 +3,8 @@
 #define COMMON_POSICION_H_
 
 #include <iostream>
+#include <sstream>
+#include <string>
 
 typedef struct Posicion {
     int coordenada_x;
@@ -29,6 +31,12 @@ typedef struct Posicion {
     void set_posicion(int x, int y) {
         coordenada_x = x;
         coordenada_y = y;
+    }
+
+    std::string to_string() {
+        std::ostringstream oss;
+        oss << "(" << coordenada_x << ";" << coordenada_y << ")\n";
+        return oss.str();
     }
 } posicion_t;
 

@@ -7,9 +7,8 @@
 #include <string>
 #include <utility>
 
-#include "../common/queue.h"
-
 #include "../common/estado_juego.h"
+#include "../common/queue.h"
 
 class ListaQueues {
 private:
@@ -22,6 +21,8 @@ public:
     void broadcast(const EstadoJuego& estado_actual);
 
     void agregar_queue(Queue<EstadoJuego>& q, int id_cliente);
+
+    int get_size() { return lista_queues.size(); }
 
     void eliminar_queue(int id_cliente);
 };

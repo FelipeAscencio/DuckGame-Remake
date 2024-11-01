@@ -17,18 +17,16 @@ private:
     std::atomic<bool> aceptando_jugadores;
     Queue<comando_t>& queue_juego;
     ListaQueues& queues_clientes;
-    std::vector<int>& ids_clientes;
 
     void recolectar();
     void eliminar_cliente(ThreadUsuario* jugador);
 
 public:
-    explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l,
-                       std::vector<int>& ids_clientes);
+    explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l);
 
     virtual void run() override;
 
-    void dejar_de_aceptar() { this->aceptando_jugadores = false; };
+    void dejar_de_aceptar() { this->aceptando_jugadores = false; }
 
     virtual ~Aceptador();
 };

@@ -16,8 +16,9 @@ struct ErrorConstructor: public std::runtime_error {
 };
 
 class ProtocoloCliente {
+    friend class Client;
 private:
-    Socket& socket;
+    Socket& s;
     int id_cliente;
 
     bool procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual);
@@ -29,19 +30,16 @@ private:
     uint8_t parsear_comando(char accion);
 
 public:
-    explicit ProtocoloCliente(Socket& socket);
+    // explicit ProtocoloCliente(const char* hostname, const char* servname);
+
+    explicit ProtocoloCliente(Socket& s);
+
 
     bool enviar(const char& accion);
 
     bool recibir(EstadoJuego& estado_actual);
 
-    // Deshabilito las copias.
-    ProtocoloCliente(const ProtocoloCliente&) = delete;
-    ProtocoloCliente& operator=(const ProtocoloCliente&) = delete;
-
-    // Permito el movimiento del objeto.
-    ProtocoloCliente(ProtocoloCliente&&) = default;
-    ProtocoloCliente& operator=(ProtocoloCliente&&) = default;
+    int get_id() { return this->id_cliente; }
 };
 
 #endif  // CLIENT_PROTOCOLO_CLIENTE_H_

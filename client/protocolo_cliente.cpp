@@ -1,8 +1,8 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "client/protocolo_cliente.h"
 
-#include <vector>
 #include <map>
+#include <vector>
 
 #define ACCION_DERECHA 0x01
 #define ACCION_IZQUIERDA 0x02
@@ -10,15 +10,13 @@
 #define ACCION_ARRIBA 0x04
 #define ACCION_SALTO 0x05
 #define ACCION_DISPARAR 0x06
-#define ACCION_AGARRAR 0x07
 
 #define DERECHA 'D'
 #define IZQUIERDA 'A'
 #define ARRIBA 'W'
 #define AGACHARSE 'S'
 #define SALTO ' '
-#define DISPARO 'J'
-#define AGARRAR 'K'
+#define DISPARO 'C'
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
@@ -30,26 +28,40 @@
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
-static std::map <char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE}, {ARRIBA, ACCION_ARRIBA}, {SALTO, ACCION_SALTO}, {DISPARO, ACCION_DISPARAR},  {AGARRAR, ACCION_AGARRAR}}; 
+static std::map<char, uint8_t> acciones = {
+        {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
+        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}};
 
-ProtocoloCliente::ProtocoloCliente(Socket& skt): socket(skt){
+// ProtocoloCliente::ProtocoloCliente(const char* hostname, const char* servname):
+//         s(hostname, servname) {
+//     bool closed = false;
+//     s.recvall(&id_cliente, sizeof(id_cliente), &closed);
+//     if (closed)
+//         throw ErrorConstructor();
+// }
+
+ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;
-    socket.recvall(&id_cliente, sizeof(id_cliente), &closed);
+    s.recvall(&id_cliente, sizeof(id_cliente), &closed);
     if (closed)
         throw ErrorConstructor();
 }
 
-uint8_t ProtocoloCliente::parsear_comando(char accion){
+
+uint8_t ProtocoloCliente::parsear_comando(char accion) {
     std::map<char, uint8_t>::iterator it = acciones.find(accion);
-    if (it == acciones.end()) return 0;
-    else return acciones.at(accion);
+    if (it == acciones.end())
+        return 0;
+    else
+        return acciones.at(accion);
 }
 
 bool ProtocoloCliente::enviar(const char& accion) {
     bool was_closed = false;
     uint8_t comando = parsear_comando(accion);
-    if (comando == 0) return false;
-    socket.sendall(&comando, sizeof(comando), &was_closed);
+    if (comando == 0)
+        return false;
+    s.sendall(&comando, sizeof(comando), &was_closed);
     return !was_closed;
 }
 
@@ -58,7 +70,7 @@ bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     std::vector<uint8_t> cantidades;
     while (leido != FIN_MENSAJE && !was_closed) {
-        socket.recvall(&leido, sizeof(leido), &was_closed);
+        s.recvall(&leido, sizeof(leido), &was_closed);
         if (!was_closed)
             cantidades.push_back(leido);
     }
@@ -81,7 +93,7 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     std::vector<uint8_t> info;
     while (leido != FIN_MENSAJE && !was_closed) {
-        socket.recvall(&leido, sizeof(leido), &was_closed);
+        s.recvall(&leido, sizeof(leido), &was_closed);
         if (!was_closed)
             info.push_back(leido);
     }
@@ -135,10 +147,32 @@ bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_
 bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = 0x00;
     bool was_closed = false;
-    while (leido != FIN_COMUNICACION && !was_closed) {
-        socket.recvall(&leido, sizeof(leido), &was_closed);
-        if (!was_closed)
-            was_closed = procesar_leido(leido, estado_actual);
+
+    std::vector<uint8_t> cantidades(6);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
+    s.recvall(cantidades.data(), cantidades.size(), &was_closed);
+
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
+    int i = 0;
+    std::vector<uint8_t> info_pato(10);
+    posicion_t pos;
+    while (i < cantidades[0]) {
+        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo del pato
+        s.recvall(info_pato.data(), info_pato.size(), &was_closed);
+        s.recvall(&leido, sizeof(leido), &was_closed);  // leo codigo fin mensaje
+        pos.set_posicion(info_pato[1], info_pato[2]);
+        std::cout << pos.to_string();
+        InformacionPato pato_actual(info_pato[0], pos, info_pato[3], info_pato[4], info_pato[5],
+                                    info_pato[6], info_pato[7], (orientacion_e)info_pato[8],
+                                    (estado_pato_e)info_pato[9]);
+        estado_actual.agregar_info_pato(pato_actual);
+        info_pato.clear();
+        info_pato.resize(10);
+        i++;
     }
+    s.recvall(&leido, sizeof(leido), &was_closed);  // leo fin de comunicacion
+
     return !was_closed;
 }

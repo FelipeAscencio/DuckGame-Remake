@@ -1,6 +1,5 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
-#ifndef SERVER_ARMA_H_
-#define SERVER_ARMA_H_
+#ifndef ARMA_H
+#define ARMA_H
 
 #include <iostream>
 #include <string>
@@ -20,7 +19,6 @@
 #define ID_SNIPER 10
 
 class Arma {
-    friend struct InformacionPato;
 
 protected:
     const int id_arma;
@@ -34,7 +32,8 @@ protected:
     bool puede_agarrarse();
 
 public:
-    Arma(int id_arma, std::string nombre, int alcance, int municiones, bool tiene_retroceso);
+    Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,
+         bool tiene_retroceso);
 
     virtual ~Arma() = default;
 
@@ -57,4 +56,4 @@ public:
     int obtener_id() const { return id_arma; }
 };
 
-#endif  // SERVER_ARMA_H_
+#endif

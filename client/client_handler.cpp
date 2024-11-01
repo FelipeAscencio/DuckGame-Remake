@@ -4,7 +4,7 @@
 #define MENOS_UNO -1
 #define ANCHO_MIN 960
 #define ALTO_MIN 720
-#define VOLUMEN_MUSICA 20
+#define VOLUMEN_MUSICA 0
 #define FRECUENCIA_HZ 44100
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2
@@ -17,7 +17,12 @@
 using namespace SDL2pp;
 
 Client::Client(const char* hostname, const char* servicio):
-        hostname(hostname), servicio(servicio), jugador_activo(true), controlador(), estado(CERO) {}
+        queue_enviador(),
+        queue_recibidor(), jugador_activo(true), controlador(queue_enviador), s(hostname, servicio),
+        protocolo(s),
+        id(protocolo.id_cliente),
+        e(protocolo, queue_enviador, id),
+        r(protocolo, queue_recibidor) {}
 
 Mix_Music* Client::iniciar_musica(){
     if (Mix_OpenAudio(FRECUENCIA_HZ, MIX_DEFAULT_FORMAT, AUDIO_ESTEREO, BUFFER_AUDIO) < CERO) {
@@ -47,16 +52,23 @@ void Client::controlar_loop_juego() {
                   ALTO_MIN, SDL_WINDOW_SHOWN);
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     std::string ruta_mapa = RUTA_MAPA_1;
-    int id = 1;
-    dibujador.emplace(renderer, ruta_mapa, id);
+    dibujador.emplace(renderer, ruta_mapa, this->id, queue_recibidor);
+
+    r.start();
+    e.start();
 
     while (this->jugador_activo) {
-        controlador.manejar_eventos(this->jugador_activo, this->estado);
+        controlador.manejar_eventos(this->jugador_activo);
         if (dibujador) {
-            dibujador->renderizar(renderer, this->estado);
+            dibujador->renderizar(renderer);
         }
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 
     terminar_musica(musica_fondo);
+}
+
+Client::~Client() {
+    e.dejar_de_enviar();
+    r.dejar_de_recibir();
 }

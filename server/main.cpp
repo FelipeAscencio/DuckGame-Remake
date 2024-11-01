@@ -1,4 +1,5 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
+#include <cstdlib>
 #include <exception>
 #include <iostream>
 
@@ -31,6 +32,7 @@ void secuencia_logica_servidor(const char* servicio) {
 }
 
 int main(int argc, const char* argv[]) {
+    srand((unsigned)time(NULL));
     try {
         if (!argumentos_validos(argc)) {
             return FALLA;

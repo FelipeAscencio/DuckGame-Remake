@@ -1,11 +1,12 @@
 #include "arma.h"
 
-Arma::Arma(int id, std::string nombre_arma, int alcance, int municiones, bool retroceso):
+Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, const int& municiones,
+           bool tiene_retroceso):
         id_arma(id),
         nombre(nombre_arma),
         alcance(alcance),
         municiones(municiones),
-        retroceso(retroceso),
+        retroceso(tiene_retroceso),
         posicion_spawn(0, 0),
         agarrada(false),
         soltada(false) {}

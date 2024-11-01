@@ -23,8 +23,8 @@
 
 using namespace SDL2pp;
 
-Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id):
-        id_jugador(id), parseador(),
+Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id, Queue<EstadoJuego>& queue_recibidor):
+        id_jugador(id), queue(queue_recibidor), parseador(),
         spriteSheetPato(renderer, DATA_PATH RUTA_SPR_PATO),
         spriteSheetAK(renderer, DATA_PATH RUTA_SPR_AK),
         spriteSheetCaja(renderer, DATA_PATH RUTA_SPR_CAJAS),
@@ -126,86 +126,48 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
     renderer.Copy(spriteSheet, SDL2pp::Optional<SDL2pp::Rect>(sprite), SDL2pp::Optional<SDL2pp::Rect>(dstRect), angle, SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::renderizar(SDL2pp::Renderer& renderer, const int estado) {
-    renderer.Clear();
-    renderer.Copy(this->mapa);
-    float escala = ESCALA_SPRITES_GRANDES;
-    unsigned int current_ticks = SDL_GetTicks();
-
-    if (estado == 0) {
-        int x = 0;
-        int y = 0;
-        auto [x_1, y_1] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_1, y_1, escala, DERECHA, 1);
-        x = 0;
-        y = 10;
-        auto [x_2, y_2] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_2, y_2, escala, DERECHA, 2);
-        x = 10;
-        y = 0;
-        auto [x_3, y_3] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_3, y_3, escala, DERECHA, 3);
-        x = 10;
-        y = 10;
-        auto [x_4, y_4] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_4, y_4, escala, DERECHA, 4);
-    } else if (estado == 1) {
-        int x = 200;
-        int y = 160;
-        auto [x_1, y_1] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_1, y_1, escala, DERECHA, 1);
-        x = 200;
-        y = 150;
-        auto [x_2, y_2] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_2, y_2, escala, DERECHA, 2);
-        x = 190;
-        y = 160;
-        auto [x_3, y_3] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_3, y_3, escala, DERECHA, 3);
-        x = 190;
-        y = 150;
-        auto [x_4, y_4] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_4, y_4, escala, DERECHA, 4);
-    } if (estado == 2) {
-        int x = 100;
-        int y = 100;
-        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        int spriteIndex = 1 + (current_ticks / 10) % 6;
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[spriteIndex], x_rel, y_rel, escala, DERECHA, 1);
-    } else if (estado == 3) {
-        int x = 100;
-        int y = 100;
-        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, ARRIBA, 1);
-    } else if (estado == 4){
-        float x_linea = 0.01;
-        float y_linea = 0.2;
-        float escala = 0.07;
-        float separacion = 0.01;
-        dibujar_sprites_fila(renderer, this->spriteSheetArmadura, this->spritesArmadura, ANCHO_VENTANA,
-                             ALTO_VENTANA, x_linea, y_linea, escala, separacion);
-        dibujar_sprites_fila(renderer, this->spriteSheetEscopeta, this->spritesEscopeta, ANCHO_VENTANA,
-                             ALTO_VENTANA, x_linea, y_linea + 0.2, escala, separacion);
-        dibujar_sprites_fila(renderer, this->spriteSheetLaser, this->spritesLaser, ANCHO_VENTANA,
-                             ALTO_VENTANA, x_linea, y_linea + 0.4, escala, separacion);
-        dibujar_sprites_fila(renderer, this->spriteSheetPistola, this->spritesPistola, ANCHO_VENTANA,
-                             ALTO_VENTANA, x_linea, y_linea + 0.6, escala, separacion);
-    } else if (estado == 5) {
-        int x = 100;
-        int y = 100;
-        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[1], x_rel, y_rel, escala, IZQUIERDA, 1);
-    } else if (estado == 6) {
-        int x = 100;
-        int y = 100;
-        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[1], x_rel, y_rel, escala, ARRIBA, 1);
-    } else if (estado == 7) {
-        int x = 100;
-        int y = 100;
-        auto [x_rel, y_rel] = convertir_a_relativo(x, y);
-        dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_rel, y_rel, escala, DERECHA, 1);
+void Dibujador::parsear_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+    float escala = 0.07;
+    int id;
+    float x;
+    float y;
+    orientacion_e orientacion;
+    estado_pato_e estado;
+    for (auto& pato: estado_actual.info_patos){
+        id = pato.id;
+        x = pato.posicion.coordenada_x;
+        y = pato.posicion.coordenada_y;
+        orientacion = pato.orientacion;
+        estado = pato.estado;
+        if (estado == 0){
+            auto [x_1, y_1] = convertir_a_relativo(x, y);
+            dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[0], x_1, y_1, escala, orientacion, id);
+        } else if (estado == 1){
+            auto [x_1, y_1] = convertir_a_relativo(x, y);
+            dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[10], x_1, y_1, escala, orientacion, id);
+        } else if (estado == 2){
+            auto [x_1, y_1] = convertir_a_relativo(x, y);
+            dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[7], x_1, y_1, escala, orientacion, id);
+        } else if (estado == 3){
+            auto [x_1, y_1] = convertir_a_relativo(x, y);
+            dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[8], x_1, y_1, escala, orientacion, id);
+        } else if (estado == 4){
+            auto [x_1, y_1] = convertir_a_relativo(x, y);
+            dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[9], x_1, y_1, escala, orientacion, id);
+        } else if (estado == 5) {
+            auto [x_1, y_1] = convertir_a_relativo(x, y);
+            dibujar_sprite(renderer, this->spriteSheetPato, this->spritesPato[1], x_1, y_1, escala, orientacion, id);
+        }
     }
+}
 
-    renderer.Present();
+void Dibujador::renderizar(SDL2pp::Renderer& renderer) {
+    //unsigned int current_ticks = SDL_GetTicks();
+    EstadoJuego estado_actual;
+    if (queue.try_pop(estado_actual)) {
+        renderer.Clear();
+        renderer.Copy(this->mapa);
+        parsear_estado_juego(estado_actual, renderer);
+        renderer.Present();
+    }
 }

@@ -8,6 +8,8 @@
 
 #include "client_parseador.h"
 #include "../common/orientacion.h"
+#include "../common/queue.h"
+#include "../common/estado_juego.h"
 
 using namespace SDL2pp;
 
@@ -16,6 +18,7 @@ using namespace SDL2pp;
 class Dibujador {
 private:
     const int id_jugador;
+    Queue<EstadoJuego>& queue;
     Parseador parseador;
     Texture spriteSheetPato;
     Texture spriteSheetAK; // Faltan la bala.
@@ -53,12 +56,14 @@ private:
                     const SDL_Rect& sprite, float x, float y, float escala,
                     orientacion_e orientacion, const int id);
 
+    void parsear_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
 public:
     // Constructor de la clase.
-    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id_jugador);
+    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id_jugador, Queue<EstadoJuego>& queue_recibidor);
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
-    void renderizar(Renderer& renderer, const int estado);
+    void renderizar(Renderer& renderer);
 
     // Deshabilito las copias.
     Dibujador(const Dibujador&) = delete;
