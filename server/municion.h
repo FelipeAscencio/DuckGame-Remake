@@ -8,7 +8,7 @@
 
 typedef enum Dispersion { NO, BAJA, MEDIA, ALTA } dispersion_e;
 
-typedef enum Inclinacion { NO_TIENE, ARRIBA, ABAJO } inclinacion_e;
+typedef enum Inclinacion { NO_TIENE, PARA_ARRIBA, ABAJO } inclinacion_e;
 
 class Municion {
 

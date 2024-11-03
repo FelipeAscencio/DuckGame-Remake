@@ -55,6 +55,7 @@ bool AK47::disparar(const orientacion_e& direccion) {
     balas.push_back(bala_disparada);
     bala_disparada->avanzar();
     this->municiones -= 1;
+    return true;
 }
 
 void AK47::chequeo_balas() {

@@ -31,7 +31,7 @@ public:
             protocol(p), queue_comandos(q), id_cliente(id), vivo(true) {}
 
     void run() override {
-        while (vivo) {
+        while (vivo) { //cppcheck-suppress variableScope
             char accion;
             try {
                 accion = queue_comandos.pop();

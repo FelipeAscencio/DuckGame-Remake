@@ -32,7 +32,7 @@ bool Municion::fuera_de_rango() {
 
 int buscar_inclinacion(const inclinacion_e& inclinacion) {
     int inc = 0;
-    if (inclinacion == ARRIBA) {
+    if (inclinacion == PARA_ARRIBA) {
         inc = 1;
     } else if (inclinacion == ABAJO) {  // cppcheck-suppress knownConditionTrueFalse
         inc = -1;

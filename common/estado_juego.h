@@ -57,7 +57,7 @@ struct InformacionArma {
 
     explicit InformacionArma(Arma* a): id_arma(a->id_arma), posicion(a->posicion_spawn) {}
 
-    explicit InformacionArma(uint8_t id, uint8_t x, uint8_t y): id_arma(id), posicion(x, y);
+    explicit InformacionArma(uint8_t id, uint8_t x, uint8_t y): id_arma(id), posicion(x, y) {}
 
     explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
 };
@@ -176,7 +176,7 @@ struct EstadoJuego {
             oss << "\n---------------------------------\n";
         }
 
-        for (size_t i = 0; i < cantidad_armas; i++) {
+        for (int i = 0; i < cantidad_armas; i++) {
             oss << i << ". ID arma: " << this->info_armas[i].id_arma;
             oss << "\nPosicion: " << this->info_armas[i].posicion.to_string();
             oss << "----------------------------------\n";
