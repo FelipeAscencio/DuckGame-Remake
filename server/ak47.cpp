@@ -7,7 +7,7 @@
 #define MUNICIONES 30
 #define TILE_A_METRO 10
 
-AK47::AK47(): Arma(ID_AK47, AK_47, ALCANCE, MUNICIONES, true), ultima_bala_disparada(NO) {}
+AK47::AK47(posicion_t posicion_inicial): Arma(ID_AK47, AK_47, ALCANCE, MUNICIONES, true, posicion_inicial), ultima_bala_disparada(NO) {}
 
 void AK47::modificar_dispersion_balas(bool disparando) {
     if (disparando) {

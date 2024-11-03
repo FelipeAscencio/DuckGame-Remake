@@ -6,7 +6,7 @@
 #define ALCANCE 64
 #define MUNICIONES 3
 
-Sniper::Sniper(): Arma(ID_SNIPER, SNIPER, ALCANCE, MUNICIONES, false) {}
+Sniper::Sniper(posicion_t posicion_inicial): Arma(ID_SNIPER, SNIPER, ALCANCE, MUNICIONES, false, posicion_inicial) {}
 
 bool Sniper::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {

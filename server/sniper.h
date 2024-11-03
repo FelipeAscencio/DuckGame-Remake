@@ -9,7 +9,7 @@
 
 class Sniper: public Arma {
 public:
-    Sniper();
+    Sniper(posicion_t posicion_inicial);
     bool disparar(const orientacion_e& direccion) override;
     void chequeo_balas() override;
 };

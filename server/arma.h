@@ -40,7 +40,7 @@ protected:
 
 public:
     Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,
-         bool tiene_retroceso);
+         bool tiene_retroceso, posicion_t posicion_inicial);
 
     virtual ~Arma() = default;
 

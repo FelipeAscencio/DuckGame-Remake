@@ -12,7 +12,7 @@ private:
     bool activa;
 
 public:
-    Banana();
+    Banana(posicion_t posicion_inicial);
 
     bool disparar(const orientacion_e& direccion) override;
 

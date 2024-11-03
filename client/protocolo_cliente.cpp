@@ -99,11 +99,14 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
     }
 
     if (!was_closed) {
-        posicion_t posicion(info[1], info[2]);
-        InformacionPato pato(info[0], posicion, static_cast<bool>(info[3]),
-                             static_cast<bool>(info[4]), info[5], static_cast<bool>(info[6]),
-                             static_cast<bool>(info[7]), static_cast<orientacion_e>(info[8]),
-                             static_cast<estado_pato_e>(info[9]));
+        float x, y;
+        x = info[1] + (info[2]/TILE_A_METRO);
+        y = info[3] + (info[4]/TILE_A_METRO);
+        posicion_t posicion(x,y);
+        InformacionPato pato(info[0], posicion, static_cast<bool>(info[5]),
+                             static_cast<bool>(info[6]), info[7], static_cast<bool>(info[8]),
+                             static_cast<bool>(info[9]), static_cast<orientacion_e>(info[10]),
+                             static_cast<estado_pato_e>(info[11]));
         estado_actual.agregar_info_pato(pato);
         return true;
     } else {
@@ -121,7 +124,10 @@ bool ProtocoloCliente::procesar_armas(EstadoJuego& estado_actual) {
             info.push_back(leido);
     }
     if (!was_closed) {
-        InformacionArma arma_nueva(info[0], info[1], info[2]);
+        float x, y;
+        x = info[1] + (info[2]/TILE_A_METRO);
+        y = info[3] + (info[4]/TILE_A_METRO);
+        InformacionArma arma_nueva(info[0], x, y);
         estado_actual.agregar_arma(arma_nueva);
         return true;
     } else {

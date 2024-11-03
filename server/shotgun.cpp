@@ -7,8 +7,8 @@
 #define ALCANCE_MAXIMO 9
 #define MUNICIONES 2
 
-Shotgun::Shotgun():
-        Arma(ID_SHOTGUN, SHOTGUN, ALCANCE_MINIMO, MUNICIONES, true),
+Shotgun::Shotgun(posicion_t posicion_inicial):
+        Arma(ID_SHOTGUN, SHOTGUN, ALCANCE_MINIMO, MUNICIONES, true, posicion_inicial),
         debe_recargar(false),
         alcance_maximo(ALCANCE_MAXIMO) {}
 

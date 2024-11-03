@@ -13,7 +13,7 @@ class AK47: public Arma {
     void modificar_dispersion_balas(bool disparando);
 
 public:
-    AK47();
+    AK47(posicion_t posicion_inicial);
     bool disparar(const orientacion_e& direccion) override;
 
     void chequeo_balas() override;

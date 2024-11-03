@@ -1,8 +1,9 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/gameloop.h"
-
+#include <time.h>
 #include <algorithm>
-#define SLEEP 200
+
+#define FPS 30
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
         queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
@@ -38,23 +39,38 @@ void Gameloop::enviar_estado_juego() {
     queues_clientes.broadcast(estado_actual);
 }
 
-void Gameloop::run() {
-    while (juego_activo) {
-        enviar_estado_juego();
-        chequear_nuevos_jugadores();
-        if (!jugadores.empty()) {
-            actualizar_estado_jugadores();
-            comando_t cmd;
-            if (queue.try_pop(cmd)) {
-                for (Pato* p: jugadores) {
-                    if (cmd.id_cliente == p->id_jugador) {
-                        p->realizar_accion(cmd.accion, mapa);
-                    }
+void Gameloop::loop_juego(){
+    enviar_estado_juego();
+    chequear_nuevos_jugadores();
+    if (!jugadores.empty()) {
+        actualizar_estado_jugadores();
+        comando_t cmd;
+        if (queue.try_pop(cmd)) {
+            for (Pato* p: jugadores) {
+                if (cmd.id_cliente == p->id_jugador) {
+                    p->realizar_accion(cmd.accion, mapa);
                 }
             }
         }
-        // sleep
-        std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
+    }
+}
+
+void Gameloop::run() {
+    time_t t1 = time(NULL);
+    unsigned long f = 0;
+    float rest;
+    while (juego_activo) {
+        loop_juego();
+        time_t t2 = time(NULL);
+        rest = (FPS/100) - (t2 - t1);
+        if (rest < 0){
+            float atrasado = -rest;
+            rest = (FPS/100) - (atrasado * 100 / FPS);
+            float perdido = atrasado + rest;
+            t1 += perdido;
+            f += int(perdido * 100 / FPS);
+        }
+        std::this_thread::sleep_for(std::chrono::microseconds(int(rest*1000)));
     }
 }
 

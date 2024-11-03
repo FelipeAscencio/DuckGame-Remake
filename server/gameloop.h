@@ -27,6 +27,8 @@ private:
 
     void chequear_nuevos_jugadores();
 
+    void loop_juego();
+
 public:
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);
 

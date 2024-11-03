@@ -57,7 +57,7 @@ struct InformacionArma {
 
     explicit InformacionArma(Arma* a): id_arma(a->id_arma), posicion(a->posicion_spawn) {}
 
-    explicit InformacionArma(uint8_t id, uint8_t x, uint8_t y): id_arma(id), posicion(x, y) {}
+    explicit InformacionArma(uint8_t id, float x, float y): id_arma(id), posicion(x, y) {}
 
     explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
 };

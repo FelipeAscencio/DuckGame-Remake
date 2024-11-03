@@ -7,8 +7,8 @@
 #define MUNICION 1
 #define TIEMPO_HASTA_EXPLOTAR 4
 
-Granada::Granada():
-        Arma(ID_GRANADA, GRANADA, ALCANCE, MUNICION, false),
+Granada::Granada(posicion_t posicion_inicial):
+        Arma(ID_GRANADA, GRANADA, ALCANCE, MUNICION, false, posicion_inicial),
         tiempo_hasta_explotar(TIEMPO_HASTA_EXPLOTAR),
         seguro_puesto(true),
         activa(false) {}

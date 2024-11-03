@@ -2,6 +2,7 @@
 #include "server/protocol.h"
 
 #include <vector>
+#include <netinet/in.h>
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
@@ -22,12 +23,24 @@
 
 ServerProtocol::Protocol::Protocol(Socket& skt): s(skt) {}
 
+std::vector<uint8_t> separar_posicion_en_entero_y_decimal(const posicion_t& posicion){
+    std::vector<uint8_t> posiciones;
+    posiciones.push_back((uint8_t)posicion.coordenada_x); // parte entera de x
+    posiciones.push_back((uint8_t)((posicion.coordenada_x - posiciones[0])*TILE_A_METRO)); // parte decimal de x
+    posiciones.push_back((uint8_t)posicion.coordenada_y); // parte entera de y
+    posiciones.push_back((uint8_t)((posicion.coordenada_y - posiciones[2])*TILE_A_METRO)); // parte decimal de y
+    return posiciones;
+}
+
 std::vector<uint8_t> ServerProtocol::Protocol::serializar_pato(const InformacionPato& pato_actual) {
     std::vector<uint8_t> info;
     info.push_back(CODIGO_PATO);
     info.push_back(pato_actual.id);
-    info.push_back(pato_actual.posicion.coordenada_x);
-    info.push_back(pato_actual.posicion.coordenada_y);
+    std::vector<uint8_t> posiciones_separadas = separar_posicion_en_entero_y_decimal(pato_actual.posicion);
+    info.push_back(posiciones_separadas[0]);
+    info.push_back(posiciones_separadas[1]);
+    info.push_back(posiciones_separadas[2]);
+    info.push_back(posiciones_separadas[3]);
     info.push_back(pato_actual.vivo);
     info.push_back(pato_actual.arma);
     info.push_back(pato_actual.id_arma_equipada);
@@ -57,8 +70,11 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_armas(const Informacio
     std::vector<uint8_t> arma;
     arma.push_back(CODIGO_ARMA);
     arma.push_back(info_arma.id_arma);
-    arma.push_back(info_arma.posicion.coordenada_x);
-    arma.push_back(info_arma.posicion.coordenada_y);
+    std::vector<uint8_t> posiciones_separadas = separar_posicion_en_entero_y_decimal(info_arma.posicion);
+    arma.push_back(posiciones_separadas[0]);
+    arma.push_back(posiciones_separadas[1]);
+    arma.push_back(posiciones_separadas[2]);
+    arma.push_back(posiciones_separadas[3]);
     arma.push_back(FIN_MENSAJE);
     return arma;
 }

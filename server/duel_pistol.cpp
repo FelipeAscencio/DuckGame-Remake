@@ -6,7 +6,7 @@
 #define ALCANCE 5
 #define MUNICIONES 1
 
-DuelPistol::DuelPistol(): Arma(ID_DUEL_PISTOL, DUEL_PISTOL, ALCANCE, MUNICIONES, true) {}
+DuelPistol::DuelPistol(posicion_t posicion_inicial): Arma(ID_DUEL_PISTOL, DUEL_PISTOL, ALCANCE, MUNICIONES, true, posicion_inicial) {}
 
 bool DuelPistol::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {

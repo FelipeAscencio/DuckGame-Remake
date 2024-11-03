@@ -14,7 +14,7 @@ private:
     bool recargar();
 
 public:
-    Shotgun();
+    Shotgun(posicion_t posicion_inicial);
     bool disparar(const orientacion_e& direccion) override;
     void chequeo_balas() override;
 };
