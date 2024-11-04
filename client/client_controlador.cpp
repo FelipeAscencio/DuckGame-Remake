@@ -6,7 +6,7 @@
 #define COMANDO_AGACHAR 'S'
 #define COMANDO_MIRAR_ARRIBA 'W'
 #define COMANDO_SALTAR ' '
-#define COMANDO_DISPARAR 'C'
+#define COMANDO_DISPARAR 'J'
 
 using namespace SDL2pp;
 

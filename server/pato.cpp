@@ -16,7 +16,8 @@
 #define COMANDO_AGACHARSE 3
 #define COMANDO_MIRAR_HACIA_ARRIBA 4
 #define COMANDO_SALTO_Y_ALETEO 5
-#define COMANDO_DISPARO_Y_PICKUP 6
+#define COMANDO_DISPARO 6
+#define COMANDO_AGARRAR 7
 
 Pato::Pato(int id):
         id_jugador(id),
@@ -299,7 +300,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                 aletear();
             }
             break;
-        case COMANDO_DISPARO_Y_PICKUP:
+        case COMANDO_DISPARO:
             if (arma_equipada) {
                 if (disparar()) {
                     std::cout << "Disparo\n";
@@ -312,9 +313,11 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                 }
             } else {
                 std::cout << "No puedo disparar, no tengo arma bro\n";
-                // logica para ver si el arma/casco/armadura esta en la misma posicion para
-                // agarrar
             }
+            break;
+        case COMANDO_AGARRAR:
+            // logica para ver si el arma/casco/armadura esta en la misma posicion para
+                // agarrar
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;

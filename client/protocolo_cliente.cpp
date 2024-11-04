@@ -16,6 +16,8 @@
 #define OCTAVA_POSICION 7
 #define NOVENA_POSICION 8
 #define DECIMA_POSICION 9
+#define DECIMO_PRIMERA_POSICION 11
+#define DECIMO_SEGUNDA_POSICION 12
 #define TAMANIO_INFO_PATOS 10
 
 #define ACCION_DERECHA 0x01
@@ -24,13 +26,15 @@
 #define ACCION_ARRIBA 0x04
 #define ACCION_SALTO 0x05
 #define ACCION_DISPARAR 0x06
+#define ACCION_AGARRAR 0x07
 
 #define DERECHA 'D'
 #define IZQUIERDA 'A'
 #define ARRIBA 'W'
 #define AGACHARSE 'S'
 #define SALTO ' '
-#define DISPARO 'C'
+#define DISPARO 'J'
+#define AGARRAR 'K'
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
@@ -44,7 +48,7 @@
 
 static std::map<char, uint8_t> acciones = {
         {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
-        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}};
+        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}, {AGARRAR, ACCION_AGARRAR}};
 
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;
@@ -106,13 +110,13 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
 
     if (!was_closed) {
         float x, y;
-        x = info[1] + (info[2]/TILE_A_METRO);
-        y = info[3] + (info[4]/TILE_A_METRO);
+        x = info[SEGUNDA_POSICION] + (info[TERCERA_POSICION]/TILE_A_METRO);
+        y = info[CUARTA_POSICION] + (info[QUINTA_POSICION]/TILE_A_METRO);
         posicion_t posicion(x,y);
-        InformacionPato pato(info[0], posicion, static_cast<bool>(info[5]),
-                             static_cast<bool>(info[6]), info[7], static_cast<bool>(info[8]),
-                             static_cast<bool>(info[9]), static_cast<orientacion_e>(info[10]),
-                             static_cast<estado_pato_e>(info[11]));
+        InformacionPato pato(info[PRIMERA_POSICION], posicion, static_cast<bool>(info[SEXTA_POSICION]),
+                             static_cast<bool>(info[SEPTIMA_POSICION]), info[OCTAVA_POSICION], static_cast<bool>(info[NOVENA_POSICION]),
+                             static_cast<bool>(info[DECIMA_POSICION]), static_cast<orientacion_e>(info[DECIMO_PRIMERA_POSICION]),
+                             static_cast<estado_pato_e>(info[DECIMO_SEGUNDA_POSICION]));
         estado_actual.agregar_info_pato(pato);
         return true;
     } else {
@@ -131,9 +135,9 @@ bool ProtocoloCliente::procesar_armas(EstadoJuego& estado_actual) {
     }
     if (!was_closed) {
         float x, y;
-        x = info[1] + (info[2]/TILE_A_METRO);
-        y = info[3] + (info[4]/TILE_A_METRO);
-        InformacionArma arma_nueva(info[0], x, y);
+        x = info[SEGUNDA_POSICION] + (info[TERCERA_POSICION]/TILE_A_METRO);
+        y = info[CUARTA_POSICION] + (info[QUINTA_POSICION]/TILE_A_METRO);
+        InformacionArma arma_nueva(info[PRIMERA_POSICION], x, y);
         estado_actual.agregar_arma(arma_nueva);
         return true;
     } else {
