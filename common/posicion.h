@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <math.h>
 
 typedef struct Posicion {
     float coordenada_x;
@@ -37,6 +38,10 @@ typedef struct Posicion {
         std::ostringstream oss;
         oss << "(" << coordenada_x << ";" << coordenada_y << ")\n";
         return oss.str();
+    }
+
+    bool misma_posicion(const posicion_t& otra){
+        return this->coordenada_x == otra.coordenada_x && abs(this->coordenada_y - otra.coordenada_y) <= TILE_A_METRO/2;
     }
 } posicion_t;
 

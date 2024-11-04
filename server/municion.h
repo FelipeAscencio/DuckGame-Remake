@@ -11,7 +11,9 @@ typedef enum Dispersion { NO, BAJA, MEDIA, ALTA } dispersion_e;
 typedef enum Inclinacion { NO_TIENE, PARA_ARRIBA, ABAJO } inclinacion_e;
 
 class Municion {
-
+    friend class Arma;
+    friend class Pato;
+    friend class Gameloop;
 private:
     const int id_arma;
     const posicion_t posicion_inicial;

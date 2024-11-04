@@ -303,6 +303,9 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (arma_equipada) {
                 if (disparar()) {
                     std::cout << "Disparo\n";
+                    if (arma_equipada->tiene_retroceso){
+                        this->posicion.coordenada_y += MOVER_IZQUIERDA;
+                    }
                 } else {
                     delete arma_equipada;
                     std::cout << "No tiene mas balas\n";

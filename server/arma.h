@@ -24,7 +24,8 @@
 class Arma {
     friend struct InformacionArma;
     friend struct EstadoJuego;
-
+    friend class Pato;
+    friend class Gameloop;
 protected:
     const int id_arma;
     const std::string nombre;

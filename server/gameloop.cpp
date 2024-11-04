@@ -36,14 +36,45 @@ void Gameloop::enviar_estado_juego() {
                 estado_actual.agregar_info_pato(p);
         }
     }
+    if (!this->armas_tiradas.empty()){
+        for (Arma* a: armas_tiradas){
+            estado_actual.agregar_arma(a);
+        }
+    }
     queues_clientes.broadcast(estado_actual);
+}
+
+void Gameloop::actualizar_balas_disparadas(){
+    for (Pato* p: jugadores){
+        if (p->arma_equipada){
+            p->arma_equipada->chequeo_balas();
+        }
+    }
+}
+
+void Gameloop::chequear_posiciones(){
+    for (Pato* p: jugadores){
+        for (Pato* o: otros){
+            if (p->id_jugador != o->id_jugador){
+                if (p->arma_equipada && !p->arma_equipada->balas.empty()){
+                    for (Municion* m: p->arma_equipada->balas){
+                        if(o->posicion.misma_posicion(m->posicion_actual)){
+                            o->recibir_disparo();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Gameloop::loop_juego(){
     enviar_estado_juego();
     chequear_nuevos_jugadores();
     if (!jugadores.empty()) {
+        chequear_posiciones();
         actualizar_estado_jugadores();
+        actualizar_balas_disparadas();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
             for (Pato* p: jugadores) {
