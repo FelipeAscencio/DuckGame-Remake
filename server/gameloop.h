@@ -12,6 +12,7 @@
 #include "server/mapa.h"
 #include "server/pato.h"
 #include "server/queues_jugadores.h"
+#include "server/arma.h"
 
 class Gameloop: public Thread {
 private:
@@ -19,13 +20,20 @@ private:
     std::atomic<bool> juego_activo;
     ListaQueues& queues_clientes;
     std::vector<Pato*> jugadores;
+    std::vector<Arma*> armas_tiradas;
     Mapa mapa;
 
+    void chequear_posiciones();
+
     void actualizar_estado_jugadores();
+
+    void actualizar_balas_disparadas();
 
     void enviar_estado_juego();
 
     void chequear_nuevos_jugadores();
+
+    void loop_juego();
 
 public:
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);

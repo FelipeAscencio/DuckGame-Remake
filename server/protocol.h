@@ -18,6 +18,7 @@ private:
 
     std::vector<uint8_t> serializar_pato(const InformacionPato& info_pato);
     std::vector<uint8_t> serializar_cantidades(const EstadoJuego& estado_actual);
+    std::vector<uint8_t> serializar_armas(const InformacionArma& info_arma);
     bool _enviar(const std::vector<uint8_t>& bytes);
 
 public:

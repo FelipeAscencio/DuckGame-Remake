@@ -1,0 +1,14 @@
+# Target labels
+ libsdl2pp-populate
+# Source files and their labels
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate-complete.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-build.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-configure.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-download.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-install.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-mkdir.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-patch.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-test.rule
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/libsdl2pp-populate-prefix/src/libsdl2pp-populate-stamp/libsdl2pp-populate-update.rule

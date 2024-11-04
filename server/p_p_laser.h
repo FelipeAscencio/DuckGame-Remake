@@ -12,8 +12,9 @@ private:
     int alcance_maximo;
 
 public:
-    PewPewLaser();
-    void disparar(const orientacion_e& direccion) override;
+    PewPewLaser(posicion_t posicion_inicial);
+    bool disparar(const orientacion_e& direccion) override;
+    void chequeo_balas() override;
 };
 
 

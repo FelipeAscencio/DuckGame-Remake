@@ -1,0 +1,26 @@
+/Users/axelzielonka/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/axelzielonka/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c -B /Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug
+-- The CXX compiler identification is AppleClang 16.0.0.16000026
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMAKE_CXX_COMPILER_ID="AppleClang"
+CMake Error at cmake-build-debug/_deps/libsdl2pp-src/CMakeLists.txt:26 (find_package):
+  By not providing "FindSDL2.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "SDL2", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "SDL2" with any of
+  the following names:
+
+    SDL2Config.cmake
+    sdl2-config.cmake
+
+  Add the installation prefix of "SDL2" to CMAKE_PREFIX_PATH or set
+  "SDL2_DIR" to a directory containing one of the above files.  If "SDL2"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Configuring incomplete, errors occurred!

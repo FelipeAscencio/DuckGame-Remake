@@ -9,8 +9,9 @@
 
 class Magnum: public Arma {
 public:
-    Magnum();
-    void disparar(const orientacion_e& direccion) override;
+    Magnum(posicion_t posicion_inicial);
+    bool disparar(const orientacion_e& direccion) override;
+    void chequeo_balas() override;
 };
 
 

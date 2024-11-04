@@ -7,9 +7,9 @@
 #include <string>
 #include <vector>
 
-#define MOVER_DERECHA 1
-#define MOVER_IZQUIERDA -1
-#define SALTO_Y_CAIDA 2
+#define MOVER_DERECHA 0.5
+#define MOVER_IZQUIERDA -0.5
+#define SALTO_Y_CAIDA 0.3
 
 #define COMANDO_DERECHA 1
 #define COMANDO_IZQUIERDA 2
@@ -129,8 +129,8 @@ void Pato::caer(Mapa& mapa) {
             bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
             bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
             if (piso_a_la_izquierda || piso_a_la_derecha) {
-                if ((posicion.coordenada_x % TILE_A_METRO <= MOVER_DERECHA) ||
-                    (posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO + MOVER_IZQUIERDA))) {
+                float distancia_fuera_del_borde = this->posicion.coordenada_x - ((int)this->posicion.coordenada_x);
+                if (distancia_fuera_del_borde < TILE_A_METRO / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
                     estado_actual = PARADO;
                     return;
                 }
@@ -141,7 +141,7 @@ void Pato::caer(Mapa& mapa) {
             // el bloque de abajo en el que estoy tiene su piso a "mitad del bloque" (el piso no
             // esta alineado con el cambio de bloques)
         } else if (mapa.mapa[tile_y][tile_x] == 2) {
-            int posicion_en_bloque = posicion.coordenada_y % TILE_A_METRO;
+            int posicion_en_bloque = (int)posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;
             if (posicion_en_bloque < mitad_bloque) {
                 posicion.coordenada_y += SALTO_Y_CAIDA;
@@ -198,8 +198,7 @@ bool Pato::agarrar_casco() {
 
 bool Pato::disparar() {
     if (arma_equipada) {
-        arma_equipada->disparar(this->orientacion);
-        return true;
+        return arma_equipada->disparar(this->orientacion);
     } else {
         return false;
     }
@@ -284,7 +283,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            this->cambiar_orientacion(ARRIBA);
+            this->cambiar_orientacion(orientacion_e::ARRIBA);
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
             break;
         case COMANDO_AGACHARSE:
@@ -302,8 +301,15 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             break;
         case COMANDO_DISPARO_Y_PICKUP:
             if (arma_equipada) {
-                std::cout << "Disparo\n";
-                disparar();
+                if (disparar()) {
+                    std::cout << "Disparo\n";
+                    if (arma_equipada->tiene_retroceso){
+                        this->posicion.coordenada_y += MOVER_IZQUIERDA;
+                    }
+                } else {
+                    delete arma_equipada;
+                    std::cout << "No tiene mas balas\n";
+                }
             } else {
                 std::cout << "No puedo disparar, no tengo arma bro\n";
                 // logica para ver si el arma/casco/armadura esta en la misma posicion para

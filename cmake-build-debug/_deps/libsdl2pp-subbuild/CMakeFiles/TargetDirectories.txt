@@ -1,0 +1,3 @@
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/libsdl2pp-populate.dir
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/edit_cache.dir
+/Users/axelzielonka/Documents/Axel/FIUBA/2024/Taller/TPS/DuckGame-g2-20242c/cmake-build-debug/_deps/libsdl2pp-subbuild/CMakeFiles/rebuild_cache.dir

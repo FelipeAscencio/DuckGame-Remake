@@ -5,17 +5,18 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <math.h>
 
 // 'struct' que define la posicion en relacion al eje 'X' e 'Y' de una entidad.
 typedef struct Posicion {
-    int coordenada_x;
-    int coordenada_y;
+    float coordenada_x;
+    float coordenada_y;
 
     // Constructor por defecto.
     Posicion(): coordenada_x(0), coordenada_y(0) {}
 
-    // Constructor por parametros.
-    Posicion(int x, int y): coordenada_x(x), coordenada_y(y) {}
+    // Constructor por parámetros
+    Posicion(float x, float y): coordenada_x(x), coordenada_y(y) {}
 
     // Constructor por copia.
     Posicion(const Posicion& pos): coordenada_x(pos.coordenada_x), coordenada_y(pos.coordenada_y) {}
@@ -29,8 +30,7 @@ typedef struct Posicion {
         return *this;
     }
 
-    // Setea el nuevo valor de 'X' e 'Y'.
-    void set_posicion(int x, int y) {
+    void set_posicion(float x, float y) {
         coordenada_x = x;
         coordenada_y = y;
     }
@@ -41,7 +41,10 @@ typedef struct Posicion {
         oss << "(" << coordenada_x << ";" << coordenada_y << ")\n";
         return oss.str();
     }
-    
+
+    bool misma_posicion(const posicion_t& otra){
+        return this->coordenada_x == otra.coordenada_x && abs(this->coordenada_y - otra.coordenada_y) <= TILE_A_METRO/2;
+    }
 } posicion_t;
 
 #endif  // COMMON_POSICION_H_

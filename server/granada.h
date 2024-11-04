@@ -14,8 +14,9 @@ private:
     bool activa;
 
 public:
-    Granada();
-    void disparar(const orientacion_e& direccions) override;
+    Granada(posicion_t posicion_inicial);
+    bool disparar(const orientacion_e& direccions) override;
+    void chequeo_balas() override;
 };
 
 

@@ -1,6 +1,6 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascencio.
-#ifndef COMMON_ESTADO_JUEGO_H_
-#define COMMON_ESTADO_JUEGO_H_
+// Copyright 2024 Axel Zielonka y Felipe Ascensio
+#ifndef ESTADO_JUEGO_H_
+#define ESTADO_JUEGO_H_
 
 #include <algorithm>
 #include <iostream>
@@ -54,7 +54,17 @@ struct InformacionPato {
             estado(estado_pato) {}
 };
 
-// 'struct' que compara 'ids', e indica si son iguales.
+struct InformacionArma {
+    int id_arma;
+    posicion_t posicion;
+
+    explicit InformacionArma(Arma* a): id_arma(a->id_arma), posicion(a->posicion_spawn) {}
+
+    explicit InformacionArma(uint8_t id, float x, float y): id_arma(id), posicion(x, y) {}
+
+    explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
+};
+
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
@@ -71,6 +81,7 @@ struct EstadoJuego {
     int cantidad_cascos;
     int cantidad_cajas;
     std::vector<InformacionPato> info_patos;
+    std::vector<InformacionArma> info_armas;
 
     // Constructor del struct.
     EstadoJuego():
@@ -105,7 +116,17 @@ struct EstadoJuego {
         }
     }
 
-    // Convierte en string al 'estado' del juego creado (utilizado para testear y debugear).
+    void agregar_arma(const InformacionArma info) {
+        info_armas.push_back(info);
+        this->cantidad_armas++;
+    }
+
+    void agregar_arma(Arma* a) {
+        InformacionArma nueva(a);
+        info_armas.push_back(nueva);
+        this->cantidad_armas++;
+    }
+
     std::string to_string() {
         std::ostringstream oss;
         oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
@@ -167,6 +188,12 @@ struct EstadoJuego {
             oss << "\n---------------------------------\n";
         }
 
+        for (int i = 0; i < cantidad_armas; i++) {
+            oss << i << ". ID arma: " << this->info_armas[i].id_arma;
+            oss << "\nPosicion: " << this->info_armas[i].posicion.to_string();
+            oss << "----------------------------------\n";
+        }
+
         return oss.str();
     }
 
@@ -174,4 +201,4 @@ struct EstadoJuego {
     void vaciar() { this->info_patos.clear(); }
 };
 
-#endif  // COMMON_ESTADO_JUEGO_H_
+#endif
