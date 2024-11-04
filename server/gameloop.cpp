@@ -54,7 +54,7 @@ void Gameloop::actualizar_balas_disparadas(){
 
 void Gameloop::chequear_posiciones(){
     for (Pato* p: jugadores){
-        for (Pato* o: otros){
+        for (Pato* o: jugadores){
             if (p->id_jugador != o->id_jugador){
                 if (p->arma_equipada && !p->arma_equipada->balas.empty()){
                     for (Municion* m: p->arma_equipada->balas){

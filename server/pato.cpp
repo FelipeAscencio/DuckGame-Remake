@@ -76,7 +76,7 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
     }
 
     if (se_movio) {
-        int pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
+        float pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
         this->posicion.coordenada_x += pasos;
     }
     return se_movio;
@@ -102,7 +102,7 @@ void Pato::aletear() {
 void Pato::caer(Mapa& mapa) {
     if (!this->vivo)
         return;
-    if (this->posicion.coordenada_y == (mapa.alto * TILE_A_METRO) - 1) {
+    if (this->posicion.coordenada_y >= (mapa.alto * TILE_A_METRO) - 1) {
         std::cout << "Me fui del mapa\n";
         this->vivo = false;
         return;
@@ -127,15 +127,15 @@ void Pato::caer(Mapa& mapa) {
             // tecnicamente estoy en un bloque que no tiene piso abajo, pero el cuerpo del pato no
             // paso por completo a ese nuevo bloque entonces no debe caer
 
-            bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
-            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
-            if (piso_a_la_izquierda || piso_a_la_derecha) {
-                float distancia_fuera_del_borde = this->posicion.coordenada_x - ((int)this->posicion.coordenada_x);
-                if (distancia_fuera_del_borde < TILE_A_METRO / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
-                    estado_actual = PARADO;
-                    return;
-                }
-            }
+            // bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
+            // bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
+            // if (piso_a_la_izquierda || piso_a_la_derecha) {
+            //     float distancia_fuera_del_borde = this->posicion.coordenada_x - ((int)this->posicion.coordenada_x);
+            //     if (distancia_fuera_del_borde < TILE_A_METRO / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
+            //         estado_actual = PARADO;
+            //         return;
+            //     }
+            // }
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
             estado_actual = CAYENDO;
 
@@ -304,7 +304,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (arma_equipada) {
                 if (disparar()) {
                     std::cout << "Disparo\n";
-                    if (arma_equipada->tiene_retroceso){
+                    if (arma_equipada->tiene_retroceso()){
                         this->posicion.coordenada_y += MOVER_IZQUIERDA;
                     }
                 } else {
@@ -323,10 +323,11 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
             std::cout << "Posicion vieja: " << this->posicion.to_string();
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            mover(mapa, sentido);
-            std::cout << "Posicion nueva: " << this->posicion.to_string();
-            std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            this->estado_actual = CAMINANDO;
+            if (mover(mapa, sentido)){
+                std::cout << "Posicion nueva: " << this->posicion.to_string();
+                std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
+                this->estado_actual = CAMINANDO;
+            }
             break;
     }
 }
