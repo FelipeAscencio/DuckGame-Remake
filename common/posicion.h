@@ -7,6 +7,8 @@
 #include <string>
 #include <math.h>
 
+#define TILE_A_METRO 10
+
 // 'struct' que define la posicion en relacion al eje 'X' e 'Y' de una entidad.
 typedef struct Posicion {
     float coordenada_x;
@@ -42,7 +44,7 @@ typedef struct Posicion {
         return oss.str();
     }
 
-    bool misma_posicion(const posicion_t& otra){
+    bool misma_posicion(const Posicion& otra){
         return this->coordenada_x == otra.coordenada_x && abs(this->coordenada_y - otra.coordenada_y) <= TILE_A_METRO/2;
     }
 } posicion_t;
