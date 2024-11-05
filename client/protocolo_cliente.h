@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 #include "../common/comando.h"
 #include "../common/estado_juego.h"
@@ -25,14 +26,19 @@ private:
     Socket& s;
     int id_cliente;
 
+    // Procesa el dato 'leido' y ejecuta la accion correspondiente en el 'estado_actual'.
     bool procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual);
 
+    // Procesa y carga la informacion de los patos en el 'estado_actual'.
     bool procesar_patos(EstadoJuego& estado_actual);
 
+    // Asigna al 'estado_actual' las cantidades de cada elemento del juego.
     bool procesar_cantidades(EstadoJuego& estado_actual);
 
+    // Procesa y carga la informacion de las armas en el 'estado_actual'.
     bool procesar_armas(EstadoJuego& estado_actual);
 
+    // Convierte el comando en formato 'char' al byte correspondiente.
     uint8_t parsear_comando(char accion);
 
 public:
@@ -54,4 +60,4 @@ public:
     ProtocoloCliente& operator=(ProtocoloCliente&&) = default;
 };
 
-#endif // CLIENT_PROTOCOLO_CLIENTE_H_
+#endif  // CLIENT_PROTOCOLO_CLIENTE_H_

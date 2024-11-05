@@ -1,8 +1,5 @@
 #include "client/protocolo_cliente.h"
 
-#include <map>
-#include <vector>
-
 #define CERO 0
 #define SEIS 6
 #define BYTE_NULO 0x00
@@ -127,7 +124,7 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
 
 bool ProtocoloCliente::procesar_armas(EstadoJuego& estado_actual) {
     bool was_closed = false;
-    uint8_t leido = 0x00;
+    uint8_t leido = BYTE_NULO;
     std::vector<uint8_t> info;
     while (leido != FIN_MENSAJE && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);

@@ -7,6 +7,7 @@
 #define COMANDO_MIRAR_ARRIBA 'W'
 #define COMANDO_SALTAR ' '
 #define COMANDO_DISPARAR 'J'
+#define COMANDO_AGARRAR 'K'
 
 using namespace SDL2pp;
 
@@ -38,7 +39,7 @@ void Controlador::manejar_eventos(bool& jugador_activo) {
                 cola_eventos.try_push(COMANDO_DISPARAR);
             } else if (sdlEvent.key.keysym.sym ==
                        SDLK_k){
-                std::cout << "K" << std::endl;
+                cola_eventos.try_push(COMANDO_AGARRAR);
             }
         }
     }
