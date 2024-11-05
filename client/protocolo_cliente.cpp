@@ -13,9 +13,9 @@
 #define OCTAVA_POSICION 7
 #define NOVENA_POSICION 8
 #define DECIMA_POSICION 9
-#define DECIMO_PRIMERA_POSICION 11
-#define DECIMO_SEGUNDA_POSICION 12
-#define TAMANIO_INFO_PATOS 10
+#define DECIMO_PRIMERA_POSICION 10
+#define DECIMO_SEGUNDA_POSICION 11
+#define TAMANIO_INFO_PATOS 12
 
 #define ACCION_DERECHA 0x01
 #define ACCION_IZQUIERDA 0x02
@@ -179,20 +179,20 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     s.recvall(cantidades.data(), cantidades.size(), &was_closed);
     s.recvall(&leido, sizeof(leido), &was_closed);
     int i = 0;
-    std::vector<uint8_t> info_pato(12);
+    std::vector<uint8_t> info_pato(TAMANIO_INFO_PATOS);
     while (i < cantidades[PRIMERA_POSICION]) {
         s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo del pato.
         s.recvall(info_pato.data(), info_pato.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo fin mensaje.
-        float x = info_pato[1] + (info_pato[2]/TILE_A_METRO);
-        float y = info_pato[3] + (info_pato[4]/TILE_A_METRO);
+        float x = info_pato[SEGUNDA_POSICION] + (info_pato[TERCERA_POSICION]/TILE_A_METRO);
+        float y = info_pato[CUARTA_POSICION] + (info_pato[QUINTA_POSICION]/TILE_A_METRO);
         posicion_t pos(x,y);
-        InformacionPato pato_actual(info_pato[0], pos, info_pato[5], info_pato[6], info_pato[7],
-                                    info_pato[8], info_pato[9], (orientacion_e)info_pato[10],
-                                    (estado_pato_e)info_pato[11]);
+        InformacionPato pato_actual(info_pato[PRIMERA_POSICION], pos, info_pato[SEXTA_POSICION], info_pato[SEPTIMA_POSICION], info_pato[OCTAVA_POSICION],
+                                    info_pato[NOVENA_POSICION], info_pato[DECIMA_POSICION], (orientacion_e)info_pato[DECIMO_PRIMERA_POSICION],
+                                    (estado_pato_e)info_pato[DECIMO_SEGUNDA_POSICION]);
         estado_actual.agregar_info_pato(pato_actual);
         info_pato.clear();
-        info_pato.resize(12);
+        info_pato.resize(TAMANIO_INFO_PATOS);
         i++;
     }
 
