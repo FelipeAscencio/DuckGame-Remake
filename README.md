@@ -10,7 +10,7 @@
 
 ## Créditos:
 
-Para el desarrollo de este trabajo práctico utilicé los siguientes "TDAs" brindados por la cátedra:
+Para el desarrollo de este trabajo práctico utilizamos los siguientes "TDAs" brindados por la cátedra:
 - 'Socket'.
 - 'Resolver'.
 - 'ResolverError'.

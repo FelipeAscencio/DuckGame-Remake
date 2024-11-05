@@ -1,8 +1,6 @@
 #include <iostream>
 
-#include "common/foo.h"
-
-#define MSJ_AVISO "No se implemento el editor por ser solo 2 integrantes :C \n"
+#define MSJ_AVISO "No se implemento el editor por ser solo 2 integrantes :C."
 #define CERO 0
 
 int main() {
