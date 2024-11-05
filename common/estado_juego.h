@@ -1,4 +1,4 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef ESTADO_JUEGO_H_
 #define ESTADO_JUEGO_H_
 
@@ -13,6 +13,8 @@
 #include "common/estado_fisico.h"
 #include "common/orientacion.h"
 #include "common/posicion.h"
+
+#define CERO 0
 
 // 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
@@ -54,17 +56,22 @@ struct InformacionPato {
             estado(estado_pato) {}
 };
 
+// 'struct' que encapsula la informacion de todas las armas del juego.
 struct InformacionArma {
     int id_arma;
     posicion_t posicion;
 
+    // Primera variante del constructor del struct.
     explicit InformacionArma(Arma* a): id_arma(a->id_arma), posicion(a->posicion_spawn) {}
 
+    // Segunda variante del constructor del struct.
     explicit InformacionArma(uint8_t id, float x, float y): id_arma(id), posicion(x, y) {}
 
+    // Tercera variante del constructor del struct.
     explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
 };
 
+// 'struct' que sirve para comparar las 'ID'. 
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
@@ -85,12 +92,12 @@ struct EstadoJuego {
 
     // Constructor del struct.
     EstadoJuego():
-            cantidad_jugadores(0),
-            cantidad_armas(0),
-            cantidad_balas(0),
-            cantidad_armaduras(0),
-            cantidad_cascos(0),
-            cantidad_cajas(0) {}
+            cantidad_jugadores(CERO),
+            cantidad_armas(CERO),
+            cantidad_balas(CERO),
+            cantidad_armaduras(CERO),
+            cantidad_cascos(CERO),
+            cantidad_cajas(CERO) {}
 
     // Verifica la existencia de la id recibida por parametro.
     bool chequear_id(const int& id) {
@@ -116,17 +123,20 @@ struct EstadoJuego {
         }
     }
 
+    // Agrega la informacion de un arma (recibida pro copia) en particular al vector.
     void agregar_arma(const InformacionArma info) {
         info_armas.push_back(info);
         this->cantidad_armas++;
     }
 
+    // Agrega la informacion de un arma (recibida como puntero) en particular al vector.
     void agregar_arma(Arma* a) {
         InformacionArma nueva(a);
         info_armas.push_back(nueva);
         this->cantidad_armas++;
     }
 
+    // Convierte el estado de juego en un texto, para verificar si funcionamiento sin interfaz grafica.
     std::string to_string() {
         std::ostringstream oss;
         oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
@@ -201,4 +211,4 @@ struct EstadoJuego {
     void vaciar() { this->info_patos.clear(); }
 };
 
-#endif
+#endif  // ESTADO_JUEGO_H_
