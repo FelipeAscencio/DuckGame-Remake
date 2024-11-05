@@ -1,9 +1,15 @@
 // Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/gameloop.h"
-#include <time.h>
+
 #include <algorithm>
 
+#include <time.h>
+
 #define FPS 30
+#define CERO 0
+#define UNO 1
+#define CIEN 100
+#define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
         queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
@@ -36,29 +42,29 @@ void Gameloop::enviar_estado_juego() {
                 estado_actual.agregar_info_pato(p);
         }
     }
-    if (!this->armas_tiradas.empty()){
-        for (Arma* a: armas_tiradas){
+    if (!this->armas_tiradas.empty()) {
+        for (Arma* a: armas_tiradas) {
             estado_actual.agregar_arma(a);
         }
     }
     queues_clientes.broadcast(estado_actual);
 }
 
-void Gameloop::actualizar_balas_disparadas(){
-    for (Pato* p: jugadores){
-        if (p->arma_equipada){
+void Gameloop::actualizar_balas_disparadas() {
+    for (Pato* p: jugadores) {
+        if (p->arma_equipada) {
             p->arma_equipada->chequeo_balas();
         }
     }
 }
 
-void Gameloop::chequear_posiciones(){
-    for (Pato* p: jugadores){
-        for (Pato* o: jugadores){
-            if (p->id_jugador != o->id_jugador){
-                if (p->arma_equipada && !p->arma_equipada->balas.empty()){
-                    for (Municion* m: p->arma_equipada->balas){
-                        if(o->posicion.misma_posicion(m->posicion_actual)){
+void Gameloop::chequear_posiciones() {
+    for (Pato* p: jugadores) {
+        for (Pato* o: jugadores) {
+            if (p->id_jugador != o->id_jugador) {
+                if (p->arma_equipada && !p->arma_equipada->balas.empty()) {
+                    for (Municion* m: p->arma_equipada->balas) {
+                        if (o->posicion.misma_posicion(m->posicion_actual)) {
                             o->recibir_disparo();
                         }
                     }
@@ -68,7 +74,7 @@ void Gameloop::chequear_posiciones(){
     }
 }
 
-void Gameloop::loop_juego(){
+void Gameloop::loop_juego() {
     chequear_nuevos_jugadores();
     if (!jugadores.empty()) {
         chequear_posiciones();
@@ -94,17 +100,17 @@ void Gameloop::run() {
     while (juego_activo) {
         loop_juego();
         time_t t2 = time(NULL);
-        rest = (FPS/100) - (t2 - t1);
-        if (rest < 0){
+        rest = (FPS / CIEN) - (t2 - t1);
+        if (rest < CERO) {
             float atrasado = -rest;
-            rest = (FPS/100) - (atrasado * 100 / FPS);
+            rest = (FPS / CIEN) - (atrasado * CIEN / FPS);
             float perdido = atrasado + rest;
             t1 += perdido;
-            f += int(perdido * 100 / FPS);
+            f += int(perdido * CIEN / FPS);
         }
-        std::this_thread::sleep_for(std::chrono::microseconds(int(rest*1000)));
-        f += 1;
-        t1 += FPS/100; 
+        std::this_thread::sleep_for(std::chrono::microseconds(int(rest * MIL)));
+        f += UNO;
+        t1 += FPS / CIEN;
     }
 }
 

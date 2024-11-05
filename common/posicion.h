@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 #include <math.h>
 
 #define CERO 0
@@ -47,9 +48,11 @@ typedef struct Posicion {
         return oss.str();
     }
 
-    // Compara la posicion propia con otra recibida por parametro, en caso de igualdad devuelve true.
-    bool misma_posicion(const Posicion& otra){
-        return this->coordenada_x == otra.coordenada_x && abs(this->coordenada_y - otra.coordenada_y) <= TILE_A_METRO/DOS;
+    // Compara la posicion propia con otra recibida por parametro, en caso de igualdad devuelve
+    // true.
+    bool misma_posicion(const Posicion& otra) {
+        return this->coordenada_x == otra.coordenada_x &&
+               abs(this->coordenada_y - otra.coordenada_y) <= TILE_A_METRO / DOS;
     }
 } posicion_t;
 

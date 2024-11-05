@@ -4,10 +4,11 @@
 
 #include <atomic>
 
-#include "protocolo_cliente.h"
 #include "../common/estado_juego.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
+
+#include "protocolo_cliente.h"
 
 // La clase 'RecibidorCliente' se encarga de mandar los estados que recibe
 // desde el 'Server' a la cola de estados del 'Cliente'.
@@ -37,4 +38,4 @@ public:
     RecibidorCliente& operator=(RecibidorCliente&&) = default;
 };
 
-#endif // CLIENT_RECIBIDOR_H
+#endif  // CLIENT_RECIBIDOR_H

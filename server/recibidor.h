@@ -1,4 +1,4 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef SERVER_RECIBIDOR_H_
 #define SERVER_RECIBIDOR_H_
 
@@ -10,6 +10,8 @@
 
 using namespace ServerProtocol;
 
+// La clase 'Recibidor' se encarga de recibir los
+// comandos de los 'Clientes'.
 class Recibidor: public Thread {
 private:
     Protocol protocol;
@@ -18,12 +20,17 @@ private:
     const int id_cliente;
 
 public:
+    // Constructor de la clase.
     explicit Recibidor(Socket& s, Queue<comando_t>& q, const int& id_clientes);
 
+    // Ejecuta el hilo del recibidor, procesando comandos hasta que el objeto esta marcado como
+    // vivo.
     void run() override;
 
+    // Termina la ejecucion del hilo y para de recibir comandos del cliente.
     void terminar_ejecucion() { this->vivo = false; }
 
+    // Destructor de la clase.
     ~Recibidor();
 };
 

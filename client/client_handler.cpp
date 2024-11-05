@@ -19,13 +19,16 @@ using namespace SDL2pp;
 
 Client::Client(const char* hostname, const char* servicio):
         cola_enviador(),
-        cola_recibidor(), jugador_activo(true), controlador(cola_enviador), socket(hostname, servicio),
+        cola_recibidor(),
+        jugador_activo(true),
+        controlador(cola_enviador),
+        socket(hostname, servicio),
         protocolo(socket),
         id(protocolo.id_cliente),
         enviador(protocolo, cola_enviador, id),
         recibidor(protocolo, cola_recibidor) {}
 
-Mix_Music* Client::iniciar_musica(){
+Mix_Music* Client::iniciar_musica() {
     if (Mix_OpenAudio(FRECUENCIA_HZ, MIX_DEFAULT_FORMAT, AUDIO_ESTEREO, BUFFER_AUDIO) < CERO) {
         std::cerr << ERROR_INICIAR_MIX << Mix_GetError() << std::endl;
     }
@@ -41,17 +44,17 @@ Mix_Music* Client::iniciar_musica(){
     return musica_fondo;
 }
 
-void Client::terminar_musica(Mix_Music* musica_fondo){
+void Client::terminar_musica(Mix_Music* musica_fondo) {
     Mix_FreeMusic(musica_fondo);
     Mix_CloseAudio();
 }
 
-void Client::iniciar_hilos(){
+void Client::iniciar_hilos() {
     recibidor.start();
     enviador.start();
 }
 
-void Client::finalizar_hilos(){
+void Client::finalizar_hilos() {
     enviador.stop();
     recibidor.stop();
     enviador.join();

@@ -1,4 +1,3 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include <cstdlib>
 #include <exception>
 #include <iostream>
@@ -26,7 +25,6 @@ bool argumentos_validos(int argumentos) {
 }
 
 void secuencia_logica_servidor(const char* servicio) {
-    std::cout << "Entrando a secuencia logica del servidor." << servicio << std::endl;
     Server servidor(servicio);
     servidor.start();
 }

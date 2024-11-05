@@ -6,7 +6,8 @@
 #define ALCANCE 20
 #define MUNICIONES 6
 
-CowboyPistol::CowboyPistol(posicion_t posicion_inicial): Arma(ID_COWBOY_PISTOL, COWBOY_PISTOL, ALCANCE, MUNICIONES, false, posicion_inicial) {}
+CowboyPistol::CowboyPistol(posicion_t posicion_inicial):
+        Arma(ID_COWBOY_PISTOL, COWBOY_PISTOL, ALCANCE, MUNICIONES, false, posicion_inicial) {}
 
 bool CowboyPistol::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {

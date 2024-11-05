@@ -1,4 +1,3 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/recibidor.h"
 
 #include <sstream>

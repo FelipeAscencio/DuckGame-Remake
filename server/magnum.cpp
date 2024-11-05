@@ -6,7 +6,8 @@
 #define ALCANCE 20
 #define MUNICIONES 6
 
-Magnum::Magnum(posicion_t posicion_inicial): Arma(ID_MAGNUM, MAGNUM, ALCANCE, MUNICIONES, true, posicion_inicial) {}
+Magnum::Magnum(posicion_t posicion_inicial):
+        Arma(ID_MAGNUM, MAGNUM, ALCANCE, MUNICIONES, true, posicion_inicial) {}
 
 bool Magnum::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {

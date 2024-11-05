@@ -37,6 +37,7 @@ int buscar_inclinacion(const inclinacion_e& inclinacion) {
     } else if (inclinacion == ABAJO) {  // cppcheck-suppress knownConditionTrueFalse
         inc = -1;
     }
+
     return inc;
 }
 
@@ -58,12 +59,14 @@ int buscar_dispersion(const dispersion_e& dispersion) {
             dis = 0;
             break;
     }
+
     return dis;
 }
 
 void Municion::avanzar() {
     if (fuera_de_rango())
         return;
+
     int inc, dis;
     if (this->sentido == ARRIBA) {
         this->posicion_actual.coordenada_y -= AVANZAR;

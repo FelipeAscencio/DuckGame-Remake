@@ -6,7 +6,8 @@
 #define ALCANCE 30
 #define MUNICIONES 10
 
-LaserRifle::LaserRifle(posicion_t posicion_inicial): Arma(ID_LASER_RIFLE, LASER_RIFLE, ALCANCE, MUNICIONES, false, posicion_inicial) {}
+LaserRifle::LaserRifle(posicion_t posicion_inicial):
+        Arma(ID_LASER_RIFLE, LASER_RIFLE, ALCANCE, MUNICIONES, false, posicion_inicial) {}
 
 bool LaserRifle::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {

@@ -1,7 +1,7 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/protocol.h"
 
 #include <vector>
+
 #include <netinet/in.h>
 
 #define CODIGO_PATO 0x05
@@ -22,14 +22,21 @@
 #define DISPARAR 6
 #define AGARRAR 7
 
+#define PRIMERA_POSICION 0
+#define SEGUNDA_POSICION 1
+#define TERCERA_POSICION 2
+#define CUARTA_POSICION 3
+
 ServerProtocol::Protocol::Protocol(Socket& skt): s(skt) {}
 
-std::vector<uint8_t> separar_posicion_en_entero_y_decimal(const posicion_t& posicion){
+std::vector<uint8_t> separar_posicion_en_entero_y_decimal(const posicion_t& posicion) {
     std::vector<uint8_t> posiciones;
-    posiciones.push_back((uint8_t)posicion.coordenada_x); // parte entera de x
-    posiciones.push_back((uint8_t)((posicion.coordenada_x - posiciones[0])*TILE_A_METRO)); // parte decimal de x
-    posiciones.push_back((uint8_t)posicion.coordenada_y); // parte entera de y
-    posiciones.push_back((uint8_t)((posicion.coordenada_y - posiciones[2])*TILE_A_METRO)); // parte decimal de y
+    posiciones.push_back((uint8_t)posicion.coordenada_x);  // parte entera de x
+    posiciones.push_back((uint8_t)((posicion.coordenada_x - posiciones[PRIMERA_POSICION]) *
+                                   TILE_A_METRO));         // parte decimal de x
+    posiciones.push_back((uint8_t)posicion.coordenada_y);  // parte entera de y
+    posiciones.push_back((uint8_t)((posicion.coordenada_y - posiciones[TERCERA_POSICION]) *
+                                   TILE_A_METRO));  // parte decimal de y
     return posiciones;
 }
 
@@ -37,11 +44,12 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_pato(const Informacion
     std::vector<uint8_t> info;
     info.push_back(CODIGO_PATO);
     info.push_back(pato_actual.id);
-    std::vector<uint8_t> posiciones_separadas = separar_posicion_en_entero_y_decimal(pato_actual.posicion);
-    info.push_back(posiciones_separadas[0]);
-    info.push_back(posiciones_separadas[1]);
-    info.push_back(posiciones_separadas[2]);
-    info.push_back(posiciones_separadas[3]);
+    std::vector<uint8_t> posiciones_separadas =
+            separar_posicion_en_entero_y_decimal(pato_actual.posicion);
+    info.push_back(posiciones_separadas[PRIMERA_POSICION]);
+    info.push_back(posiciones_separadas[SEGUNDA_POSICION]);
+    info.push_back(posiciones_separadas[TERCERA_POSICION]);
+    info.push_back(posiciones_separadas[CUARTA_POSICION]);
     info.push_back(pato_actual.vivo);
     info.push_back(pato_actual.arma);
     info.push_back(pato_actual.id_arma_equipada);
@@ -71,11 +79,12 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_armas(const Informacio
     std::vector<uint8_t> arma;
     arma.push_back(CODIGO_ARMA);
     arma.push_back(info_arma.id_arma);
-    std::vector<uint8_t> posiciones_separadas = separar_posicion_en_entero_y_decimal(info_arma.posicion);
-    arma.push_back(posiciones_separadas[0]);
-    arma.push_back(posiciones_separadas[1]);
-    arma.push_back(posiciones_separadas[2]);
-    arma.push_back(posiciones_separadas[3]);
+    std::vector<uint8_t> posiciones_separadas =
+            separar_posicion_en_entero_y_decimal(info_arma.posicion);
+    arma.push_back(posiciones_separadas[PRIMERA_POSICION]);
+    arma.push_back(posiciones_separadas[SEGUNDA_POSICION]);
+    arma.push_back(posiciones_separadas[TERCERA_POSICION]);
+    arma.push_back(posiciones_separadas[CUARTA_POSICION]);
     arma.push_back(FIN_MENSAJE);
     return arma;
 }
@@ -103,9 +112,9 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     }
 
     //// Esto despues hay que eliminarlo
-    //InformacionArma ak(ID_AK47, 25, 89);
-    //std::vector<uint8_t> byte_ak = serializar_armas(ak);
-    //envio_correcto = _enviar(byte_ak);
+    // InformacionArma ak(ID_AK47, 25, 89);
+    // std::vector<uint8_t> byte_ak = serializar_armas(ak);
+    // envio_correcto = _enviar(byte_ak);
     //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;

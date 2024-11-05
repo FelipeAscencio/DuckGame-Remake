@@ -6,8 +6,12 @@
 #define ALCANCE 13
 #define MUNICIONES 30
 #define TILE_A_METRO 10
+#define CERO 0
+#define BALAS_POR_DISPARO 1
 
-AK47::AK47(posicion_t posicion_inicial): Arma(ID_AK47, AK_47, ALCANCE, MUNICIONES, true, posicion_inicial), ultima_bala_disparada(NO) {}
+AK47::AK47(posicion_t posicion_inicial):
+        Arma(ID_AK47, AK_47, ALCANCE, MUNICIONES, true, posicion_inicial),
+        ultima_bala_disparada(NO) {}
 
 void AK47::modificar_dispersion_balas(bool disparando) {
     if (disparando) {
@@ -46,7 +50,7 @@ void AK47::modificar_dispersion_balas(bool disparando) {
 
 
 bool AK47::disparar(const orientacion_e& direccion) {
-    if (this->municiones == 0)
+    if (this->municiones == CERO)
         return false;
     modificar_dispersion_balas(true);
     Municion* bala_disparada =
@@ -54,12 +58,12 @@ bool AK47::disparar(const orientacion_e& direccion) {
                          this->ultima_bala_disparada);
     balas.push_back(bala_disparada);
     bala_disparada->avanzar();
-    this->municiones -= 1;
+    this->municiones -= BALAS_POR_DISPARO;
     return true;
 }
 
 void AK47::chequeo_balas() {
-    if (this->municiones == 0) {
+    if (this->municiones == CERO) {
         this->agarrada = false;
         this->soltada = true;
     }

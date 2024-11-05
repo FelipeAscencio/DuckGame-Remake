@@ -2,9 +2,11 @@
 #ifndef CLIENT_CONTROLADOR_H
 #define CLIENT_CONTROLADOR_H
 
+#include <iostream>
+
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
-#include <iostream>
+
 #include "../common/queue.h"
 
 using namespace SDL2pp;

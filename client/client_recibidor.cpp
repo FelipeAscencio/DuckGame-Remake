@@ -1,15 +1,15 @@
 #include "client_recibidor.h"
 
 RecibidorCliente::RecibidorCliente(ProtocoloCliente& protocol, Queue<EstadoJuego>& queue):
-            protocolo(protocol), cola_estados(queue), vivo(true) {}
+        protocolo(protocol), cola_estados(queue), vivo(true) {}
 
-void RecibidorCliente::run(){
+void RecibidorCliente::run() {
     while (this->vivo) {
         EstadoJuego estado_actual;
-        if (!protocolo.recibir(estado_actual)){
+        if (!protocolo.recibir(estado_actual)) {
             break;
         }
-        
+
         try {
             cola_estados.push(estado_actual);
         } catch (const ClosedQueue& error) {
@@ -18,6 +18,4 @@ void RecibidorCliente::run(){
     }
 }
 
-void RecibidorCliente::stop(){
-    this->vivo = false;
-}
+void RecibidorCliente::stop() { this->vivo = false; }

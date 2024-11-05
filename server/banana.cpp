@@ -6,7 +6,8 @@
 #define ALCANCE 5
 #define MUNICIONES 1
 
-Banana::Banana(posicion_t posicion_inicial): Arma(ID_BANANA, BANANA, ALCANCE, MUNICIONES, false, posicion_inicial), activa(false) {}
+Banana::Banana(posicion_t posicion_inicial):
+        Arma(ID_BANANA, BANANA, ALCANCE, MUNICIONES, false, posicion_inicial), activa(false) {}
 
 bool Banana::disparar(const orientacion_e& direccion) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {

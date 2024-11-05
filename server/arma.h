@@ -1,3 +1,4 @@
+// Copyright 2024 Axel Zielonka y Felipe Ascencio.
 #ifndef ARMA_H
 #define ARMA_H
 
@@ -21,11 +22,14 @@
 #define ID_SHOTGUN 9
 #define ID_SNIPER 10
 
+// La clase 'Arma' encapsula la logica compartida de las
+// armas para que luego cada arma en particular la implemente.
 class Arma {
     friend struct InformacionArma;
     friend struct EstadoJuego;
     friend class Pato;
     friend class Gameloop;
+
 protected:
     const int id_arma;
     const std::string nombre;
@@ -35,35 +39,48 @@ protected:
     posicion_t posicion_spawn;
     bool agarrada;
     bool soltada;
+
+    // Verifica si el arma puede ser agarrada nuevamente.
     bool puede_agarrarse();
 
     std::vector<Municion*> balas;
 
 public:
+    // Constructor de la clase.
     Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,
          bool tiene_retroceso, posicion_t posicion_inicial);
 
+    // Destructor de la clase.
     virtual ~Arma() = default;
 
+    // Metodo virtual, implementado en cada arma.
     virtual bool disparar(const orientacion_e& direccion) = 0;
 
+    // Metodo virtual, implementado en cada arma.
     virtual void chequeo_balas() = 0;
 
+    // Marca el arma como "agarrada" por un jugador.
     void agarrar();
 
+    // Marca el arma como "soltada" y la libera del estado de "agarrada".
     void soltar();
 
+    // Indica si el arma tiene retroceso.
     bool tiene_retroceso();
 
+    // Devuelve el alcance maximo del arma.
     int obtener_alcance();
 
+    // Retorna el numero de municiones restantes en el arma.
     int municiones_restantes();
 
+    // Verifica si el arma esta actualmente en uso.
     bool en_uso();
 
+    // Devuelve la posicion inicial del arma al momento de su aparicion.
     posicion_t obtener_posicion_inicial();
 
     int obtener_id() const { return id_arma; }
 };
 
-#endif
+#endif  // ARMA_H

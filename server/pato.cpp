@@ -1,4 +1,3 @@
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/pato.h"
 
 #include <cstdlib>
@@ -128,10 +127,11 @@ void Pato::caer(Mapa& mapa) {
             // paso por completo a ese nuevo bloque entonces no debe caer
 
             // bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
-            // bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
-            // if (piso_a_la_izquierda || piso_a_la_derecha) {
-            //     float distancia_fuera_del_borde = this->posicion.coordenada_x - ((int)this->posicion.coordenada_x);
-            //     if (distancia_fuera_del_borde < TILE_A_METRO / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
+            // bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] ==
+            // 1)); if (piso_a_la_izquierda || piso_a_la_derecha) {
+            //     float distancia_fuera_del_borde = this->posicion.coordenada_x -
+            //     ((int)this->posicion.coordenada_x); if (distancia_fuera_del_borde < TILE_A_METRO
+            //     / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
             //         estado_actual = PARADO;
             //         return;
             //     }
@@ -263,13 +263,13 @@ void Pato::control_pre_comando(Mapa& mapa) {
 
 void Pato::recibir_disparo() {
     if (posee_casco) {
-        posee_casco = false;  // si le pegan un disparo, pierde el casco pero sigue vivo
+        posee_casco = false;  // Si le pegan un disparo, pierde el casco pero sigue vivo.
         return;
     }
     if (posee_armadura) {
-        posee_armadura = false;  // si le pegan un disparo, pierde el armadura pero sigue vivo
+        posee_armadura = false;  // Si le pegan un disparo, pierde el armadura pero sigue vivo.
     }
-    vivo = false;  // si llego a este punto, no tenia ni casco ni armadura, entonces muere
+    vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
 std::string orientacion_texto(const orientacion_e& direccion) {
@@ -304,7 +304,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (arma_equipada) {
                 if (disparar()) {
                     std::cout << "Disparo\n";
-                    if (arma_equipada->tiene_retroceso()){
+                    if (arma_equipada->tiene_retroceso()) {
                         this->posicion.coordenada_y += MOVER_IZQUIERDA;
                     }
                 } else {
@@ -317,13 +317,13 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             break;
         case COMANDO_AGARRAR:
             // logica para ver si el arma/casco/armadura esta en la misma posicion para
-                // agarrar
+            // agarrar
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
             std::cout << "Posicion vieja: " << this->posicion.to_string();
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            if (mover(mapa, sentido)){
+            if (mover(mapa, sentido)) {
                 std::cout << "Posicion nueva: " << this->posicion.to_string();
                 std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
                 this->estado_actual = CAMINANDO;

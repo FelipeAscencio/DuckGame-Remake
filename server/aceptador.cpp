@@ -25,6 +25,7 @@ void Aceptador::run() {
             if (error_envio_id) {
                 aceptando_jugadores = false;
             }
+
             std::cout << "Antes de crear el ThreadUsuario\n";
             ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
             queues_clientes.agregar_queue(jugador->obtener_queue(), id);
@@ -39,6 +40,7 @@ void Aceptador::run() {
             } else {
                 syslog(LOG_ERR, "%s%s\n", EXCEPCION_INESPERADA, e.what());
             }
+
             break;
         } catch (...) {
             syslog(LOG_ERR, "%s\n", EXCEPCION_DESCONOCIDA);
@@ -60,6 +62,7 @@ void Aceptador::recolectar() {
             eliminar_cliente(j);
             return true;
         }
+
         return false;
     });
 }
@@ -68,6 +71,7 @@ Aceptador::~Aceptador() {
     for (auto& j: jugadores) {
         eliminar_cliente(j);
     }
+
     jugadores.clear();
     queue_juego.close();
     skt.shutdown(RW_CLOSE);

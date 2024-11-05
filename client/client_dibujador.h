@@ -7,10 +7,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
 
-#include "client_parseador.h"
+#include "../common/estado_juego.h"
 #include "../common/orientacion.h"
 #include "../common/queue.h"
-#include "../common/estado_juego.h"
+
+#include "client_parseador.h"
 
 using namespace SDL2pp;
 
@@ -23,12 +24,12 @@ private:
     EstadoJuego ultimo_estado_recibido;
     Parseador parseador;
     Texture sprite_sheet_pato;
-    Texture sprite_sheet_ak; // Falta la bala.
+    Texture sprite_sheet_ak;  // Falta la bala.
     Texture sprite_sheet_caja;
-    Texture sprite_sheet_armadura; // Falta el casco, la pechera y el casco loteable.
-    Texture sprite_sheet_escopeta; // Falta la escopeta y las balas.
-    Texture sprite_sheet_laser; // Falta el arma y las balas.
-    Texture sprite_sheet_pistola; // Falta el arma y las balas.
+    Texture sprite_sheet_armadura;  // Falta el casco, la pechera y el casco loteable.
+    Texture sprite_sheet_escopeta;  // Falta la escopeta y las balas.
+    Texture sprite_sheet_laser;     // Falta el arma y las balas.
+    Texture sprite_sheet_pistola;   // Falta el arma y las balas.
     Texture mapa;
     std::vector<SDL_Rect> sprites_pato;
     std::vector<SDL_Rect> sprites_ak;
@@ -51,12 +52,13 @@ private:
 
     // Dibuja el pato enemigo con el color correspondiente segun su id.
     void dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                               const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id, const double angle, SDL_RendererFlip& flip);
+                              const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id,
+                              const double angle, SDL_RendererFlip& flip);
 
     // Dibuja un sprite en la posicion correspondiente de la ventana.
     void dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                    const SDL_Rect& sprite, float x, float y, float escala,
-                    orientacion_e orientacion, const int id);
+                        const SDL_Rect& sprite, float x, float y, float escala,
+                        orientacion_e orientacion, const int id);
 
     // Dibuja los patos del 'estado_actual' en la ventana.
     void dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
@@ -66,7 +68,8 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id_jugador, Queue<EstadoJuego>& cola_recibidor);
+    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id_jugador,
+                       Queue<EstadoJuego>& cola_recibidor);
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
     void renderizar(Renderer& renderer);
@@ -80,4 +83,4 @@ public:
     Dibujador& operator=(Dibujador&&) = default;
 };
 
-#endif // CLIENT_DIBUJADOR_H
+#endif  // CLIENT_DIBUJADOR_H

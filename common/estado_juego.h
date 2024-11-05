@@ -71,7 +71,7 @@ struct InformacionArma {
     explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
 };
 
-// 'struct' que sirve para comparar las 'ID'. 
+// 'struct' que sirve para comparar las 'ID'.
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
@@ -136,7 +136,8 @@ struct EstadoJuego {
         this->cantidad_armas++;
     }
 
-    // Convierte el estado de juego en un texto, para verificar si funcionamiento sin interfaz grafica.
+    // Convierte el estado de juego en un texto, para verificar si funcionamiento sin interfaz
+    // grafica.
     std::string to_string() {
         std::ostringstream oss;
         oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
