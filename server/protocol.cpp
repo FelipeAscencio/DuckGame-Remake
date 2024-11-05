@@ -2,8 +2,7 @@
 #include "server/protocol.h"
 
 #include <vector>
-
-using namespace ServerProtocol;
+#include <netinet/in.h>
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
@@ -20,16 +19,29 @@ using namespace ServerProtocol;
 #define AGACHARSE 3
 #define MIRAR_HACIA_ARRIBA 4
 #define SALTAR_O_ALETEAR 5
-#define DISPARAR_O_AGARRAR 6
+#define DISPARAR 6
+#define AGARRAR 7
 
-Protocol::Protocol(Socket& skt): s(skt) {}
+ServerProtocol::Protocol::Protocol(Socket& skt): s(skt) {}
 
-std::vector<uint8_t> Protocol::serializar_pato(const InformacionPato& pato_actual) {
+std::vector<uint8_t> separar_posicion_en_entero_y_decimal(const posicion_t& posicion){
+    std::vector<uint8_t> posiciones;
+    posiciones.push_back((uint8_t)posicion.coordenada_x); // parte entera de x
+    posiciones.push_back((uint8_t)((posicion.coordenada_x - posiciones[0])*TILE_A_METRO)); // parte decimal de x
+    posiciones.push_back((uint8_t)posicion.coordenada_y); // parte entera de y
+    posiciones.push_back((uint8_t)((posicion.coordenada_y - posiciones[2])*TILE_A_METRO)); // parte decimal de y
+    return posiciones;
+}
+
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_pato(const InformacionPato& pato_actual) {
     std::vector<uint8_t> info;
     info.push_back(CODIGO_PATO);
     info.push_back(pato_actual.id);
-    info.push_back(pato_actual.posicion.coordenada_x);
-    info.push_back(pato_actual.posicion.coordenada_y);
+    std::vector<uint8_t> posiciones_separadas = separar_posicion_en_entero_y_decimal(pato_actual.posicion);
+    info.push_back(posiciones_separadas[0]);
+    info.push_back(posiciones_separadas[1]);
+    info.push_back(posiciones_separadas[2]);
+    info.push_back(posiciones_separadas[3]);
     info.push_back(pato_actual.vivo);
     info.push_back(pato_actual.arma);
     info.push_back(pato_actual.id_arma_equipada);
@@ -41,7 +53,8 @@ std::vector<uint8_t> Protocol::serializar_pato(const InformacionPato& pato_actua
     return info;
 }
 
-std::vector<uint8_t> Protocol::serializar_cantidades(const EstadoJuego& estado_actual) {
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_cantidades(
+        const EstadoJuego& estado_actual) {
     std::vector<uint8_t> cantidades;
     cantidades.push_back(CODIGO_CANTIDADES);
     cantidades.push_back(estado_actual.cantidad_jugadores);
@@ -54,13 +67,26 @@ std::vector<uint8_t> Protocol::serializar_cantidades(const EstadoJuego& estado_a
     return cantidades;
 }
 
-bool Protocol::_enviar(const std::vector<uint8_t>& bytes) {
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_armas(const InformacionArma& info_arma) {
+    std::vector<uint8_t> arma;
+    arma.push_back(CODIGO_ARMA);
+    arma.push_back(info_arma.id_arma);
+    std::vector<uint8_t> posiciones_separadas = separar_posicion_en_entero_y_decimal(info_arma.posicion);
+    arma.push_back(posiciones_separadas[0]);
+    arma.push_back(posiciones_separadas[1]);
+    arma.push_back(posiciones_separadas[2]);
+    arma.push_back(posiciones_separadas[3]);
+    arma.push_back(FIN_MENSAJE);
+    return arma;
+}
+
+bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
     return !was_closed;
 }
 
-bool Protocol::enviar(const EstadoJuego& estado_actual) {
+bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     std::vector<uint8_t> cantidades = serializar_cantidades(estado_actual);
     bool envio_correcto = _enviar(cantidades);
     int i = 0;
@@ -69,7 +95,18 @@ bool Protocol::enviar(const EstadoJuego& estado_actual) {
         envio_correcto = _enviar(pato_actual);
         i++;
     }
-    // aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
+    i = 0;
+    while (i < estado_actual.cantidad_armas && envio_correcto) {
+        std::vector<uint8_t> arma_actual = serializar_armas(estado_actual.info_armas[i]);
+        envio_correcto = _enviar(arma_actual);
+        i++;
+    }
+
+    //// Esto despues hay que eliminarlo
+    //InformacionArma ak(ID_AK47, 25, 89);
+    //std::vector<uint8_t> byte_ak = serializar_armas(ak);
+    //envio_correcto = _enviar(byte_ak);
+    //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;
         bool was_closed = false;
@@ -80,11 +117,11 @@ bool Protocol::enviar(const EstadoJuego& estado_actual) {
     }
 }
 
-bool Protocol::accion_valida(const uint8_t& accion) {
-    return (accion >= MOVER_DERECHA && accion <= DISPARAR_O_AGARRAR);
+bool ServerProtocol::Protocol::accion_valida(const uint8_t& accion) {
+    return (accion >= MOVER_DERECHA && accion <= AGARRAR);
 }
 
-bool Protocol::recibir(comando_t& cmd, const int& id_cliente) {
+bool ServerProtocol::Protocol::recibir(comando_t& cmd, const int& id_cliente) {
     bool was_closed = false;
     cmd.id_cliente = id_cliente;
     s.recvall(&(cmd.accion), sizeof(cmd.accion), &was_closed);

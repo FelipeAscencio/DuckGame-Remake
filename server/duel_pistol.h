@@ -9,8 +9,9 @@
 
 class DuelPistol: public Arma {
 public:
-    DuelPistol();
-    void disparar(const orientacion_e& direccion) override;
+    DuelPistol(posicion_t posicion_inicial);
+    bool disparar(const orientacion_e& direccion) override;
+    void chequeo_balas() override;
 };
 
 

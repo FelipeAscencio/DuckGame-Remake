@@ -68,7 +68,7 @@ void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture
     }
 }
 
-std::pair<float, float> Dibujador::convertir_a_relativo(int x, int y) {
+std::pair<float, float> Dibujador::convertir_a_relativo(float x, float y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
     float y_convertido = static_cast<float>(y) / MAX_COORD_Y;
     return {x_convertido, y_convertido};

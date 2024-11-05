@@ -6,8 +6,10 @@ RecibidorCliente::RecibidorCliente(ProtocoloCliente& protocol, Queue<EstadoJuego
 void RecibidorCliente::run(){
     while (this->vivo) {
         EstadoJuego estado_actual;
-        if (!protocolo.recibir(estado_actual))
+        if (!protocolo.recibir(estado_actual)){
             break;
+        }
+        
         try {
             cola_estados.push(estado_actual);
         } catch (const ClosedQueue& error) {

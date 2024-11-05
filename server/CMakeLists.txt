@@ -14,6 +14,7 @@ target_sources(taller_server
     laser_rifle.cpp
     magnum.cpp
     mapa.cpp
+    municion.cpp
     p_p_laser.cpp
     pato.cpp
     protocol.cpp
@@ -37,6 +38,7 @@ target_sources(taller_server
     laser_rifle.h
     magnum.h
     mapa.h
+    municion.h
     p_p_laser.h
     pato.h
     protocol.h

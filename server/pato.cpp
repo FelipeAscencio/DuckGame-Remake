@@ -7,16 +7,17 @@
 #include <string>
 #include <vector>
 
-#define MOVER_DERECHA 1
-#define MOVER_IZQUIERDA -1
-#define SALTO_Y_CAIDA 2
+#define MOVER_DERECHA 0.5
+#define MOVER_IZQUIERDA -0.5
+#define SALTO_Y_CAIDA 0.3
 
 #define COMANDO_DERECHA 1
 #define COMANDO_IZQUIERDA 2
 #define COMANDO_AGACHARSE 3
 #define COMANDO_MIRAR_HACIA_ARRIBA 4
 #define COMANDO_SALTO_Y_ALETEO 5
-#define COMANDO_DISPARO_Y_PICKUP 6
+#define COMANDO_DISPARO 6
+#define COMANDO_AGARRAR 7
 
 Pato::Pato(int id):
         id_jugador(id),
@@ -75,7 +76,7 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
     }
 
     if (se_movio) {
-        int pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
+        float pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
         this->posicion.coordenada_x += pasos;
     }
     return se_movio;
@@ -101,7 +102,7 @@ void Pato::aletear() {
 void Pato::caer(Mapa& mapa) {
     if (!this->vivo)
         return;
-    if (this->posicion.coordenada_y == (mapa.alto * TILE_A_METRO) - 1) {
+    if (this->posicion.coordenada_y >= (mapa.alto * TILE_A_METRO) - 1) {
         std::cout << "Me fui del mapa\n";
         this->vivo = false;
         return;
@@ -126,22 +127,22 @@ void Pato::caer(Mapa& mapa) {
             // tecnicamente estoy en un bloque que no tiene piso abajo, pero el cuerpo del pato no
             // paso por completo a ese nuevo bloque entonces no debe caer
 
-            bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
-            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
-            if (piso_a_la_izquierda || piso_a_la_derecha) {
-                if ((posicion.coordenada_x % TILE_A_METRO <= MOVER_DERECHA) ||
-                    (posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO + MOVER_IZQUIERDA))) {
-                    estado_actual = PARADO;
-                    return;
-                }
-            }
+            // bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
+            // bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
+            // if (piso_a_la_izquierda || piso_a_la_derecha) {
+            //     float distancia_fuera_del_borde = this->posicion.coordenada_x - ((int)this->posicion.coordenada_x);
+            //     if (distancia_fuera_del_borde < TILE_A_METRO / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
+            //         estado_actual = PARADO;
+            //         return;
+            //     }
+            // }
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
             estado_actual = CAYENDO;
 
             // el bloque de abajo en el que estoy tiene su piso a "mitad del bloque" (el piso no
             // esta alineado con el cambio de bloques)
         } else if (mapa.mapa[tile_y][tile_x] == 2) {
-            int posicion_en_bloque = posicion.coordenada_y % TILE_A_METRO;
+            int posicion_en_bloque = (int)posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;
             if (posicion_en_bloque < mitad_bloque) {
                 posicion.coordenada_y += SALTO_Y_CAIDA;
@@ -198,8 +199,7 @@ bool Pato::agarrar_casco() {
 
 bool Pato::disparar() {
     if (arma_equipada) {
-        arma_equipada->disparar(this->orientacion);
-        return true;
+        return arma_equipada->disparar(this->orientacion);
     } else {
         return false;
     }
@@ -284,7 +284,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            this->cambiar_orientacion(ARRIBA);
+            this->cambiar_orientacion(orientacion_e::ARRIBA);
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
             break;
         case COMANDO_AGACHARSE:
@@ -300,24 +300,34 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                 aletear();
             }
             break;
-        case COMANDO_DISPARO_Y_PICKUP:
+        case COMANDO_DISPARO:
             if (arma_equipada) {
-                std::cout << "Disparo\n";
-                disparar();
+                if (disparar()) {
+                    std::cout << "Disparo\n";
+                    if (arma_equipada->tiene_retroceso()){
+                        this->posicion.coordenada_y += MOVER_IZQUIERDA;
+                    }
+                } else {
+                    delete arma_equipada;
+                    std::cout << "No tiene mas balas\n";
+                }
             } else {
                 std::cout << "No puedo disparar, no tengo arma bro\n";
-                // logica para ver si el arma/casco/armadura esta en la misma posicion para
-                // agarrar
             }
+            break;
+        case COMANDO_AGARRAR:
+            // logica para ver si el arma/casco/armadura esta en la misma posicion para
+                // agarrar
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
             std::cout << "Posicion vieja: " << this->posicion.to_string();
             std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            mover(mapa, sentido);
-            std::cout << "Posicion nueva: " << this->posicion.to_string();
-            std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-            this->estado_actual = CAMINANDO;
+            if (mover(mapa, sentido)){
+                std::cout << "Posicion nueva: " << this->posicion.to_string();
+                std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
+                this->estado_actual = CAMINANDO;
+            }
             break;
     }
 }

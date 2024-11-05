@@ -9,8 +9,9 @@
 
 class CowboyPistol: public Arma {
 public:
-    CowboyPistol();
-    void disparar(const orientacion_e& direccion) override;
+    CowboyPistol(posicion_t posicion_inicial);
+    bool disparar(const orientacion_e& direccion) override;
+    void chequeo_balas() override;
 };
 
 

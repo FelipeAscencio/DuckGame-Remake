@@ -25,17 +25,15 @@ private:
     Socket& s;
     int id_cliente;
 
-    // Parsea el comando recibido en formato 'char', en el 'byte' correspondiente.
-    uint8_t parsear_comando(char accion);
+    bool procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual);
 
-    // Asigna al 'estado_actual' las cantidades de cada elemento del juego.
-    bool procesar_cantidades(EstadoJuego& estado_actual);
-
-    // Procesa los patos recibidos y los carga en el 'estado_actual'.
     bool procesar_patos(EstadoJuego& estado_actual);
 
-    // Procesa el 'leido' y bifurca el procesamiento de la informacion recibida por el socket.
-    bool procesar_leido(const uint8_t& leido, EstadoJuego& estado_actual);
+    bool procesar_cantidades(EstadoJuego& estado_actual);
+
+    bool procesar_armas(EstadoJuego& estado_actual);
+
+    uint8_t parsear_comando(char accion);
 
 public:
     // Constructor de la clase.

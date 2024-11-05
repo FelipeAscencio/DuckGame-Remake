@@ -73,7 +73,6 @@ void Client::controlar_loop_juego() {
         if (dibujador) {
             dibujador->renderizar(renderer);
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
     }
 
     terminar_musica(musica_fondo);
