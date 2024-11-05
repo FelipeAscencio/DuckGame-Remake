@@ -68,7 +68,7 @@ void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture
     }
 }
 
-std::pair<float, float> Dibujador::convertir_a_relativo(int x, int y) {
+std::pair<float, float> Dibujador::convertir_a_relativo(float x, float y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
     float y_convertido = static_cast<float>(y) / MAX_COORD_Y;
     return {x_convertido, y_convertido};
@@ -169,12 +169,11 @@ void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Rendere
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer) {
     EstadoJuego estado_actual;
-    if (cola_estados.try_pop(estado_actual)) {
+    while (cola_estados.try_pop(estado_actual)){
         this->ultimo_estado_recibido = estado_actual;
+        renderer.Clear();
+        renderer.Copy(this->mapa);
+        dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
+        renderer.Present();
     }
-
-    renderer.Clear();
-    renderer.Copy(this->mapa);
-    dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
-    renderer.Present();
 }

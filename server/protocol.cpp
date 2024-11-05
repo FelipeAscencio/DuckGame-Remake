@@ -102,11 +102,11 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
         i++;
     }
 
-    // Esto despues hay que eliminarlo
-    InformacionArma ak(ID_AK47, 25, 89);
-    std::vector<uint8_t> byte_ak = serializar_armas(ak);
-    envio_correcto = _enviar(byte_ak);
-    // aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
+    //// Esto despues hay que eliminarlo
+    //InformacionArma ak(ID_AK47, 25, 89);
+    //std::vector<uint8_t> byte_ak = serializar_armas(ak);
+    //envio_correcto = _enviar(byte_ak);
+    //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;
         bool was_closed = false;

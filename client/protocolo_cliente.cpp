@@ -81,8 +81,9 @@ bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
     std::vector<uint8_t> cantidades;
     while (leido != FIN_MENSAJE && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);
-        if (!was_closed)
+        if (!was_closed){
             cantidades.push_back(leido);
+        }
     }
 
     if (!was_closed) {
@@ -170,17 +171,34 @@ bool ProtocoloCliente::procesar_leido(const uint8_t& leido, EstadoJuego& estado_
             break;
     }
 
-    return resultado;
+    return !resultado;
 }
 
 bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = BYTE_NULO;
     bool was_closed = false;
-
-    while (leido != FIN_COMUNICACION && !was_closed) {
-        s.recvall(&leido, sizeof(leido), &was_closed);
-        if (!was_closed)
-            was_closed = procesar_leido(leido, estado_actual);
+    std::vector<uint8_t> cantidades(SEIS);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    s.recvall(cantidades.data(), cantidades.size(), &was_closed);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    int i = 0;
+    std::vector<uint8_t> info_pato(12);
+    while (i < cantidades[PRIMERA_POSICION]) {
+        s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo del pato.
+        s.recvall(info_pato.data(), info_pato.size(), &was_closed);
+        s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo fin mensaje.
+        float x = info_pato[1] + (info_pato[2]/TILE_A_METRO);
+        float y = info_pato[3] + (info_pato[4]/TILE_A_METRO);
+        posicion_t pos(x,y);
+        InformacionPato pato_actual(info_pato[0], pos, info_pato[5], info_pato[6], info_pato[7],
+                                    info_pato[8], info_pato[9], (orientacion_e)info_pato[10],
+                                    (estado_pato_e)info_pato[11]);
+        estado_actual.agregar_info_pato(pato_actual);
+        info_pato.clear();
+        info_pato.resize(12);
+        i++;
     }
+
+    s.recvall(&leido, sizeof(leido), &was_closed);  // Lee el fin de  la comunicacion.
     return !was_closed;
 }

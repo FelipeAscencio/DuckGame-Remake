@@ -47,7 +47,7 @@ private:
     SDL2pp::Rect calcular_dst_rect(float x, float y, float escala);
 
     // Convierte el 'X' e 'Y' recibido en el valor relativo en relacion al 'X' e 'Y' maximos.
-    std::pair<float, float> convertir_a_relativo(int x, int y);
+    std::pair<float, float> convertir_a_relativo(float x, float y);
 
     // Dibuja el pato enemigo con el color correspondiente segun su id.
     void dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,

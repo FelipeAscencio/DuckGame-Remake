@@ -69,7 +69,6 @@ void Gameloop::chequear_posiciones(){
 }
 
 void Gameloop::loop_juego(){
-    enviar_estado_juego();
     chequear_nuevos_jugadores();
     if (!jugadores.empty()) {
         chequear_posiciones();
@@ -84,9 +83,11 @@ void Gameloop::loop_juego(){
             }
         }
     }
+    enviar_estado_juego();
 }
 
 void Gameloop::run() {
+    enviar_estado_juego();
     time_t t1 = time(NULL);
     unsigned long f = 0;
     float rest;
