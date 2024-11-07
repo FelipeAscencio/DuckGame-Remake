@@ -5,13 +5,8 @@ target_sources(taller_server
     aceptador.cpp
     ak47.cpp
     arma.cpp
-    banana.cpp
-    cowboy_pistol.cpp
-    duel_pistol.cpp
     enviador.cpp
     gameloop.cpp
-    granada.cpp
-    laser_rifle.cpp
     magnum.cpp
     mapa.cpp
     municion.cpp
@@ -29,13 +24,8 @@ target_sources(taller_server
     aceptador.h
     ak47.h
     arma.h
-    banana.h
-    cowboy_pistol.h
-    duel_pistol.h
     enviador.h
     gameloop.h
-    granada.h
-    laser_rifle.h
     magnum.h
     mapa.h
     municion.h
