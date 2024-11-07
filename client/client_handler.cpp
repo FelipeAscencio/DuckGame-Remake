@@ -8,7 +8,7 @@
 #define FRECUENCIA_HZ 44100
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2
-#define SLEEP 20
+#define SLEEP 100
 #define DUCK_GAME_STR "Duck Game"
 #define RUTA_MAPA_1 "/mapa1.png"
 #define MUSICA_FONDO "/arcade-song.mp3"
@@ -70,12 +70,13 @@ void Client::controlar_loop_juego() {
     std::string ruta_mapa = RUTA_MAPA_1;
     dibujador.emplace(renderer, ruta_mapa, this->id, cola_recibidor);
     iniciar_hilos();
-
     while (this->jugador_activo) {
         controlador.manejar_eventos(this->jugador_activo);
         if (dibujador) {
             dibujador->renderizar(renderer);
         }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
     }
 
     terminar_musica(musica_fondo);

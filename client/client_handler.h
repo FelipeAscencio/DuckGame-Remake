@@ -2,6 +2,7 @@
 #ifndef CLIENT_HANDLER_H
 #define CLIENT_HANDLER_H
 
+#include <vector>
 #include <chrono>
 #include <iostream>
 #include <thread>
