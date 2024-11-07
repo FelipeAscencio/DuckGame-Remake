@@ -11,6 +11,7 @@
 #define ALTO_VENTANA 720
 #define MAX_COORD_X 200
 #define MAX_COORD_Y 160
+#define OFFSET_Y 0.03
 #define ANGULO_NULO 0.0
 #define ANGULO_270 270.0
 #define ESCALA_SPRITES_GRANDES 0.07
@@ -44,8 +45,12 @@
 
 using namespace SDL2pp;
 
-Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id, Queue<EstadoJuego>& cola_recibidor):
-        id_jugador(id), cola_estados(cola_recibidor), ultimo_estado_recibido(), parseador(),
+Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id,
+                     Queue<EstadoJuego>& cola_recibidor):
+        id_jugador(id),
+        cola_estados(cola_recibidor),
+        ultimo_estado_recibido(),
+        parseador(),
         sprite_sheet_pato(renderer, DATA_PATH RUTA_SPR_PATO),
         sprite_sheet_ak(renderer, DATA_PATH RUTA_SPR_AK),
         sprite_sheet_caja(renderer, DATA_PATH RUTA_SPR_CAJAS),
@@ -101,36 +106,48 @@ SDL2pp::Rect Dibujador::calcular_dst_rect(float x, float y, float escala) {
     int ancho_escalado = static_cast<int>(ancho_ventana * escala);
     int alto_escalado = static_cast<int>(alto_ventana * escala);
 
-    // Centramos el sprite en el eje 'X' y ponemos el '0' del eje 'Y' en la parte inferior del sprite.
+    // Centramos el sprite en el eje 'X' y ponemos el '0' del eje 'Y' en la parte inferior del
+    // sprite.
     int dst_x = static_cast<int>(ancho_ventana * x) - (ancho_escalado / DOS);
     int dst_y = static_cast<int>(alto_ventana * y) - alto_escalado;
     return SDL2pp::Rect(dst_x, dst_y, ancho_escalado, alto_escalado);
 }
 
 void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                               const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id, const double angle, SDL_RendererFlip& flip){
+                                     const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id,
+                                     const double angle, SDL_RendererFlip& flip) {
     SDL_Color color_mod;
-    if (id == UNO) { // ROJO
-        color_mod = {MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else if (id == DOS) { // VERDE
-        color_mod = {MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else if (id == TRES) { // AZUL
-        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else if (id == CUATRO) { // AMARILLO
-        color_mod = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else if (id == CINCO) { // NARANJA
-        color_mod = {MAX_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else if (id == SEIS) { // VIOLETA
-        color_mod = {MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else if (id == SIETE) { // MARRON
+    if (id == UNO) {  // ROJO
+        color_mod = {MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
+    } else if (id == DOS) {  // VERDE
+        color_mod = {MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
+    } else if (id == TRES) {  // AZUL
+        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
+    } else if (id == CUATRO) {  // AMARILLO
+        color_mod = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
+    } else if (id == CINCO) {  // NARANJA
+        color_mod = {MAX_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
+    } else if (id == SEIS) {  // VIOLETA
+        color_mod = {MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MED_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
+    } else if (id == SIETE) {  // MARRON
         color_mod = {MED_INTENSIDAD_RGB, RGB_AUX_MARRON_1, RGB_AUX_MARRON_2, MAX_INTENSIDAD_RGB};
-    } else if (id == OCHO) { // NEGRO
-        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
+    } else if (id == OCHO) {  // NEGRO
+        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
+                     MAX_INTENSIDAD_RGB};
     }
 
     SDL_SetTextureColorMod(sprite_sheet.Get(), color_mod.r, color_mod.g, color_mod.b);
-    renderer.Copy(sprite_sheet, SDL2pp::Optional<SDL2pp::Rect>(sprite), SDL2pp::Optional<SDL2pp::Rect>(dst_rect), angle, SDL2pp::Optional<SDL2pp::Point>(), flip);
-    SDL_SetTextureColorMod(sprite_sheet.Get(), MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB);
+    renderer.Copy(sprite_sheet, SDL2pp::Optional<SDL2pp::Rect>(sprite),
+                  SDL2pp::Optional<SDL2pp::Rect>(dst_rect), angle,
+                  SDL2pp::Optional<SDL2pp::Point>(), flip);
+    SDL_SetTextureColorMod(sprite_sheet.Get(), MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB,
+                           MAX_INTENSIDAD_RGB);
 }
 
 void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
@@ -145,60 +162,72 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
         angle = ANGULO_270;
     }
 
-    if (id > CERO && id <= OCHO){
-        if (id != this->id_jugador){
+    if (id > CERO && id <= OCHO) {
+        if (id != this->id_jugador) {
             dibujar_pato_enemigo(renderer, sprite_sheet, sprite, dst_rect, id, angle, flip);
             return;
         }
     }
-    
-    renderer.Copy(sprite_sheet, SDL2pp::Optional<SDL2pp::Rect>(sprite), SDL2pp::Optional<SDL2pp::Rect>(dst_rect), angle, SDL2pp::Optional<SDL2pp::Point>(), flip);
+
+    renderer.Copy(sprite_sheet, SDL2pp::Optional<SDL2pp::Rect>(sprite),
+                  SDL2pp::Optional<SDL2pp::Rect>(dst_rect), angle,
+                  SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     float escala = ESCALA_SPRITES_GRANDES;
     int id;
     float x;
     float y;
     orientacion_e orientacion;
     estado_pato_e estado;
-    for (auto& pato: estado_actual.info_patos){
+    for (auto& pato: estado_actual.info_patos) {
         id = pato.id;
         x = pato.posicion.coordenada_x;
         y = pato.posicion.coordenada_y;
         orientacion = pato.orientacion;
         estado = pato.estado;
-        if (estado == ESTADO_PARADO){
+        if (estado == ESTADO_PARADO) {
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO], x_1, y_1, escala, orientacion, id);
-        } else if (estado == ESTADO_AGACHADO){
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
+                           x_1, y_1 + OFFSET_Y, escala, orientacion, id);
+        } else if (estado == ESTADO_AGACHADO) {
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_AGACHADO], x_1, y_1, escala, orientacion, id);
-        } else if (estado == ESTADO_SALTANDO){
+            dibujar_sprite(renderer, this->sprite_sheet_pato,
+                           this->sprites_pato[POS_SPRITE_AGACHADO], x_1, y_1 + OFFSET_Y, escala,
+                           orientacion, id);
+        } else if (estado == ESTADO_SALTANDO) {
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_SALTANDO], x_1, y_1, escala, orientacion, id);
-        } else if (estado == ESTADO_ALETEANDO){
+            dibujar_sprite(renderer, this->sprite_sheet_pato,
+                           this->sprites_pato[POS_SPRITE_SALTANDO], x_1, y_1 + OFFSET_Y, escala,
+                           orientacion, id);
+        } else if (estado == ESTADO_ALETEANDO) {
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_ALETEANDO], x_1, y_1, escala, orientacion, id);
-        } else if (estado == ESTADO_CAYENDO){
+            dibujar_sprite(renderer, this->sprite_sheet_pato,
+                           this->sprites_pato[POS_SPRITE_ALETEANDO], x_1, y_1 + OFFSET_Y, escala,
+                           orientacion, id);
+        } else if (estado == ESTADO_CAYENDO) {
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_CAYENDO], x_1, y_1, escala, orientacion, id);
+            dibujar_sprite(renderer, this->sprite_sheet_pato,
+                           this->sprites_pato[POS_SPRITE_CAYENDO], x_1, y_1 + OFFSET_Y, escala,
+                           orientacion, id);
         } else if (estado == ESTADO_CAMINANDO) {
             unsigned int current_ticks = SDL_GetTicks();
             int sprite_index = UNO + (current_ticks / DIEZ) % CANTIDAD_SPRITES_CAMINAR;
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index], x_1, y_1, escala, orientacion, id);
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index], x_1,
+                           y_1 + OFFSET_Y, escala, orientacion, id);
         }
     }
 }
 
-void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     dibujar_patos(estado_actual, renderer);
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer) {
     EstadoJuego estado_actual;
-    while (cola_estados.try_pop(estado_actual)){
+    while (cola_estados.try_pop(estado_actual)) {
         this->ultimo_estado_recibido = estado_actual;
     }
 

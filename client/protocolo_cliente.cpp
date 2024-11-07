@@ -45,7 +45,8 @@
 
 static std::map<char, uint8_t> acciones = {
         {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
-        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR}, {AGARRAR, ACCION_AGARRAR}};
+        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR},
+        {AGARRAR, ACCION_AGARRAR}};
 
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;
@@ -78,7 +79,7 @@ bool ProtocoloCliente::procesar_cantidades(EstadoJuego& estado_actual) {
     std::vector<uint8_t> cantidades;
     while (leido != FIN_MENSAJE && !was_closed) {
         s.recvall(&leido, sizeof(leido), &was_closed);
-        if (!was_closed){
+        if (!was_closed) {
             cantidades.push_back(leido);
         }
     }
@@ -108,13 +109,15 @@ bool ProtocoloCliente::procesar_patos(EstadoJuego& estado_actual) {
 
     if (!was_closed) {
         float x, y;
-        x = info[SEGUNDA_POSICION] + (info[TERCERA_POSICION]/TILE_A_METRO);
-        y = info[CUARTA_POSICION] + (info[QUINTA_POSICION]/TILE_A_METRO);
-        posicion_t posicion(x,y);
-        InformacionPato pato(info[PRIMERA_POSICION], posicion, static_cast<bool>(info[SEXTA_POSICION]),
-                             static_cast<bool>(info[SEPTIMA_POSICION]), info[OCTAVA_POSICION], static_cast<bool>(info[NOVENA_POSICION]),
-                             static_cast<bool>(info[DECIMA_POSICION]), static_cast<orientacion_e>(info[DECIMO_PRIMERA_POSICION]),
-                             static_cast<estado_pato_e>(info[DECIMO_SEGUNDA_POSICION]));
+        x = info[SEGUNDA_POSICION] + (info[TERCERA_POSICION] / TILE_A_METRO);
+        y = info[CUARTA_POSICION] + (info[QUINTA_POSICION] / TILE_A_METRO);
+        posicion_t posicion(x, y);
+        InformacionPato pato(
+                info[PRIMERA_POSICION], posicion, static_cast<bool>(info[SEXTA_POSICION]),
+                static_cast<bool>(info[SEPTIMA_POSICION]), info[OCTAVA_POSICION],
+                static_cast<bool>(info[NOVENA_POSICION]), static_cast<bool>(info[DECIMA_POSICION]),
+                static_cast<orientacion_e>(info[DECIMO_PRIMERA_POSICION]),
+                static_cast<estado_pato_e>(info[DECIMO_SEGUNDA_POSICION]));
         estado_actual.agregar_info_pato(pato);
         return true;
     } else {
@@ -133,8 +136,8 @@ bool ProtocoloCliente::procesar_armas(EstadoJuego& estado_actual) {
     }
     if (!was_closed) {
         float x, y;
-        x = info[SEGUNDA_POSICION] + (info[TERCERA_POSICION]/TILE_A_METRO);
-        y = info[CUARTA_POSICION] + (info[QUINTA_POSICION]/TILE_A_METRO);
+        x = info[SEGUNDA_POSICION] + (info[TERCERA_POSICION] / TILE_A_METRO);
+        y = info[CUARTA_POSICION] + (info[QUINTA_POSICION] / TILE_A_METRO);
         InformacionArma arma_nueva(info[PRIMERA_POSICION], x, y);
         estado_actual.agregar_arma(arma_nueva);
         return true;
@@ -184,9 +187,9 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo del pato.
         s.recvall(info_pato.data(), info_pato.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo fin mensaje.
-        float x = info_pato[1] + (info_pato[2]/TILE_A_METRO);
-        float y = info_pato[3] + (info_pato[4]/TILE_A_METRO);
-        posicion_t pos(x,y);
+        float x = info_pato[1] + (info_pato[2] / TILE_A_METRO);
+        float y = info_pato[3] + (info_pato[4] / TILE_A_METRO);
+        posicion_t pos(x, y);
         InformacionPato pato_actual(info_pato[0], pos, info_pato[5], info_pato[6], info_pato[7],
                                     info_pato[8], info_pato[9], (orientacion_e)info_pato[10],
                                     (estado_pato_e)info_pato[11]);

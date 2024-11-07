@@ -2,10 +2,10 @@
 #ifndef CLIENT_HANDLER_H
 #define CLIENT_HANDLER_H
 
-#include <vector>
 #include <chrono>
 #include <iostream>
 #include <thread>
+#include <vector>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
