@@ -14,12 +14,26 @@
 #define ANGULO_NULO 0.0
 #define ANGULO_270 270.0
 #define ESCALA_SPRITES_GRANDES 0.07
+#define MIN_INTENSIDAD_RGB 0
 #define MAX_INTENSIDAD_RGB 255
+#define ESTADO_PARADO 0
+#define ESTADO_AGACHADO 1
+#define ESTADO_SALTANDO 2
+#define ESTADO_ALETEANDO 3
+#define ESTADO_CAYENDO 4
+#define ESTADO_CAMINANDO 5
+#define CANTIDAD_SPRITES_CAMINAR 6
+#define POS_SPRITE_PARADO 0
+#define POS_SPRITE_AGACHADO 9
+#define POS_SPRITE_SALTANDO 7
+#define POS_SPRITE_ALETEANDO 11
+#define POS_SPRITE_CAYENDO 8
 #define CERO 0
 #define UNO 1
 #define DOS 2
 #define TRES 3
 #define CUATRO 4
+#define DIEZ 10
 
 using namespace SDL2pp;
 
@@ -90,13 +104,13 @@ void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture
                                const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id, const double angle, SDL_RendererFlip& flip){
     SDL_Color color_mod;
     if (id == UNO) { // ROJO
-        color_mod = {255, 0, 0, 255};
+        color_mod = {MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
     } else if (id == DOS) { // VERDE
-        color_mod = {0, 255, 0, 255};
+        color_mod = {MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
     } else if (id == TRES) { // AZUL
-        color_mod = {0, 0, 255, 255};
+        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
     } else { // AMARILLO
-        color_mod = {255, 255, 0, 255};
+        color_mod = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
     }
 
     SDL_SetTextureColorMod(sprite_sheet.Get(), color_mod.r, color_mod.g, color_mod.b);
@@ -127,7 +141,7 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
 }
 
 void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
-    float escala = 0.07;
+    float escala = ESCALA_SPRITES_GRANDES;
     int id;
     float x;
     float y;
@@ -139,24 +153,24 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         y = pato.posicion.coordenada_y;
         orientacion = pato.orientacion;
         estado = pato.estado;
-        if (estado == 0){
+        if (estado == ESTADO_PARADO){
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[0], x_1, y_1, escala, orientacion, id);
-        } else if (estado == 1){
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO], x_1, y_1, escala, orientacion, id);
+        } else if (estado == ESTADO_AGACHADO){
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[10], x_1, y_1, escala, orientacion, id);
-        } else if (estado == 2){
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_AGACHADO], x_1, y_1, escala, orientacion, id);
+        } else if (estado == ESTADO_SALTANDO){
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[7], x_1, y_1, escala, orientacion, id);
-        } else if (estado == 3){
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_SALTANDO], x_1, y_1, escala, orientacion, id);
+        } else if (estado == ESTADO_ALETEANDO){
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[8], x_1, y_1, escala, orientacion, id);
-        } else if (estado == 4){
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_ALETEANDO], x_1, y_1, escala, orientacion, id);
+        } else if (estado == ESTADO_CAYENDO){
             auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[9], x_1, y_1, escala, orientacion, id);
-        } else if (estado == 5) {
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_CAYENDO], x_1, y_1, escala, orientacion, id);
+        } else if (estado == ESTADO_CAMINANDO) {
             unsigned int current_ticks = SDL_GetTicks();
-            int sprite_index = 1 + (current_ticks / 10) % 6;
+            int sprite_index = UNO + (current_ticks / DIEZ) % CANTIDAD_SPRITES_CAMINAR;
             auto [x_1, y_1] = convertir_a_relativo(x, y);
             dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index], x_1, y_1, escala, orientacion, id);
         }
