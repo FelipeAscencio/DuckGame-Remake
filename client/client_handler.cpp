@@ -11,6 +11,9 @@
 #define SLEEP 100
 #define DUCK_GAME_STR "Duck Game"
 #define RUTA_MAPA_1 "/mapa1.png"
+#define RUTA_MAPA_2 "/mapa2.png"
+#define RUTA_WIN_SCREEN "/winscreen.png"
+#define RUTA_LOSE_SCREEN "/losescreen.png"
 #define MUSICA_FONDO "/arcade-song.mp3"
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
@@ -67,7 +70,7 @@ void Client::controlar_loop_juego() {
     Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ANCHO_MIN,
                   ALTO_MIN, SDL_WINDOW_SHOWN);
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
-    std::string ruta_mapa = RUTA_MAPA_1;
+    std::string ruta_mapa = RUTA_MAPA_2;
     dibujador.emplace(renderer, ruta_mapa, this->id, cola_recibidor);
     iniciar_hilos();
     while (this->jugador_activo) {
