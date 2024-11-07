@@ -10,7 +10,7 @@
 #define AUDIO_ESTEREO 2
 #define SLEEP 100
 #define DUCK_GAME_STR "Duck Game"
-#define RUTA_MAPA_1 "/winscreen.png"
+#define RUTA_MAPA_1 "/mapa1.png"
 #define MUSICA_FONDO "/arcade-song.mp3"
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
