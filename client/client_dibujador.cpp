@@ -15,7 +15,10 @@
 #define ANGULO_270 270.0
 #define ESCALA_SPRITES_GRANDES 0.07
 #define MIN_INTENSIDAD_RGB 0
+#define MED_INTENSIDAD_RGB 128
 #define MAX_INTENSIDAD_RGB 255
+#define RGB_AUX_MARRON_1 69
+#define RGB_AUX_MARRON_2 19
 #define ESTADO_PARADO 0
 #define ESTADO_AGACHADO 1
 #define ESTADO_SALTANDO 2
@@ -33,6 +36,10 @@
 #define DOS 2
 #define TRES 3
 #define CUATRO 4
+#define CINCO 5
+#define SEIS 6
+#define SIETE 7
+#define OCHO 8
 #define DIEZ 10
 
 using namespace SDL2pp;
@@ -109,8 +116,16 @@ void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture
         color_mod = {MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
     } else if (id == TRES) { // AZUL
         color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
-    } else { // AMARILLO
+    } else if (id == CUATRO) { // AMARILLO
         color_mod = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
+    } else if (id == CINCO) { // NARANJA
+        color_mod = {MAX_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
+    } else if (id == SEIS) { // VIOLETA
+        color_mod = {MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
+    } else if (id == SIETE) { // MARRON
+        color_mod = {MED_INTENSIDAD_RGB, RGB_AUX_MARRON_1, RGB_AUX_MARRON_2, MAX_INTENSIDAD_RGB};
+    } else if (id == OCHO) { // NEGRO
+        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB};
     }
 
     SDL_SetTextureColorMod(sprite_sheet.Get(), color_mod.r, color_mod.g, color_mod.b);
@@ -130,7 +145,7 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
         angle = ANGULO_270;
     }
 
-    if (id > CERO && id <= CUATRO){
+    if (id > CERO && id <= OCHO){
         if (id != this->id_jugador){
             dibujar_pato_enemigo(renderer, sprite_sheet, sprite, dst_rect, id, angle, flip);
             return;
