@@ -43,6 +43,12 @@ private:
     std::vector<SDL_Rect> sprites_pistola;
     std::vector<SDL_Rect> sprites_sniper;
     std::vector<SDL_Rect> sprites_lootables;
+    Mix_Chunk* sonido_ak;
+    Mix_Chunk* sonido_explosion;
+    Mix_Chunk* sonido_laser;
+    Mix_Chunk* sonido_pistola;
+    Mix_Chunk* sonido_escopeta;
+    Mix_Chunk* sonido_sniper;
 
     // Devuelve el 'Rect' correspondiente segun los parametros recibidos.
     SDL2pp::Rect calcular_dst_rect(float x, float y, float escala);
@@ -74,6 +80,24 @@ private:
 
     // Dibuja el 'tablero' con los puntajes actuales del juego.
     void dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes);
+
+    // Reproduce el sonido del 'disparo de ak'.
+    void reproducir_disparo_ak();
+
+    // Reproduce el sonido de la 'explosion'.
+    void reproducir_explosion();
+
+    // Reproduce el sonido de la 'disparo de escopeta'.
+    void reproducir_disparo_escopeta();
+
+    // Reproduce el sonido del 'disparo laser'.
+    void reproducir_disparo_laser();
+
+    // Reproduce el sonido del 'disparo de sniper'.
+    void reproducir_disparo_sniper();
+
+    // Reproduce el sonido del 'disparo de pistola'.
+    void reproducir_disparo_pistola();
 
 public:
     // Constructor de la clase.

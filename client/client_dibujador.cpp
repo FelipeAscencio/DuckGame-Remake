@@ -12,6 +12,14 @@
 #define MSJ_ERROR_TFF "Error al inicializar SDL_ttf: "
 #define MSJ_ERROR_RENDER_TXT "Error al renderizar texto: "
 #define PUNTAJE_STR "Puntaje: "
+#define SONIDO_AK "/ak.mp3"
+#define SONIDO_ESCOPETA "/escopeta.mp3"
+#define SONIDO_EXPLOSION "/explosion.mp3"
+#define SONIDO_LASER "/laser.mp3"
+#define SONIDO_PISTOLA "/pistola.mp3"
+#define SONIDO_SNIPER "/sniper.mp3"
+#define CUALQUIER_CANAL_LIBRE -1
+#define CANTIDAD_DE_REPRODUCCIONES 0
 #define TAMANIO_FUENTE 24
 #define ANCHO_VENTANA 960
 #define ALTO_VENTANA 720
@@ -82,7 +90,13 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sprites_laser(parseador.obtener_sprites_laser()),
         sprites_pistola(parseador.obtener_sprites_pistola()),
         sprites_sniper(parseador.obtener_sprites_sniper()),
-        sprites_lootables(parseador.obtener_sprites_looteables()) {}
+        sprites_lootables(parseador.obtener_sprites_looteables()),
+        sonido_ak(Mix_LoadWAV((DATA_PATH SONIDO_AK))),
+        sonido_explosion(Mix_LoadWAV((DATA_PATH SONIDO_EXPLOSION))),
+        sonido_laser(Mix_LoadWAV((DATA_PATH SONIDO_LASER))),
+        sonido_pistola(Mix_LoadWAV((DATA_PATH SONIDO_PISTOLA))),
+        sonido_escopeta(Mix_LoadWAV((DATA_PATH SONIDO_ESCOPETA))),
+        sonido_sniper(Mix_LoadWAV((DATA_PATH SONIDO_SNIPER))) {}
 
 std::pair<float, float> Dibujador::convertir_a_relativo(float x, float y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
@@ -259,6 +273,30 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<in
     dibujar_puntos_tablero(renderer, puntajes);
     
     TTF_Quit();
+}
+
+void Dibujador::reproducir_disparo_ak(){
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_ak, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_explosion(){
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_explosion, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_escopeta(){
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_escopeta, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_laser(){
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_laser, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_sniper(){
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_sniper, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_pistola(){
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_pistola, CANTIDAD_DE_REPRODUCCIONES);
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer) {
