@@ -132,3 +132,25 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pistola() {
 
     return sprites_pistola;
 }
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_sniper() {
+    std::vector<SDL_Rect> sprites_pistola;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+
+    int x_inicial = BORDE_FINO_SPRITESHEET;
+    int y_inicial = INICIO_AK_47_Y;
+    iterador_de_parseo(sprites_pistola, UNO, x_inicial, y_inicial, tamanio_sprite);
+
+    return sprites_pistola;
+}
+
+std::vector<SDL_Rect> Parseador::obtener_sprites_looteables() {
+    std::vector<SDL_Rect> sprites_pistola;
+    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+
+    int x_inicial = BORDE_FINO_SPRITESHEET;
+    int y_inicial = INICIO_AK_47_Y;
+    iterador_de_parseo(sprites_pistola, UNO, x_inicial, y_inicial, tamanio_sprite);
+
+    return sprites_pistola;
+}

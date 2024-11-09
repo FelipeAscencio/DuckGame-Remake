@@ -7,6 +7,12 @@
 #define RUTA_SPR_ESCOPETA "/sprites-escopeta.png"
 #define RUTA_SPR_LASER "/sprites-laser.png"
 #define RUTA_SPR_PISTOLA "/sprites-pistola.png"
+#define RUTA_SPR_SNIPER "/sprites-sniper.png"
+#define RUTA_FUENTE "/fuente_arcade.ttf"
+#define MSJ_ERROR_TFF "Error al inicializar SDL_ttf: "
+#define MSJ_ERROR_RENDER_TXT "Error al renderizar texto: "
+#define PUNTAJE_STR "Puntaje: "
+#define TAMANIO_FUENTE 24
 #define ANCHO_VENTANA 960
 #define ALTO_VENTANA 720
 #define MAX_COORD_X 200
@@ -32,6 +38,12 @@
 #define POS_SPRITE_SALTANDO 7
 #define POS_SPRITE_ALETEANDO 11
 #define POS_SPRITE_CAYENDO 8
+#define POS_INICIAL_PATO_TABLERO 10
+#define GAP_PATO_TABLERO 0.1
+#define X_INICIAL_PUNTAJE 100
+#define Y_INICIAL_PUNTAJE 30
+#define GAP_PUNTAJE_TABLERO 72
+#define MENOS_UNO -1
 #define CERO 0
 #define UNO 1
 #define DOS 2
@@ -58,6 +70,7 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sprite_sheet_escopeta(renderer, DATA_PATH RUTA_SPR_ESCOPETA),
         sprite_sheet_laser(renderer, DATA_PATH RUTA_SPR_LASER),
         sprite_sheet_pistola(renderer, DATA_PATH RUTA_SPR_PISTOLA),
+        sprite_sheet_sniper(renderer, DATA_PATH RUTA_SPR_SNIPER),
         mapa(renderer, (DATA_PATH + ruta_mapa).c_str()),
         sprites_pato(parseador.obtener_sprites_pato()),
         sprites_ak(parseador.obtener_sprites_ak()),
@@ -65,7 +78,9 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sprites_armadura(parseador.obtener_sprites_armadura()),
         sprites_escopeta(parseador.obtener_sprites_escopeta()),
         sprites_laser(parseador.obtener_sprites_laser()),
-        sprites_pistola(parseador.obtener_sprites_pistola()) {}
+        sprites_pistola(parseador.obtener_sprites_pistola()),
+        sprites_sniper(parseador.obtener_sprites_sniper()),
+        sprites_lootables(parseador.obtener_sprites_looteables()) {}
 
 // PROVISORIA PARA TESTEAR LOS PARSEOS.
 void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
@@ -223,6 +238,52 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
 
 void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     dibujar_patos(estado_actual, renderer);
+}
+
+void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer){
+    float escala = ESCALA_SPRITES_GRANDES;
+    float x = POS_INICIAL_PATO_TABLERO;
+    float y = POS_INICIAL_PATO_TABLERO;
+    orientacion_e orientacion = DERECHA;
+    auto [x_1, y_1] = convertir_a_relativo(x, y);
+    for (int i = 0; i < OCHO; ++i){
+        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
+                           x_1, y_1 + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i + UNO);
+    }
+}
+
+void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes){
+    TTF_Font* fuente = TTF_OpenFont(DATA_PATH RUTA_FUENTE, TAMANIO_FUENTE);
+    int pos_x = X_INICIAL_PUNTAJE;
+    int pos_y = Y_INICIAL_PUNTAJE;
+    int separacion_y = GAP_PUNTAJE_TABLERO;
+    for (size_t i = 0; i < puntajes.size(); ++i) {
+        std::string texto_puntaje = PUNTAJE_STR + std::to_string(puntajes[i]);
+        SDL_Color color_texto = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB}; // COLOR BLANCO.
+        SDL_Surface* temp_surface = TTF_RenderText_Solid(fuente, texto_puntaje.c_str(), color_texto);
+        if (!temp_surface) {
+            throw std::runtime_error(MSJ_ERROR_RENDER_TXT + std::string(TTF_GetError()));
+        }
+
+        SDL2pp::Surface superficie_texto(temp_surface);
+        SDL2pp::Texture textura_texto(renderer, superficie_texto);
+        renderer.Copy(textura_texto, SDL2pp::NullOpt, SDL2pp::Rect(pos_x, pos_y, textura_texto.GetWidth(), textura_texto.GetHeight()));
+        pos_y += separacion_y;
+    }
+
+    TTF_CloseFont(fuente);
+}
+
+void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes) {
+    if (TTF_Init() == MENOS_UNO) {
+        std::cerr << MSJ_ERROR_TFF << TTF_GetError() << std::endl;
+        return;
+    }
+
+    dibujar_patos_tablero(renderer);
+    dibujar_puntos_tablero(renderer, puntajes);
+    
+    TTF_Quit();
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer) {

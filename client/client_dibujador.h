@@ -3,9 +3,11 @@
 #define CLIENT_DIBUJADOR_H
 
 #include <vector>
+#include <string>
 
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
+#include <SDL2/SDL_ttf.h>
 
 #include "../common/estado_juego.h"
 #include "../common/orientacion.h"
@@ -24,12 +26,13 @@ private:
     EstadoJuego ultimo_estado_recibido;
     Parseador parseador;
     Texture sprite_sheet_pato;
-    Texture sprite_sheet_ak;  // Falta la bala.
+    Texture sprite_sheet_ak;        // Falta la bala.
     Texture sprite_sheet_caja;
     Texture sprite_sheet_armadura;  // Falta el casco, la pechera y el casco loteable.
     Texture sprite_sheet_escopeta;  // Falta la escopeta y las balas.
     Texture sprite_sheet_laser;     // Falta el arma y las balas.
     Texture sprite_sheet_pistola;   // Falta el arma y las balas.
+    Texture sprite_sheet_sniper;    // Falta el arma y las balas.
     Texture mapa;
     std::vector<SDL_Rect> sprites_pato;
     std::vector<SDL_Rect> sprites_ak;
@@ -38,6 +41,8 @@ private:
     std::vector<SDL_Rect> sprites_escopeta;
     std::vector<SDL_Rect> sprites_laser;
     std::vector<SDL_Rect> sprites_pistola;
+    std::vector<SDL_Rect> sprites_sniper;
+    std::vector<SDL_Rect> sprites_lootables;
 
     // Funcion provisoria (TESTING).
     void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
@@ -65,6 +70,15 @@ private:
 
     // Dibuja el 'estado_actual' en la ventana.
     void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
+    // Dibuja los patos en el tablero.
+    void dibujar_patos_tablero(SDL2pp::Renderer& renderer);
+
+    // Dibuja el puntaje en el tablero.
+    void dibujar_puntos_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes);
+
+    // Dibuja el 'tablero' con los puntajes actuales del juego.
+    void dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes);
 
 public:
     // Constructor de la clase.

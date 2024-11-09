@@ -42,6 +42,12 @@ public:
     // Devuelve los 'sprites' del 'pistola'.
     std::vector<SDL_Rect> obtener_sprites_pistola();
 
+    // Devuelve los 'sprites' del 'sniper'.
+    std::vector<SDL_Rect> obtener_sprites_sniper();
+
+    // Devuelve los 'sprites' de los equipamientos 'looteables'.
+    std::vector<SDL_Rect> obtener_sprites_looteables();
+
     // Deshabilito las copias.
     Parseador(const Parseador&) = delete;
     Parseador& operator=(const Parseador&) = delete;
