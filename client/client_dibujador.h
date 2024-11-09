@@ -26,28 +26,23 @@ private:
     EstadoJuego ultimo_estado_recibido;
     Parseador parseador;
     Texture sprite_sheet_pato;
-    Texture sprite_sheet_ak;        // Falta la bala.
+    Texture sprite_sheet_ak;
     Texture sprite_sheet_caja;
-    Texture sprite_sheet_armadura;  // Falta el casco, la pechera y el casco loteable.
-    Texture sprite_sheet_escopeta;  // Falta la escopeta y las balas.
-    Texture sprite_sheet_laser;     // Falta el arma y las balas.
-    Texture sprite_sheet_pistola;   // Falta el arma y las balas.
-    Texture sprite_sheet_sniper;    // Falta el arma y las balas.
+    Texture sprite_sheet_equipamiento;
+    Texture sprite_sheet_escopeta;
+    Texture sprite_sheet_laser;
+    Texture sprite_sheet_pistola;
+    Texture sprite_sheet_sniper;
     Texture mapa;
     std::vector<SDL_Rect> sprites_pato;
     std::vector<SDL_Rect> sprites_ak;
     std::vector<SDL_Rect> sprites_caja;
-    std::vector<SDL_Rect> sprites_armadura;
+    std::vector<SDL_Rect> sprites_equipamiento;
     std::vector<SDL_Rect> sprites_escopeta;
     std::vector<SDL_Rect> sprites_laser;
     std::vector<SDL_Rect> sprites_pistola;
     std::vector<SDL_Rect> sprites_sniper;
     std::vector<SDL_Rect> sprites_lootables;
-
-    // Funcion provisoria (TESTING).
-    void dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                              const std::vector<SDL_Rect>& sprites, int ancho_ventana,
-                              int alto_ventana, float x, float y, float escala, float separacion);
 
     // Devuelve el 'Rect' correspondiente segun los parametros recibidos.
     SDL2pp::Rect calcular_dst_rect(float x, float y, float escala);

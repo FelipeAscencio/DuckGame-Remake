@@ -17,6 +17,15 @@ private:
     void iterador_de_parseo(std::vector<SDL_Rect>& sprites, int cantidad_sprites, int x, int y,
                             int tamanio_sprite);
 
+    // Parsea el "sniper" con la correccion necesaria por el tipo de 'sprite' que tiene (alargado).
+    void parsear_sniper(std::vector<SDL_Rect>& sprites);
+
+    // Parsea los 'sprites' de la 'armadura'.
+    void obtener_sprites_armadura(std::vector<SDL_Rect>& sprites_equipamiento);
+
+    // Parsea los 'sprites' del 'casco'.
+    void obtener_sprites_casco(std::vector<SDL_Rect>& sprites_equipamiento);
+
 public:
     // Constructor de la clase.
     explicit Parseador();
@@ -31,7 +40,7 @@ public:
     std::vector<SDL_Rect> obtener_sprites_caja();
 
     // Devuelve los 'sprites' de la 'armadura' y el 'casco'.
-    std::vector<SDL_Rect> obtener_sprites_armadura();
+    std::vector<SDL_Rect> obtener_sprites_equipamiento();
 
     // Devuelve los 'sprites' del 'escopeta'.
     std::vector<SDL_Rect> obtener_sprites_escopeta();

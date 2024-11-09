@@ -21,6 +21,8 @@
 #define ANGULO_NULO 0.0
 #define ANGULO_270 270.0
 #define ESCALA_SPRITES_GRANDES 0.07
+#define ESCALA_SPRITES_MEDIANOS 0.04
+#define ESCALA_SPRITES_CHICOS 0.02
 #define MIN_INTENSIDAD_RGB 0
 #define MED_INTENSIDAD_RGB 128
 #define MAX_INTENSIDAD_RGB 255
@@ -66,7 +68,7 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sprite_sheet_pato(renderer, DATA_PATH RUTA_SPR_PATO),
         sprite_sheet_ak(renderer, DATA_PATH RUTA_SPR_AK),
         sprite_sheet_caja(renderer, DATA_PATH RUTA_SPR_CAJAS),
-        sprite_sheet_armadura(renderer, DATA_PATH RUTA_SPR_ARMADURAS),
+        sprite_sheet_equipamiento(renderer, DATA_PATH RUTA_SPR_ARMADURAS),
         sprite_sheet_escopeta(renderer, DATA_PATH RUTA_SPR_ESCOPETA),
         sprite_sheet_laser(renderer, DATA_PATH RUTA_SPR_LASER),
         sprite_sheet_pistola(renderer, DATA_PATH RUTA_SPR_PISTOLA),
@@ -75,39 +77,12 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sprites_pato(parseador.obtener_sprites_pato()),
         sprites_ak(parseador.obtener_sprites_ak()),
         sprites_caja(parseador.obtener_sprites_caja()),
-        sprites_armadura(parseador.obtener_sprites_armadura()),
+        sprites_equipamiento(parseador.obtener_sprites_equipamiento()),
         sprites_escopeta(parseador.obtener_sprites_escopeta()),
         sprites_laser(parseador.obtener_sprites_laser()),
         sprites_pistola(parseador.obtener_sprites_pistola()),
         sprites_sniper(parseador.obtener_sprites_sniper()),
         sprites_lootables(parseador.obtener_sprites_looteables()) {}
-
-// PROVISORIA PARA TESTEAR LOS PARSEOS.
-void Dibujador::dibujar_sprites_fila(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                                     const std::vector<SDL_Rect>& sprites, int ancho_ventana,
-                                     int alto_ventana, float x, float y, float escala,
-                                     float separacion) {
-    int startX = static_cast<int>(ancho_ventana * x);
-    int startY = static_cast<int>(alto_ventana * y);
-    int ancho_escalado = static_cast<int>(ancho_ventana * escala);
-    int alto_escalado = static_cast<int>(alto_ventana * escala);
-    int gap = static_cast<int>(ancho_ventana * separacion);
-    int contador = 0;
-
-    for (size_t i = 0; i < sprites.size(); ++i) {
-        if (contador >= 12) {
-            contador = 0;
-            startY += 50;
-        }
-        SDL_Rect dst_rect;
-        dst_rect.x = startX + contador * (ancho_escalado + gap);
-        dst_rect.y = startY;
-        dst_rect.w = ancho_escalado;
-        dst_rect.h = alto_escalado;
-        renderer.Copy(sprite_sheet, sprites[i], dst_rect);
-        contador++;
-    }
-}
 
 std::pair<float, float> Dibujador::convertir_a_relativo(float x, float y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
