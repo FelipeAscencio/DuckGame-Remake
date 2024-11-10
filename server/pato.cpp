@@ -126,16 +126,18 @@ void Pato::caer(Mapa& mapa) {
             // tecnicamente estoy en un bloque que no tiene piso abajo, pero el cuerpo del pato no
             // paso por completo a ese nuevo bloque entonces no debe caer
 
-            // bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
-            // bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] ==
-            // 1)); if (piso_a_la_izquierda || piso_a_la_derecha) {
-            //     float distancia_fuera_del_borde = this->posicion.coordenada_x -
-            //     ((int)this->posicion.coordenada_x); if (distancia_fuera_del_borde < TILE_A_METRO
-            //     / 4  || distancia_fuera_del_borde > TILE_A_METRO - (TILE_A_METRO / 4)){
-            //         estado_actual = PARADO;
-            //         return;
-            //     }
-            // }
+            bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
+            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
+            
+            if (piso_a_la_derecha || piso_a_la_izquierda){
+                
+                bool yendo_derecha = this->orientacion == DERECHA && ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2));
+                bool yendo_izquierda = this->orientacion == IZQUIERDA && ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / 2)); 
+                if (yendo_derecha || yendo_izquierda){
+                    estado_actual = PARADO;
+                    return;
+                }
+            }
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
             estado_actual = CAYENDO;
 
