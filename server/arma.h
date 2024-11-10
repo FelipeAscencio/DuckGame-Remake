@@ -9,6 +9,7 @@
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
 
+#include "mapa.h"
 #include "municion.h"
 
 #define ID_GRANADA 1
@@ -50,14 +51,11 @@ public:
     Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,
          bool tiene_retroceso, posicion_t posicion_inicial);
 
-    // Destructor de la clase.
-    virtual ~Arma() = default;
-
     // Metodo virtual, implementado en cada arma.
-    virtual bool disparar(const orientacion_e& direccion) = 0;
+    virtual bool disparar(const orientacion_e& direccion, Mapa& mapa) = 0;
 
-    // Metodo virtual, implementado en cada arma.
-    virtual void chequeo_balas() = 0;
+    // Realiza el chequeo de rango y paredes para cada una de las balas disparadas 
+    void chequeo_balas(Mapa& mapa);
 
     // Marca el arma como "agarrada" por un jugador.
     void agarrar();
@@ -81,6 +79,8 @@ public:
     posicion_t obtener_posicion_inicial();
 
     int obtener_id() const { return id_arma; }
+
+    virtual ~Arma();
 };
 
 #endif  // ARMA_H

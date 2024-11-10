@@ -197,9 +197,9 @@ bool Pato::agarrar_casco() {
     return true;
 }
 
-bool Pato::disparar() {
+bool Pato::disparar(Mapa& mapa) {
     if (arma_equipada) {
-        return arma_equipada->disparar(this->orientacion);
+        return arma_equipada->disparar(this->orientacion, mapa);
     } else {
         return false;
     }
@@ -302,7 +302,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             break;
         case COMANDO_DISPARO:
             if (arma_equipada) {
-                if (disparar()) {
+                if (disparar(mapa)) {
                     std::cout << "Disparo\n";
                     if (arma_equipada->tiene_retroceso()) {
                         this->posicion.coordenada_y += MOVER_IZQUIERDA;

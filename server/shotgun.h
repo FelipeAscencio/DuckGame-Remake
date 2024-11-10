@@ -13,17 +13,13 @@ class Shotgun: public Arma {
 private:
     bool debe_recargar;
     int alcance_maximo;
-    bool recargar();
 
 public:
     // Constructor de la clase.
     Shotgun(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
-    bool disparar(const orientacion_e& direccion) override;
-
-    // Sobreescritura del metodo de chequeo de balas.
-    void chequeo_balas() override;
+    bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
 };
 
 #endif  // SHOTGUN_H

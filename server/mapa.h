@@ -18,6 +18,7 @@ struct ErrorMapa: public std::runtime_error {
 // del mapa y su rol en el juego.
 class Mapa {
     friend class Pato;
+    friend class Municion;
 
 private:
     int largo;
@@ -36,6 +37,8 @@ public:
 
     // Verifica si una posicion esta en el limite inferior (piso) de un bloque.
     bool piso_bloque(const posicion_t& pos);
+
+    bool techo_bloque(const posicion_t& pos);
 
     // Destructor de la clase.
     ~Mapa();

@@ -9,17 +9,17 @@
 Magnum::Magnum(posicion_t posicion_inicial):
         Arma(ID_MAGNUM, MAGNUM, ALCANCE, MUNICIONES, true, posicion_inicial) {}
 
-bool Magnum::disparar(const orientacion_e& direccion) {
-    if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
-        std::cout << "Direccion valida" << std::endl;
-        return true;
-    } else {
-        std::cout << "Direccion invalida" << std::endl;
+bool Magnum::disparar(const orientacion_e& direccion, Mapa& mapa) {
+    if (this->municiones == CERO) {
         return false;
     }
-}
-
-void Magnum::chequeo_balas() {
-    std::cout << "Nada por ahora" << std::endl;
-    return;
+    Municion* bala_disparada = new Municion(this->id_arma, this->posicion_spawn,
+                                            ALCANCE * TILE_A_METRO, direccion, BAJA, 0);
+    if (bala_disparada->avanzar(mapa)) {
+        balas.push_back(bala_disparada);
+    } else {
+        delete bala_disparada;
+    }
+    this->municiones -= 1;
+    return true;
 }

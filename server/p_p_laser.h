@@ -18,10 +18,7 @@ public:
     PewPewLaser(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
-    bool disparar(const orientacion_e& direccion) override;
-
-    // Sobreescritura del metodo de chequeo de balas.
-    void chequeo_balas() override;
+    bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
 };
 
 #endif  // P_P_LASER_H

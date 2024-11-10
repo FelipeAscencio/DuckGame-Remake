@@ -49,41 +49,18 @@ void AK47::modificar_dispersion_balas(bool disparando) {
 }
 
 
-bool AK47::disparar(const orientacion_e& direccion) {
+bool AK47::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (this->municiones == CERO)
         return false;
     modificar_dispersion_balas(true);
     Municion* bala_disparada =
             new Municion(this->id_arma, this->posicion_spawn, ALCANCE * TILE_A_METRO, direccion,
-                         this->ultima_bala_disparada);
-    balas.push_back(bala_disparada);
-    bala_disparada->avanzar();
+                         this->ultima_bala_disparada, 0);
+    if (bala_disparada->avanzar(mapa)) {
+        balas.push_back(bala_disparada);
+    } else {
+        delete bala_disparada;
+    }
     this->municiones -= BALAS_POR_DISPARO;
     return true;
-}
-
-void AK47::chequeo_balas() {
-    if (this->municiones == CERO) {
-        this->agarrada = false;
-        this->soltada = true;
-    }
-
-    bool no_borre_ninguno = false;
-
-    while (!no_borre_ninguno) {
-        no_borre_ninguno = true;
-        size_t i = 0;
-        while (i < balas.size()) {
-            if (balas[i]->fuera_de_rango()) {
-                Municion* auxiliar = balas[i];
-                balas.erase(balas.begin() + i);
-                delete auxiliar;
-                no_borre_ninguno = false;
-                break;
-            } else {
-                balas[i]->avanzar();
-                i++;
-            }
-        }
-    }
 }

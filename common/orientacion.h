@@ -3,6 +3,6 @@
 #define COMMON_ORIENTACION_H_
 
 // 'enum' utilizado para indicar la orientacion de los 'sprites'.
-enum orientacion_e { DERECHA, IZQUIERDA, ARRIBA };
+enum orientacion_e { DERECHA, IZQUIERDA, ARRIBA, ABAJO };
 
 #endif  // COMMON_ORIENTACION_H_

@@ -53,7 +53,7 @@ void Gameloop::enviar_estado_juego() {
 void Gameloop::actualizar_balas_disparadas() {
     for (Pato* p: jugadores) {
         if (p->arma_equipada) {
-            p->arma_equipada->chequeo_balas();
+            p->arma_equipada->chequeo_balas(mapa);
         }
     }
 }

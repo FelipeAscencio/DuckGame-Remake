@@ -229,34 +229,39 @@ void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Rendere
     dibujar_patos(estado_actual, renderer);
 }
 
-void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer){
+void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
     float escala = ESCALA_SPRITES_GRANDES;
     float x = POS_INICIAL_PATO_TABLERO;
     float y = POS_INICIAL_PATO_TABLERO;
     orientacion_e orientacion = DERECHA;
     auto [x_1, y_1] = convertir_a_relativo(x, y);
-    for (int i = 0; i < OCHO; ++i){
+    for (int i = 0; i < OCHO; ++i) {
         dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
-                           x_1, y_1 + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i + UNO);
+                       x_1, y_1 + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i + UNO);
     }
 }
 
-void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes){
+void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
+                                       const std::vector<int>& puntajes) {
     TTF_Font* fuente = TTF_OpenFont(DATA_PATH RUTA_FUENTE, TAMANIO_FUENTE);
     int pos_x = X_INICIAL_PUNTAJE;
     int pos_y = Y_INICIAL_PUNTAJE;
     int separacion_y = GAP_PUNTAJE_TABLERO;
     for (size_t i = 0; i < puntajes.size(); ++i) {
         std::string texto_puntaje = PUNTAJE_STR + std::to_string(puntajes[i]);
-        SDL_Color color_texto = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB}; // COLOR BLANCO.
-        SDL_Surface* temp_surface = TTF_RenderText_Solid(fuente, texto_puntaje.c_str(), color_texto);
+        SDL_Color color_texto = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB,
+                                 MAX_INTENSIDAD_RGB};  // COLOR BLANCO.
+        SDL_Surface* temp_surface =
+                TTF_RenderText_Solid(fuente, texto_puntaje.c_str(), color_texto);
         if (!temp_surface) {
             throw std::runtime_error(MSJ_ERROR_RENDER_TXT + std::string(TTF_GetError()));
         }
 
         SDL2pp::Surface superficie_texto(temp_surface);
         SDL2pp::Texture textura_texto(renderer, superficie_texto);
-        renderer.Copy(textura_texto, SDL2pp::NullOpt, SDL2pp::Rect(pos_x, pos_y, textura_texto.GetWidth(), textura_texto.GetHeight()));
+        renderer.Copy(
+                textura_texto, SDL2pp::NullOpt,
+                SDL2pp::Rect(pos_x, pos_y, textura_texto.GetWidth(), textura_texto.GetHeight()));
         pos_y += separacion_y;
     }
 
@@ -271,31 +276,31 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<in
 
     dibujar_patos_tablero(renderer);
     dibujar_puntos_tablero(renderer, puntajes);
-    
+
     TTF_Quit();
 }
 
-void Dibujador::reproducir_disparo_ak(){
+void Dibujador::reproducir_disparo_ak() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_ak, CANTIDAD_DE_REPRODUCCIONES);
 }
 
-void Dibujador::reproducir_explosion(){
+void Dibujador::reproducir_explosion() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_explosion, CANTIDAD_DE_REPRODUCCIONES);
 }
 
-void Dibujador::reproducir_disparo_escopeta(){
+void Dibujador::reproducir_disparo_escopeta() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_escopeta, CANTIDAD_DE_REPRODUCCIONES);
 }
 
-void Dibujador::reproducir_disparo_laser(){
+void Dibujador::reproducir_disparo_laser() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_laser, CANTIDAD_DE_REPRODUCCIONES);
 }
 
-void Dibujador::reproducir_disparo_sniper(){
+void Dibujador::reproducir_disparo_sniper() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_sniper, CANTIDAD_DE_REPRODUCCIONES);
 }
 
-void Dibujador::reproducir_disparo_pistola(){
+void Dibujador::reproducir_disparo_pistola() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_pistola, CANTIDAD_DE_REPRODUCCIONES);
 }
 

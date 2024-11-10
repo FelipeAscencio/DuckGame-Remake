@@ -84,6 +84,10 @@ bool Mapa::piso_bloque(const posicion_t& pos) {
     return ((int)pos.coordenada_y % TILE_A_METRO == (TILE_A_METRO - UNO));
 }
 
+bool Mapa::techo_bloque(const posicion_t& pos) {
+    return ((int)pos.coordenada_y % TILE_A_METRO == 0);
+}
+
 Mapa::~Mapa() {
     for (int i = 0; i < alto; i++) {
         delete mapa[i];

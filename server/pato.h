@@ -76,7 +76,7 @@ private:
     void recibir_disparo();
 
     // Hace que el pato dispare su arma equipada, si tiene una.
-    bool disparar();
+    bool disparar(Mapa& mapa);
     int obtener_id_arma() { return arma_equipada ? arma_equipada->obtener_id() : 0; }
 
     // Verifica si hay una pared en la direccion especificada desde la posicion dada.
