@@ -70,7 +70,7 @@ void Client::controlar_loop_juego() {
     Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ANCHO_MIN,
                   ALTO_MIN, SDL_WINDOW_SHOWN);
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
-    std::string ruta_mapa = RUTA_MAPA_2;
+    std::string ruta_mapa = RUTA_MAPA_1;
     dibujador.emplace(renderer, ruta_mapa, this->id, cola_recibidor);
     iniciar_hilos();
     while (this->jugador_activo) {
