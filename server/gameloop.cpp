@@ -109,7 +109,7 @@ void Gameloop::run() {
             f += int(perdido * CIEN / FPS);
         }
 
-        std::this_thread::sleep_for(std::chrono::microseconds(int(rest * MIL)));
+        std::this_thread::sleep_for(std::chrono::miliseconds(int(rest * MIL)));
         f += UNO;
         t1 += FPS / CIEN;
     }
