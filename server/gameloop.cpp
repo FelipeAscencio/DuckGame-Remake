@@ -94,24 +94,27 @@ void Gameloop::loop_juego() {
 
 void Gameloop::run() {
     enviar_estado_juego();
-    time_t t1 = time(NULL);
-    unsigned long f = 0;
-    float rest;
+    auto t1 = std::chrono::steady_clock::now();
+    unsigned long frame_count = 0;
+
+    // Definir el intervalo de tiempo ideal para cada frame en milisegundos
+    int ms_per_frame = 1000 / FPS;
+
     while (juego_activo) {
         loop_juego();
-        time_t t2 = time(NULL);
-        rest = (FPS / CIEN) - (t2 - t1);
-        if (rest < CERO) {
-            float atrasado = -rest;
-            rest = (FPS / CIEN) - (atrasado * CIEN / FPS);
-            float perdido = atrasado + rest;
-            t1 += perdido;
-            f += int(perdido * CIEN / FPS);
+
+        // Calcular el tiempo transcurrido desde el inicio de este frame
+        auto t2 = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+
+        // Dormir el tiempo restante para completar el intervalo de 30 FPS
+        if (elapsed < ms_per_frame) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
         }
 
-        std::this_thread::sleep_for(std::chrono::miliseconds(int(rest * MIL)));
-        f += UNO;
-        t1 += FPS / CIEN;
+        // Actualizar `t1` sumando un intervalo fijo para mantener la consistencia en el tiempo de frames
+        t1 += std::chrono::milliseconds(ms_per_frame);
+        frame_count++;
     }
 }
 
