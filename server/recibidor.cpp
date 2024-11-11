@@ -16,7 +16,7 @@ void Recibidor::run() {
             comando_t cmd;
             if (protocol.recibir(cmd, id_cliente)) {
                 if (Protocol::accion_valida(cmd.accion)) {
-                    queue_comandos.push(cmd);
+                    queue_comandos.try_push(cmd);
                 }
             }
         } catch (const ClosedQueue& e) {

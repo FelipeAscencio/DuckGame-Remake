@@ -11,7 +11,7 @@ void RecibidorCliente::run() {
         }
 
         try {
-            cola_estados.push(estado_actual);
+            cola_estados.try_push(estado_actual);
         } catch (const ClosedQueue& error) {
             std::cerr << error.what() << std::endl;
         }
