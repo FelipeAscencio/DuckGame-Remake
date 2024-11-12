@@ -37,7 +37,6 @@ void Arma::chequeo_balas(Mapa& mapa) {
     }
 
     bool no_borre_ninguno = false;
-
     while (!no_borre_ninguno) {
         no_borre_ninguno = true;
         size_t i = 0;

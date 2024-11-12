@@ -3,7 +3,7 @@
 #include <cmath>
 #include <cstdlib>
 
-#define AVANZAR 1
+#define AVANZAR 0.5
 
 Municion::Municion(int id, posicion_t pos, int alcance_max, orientacion_e direccion,
                    dispersion_e dispersion_bala, int cantidad_rebotes):
@@ -80,6 +80,7 @@ bool Municion::avanzar(Mapa& mapa) {
         return false;
 
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
+    if (posicion_mapa[0] == -1 || posicion_mapa[1] == -1) return false;
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
     bool piso_o_techo =
             mapa.piso_bloque(this->posicion_actual) || mapa.techo_bloque(this->posicion_actual);

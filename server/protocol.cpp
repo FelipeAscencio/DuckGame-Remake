@@ -66,7 +66,8 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_cantidades(
     std::vector<uint8_t> cantidades;
     cantidades.push_back(CODIGO_CANTIDADES);
     cantidades.push_back(estado_actual.cantidad_jugadores);
-    cantidades.push_back(estado_actual.cantidad_armas);
+    //esto despues hay que sacar el + 1
+    cantidades.push_back(estado_actual.cantidad_armas + 1);
     cantidades.push_back(estado_actual.cantidad_balas);
     cantidades.push_back(estado_actual.cantidad_armaduras);
     cantidades.push_back(estado_actual.cantidad_cascos);
@@ -112,9 +113,9 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     }
 
     //// Esto despues hay que eliminarlo
-    // InformacionArma ak(ID_AK47, 25, 89);
-    // std::vector<uint8_t> byte_ak = serializar_armas(ak);
-    // envio_correcto = _enviar(byte_ak);
+    InformacionArma ak(ID_AK47, 25, 89);
+    std::vector<uint8_t> byte_ak = serializar_armas(ak);
+    envio_correcto = _enviar(byte_ak);
     //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;

@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "ak47.h"
 
 #define FPS 30
 
@@ -24,11 +25,11 @@ Pato::Pato(int id):
         id_jugador(id),
         posicion(5, 89),
         vivo(true),
-        posee_arma(false),
+        posee_arma(true),
         posee_armadura(false),
         posee_casco(false),
         orientacion(DERECHA),
-        arma_equipada(nullptr),
+        arma_equipada(new AK47(posicion)),
         estado_actual(PARADO),
         iteraciones_subiendo(0),
         iteraciones_agachado(0),
@@ -236,12 +237,20 @@ void Pato::chequear_estado() {
 
         case SALTANDO:
             if (iteraciones_subiendo <
-                (2*TILE_A_METRO /
+                (3*TILE_A_METRO /
                  SALTO_Y_CAIDA) + 1) {  // Como los tiles miden 10 y sube de a 2 metros, se
                                     // necesitan 5 iteraciones para realizar un salto
-                posicion.coordenada_y -= SALTO_Y_CAIDA;
-                iteraciones_subiendo += 1;
-                std::cout << "Subiendo. Posicion: " << this->posicion.to_string();
+                // if (mapa.techo_bloque(this->posicion)){
+                //     std::vector<int> pos = mapa.posicion_en_mapa(this->posicion);
+                //     if (mapa.mapa[pos[1]-1][pos[0]] != 0){
+                //         estado_actual = CAYENDO;
+                //         iteraciones_subiendo = 0;
+                //     }
+                // } else {
+                    posicion.coordenada_y -= SALTO_Y_CAIDA;
+                    iteraciones_subiendo += 1;
+                    std::cout << "Subiendo. Posicion: " << this->posicion.to_string();
+                // }
             } else {
                 estado_actual = CAYENDO;
                 iteraciones_subiendo = 0;
@@ -327,9 +336,10 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                 if (disparar(mapa)) {
                     std::cout << "Disparo\n";
                     if (arma_equipada->tiene_retroceso()) {
-                        this->posicion.coordenada_y += MOVER_IZQUIERDA;
+                        this->posicion.coordenada_x += MOVER_IZQUIERDA;
                     }
                 } else {
+                    std::cout << "Estoy aca\n";
                     delete arma_equipada;
                     std::cout << "No tiene mas balas\n";
                 }
