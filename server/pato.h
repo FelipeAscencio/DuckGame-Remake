@@ -29,6 +29,8 @@ private:
     Arma* arma_equipada;
     estado_pato_e estado_actual;
     int iteraciones_subiendo;
+    int iteraciones_agachado;
+    int iteraciones_desde_aleteo;
 
     // Verifica si el pato puede moverse en la direccion especificada.
     bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);

@@ -6,9 +6,11 @@
 #include <string>
 #include <vector>
 
+#define FPS 30
+
 #define MOVER_DERECHA 0.5
 #define MOVER_IZQUIERDA -0.5
-#define SALTO_Y_CAIDA 0.3
+#define SALTO_Y_CAIDA 0.33
 
 #define COMANDO_DERECHA 1
 #define COMANDO_IZQUIERDA 2
@@ -28,7 +30,9 @@ Pato::Pato(int id):
         orientacion(DERECHA),
         arma_equipada(nullptr),
         estado_actual(PARADO),
-        iteraciones_subiendo(0) {}
+        iteraciones_subiendo(0),
+        iteraciones_agachado(0),
+        iteraciones_desde_aleteo(FPS/2) {}
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
@@ -77,6 +81,9 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
     if (se_movio) {
         float pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
         this->posicion.coordenada_x += pasos;
+        if (estado_actual != SALTANDO && estado_actual != CAYENDO){
+            estado_actual = CAMINANDO;
+        }
     }
     return se_movio;
 }
@@ -90,11 +97,15 @@ void Pato::saltar() {
 }
 
 void Pato::aletear() {
+    if (iteraciones_desde_aleteo < FPS/2){
+        return;
+    }
     if (estado_actual == CAYENDO) {
         estado_actual = ALETEANDO;
         std::cout << "Aleteando. ";
-        this->posicion.coordenada_y -= SALTO_Y_CAIDA;
+        this->posicion.coordenada_y -= 1.5;
         std::cout << "Posicion: " << this->posicion.to_string();
+        iteraciones_desde_aleteo = 0;
     }
 }
 
@@ -143,9 +154,10 @@ void Pato::caer(Mapa& mapa) {
 
             // el bloque de abajo en el que estoy tiene su piso a "mitad del bloque" (el piso no
             // esta alineado con el cambio de bloques)
-        } else if (mapa.mapa[tile_y][tile_x] == 2) {
+        } else if (mapa.mapa[tile_y-1][tile_x] == 2) {
             int posicion_en_bloque = (int)posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;
+            std::cout << posicion_en_bloque << std::endl;
             if (posicion_en_bloque < mitad_bloque) {
                 posicion.coordenada_y += SALTO_Y_CAIDA;
                 estado_actual = CAYENDO;
@@ -207,18 +219,25 @@ bool Pato::disparar(Mapa& mapa) {
     }
 }
 
-void Pato::agacharse() { estado_actual = AGACHADO; }
+void Pato::agacharse() { 
+    estado_actual = AGACHADO;
+    iteraciones_agachado = 1; 
+}
 
 void Pato::chequear_estado() {
     switch (estado_actual) {
         case AGACHADO:
-            estado_actual = PARADO;
+            if (iteraciones_agachado >= FPS){
+                estado_actual = PARADO;
+            } else {
+                iteraciones_agachado += 1;
+            }
             break;
 
         case SALTANDO:
             if (iteraciones_subiendo <
-                (TILE_A_METRO /
-                 SALTO_Y_CAIDA)) {  // Como los tiles miden 10 y sube de a 2 metros, se
+                (2*TILE_A_METRO /
+                 SALTO_Y_CAIDA) + 1) {  // Como los tiles miden 10 y sube de a 2 metros, se
                                     // necesitan 5 iteraciones para realizar un salto
                 posicion.coordenada_y -= SALTO_Y_CAIDA;
                 iteraciones_subiendo += 1;
@@ -230,19 +249,20 @@ void Pato::chequear_estado() {
             break;
 
         case ALETEANDO:
+            this->posicion.coordenada_y -= 1.5;
             estado_actual = CAYENDO;
             break;
 
         case CAMINANDO:
             estado_actual = PARADO;
             break;
-
         default:
             break;
     }
 }
 
 void Pato::control_pre_comando(Mapa& mapa) {
+    iteraciones_desde_aleteo += 1;
     if (this->posicion.coordenada_x > mapa.largo * TILE_A_METRO ||
         this->posicion.coordenada_y > mapa.alto * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
@@ -328,7 +348,6 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (mover(mapa, sentido)) {
                 std::cout << "Posicion nueva: " << this->posicion.to_string();
                 std::cout << "Mirando para: " << orientacion_texto(this->orientacion);
-                this->estado_actual = CAMINANDO;
             }
             break;
     }
