@@ -28,13 +28,10 @@
 #ifndef SDL_gesture_h_
 #define SDL_gesture_h_
 
-#include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_error.h>
-#include <SDL2/SDL_video.h>
-
+#include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_touch.h>
-
-
+#include <SDL2/SDL_video.h>
 #include <SDL2/begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
@@ -73,7 +70,7 @@ extern DECLSPEC int SDLCALL SDL_RecordGesture(SDL_TouchID touchId);
  * \sa SDL_LoadDollarTemplates
  * \sa SDL_SaveDollarTemplate
  */
-extern DECLSPEC int SDLCALL SDL_SaveAllDollarTemplates(SDL_RWops *dst);
+extern DECLSPEC int SDLCALL SDL_SaveAllDollarTemplates(SDL_RWops* dst);
 
 /**
  * Save a currently loaded Dollar Gesture template.
@@ -88,7 +85,7 @@ extern DECLSPEC int SDLCALL SDL_SaveAllDollarTemplates(SDL_RWops *dst);
  * \sa SDL_LoadDollarTemplates
  * \sa SDL_SaveAllDollarTemplates
  */
-extern DECLSPEC int SDLCALL SDL_SaveDollarTemplate(SDL_GestureID gestureId,SDL_RWops *dst);
+extern DECLSPEC int SDLCALL SDL_SaveDollarTemplate(SDL_GestureID gestureId, SDL_RWops* dst);
 
 
 /**
@@ -104,7 +101,7 @@ extern DECLSPEC int SDLCALL SDL_SaveDollarTemplate(SDL_GestureID gestureId,SDL_R
  * \sa SDL_SaveAllDollarTemplates
  * \sa SDL_SaveDollarTemplate
  */
-extern DECLSPEC int SDLCALL SDL_LoadDollarTemplates(SDL_TouchID touchId, SDL_RWops *src);
+extern DECLSPEC int SDLCALL SDL_LoadDollarTemplates(SDL_TouchID touchId, SDL_RWops* src);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

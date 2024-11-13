@@ -12,27 +12,27 @@
 #define TIMIDITY_PLAYMIDI_H
 
 /* Midi events */
-#define ME_NONE 	0
-#define ME_NOTEON	1
-#define ME_NOTEOFF	2
-#define ME_KEYPRESSURE	3
-#define ME_MAINVOLUME	4
-#define ME_PAN		5
-#define ME_SUSTAIN	6
-#define ME_EXPRESSION	7
-#define ME_PITCHWHEEL	8
-#define ME_PROGRAM	9
-#define ME_TEMPO	10
-#define ME_PITCH_SENS	11
+#define ME_NONE 0
+#define ME_NOTEON 1
+#define ME_NOTEOFF 2
+#define ME_KEYPRESSURE 3
+#define ME_MAINVOLUME 4
+#define ME_PAN 5
+#define ME_SUSTAIN 6
+#define ME_EXPRESSION 7
+#define ME_PITCHWHEEL 8
+#define ME_PROGRAM 9
+#define ME_TEMPO 10
+#define ME_PITCH_SENS 11
 
-#define ME_ALL_SOUNDS_OFF	12
-#define ME_RESET_CONTROLLERS	13
-#define ME_ALL_NOTES_OFF	14
-#define ME_TONE_BANK	15
+#define ME_ALL_SOUNDS_OFF 12
+#define ME_RESET_CONTROLLERS 13
+#define ME_ALL_NOTES_OFF 14
+#define ME_TONE_BANK 15
 
-#define ME_LYRIC	16
+#define ME_LYRIC 16
 
-#define ME_EOT		99
+#define ME_EOT 99
 
 /* Causes the instrument's default panning to be used. */
 #define NO_PANNING -1
@@ -51,6 +51,6 @@
 #define PANNED_CENTER 3
 /* Anything but PANNED_MYSTERY only uses the left volume */
 
-#define ISDRUMCHANNEL(s, c) (((s)->drumchannels & (1<<(c))))
+#define ISDRUMCHANNEL(s, c) (((s)->drumchannels & (1 << (c))))
 
 #endif /* TIMIDITY_PLAYMIDI_H */

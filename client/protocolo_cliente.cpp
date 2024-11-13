@@ -200,14 +200,14 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     }
     i = 0;
     std::vector<uint8_t> info_arma(5);
-    while (i < cantidades[1]){
+    while (i < cantidades[1]) {
         s.recvall(&leido, sizeof(leido), &was_closed);
         s.recvall(info_arma.data(), info_arma.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);
 
-        float x = info_arma[1] + (info_arma[2]/TILE_A_METRO);
-        float y = info_arma[3] + (info_arma[4]/TILE_A_METRO);
-        posicion_t pos(x,y);
+        float x = info_arma[1] + (info_arma[2] / TILE_A_METRO);
+        float y = info_arma[3] + (info_arma[4] / TILE_A_METRO);
+        posicion_t pos(x, y);
         InformacionArma arma_actual(info_arma[0], pos);
         estado_actual.agregar_arma(arma_actual);
         info_arma.clear();

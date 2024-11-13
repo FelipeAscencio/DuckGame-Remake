@@ -10,7 +10,9 @@
 
 ## Créditos:
 
-Para el desarrollo de este trabajo práctico utilizamos los siguientes "TDAs" brindados por la cátedra:
+### Código (TDAs)
+
+Para el desarrollo de este juego utilizamos los siguientes "TDAs" brindados por la cátedra:
 - 'Socket'.
 - 'Resolver'.
 - 'ResolverError'.
@@ -18,14 +20,30 @@ Para el desarrollo de este trabajo práctico utilizamos los siguientes "TDAs" br
 - 'Queue'.
 - 'Thread'.
 
+#### Repositorio 1: https://github.com/eldipa/sockets-en-cpp.
+
+#### Repositorio 2: https://github.com/eldipa/hands-on-threads.
+
+##### Propietario: Taller de programación (TA045), Veiga.
+
+### Código (SDL2)
+
 También para el desarrollo de la interfaz gráfica utilizamos tanto "SDL2" como "SDL2pp".
 
-### Repositorio Cátedra 1: https://github.com/eldipa/sockets-en-cpp.
+#### Repositorio SDL2pp: https://github.com/libSDL2pp/libSDL2pp
 
-### Repositorio Cátedra 2: https://github.com/eldipa/hands-on-threads.
+##### Propietario: xzxzzxzxzcz y AMDmi3.
 
-#### Propietario: Taller de programación (TA045), Veiga.
+### Música, sonidos y sprites
 
-### Repositorio SDL2pp: https://github.com/libSDL2pp/libSDL2pp
+#### Sonidos (Todos de uso libre)
 
-#### Propietario: xzxzzxzxzcz y AMDmi3.
+https://freesound.org/ 
+
+#### Música de fondo (Música oficial del juego)
+
+https://www.youtube.com/watch?v=Dj4pEg9S_Pk&list=PLfMR6-vRLLbKe_rXu6Ad25_x9DKz9dpla&index=1
+
+#### Sprites (Extraídos directamente del juego)
+
+https://www.spriters-resource.com/pc_computer/duckgame/
