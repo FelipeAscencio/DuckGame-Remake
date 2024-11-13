@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Obtener el directorio del SDL.
-SDL2_DIR="${SCRIPT_DIR}/SDL2-dependencies"
+SDL2_DIR="${SCRIPT_DIR}/SDL/SDL2-dependencies"
 
 # Utilizado para imprimir los mensajes del estado de la instalación.
 imprimir_msj() {
@@ -68,7 +68,7 @@ done
 # Compilación del juego.
 imprimir_msj $ORANGE "║ Compilando el juego, ¡ya falta poco! ║"
 
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/src"
 sudo make clean
 sudo make
 

@@ -18,6 +18,7 @@
 #define SONIDO_LASER "/laser.mp3"
 #define SONIDO_PISTOLA "/pistola.mp3"
 #define SONIDO_SNIPER "/sniper.mp3"
+#define SONIDO_QUACK "/Quack.mp3"
 #define CUALQUIER_CANAL_LIBRE -1
 #define CANTIDAD_DE_REPRODUCCIONES 0
 #define TAMANIO_FUENTE 24
@@ -96,7 +97,8 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sonido_laser(Mix_LoadWAV((DATA_PATH SONIDO_LASER))),
         sonido_pistola(Mix_LoadWAV((DATA_PATH SONIDO_PISTOLA))),
         sonido_escopeta(Mix_LoadWAV((DATA_PATH SONIDO_ESCOPETA))),
-        sonido_sniper(Mix_LoadWAV((DATA_PATH SONIDO_SNIPER))) {}
+        sonido_sniper(Mix_LoadWAV((DATA_PATH SONIDO_SNIPER))),
+        sonido_quack(Mix_LoadWAV((DATA_PATH SONIDO_QUACK))) {}
 
 std::pair<float, float> Dibujador::convertir_a_relativo(float x, float y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
@@ -302,6 +304,10 @@ void Dibujador::reproducir_disparo_sniper() {
 
 void Dibujador::reproducir_disparo_pistola() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_pistola, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_quack() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_quack, CANTIDAD_DE_REPRODUCCIONES);
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer) {

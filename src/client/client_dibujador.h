@@ -49,6 +49,7 @@ private:
     Mix_Chunk* sonido_pistola;
     Mix_Chunk* sonido_escopeta;
     Mix_Chunk* sonido_sniper;
+    Mix_Chunk* sonido_quack;
 
     // Devuelve el 'Rect' correspondiente segun los parametros recibidos.
     SDL2pp::Rect calcular_dst_rect(float x, float y, float escala);
@@ -98,6 +99,9 @@ private:
 
     // Reproduce el sonido del 'disparo de pistola'.
     void reproducir_disparo_pistola();
+
+    // Reproduce el sonido del 'quack'.
+    void reproducir_quack();
 
 public:
     // Constructor de la clase.
