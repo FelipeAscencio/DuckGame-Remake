@@ -8,6 +8,16 @@
 
 ---
 
+## Manuales e Informes (técnicos y de uso)
+
+Dentro de la carpeta 'documentation' se encuentran los 4 manuales e informes del juego.
+- 'Manual de instalación'.
+- 'Manual de uso para nuevos usuarios'.
+- 'Informe de documentación técnica'.
+- 'Informe del proyecto'.
+
+---
+
 ## Créditos:
 
 ### Código (TDAs)
