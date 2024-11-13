@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Obtener el directorio del script.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Utilizado para imprimir los mensajes del estado de la instalación.
 imprimir_msj() {
     color=$1
@@ -13,6 +16,7 @@ ORANGE="0;33"
 # Color verde para los mensajes.
 GREEN="1;32"
 
+# Instalación de todas las dependencias.
 imprimir_msj $ORANGE "║ Ejecutando actualización adecuada ║"
 
 sudo apt-get update
@@ -39,5 +43,30 @@ imprimir_msj $ORANGE "║ Instalación de paquetes apt necesarios para gtest ║
 
 sudo apt-get --yes install libyaml-cpp-dev
 sudo apt-get --yes install libgtest-dev
+
+# Dependencias necesarias para cargar imagenes, sonidos y textos en "SDL2".
+imprimir_msj $ORANGE "║ Compilando dependencias SDL2 ║"
+SDL2_DIR="${SCRIPT_DIR}/SDL2-dependencies"
+
+# Verifica y compila cada dependencia en SDL2-dependencies.
+for dependency in SDL_image SDL_mixer SDL_ttf; do
+    DEP_PATH="$SDL2_DIR/$dependency"
+    if [[ -d "$DEP_PATH" ]]; then
+        cd "$DEP_PATH"
+        mkdir -p build
+        cd build
+        cmake ..
+        make -j4
+        sudo make install
+    else
+        imprimir_msj $ORANGE "║ Advertencia: No se encontró la carpeta $dependency ║"
+    fi
+done
+
+# Compilación del juego.
+imprimir_msj $ORANGE "║ Compilando el juego, ¡ya falta poco! ║"
+
+sudo make clean
+sudo make
 
 imprimir_msj $GREEN "║ Instalación de depencencias terminada ║"
