@@ -11,6 +11,9 @@
 #define CODIGO_CASCO 0x09
 #define CODIGO_CAJA 0x0A
 #define CODIGO_CANTIDADES 0x0B
+#define CODIGO_ESTADO_JUEGO 0X0C
+#define CODIGO_PUNTAJES 0x0D
+#define CODIGO_POSICIONES 0x0E
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
@@ -57,6 +60,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_pato(const Informacion
     info.push_back(pato_actual.armadura);
     info.push_back(pato_actual.orientacion);
     info.push_back(pato_actual.estado);
+    info.push_back(pato_actual.sonido);
     info.push_back(FIN_MENSAJE);
     return info;
 }
@@ -90,6 +94,43 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_armas(const Informacio
     return arma;
 }
 
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_estado_juego(const estado_actual_juego_e& estado){
+    std::vector<uint8_t> estado_juego;
+    estado_juego.push_back(CODIGO_ESTADO_JUEGO);
+    estado_juego.push_back((uint8_t)estado);
+    estado_juego.push_back(FIN_MENSAJE);
+    return estado_juego;
+}
+
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_puntajes(const std::vector<int>& puntajes){
+    std::vector<uint8_t> puntajes_jugadores;
+    puntajes_jugadores.push_back(CODIGO_PUNTAJES);
+    for (auto& i : puntajes){
+        puntajes_jugadores.push_back(i);
+    }
+    puntajes_jugadores.push_back(FIN_MENSAJE);
+    return puntajes_jugadores;
+}
+
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_rango_posiciones(const float& xmax, const float& xmin, const float& ymax, const float& ymin){
+    std::vector<uint8_t> posiciones;
+    posicion_t max(xmax, ymax);
+    posicion_t min(xmin, ymin);
+    std::vector<uint8_t> max_separada = separar_posicion_en_entero_y_decimal(max);
+    std::vector<uint8_t> min_separada = separar_posicion_en_entero_y_decimal(min);
+    posiciones.push_back(CODIGO_POSICIONES);
+    posiciones.push_back(max_separada[0]);
+    posiciones.push_back(max_separada[1]);
+    posiciones.push_back(max_separada[2]);
+    posiciones.push_back(max_separada[3]);
+    posiciones.push_back(min_separada[0]);
+    posiciones.push_back(min_separada[1]);
+    posiciones.push_back(min_separada[2]);
+    posiciones.push_back(min_separada[3]);
+    posiciones.push_back(FIN_MENSAJE);
+    return posiciones;
+}
+
 bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
@@ -111,12 +152,19 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
         envio_correcto = _enviar(arma_actual);
         i++;
     }
-
-    //// Esto despues hay que eliminarlo
-    InformacionArma ak(ID_AK47, 25, 89);
-    std::vector<uint8_t> byte_ak = serializar_armas(ak);
-    envio_correcto = _enviar(byte_ak);
     //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
+    
+    std::vector<uint8_t> estado = serializar_estado_juego(estado_actual.estado_juego);
+    envio_correcto = _enviar(estado);
+    if (!envio_correcto) return false;
+    if (estado_actual.estado_juego != INGAME){
+        std::vector<uint8_t> puntajes = serializar_puntajes(estado_actual.puntajes);
+        envio_correcto = _enviar(puntajes);    
+    }
+
+    std::vector<uint8_t> rango_posiciones = serializar_rango_posiciones(estado_actual.x_maximo, estado_actual.x_minimo, estado_actual.y_maximo, estado_actual.y_minimo);
+    envio_correcto = _enviar(rango_posiciones);
+
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;
         bool was_closed = false;

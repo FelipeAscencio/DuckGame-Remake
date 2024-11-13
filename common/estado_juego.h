@@ -16,6 +16,10 @@
 
 #define CERO 0
 
+enum estado_actual_juego_e {
+    INGAME, RONDA_TERMINADA, PARTIDA_TERMINADA
+};
+
 // 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
     int id;
@@ -27,6 +31,7 @@ struct InformacionPato {
     bool armadura;
     orientacion_e orientacion;
     estado_pato_e estado;
+    sonido_e sonido;
 
     // Constructor del struct con punteros.
     explicit InformacionPato(Pato* p):
@@ -38,13 +43,14 @@ struct InformacionPato {
             casco(p->posee_casco),
             armadura(p->posee_armadura),
             orientacion(p->orientacion),
-            estado(p->estado_actual) {}
+            estado(p->estado_actual),
+            sonido(p->sonido) {}
 
     // Constructor del struct con parametros.
     explicit InformacionPato(const uint8_t& id_pato, const posicion_t& pos, bool esta_vivo,
                              bool tiene_arma, const uint8_t& id_arma, bool tiene_casco,
                              bool tiene_armadura, const orientacion_e& orientacion_pato,
-                             const estado_pato_e& estado_pato):
+                             const estado_pato_e& estado_pato, const sonido_e& sonido_pato):
             id(id_pato),
             posicion(pos),
             vivo(esta_vivo),
@@ -53,7 +59,8 @@ struct InformacionPato {
             casco(tiene_casco),
             armadura(tiene_armadura),
             orientacion(orientacion_pato),
-            estado(estado_pato) {}
+            estado(estado_pato),
+            sonido(sonido_pato) {}
 };
 
 // 'struct' que encapsula la informacion de todas las armas del juego.
@@ -89,6 +96,12 @@ struct EstadoJuego {
     int cantidad_cajas;
     std::vector<InformacionPato> info_patos;
     std::vector<InformacionArma> info_armas;
+    std::vector<int>puntajes;
+    estado_actual_juego_e estado_juego;
+    float x_maximo;
+    float x_minimo;
+    float y_maximo;
+    float y_minimo;
 
     // Constructor del struct.
     EstadoJuego():
@@ -97,7 +110,26 @@ struct EstadoJuego {
             cantidad_balas(CERO),
             cantidad_armaduras(CERO),
             cantidad_cascos(CERO),
-            cantidad_cajas(CERO) {}
+            cantidad_cajas(CERO),
+            puntajes(8,0),
+            x_maximo(0),
+            x_minimo(200),
+            y_maximo(0),
+            y_minimo(160){}
+
+    EstadoJuego(estado_actual_juego_e estado):
+            cantidad_jugadores(CERO),
+            cantidad_armas(CERO),
+            cantidad_balas(CERO),
+            cantidad_armaduras(CERO),
+            cantidad_cascos(CERO),
+            cantidad_cajas(CERO),
+            puntajes(8,0),
+            estado_juego(estado),
+            x_maximo(0),
+            x_minimo(200),
+            y_maximo(0),
+            y_minimo(160) {}
 
     // Verifica la existencia de la id recibida por parametro.
     bool chequear_id(const int& id) {
@@ -111,6 +143,20 @@ struct EstadoJuego {
             InformacionPato nuevo_pato(p);
             this->info_patos.push_back(nuevo_pato);
             this->cantidad_jugadores++;
+            if (estado_juego == PARTIDA_TERMINADA){
+                if (p->rondas_ganadas > puntajes[0])
+                    puntajes[0] = p->rondas_ganadas;    
+            }
+            if (estado_juego == RONDA_TERMINADA)
+                puntajes[p->id_jugador] = p->rondas_ganadas;
+            if (p->posicion.coordenada_x > x_maximo) 
+                x_maximo = p->posicion.coordenada_x;
+            if (p->posicion.coordenada_x < x_minimo)
+                x_minimo = p->posicion.coordenada_x;
+            if (p->posicion.coordenada_y > y_maximo) 
+                y_maximo = p->posicion.coordenada_y;
+            if (p->posicion.coordenada_y < y_minimo)
+                y_minimo = p->posicion.coordenada_y;
         }
     }
 
