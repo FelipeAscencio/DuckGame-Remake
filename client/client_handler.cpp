@@ -4,7 +4,7 @@
 #define MENOS_UNO -1
 #define ANCHO_MIN 960
 #define ALTO_MIN 720
-#define VOLUMEN_MUSICA 0
+#define VOLUMEN_MUSICA 10
 #define FRECUENCIA_HZ 44100
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2

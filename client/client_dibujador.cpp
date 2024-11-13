@@ -313,5 +313,7 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer) {
     renderer.Clear();
     renderer.Copy(this->mapa);
     dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
+    std::vector<int> puntajes(8, 0);
+    dibujar_tablero(renderer, puntajes);
     renderer.Present();
 }
