@@ -10,10 +10,6 @@
 #include "server/arma.h"
 #include "server/mapa.h"
 
-enum sonido_e {
-    CALLADO, CUAK, DISPARANDO
-};
-
 // La clase 'Pato' implementa toda la logica del
 // pato en el transcurso del juego.
 class Pato {
@@ -33,9 +29,8 @@ private:
     Arma* arma_equipada;
     estado_pato_e estado_actual;
     int iteraciones_subiendo;
+    int iteraciones_agachado;
     int iteraciones_desde_aleteo;
-    int rondas_ganadas;
-    sonido_e sonido;
 
     // Verifica si el pato puede moverse en la direccion especificada.
     bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);

@@ -18,12 +18,6 @@ class Protocol {
 private:
     Socket& s;
 
-    std::vector<uint8_t> serializar_rango_posiciones(const float& xmax, const float& xmin, const float& ymax, const float& ymin);
-
-    std::vector<uint8_t> serializar_estado_juego(const estado_actual_juego_e& estado);
-
-    std::vector<uint8_t> serializar_puntajes(const std::vector<int>& puntajes);
-
     // Serializa la informacion de un pato (incluye posicion, equipo, estado y otros atributos).
     std::vector<uint8_t> serializar_pato(const InformacionPato& info_pato);
 

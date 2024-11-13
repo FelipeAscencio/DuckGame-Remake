@@ -19,8 +19,7 @@
 #define COMANDO_MIRAR_HACIA_ARRIBA 4
 #define COMANDO_SALTO_Y_ALETEO 5
 #define COMANDO_DISPARO 6
-#define COMANDO_CUAK 7
-#define COMANDO_AGARRAR 8
+#define COMANDO_AGARRAR 7
 
 Pato::Pato(int id):
         id_jugador(id),
@@ -33,9 +32,8 @@ Pato::Pato(int id):
         arma_equipada(new AK47(posicion)),
         estado_actual(PARADO),
         iteraciones_subiendo(0),
-        iteraciones_desde_aleteo(FPS/2),
-        rondas_ganadas(0),
-        sonido(CALLADO) {}
+        iteraciones_agachado(0),
+        iteraciones_desde_aleteo(FPS/2) {}
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
@@ -217,20 +215,24 @@ bool Pato::agarrar_casco() {
 bool Pato::disparar(Mapa& mapa) {
     if (arma_equipada) {
         return arma_equipada->disparar(this->orientacion, mapa);
-        this->sonido = DISPARANDO;
     } else {
         return false;
     }
 }
 
 void Pato::agacharse() { 
-    estado_actual = AGACHADO; 
+    estado_actual = AGACHADO;
+    iteraciones_agachado = 1; 
 }
 
 void Pato::chequear_estado() {
     switch (estado_actual) {
         case AGACHADO:
-            estado_actual = PARADO;
+            if (iteraciones_agachado >= FPS){
+                estado_actual = PARADO;
+            } else {
+                iteraciones_agachado += 1;
+            }
             break;
 
         case SALTANDO:
@@ -288,9 +290,6 @@ void Pato::control_pre_comando(Mapa& mapa) {
             posee_arma = false;
         }
     }
-    if (this->sonido != CALLADO){
-        this->sonido = CALLADO;
-    }
 }
 
 void Pato::recibir_disparo() {
@@ -337,10 +336,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                 if (disparar(mapa)) {
                     std::cout << "Disparo\n";
                     if (arma_equipada->tiene_retroceso()) {
-                        if (this->orientacion == DERECHA)
-                            this->posicion.coordenada_x += MOVER_IZQUIERDA;
-                        else if(this->orientacion == IZQUIERDA)
-                            this->posicion.coordenada_x += MOVER_DERECHA;
+                        this->posicion.coordenada_x += MOVER_IZQUIERDA;
                     }
                 } else {
                     std::cout << "Estoy aca\n";
@@ -354,10 +350,6 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
         case COMANDO_AGARRAR:
             // logica para ver si el arma/casco/armadura esta en la misma posicion para
             // agarrar
-            break;
-        
-        case COMANDO_CUAK:
-            this->sonido = CUAK;
             break;
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
