@@ -6,15 +6,20 @@
 
 - Zielonka Axel - 110310.
 
+## Corrector
+
+- Di Paola Martín.
+
 ---
 
 ## Manuales e Informes (técnicos y de uso)
 
-Dentro de la carpeta 'documentation' se encuentran los 4 manuales e informes del juego.
-- 'Manual de instalación'.
-- 'Manual de uso para nuevos usuarios'.
-- 'Informe de documentación técnica'.
-- 'Informe del proyecto'.
+Dentro de la carpeta 'documentation' se encuentran los 5 manuales e informes del juego.
+- 'Manual de Instalación'.
+- 'Manual de Uso'.
+- 'Informe Técnico'.
+- 'Informe del Proyecto'.
+- 'Enunciado de la Cátedra'.
 
 ---
 
