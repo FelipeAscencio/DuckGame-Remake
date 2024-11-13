@@ -113,7 +113,8 @@ void Gameloop::run() {
             std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
         }
 
-        // Actualizar `t1` sumando un intervalo fijo para mantener la consistencia en el tiempo de frames
+        // Actualizar `t1` sumando un intervalo fijo para mantener la consistencia en el tiempo de
+        // frames
         t1 += std::chrono::milliseconds(ms_per_frame);
         frame_count++;
     }

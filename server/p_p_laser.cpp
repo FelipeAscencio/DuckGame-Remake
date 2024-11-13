@@ -13,7 +13,7 @@ PewPewLaser::PewPewLaser(posicion_t posicion_inicial):
 
 bool PewPewLaser::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
-        if (mapa.borde_bloque(this->posicion_spawn, DERECHA)){
+        if (mapa.borde_bloque(this->posicion_spawn, DERECHA)) {
             std::cout << "Direccion valida" << std::endl;
             return true;
         }

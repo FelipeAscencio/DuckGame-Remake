@@ -36,7 +36,7 @@ private:
     bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);
 
     // Verifica y actualiza el estado del pato segun su estado actual.
-    void chequear_estado();
+    void chequear_estado(Mapa& mapa);
 
     // Mueve al pato en la direccion especificada, considerando colisiones y limites del mapa.
     bool mover(Mapa& mapa, const orientacion_e& direccion);

@@ -11,7 +11,7 @@ Sniper::Sniper(posicion_t posicion_inicial):
 
 bool Sniper::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (direccion == DERECHA || direccion == IZQUIERDA || direccion == ARRIBA) {
-        if (mapa.borde_bloque(this->posicion_spawn, DERECHA)){
+        if (mapa.borde_bloque(this->posicion_spawn, DERECHA)) {
             std::cout << "Direccion valida" << std::endl;
             return true;
         }
@@ -21,4 +21,3 @@ bool Sniper::disparar(const orientacion_e& direccion, Mapa& mapa) {
     }
     return false;
 }
-

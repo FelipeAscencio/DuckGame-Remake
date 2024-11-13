@@ -66,7 +66,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_cantidades(
     std::vector<uint8_t> cantidades;
     cantidades.push_back(CODIGO_CANTIDADES);
     cantidades.push_back(estado_actual.cantidad_jugadores);
-    //esto despues hay que sacar el + 1
+    // esto despues hay que sacar el + 1
     cantidades.push_back(estado_actual.cantidad_armas + 1);
     cantidades.push_back(estado_actual.cantidad_balas);
     cantidades.push_back(estado_actual.cantidad_armaduras);

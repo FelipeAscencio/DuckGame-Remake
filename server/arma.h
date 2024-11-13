@@ -54,7 +54,7 @@ public:
     // Metodo virtual, implementado en cada arma.
     virtual bool disparar(const orientacion_e& direccion, Mapa& mapa) = 0;
 
-    // Realiza el chequeo de rango y paredes para cada una de las balas disparadas 
+    // Realiza el chequeo de rango y paredes para cada una de las balas disparadas
     void chequeo_balas(Mapa& mapa);
 
     // Marca el arma como "agarrada" por un jugador.
