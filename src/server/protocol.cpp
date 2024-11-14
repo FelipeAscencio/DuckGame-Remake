@@ -21,6 +21,16 @@
 #define SALTAR_O_ALETEAR 5
 #define DISPARAR 6
 #define AGARRAR 7
+#define CUAK 8
+#define CHEAT_AK 32
+#define CHEAT_SG 33
+#define CHEAT_MAGNUM 34
+#define CHEAT_LASER 35
+#define CHEAT_SNIPER 36
+#define CHEAT_INMORTALIDAD 37
+#define CHEAT_RECARGAR 38
+#define CHEAT_ARMADUAR 39
+#define CHEAT_CASCO 40
 
 #define PRIMERA_POSICION 0
 #define SEGUNDA_POSICION 1
@@ -128,7 +138,7 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
 }
 
 bool ServerProtocol::Protocol::accion_valida(const uint8_t& accion) {
-    return (accion >= MOVER_DERECHA && accion <= AGARRAR);
+    return ((accion >= MOVER_DERECHA && accion <= CUAK) || (accion >= CHEAT_AK && accion <= CHEAT_CASCO));
 }
 
 bool ServerProtocol::Protocol::recibir(comando_t& cmd, const int& id_cliente) {

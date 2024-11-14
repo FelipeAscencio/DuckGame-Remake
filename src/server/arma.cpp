@@ -5,6 +5,7 @@ Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, co
         id_arma(id),
         nombre(nombre_arma),
         alcance(alcance),
+        municiones_iniciales(municiones),
         municiones(municiones),
         retroceso(tiene_retroceso),
         posicion_spawn(posicion_inicial),
@@ -12,6 +13,10 @@ Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, co
         soltada(false) {}
 
 void Arma::agarrar() { this->agarrada = true; }
+
+void Arma::recargar(){
+    this->municiones = municiones_iniciales;
+}
 
 void Arma::soltar() {
     this->agarrada = false;

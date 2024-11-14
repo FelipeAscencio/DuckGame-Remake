@@ -7,6 +7,10 @@
 #include <vector>
 
 #include "ak47.h"
+#include "shotgun.h"
+#include "magnum.h"
+#include "p_p_laser.h"
+#include "sniper.h"
 
 #define FPS 30
 
@@ -21,20 +25,31 @@
 #define COMANDO_SALTO_Y_ALETEO 5
 #define COMANDO_DISPARO 6
 #define COMANDO_AGARRAR 7
+#define CUAK 8
+#define CHEAT_AK 32
+#define CHEAT_SG 33
+#define CHEAT_MAGNUM 34
+#define CHEAT_LASER 35
+#define CHEAT_SNIPER 36
+#define CHEAT_INMORTALIDAD 37
+#define CHEAT_RECARGAR 38
+#define CHEAT_ARMADUAR 39
+#define CHEAT_CASCO 40
 
 Pato::Pato(int id):
         id_jugador(id),
         posicion(5, 89),
         vivo(true),
         posee_arma(true),
-        posee_armadura(false),
-        posee_casco(false),
+        posee_armadura(true),
+        posee_casco(true),
         orientacion(DERECHA),
         arma_equipada(new AK47(posicion)),
         estado_actual(PARADO),
         iteraciones_subiendo(0),
         iteraciones_agachado(0),
-        iteraciones_desde_aleteo(FPS / 2) {}
+        iteraciones_desde_aleteo(FPS / 2),
+        inmortal(false) {}
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
@@ -307,12 +322,19 @@ void Pato::control_pre_comando(Mapa& mapa) {
 }
 
 void Pato::recibir_disparo() {
+    if (inmortal){
+        std::cout << "Inmortal\n";
+        return;
+    }
     if (posee_casco) {
+        std::cout << "Pierdo el casco\n";
         posee_casco = false;  // Si le pegan un disparo, pierde el casco pero sigue vivo.
         return;
     }
     if (posee_armadura) {
+        std::cout << "Pierdo la armadura\n";
         posee_armadura = false;  // Si le pegan un disparo, pierde el armadura pero sigue vivo.
+        return;
     }
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
@@ -369,6 +391,60 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             // logica para ver si el arma/casco/armadura esta en la misma posicion para
             // agarrar
             break;
+        
+        case CHEAT_AK:
+            if (this->arma_equipada){
+                delete this->arma_equipada;
+            }
+            this->arma_equipada = new AK47(this->posicion);
+            break;
+
+        case CHEAT_SG:
+            if (this->arma_equipada){
+                delete this->arma_equipada;
+            }
+            this->arma_equipada = new Shotgun(this->posicion);
+            break;
+
+        case CHEAT_MAGNUM:
+            if (this->arma_equipada){
+                delete this->arma_equipada;
+            }
+            this->arma_equipada = new Magnum(this->posicion);
+            break;
+
+        case CHEAT_LASER:
+            if (this->arma_equipada){
+                delete this->arma_equipada;
+            }
+            this->arma_equipada = new PewPewLaser(this->posicion);
+            break;
+
+        case CHEAT_SNIPER:
+            if (this->arma_equipada){
+                delete this->arma_equipada;
+            }
+            this->arma_equipada = new Sniper(this->posicion);
+            break;
+
+        case CHEAT_INMORTALIDAD:
+            this->inmortal = !this->inmortal;
+            break;
+
+        case CHEAT_RECARGAR:
+            if (this->arma_equipada){
+                this->arma_equipada->recargar();
+            }
+            break;
+
+        case CHEAT_CASCO:
+            this->posee_casco = !this->posee_casco;
+            break;
+        
+        case CHEAT_ARMADUAR:
+            this->posee_armadura = !this->posee_armadura;
+            break;
+
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
             std::cout << "Posicion vieja: " << this->posicion.to_string();

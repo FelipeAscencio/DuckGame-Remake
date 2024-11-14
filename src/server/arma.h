@@ -12,16 +12,11 @@
 #include "mapa.h"
 #include "municion.h"
 
-#define ID_GRANADA 1
-#define ID_BANANA 2
-#define ID_PP_LASER 3
-#define ID_LASER_RIFLE 4
-#define ID_AK47 5
-#define ID_DUEL_PISTOL 6
-#define ID_COWBOY_PISTOL 7
-#define ID_MAGNUM 8
-#define ID_SHOTGUN 9
-#define ID_SNIPER 10
+#define ID_PP_LASER 1
+#define ID_AK47 2
+#define ID_MAGNUM 3
+#define ID_SHOTGUN 4
+#define ID_SNIPER 5
 
 // La clase 'Arma' encapsula la logica compartida de las
 // armas para que luego cada arma en particular la implemente.
@@ -35,6 +30,7 @@ protected:
     const int id_arma;
     const std::string nombre;
     int alcance;
+    const int municiones_iniciales;
     int municiones;
     bool retroceso;
     posicion_t posicion_spawn;
@@ -79,6 +75,8 @@ public:
     posicion_t obtener_posicion_inicial();
 
     int obtener_id() const { return id_arma; }
+
+    void recargar();
 
     virtual ~Arma();
 };
