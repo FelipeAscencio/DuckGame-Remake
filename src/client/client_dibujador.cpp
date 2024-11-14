@@ -123,27 +123,27 @@ void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture
                                      const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id,
                                      const double angle, SDL_RendererFlip& flip) {
     SDL_Color color_mod;
-    if (id == UNO) {  // ROJO
+    if (id == CERO) {  // ROJO
         color_mod = {MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
-    } else if (id == DOS) {  // VERDE
+    } else if (id == UNO) {  // VERDE
         color_mod = {MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
-    } else if (id == TRES) {  // AZUL
+    } else if (id == DOS) {  // AZUL
         color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
-    } else if (id == CUATRO) {  // AMARILLO
+    } else if (id == TRES) {  // AMARILLO
         color_mod = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
-    } else if (id == CINCO) {  // NARANJA
+    } else if (id == CUATRO) {  // NARANJA
         color_mod = {MAX_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
-    } else if (id == SEIS) {  // VIOLETA
+    } else if (id == CINCO) {  // VIOLETA
         color_mod = {MED_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MED_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
-    } else if (id == SIETE) {  // MARRON
+    } else if (id == SEIS) {  // MARRON
         color_mod = {MED_INTENSIDAD_RGB, RGB_AUX_MARRON_1, RGB_AUX_MARRON_2, MAX_INTENSIDAD_RGB};
-    } else if (id == OCHO) {  // NEGRO
+    } else if (id == SIETE) {  // NEGRO
         color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
     }
@@ -168,7 +168,7 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
         angle = ANGULO_270;
     }
 
-    if (id > CERO && id <= OCHO) {
+    if (id >= CERO && id < OCHO) {
         if (id != this->id_jugador) {
             dibujar_pato_enemigo(renderer, sprite_sheet, sprite, dst_rect, id, angle, flip);
             return;
@@ -187,7 +187,10 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     float y;
     orientacion_e orientacion;
     estado_pato_e estado;
+    std::cout << "ENTRO A VER PATOS" << std::endl;
     for (auto& pato: estado_actual.info_patos) {
+        std::cout << pato.vivo << std::endl;
+        std::cout << pato.id << std::endl;
         id = pato.id;
         x = pato.posicion.coordenada_x;
         y = pato.posicion.coordenada_y;
