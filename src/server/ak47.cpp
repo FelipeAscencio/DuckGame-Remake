@@ -56,7 +56,9 @@ bool AK47::disparar(const orientacion_e& direccion, Mapa& mapa) {
     Municion* bala_disparada =
             new Municion(this->id_arma, this->posicion_spawn, ALCANCE * TILE_A_METRO, direccion,
                          this->ultima_bala_disparada, 0);
+    std::cout << "Orientacion bala: " << bala_disparada->get_sentido() << std::endl;
     if (bala_disparada->avanzar(mapa)) {
+        std::cout << "Bala disparada\n";
         balas.push_back(bala_disparada);
     } else {
         delete bala_disparada;

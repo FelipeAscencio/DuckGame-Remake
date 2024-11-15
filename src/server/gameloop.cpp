@@ -39,8 +39,7 @@ void Gameloop::enviar_estado_juego() {
 
     } else {
         for (Pato* p: jugadores) {
-            if (p->vivo)
-                estado_actual.agregar_info_pato(p);
+            estado_actual.agregar_info_pato(p);
         }
     }
     if (!this->armas_tiradas.empty()) {
@@ -60,14 +59,16 @@ void Gameloop::actualizar_balas_disparadas() {
 }
 
 void Gameloop::chequear_posiciones() {
-    for (Pato* p: jugadores) {
-        for (Pato* o: jugadores) {
-            if (p->id_jugador != o->id_jugador) {
-                if (p->arma_equipada && !p->arma_equipada->balas.empty()) {
-                    for (Municion* m: p->arma_equipada->balas) {
-                        if (o->posicion.misma_posicion(m->posicion_actual)) {
-                            o->recibir_disparo();
-                        }
+    for (Pato* p: jugadores){
+        if(p->arma_equipada && !p->arma_equipada->balas.empty()){
+            for (Municion* m: p->arma_equipada->balas){
+                for (Pato* otro: jugadores){
+                    if (p->id_jugador != otro->id_jugador){
+                        std::cout << "----\n";
+                        std::cout << m->posicion_actual.to_string();
+                        std::cout << otro->posicion.to_string();
+                        if (m->posicion_actual.misma_posicion(otro->posicion))
+                            otro->recibir_disparo();
                     }
                 }
             }

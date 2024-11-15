@@ -29,6 +29,7 @@ private:
     const dispersion_e dispersion;
     inclinacion_e inclinacion;
     int rebotes;
+    bool subiendo;
 
 public:
     // Constructor de la clase.
@@ -40,6 +41,8 @@ public:
 
     // Verifica si la munición ha excedido su alcance máximo.
     bool fuera_de_rango();
+
+    orientacion_e get_sentido() {return this->sentido;}
 
     // Avanza la posición de la munición, considerando su dirección, inclinación y dispersión.
     bool avanzar(Mapa& mapa);

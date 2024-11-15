@@ -14,12 +14,13 @@ Municion::Municion(int id, posicion_t pos, int alcance_max, orientacion_e direcc
         sentido(direccion),
         dispersion(dispersion_bala),
         rebotes(cantidad_rebotes) {
-    if (dispersion == NO) {
+    if (dispersion == NO || sentido == ARRIBA) {
         inclinacion = NO_TIENE;
     } else {
         int inc = (rand() % 2) + 1;
         inclinacion = (inclinacion_e)inc;
     }
+    subiendo = (this->sentido == ARRIBA) ? true : false;
 }
 
 Municion::Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientacion_e direccion,
@@ -45,9 +46,9 @@ bool Municion::fuera_de_rango() {
 int buscar_inclinacion(const inclinacion_e& inclinacion) {
     int inc = 0;
     if (inclinacion == PARA_ARRIBA) {
-        inc = 1;
-    } else if (inclinacion == PARA_ABAJO) {  // cppcheck-suppress knownConditionTrueFalse
         inc = -1;
+    } else if (inclinacion == PARA_ABAJO) {  // cppcheck-suppress knownConditionTrueFalse
+        inc = 1;
     }
 
     return inc;
@@ -82,54 +83,70 @@ bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
     if (posicion_mapa[0] == -1 || posicion_mapa[1] == -1)
         return false;
+
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
     bool piso_o_techo =
             mapa.piso_bloque(this->posicion_actual) || mapa.techo_bloque(this->posicion_actual);
     int inc, dis;
-    if (this->sentido == ARRIBA) {
-        if (piso_o_techo && mapa.mapa[posicion_mapa[1] - 1][posicion_mapa[0]] == 1) {
-            if (rebotes > 0) {
-                this->sentido = ABAJO;
-                rebotes -= 1;
-            } else {
-                return false;
-            }
-            this->posicion_actual.coordenada_y += AVANZAR;
-        } else {
-            this->posicion_actual.coordenada_y -= AVANZAR;
-        }
-        inc = -(buscar_inclinacion(this->inclinacion));
-        dis = buscar_dispersion(this->dispersion);
-        this->posicion_actual.coordenada_x += (dis * inc);
-    } else if (this->sentido == ABAJO) {
-        if (piso_o_techo && mapa.mapa[posicion_mapa[1] + 1][posicion_mapa[0]] == 1) {
-            if (rebotes > 0) {
-                this->sentido = ARRIBA;
-                rebotes -= 1;
-            } else {
-                return false;
-            }
-            this->posicion_actual.coordenada_y -= AVANZAR;
-        } else {
-            this->posicion_actual.coordenada_y += AVANZAR;
-        }
-        inc = -(buscar_inclinacion(this->inclinacion));
-        dis = buscar_dispersion(this->dispersion);
-        this->posicion_actual.coordenada_x += (dis * inc);
-    } else {
-        int lado = (this->sentido == DERECHA) ? AVANZAR : -AVANZAR;
-        if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] == 1) {
-            if (rebotes > 0) {
-                this->sentido = orientacion_e(-(this->sentido) + 1);
-                rebotes -= 1;
+    int lado;
+    if (this->sentido == DERECHA){
+        std::cout << "Derecha\n";
+        lado = 1;
+        if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 0){
+            std::cout << "Borde bloque y pared\n";
+            if (rebotes > 0){
+                this->sentido = IZQUIERDA;
+                this->rebotes -= 1;
+                lado = -1;
             } else {
                 return false;
             }
         }
-        this->posicion_actual.coordenada_x += lado;
+        int vertical = subiendo ? -1 : 1;
+        if (piso_o_techo && mapa.mapa[posicion_mapa[1]+vertical][posicion_mapa[0]] != 0 && this->dispersion != NO){
+            std::cout << "Techo/piso bloque\n";
+            if (rebotes > 0){
+                rebotes -= 1;
+                this->inclinacion =  subiendo ? PARA_ABAJO : PARA_ARRIBA;
+                subiendo = !subiendo;
+            } else return false;
+        }
+        std::cout << "No hubo casos especiales\n";
+        this->posicion_actual.coordenada_x += lado*AVANZAR;
         inc = buscar_inclinacion(this->inclinacion);
         dis = buscar_dispersion(this->dispersion);
-        this->posicion_actual.coordenada_y += (dis * inc);
+        this->posicion_actual.coordenada_y = AVANZAR*(dis*inc);
+    } else if (this->sentido ==  IZQUIERDA){
+        lado = -1;
+        if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 0){
+            if (rebotes > 0){
+                this->sentido = DERECHA;
+                this->rebotes -= 1;
+                lado = 1;
+            } else return false;
+        }
+        int vertical = subiendo ? -1 : 1;
+        if (piso_o_techo && mapa.mapa[posicion_mapa[1]+vertical][posicion_mapa[0]] != 0 && this->dispersion != NO){
+            if (rebotes > 0){
+                this->rebotes -= 1;
+                this->inclinacion = subiendo ? PARA_ABAJO : PARA_ARRIBA;
+                subiendo = !subiendo;
+            } else return false;
+        }
+        this->posicion_actual.coordenada_x += AVANZAR*lado;
+        inc = buscar_inclinacion(this->inclinacion);
+        dis = buscar_dispersion(this->dispersion);
+        this->posicion_actual.coordenada_y += AVANZAR*(dis*inc);
+    } else {
+        lado = subiendo ? -1 : 1;
+        if (piso_o_techo && mapa.mapa[posicion_mapa[1]+lado][posicion_mapa[0]] != 0){
+            if (this->rebotes > 0){
+                subiendo = !subiendo;
+                rebotes -= 1;
+                lado = -lado;
+            } else return false;
+        }
+        this->posicion_actual.coordenada_y += AVANZAR*lado;
     }
     return true;
 }

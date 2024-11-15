@@ -29,7 +29,6 @@ private:
     Arma* arma_equipada;
     estado_pato_e estado_actual;
     int iteraciones_subiendo;
-    int iteraciones_agachado;
     int iteraciones_desde_aleteo;
     bool inmortal;
 
