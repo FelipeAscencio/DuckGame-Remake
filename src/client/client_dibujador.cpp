@@ -27,7 +27,15 @@
 #define MAX_COORD_X 200
 #define MAX_COORD_Y 160
 #define OFFSET_Y 0.03
+#define OFFSET_Y_ARMA 0.04
+#define OFFSET_Y_CASCO 0.007
+#define OFFSET_X_CASCO_DER 0.004
+#define OFFSET_X_CASCO_IZQ -0.004
+#define OFFSET_X_CASCO_AGACHADO_DER 0.027
+#define OFFSET_X_CASCO_AGACHADO_IZQ -0.027
+#define OFFSET_Y_CASCO_AGACHADO 0.048
 #define ANGULO_NULO 0.0
+#define ANGULO_90 90.0
 #define ANGULO_270 270.0
 #define ESCALA_SPRITES_GRANDES 0.07
 #define ESCALA_SPRITES_MEDIANOS 0.04
@@ -46,9 +54,12 @@
 #define CANTIDAD_SPRITES_CAMINAR 6
 #define POS_SPRITE_PARADO 0
 #define POS_SPRITE_AGACHADO 9
+#define POS_SPRITE_MUERTO 10
 #define POS_SPRITE_SALTANDO 7
 #define POS_SPRITE_ALETEANDO 11
 #define POS_SPRITE_CAYENDO 8
+#define POS_ARMA 0
+#define POS_CASCO 12
 #define POS_INICIAL_PATO_TABLERO 10
 #define GAP_PATO_TABLERO 0.1
 #define X_INICIAL_PUNTAJE 100
@@ -65,6 +76,12 @@
 #define SIETE 7
 #define OCHO 8
 #define DIEZ 10
+#define ID_GENERICO_ITEMS 9
+#define ID_PEW_PEW_LASER 1
+#define ID_AK 2
+#define ID_MAGNUM 3
+#define ID_SHOTGUN 4
+#define ID_SNIPER 5
 
 using namespace SDL2pp;
 
@@ -166,6 +183,9 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
         flip = SDL_FLIP_HORIZONTAL;
     } else if (orientacion == ARRIBA) {
         angle = ANGULO_270;
+    } else if (orientacion == ABAJO) {
+        angle = ANGULO_90;
+        flip = SDL_FLIP_HORIZONTAL;
     }
 
     if (id >= CERO && id < OCHO) {
@@ -180,52 +200,153 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
+void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado){
+    if (estado == ESTADO_PARADO) {
+        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
+                       x_relativo, y_relativo + OFFSET_Y, escala, orientacion, id);
+    } else if (estado == ESTADO_AGACHADO) {
+        dibujar_sprite(renderer, this->sprite_sheet_pato,
+                       this->sprites_pato[POS_SPRITE_AGACHADO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, id);
+    } else if (estado == ESTADO_SALTANDO) {
+        dibujar_sprite(renderer, this->sprite_sheet_pato,
+                       this->sprites_pato[POS_SPRITE_SALTANDO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, id);
+    } else if (estado == ESTADO_ALETEANDO) {
+        dibujar_sprite(renderer, this->sprite_sheet_pato,
+                       this->sprites_pato[POS_SPRITE_ALETEANDO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, id);
+    } else if (estado == ESTADO_CAYENDO) {
+        dibujar_sprite(renderer, this->sprite_sheet_pato,
+                       this->sprites_pato[POS_SPRITE_CAYENDO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, id);
+    } else if (estado == ESTADO_CAMINANDO) {
+        unsigned int current_ticks = SDL_GetTicks();
+        int sprite_index = UNO + (current_ticks / DIEZ) % CANTIDAD_SPRITES_CAMINAR;
+        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index], x_relativo,
+                       y_relativo + OFFSET_Y, escala, orientacion, id);
+    }
+}
+
+void Dibujador::dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado){
+    if (estado == ESTADO_PARADO) {
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[POS_SPRITE_PARADO],
+                       x_relativo, y_relativo + OFFSET_Y, escala, orientacion, ID_GENERICO_ITEMS);
+    } else if (estado == ESTADO_AGACHADO) {
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                       this->sprites_equipamiento[POS_SPRITE_AGACHADO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, ID_GENERICO_ITEMS);
+    } else if (estado == ESTADO_SALTANDO) {
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                       this->sprites_equipamiento[POS_SPRITE_SALTANDO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, ID_GENERICO_ITEMS);
+    } else if (estado == ESTADO_ALETEANDO) {
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                       this->sprites_equipamiento[POS_SPRITE_ALETEANDO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, ID_GENERICO_ITEMS);
+    } else if (estado == ESTADO_CAYENDO) {
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                       this->sprites_equipamiento[POS_SPRITE_CAYENDO], x_relativo, y_relativo + OFFSET_Y, escala,
+                       orientacion, ID_GENERICO_ITEMS);
+    } else if (estado == ESTADO_CAMINANDO) {
+        unsigned int current_ticks = SDL_GetTicks();
+        int sprite_index = UNO + (current_ticks / DIEZ) % CANTIDAD_SPRITES_CAMINAR;
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[sprite_index], x_relativo,
+                       y_relativo + OFFSET_Y, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
+void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado, int& id_arma){
+    SDL2pp::Texture* sprite_sheet = nullptr;
+    std::vector<SDL_Rect>* sprites = nullptr;
+    if (id_arma == ID_PEW_PEW_LASER){
+        sprite_sheet = &this->sprite_sheet_laser;
+        sprites = &this->sprites_laser;
+    } else if (id_arma == ID_AK){
+        sprite_sheet = &this->sprite_sheet_ak;
+        sprites = &this->sprites_ak;
+    } else if (id_arma == ID_MAGNUM){
+        sprite_sheet = &this->sprite_sheet_pistola;
+        sprites = &this->sprites_pistola;
+    } else if (id_arma == ID_SHOTGUN){
+        sprite_sheet = &this->sprite_sheet_escopeta;
+        sprites = &this->sprites_escopeta;
+    } else if (id_arma == ID_SNIPER){
+        sprite_sheet = &this->sprite_sheet_sniper;
+        sprites = &this->sprites_sniper;
+    }
+
+    if (estado == ESTADO_AGACHADO){
+        if (orientacion == DERECHA){
+            dibujar_sprite(renderer, *sprite_sheet,
+                       (*sprites)[POS_ARMA], x_relativo, y_relativo + OFFSET_Y_ARMA, escala,
+                       ARRIBA, ID_GENERICO_ITEMS);
+        } else {
+            dibujar_sprite(renderer, *sprite_sheet,
+                       (*sprites)[POS_ARMA], x_relativo, y_relativo + OFFSET_Y_ARMA, escala,
+                       ABAJO, ID_GENERICO_ITEMS);
+        }
+    } else {
+        dibujar_sprite(renderer, *sprite_sheet, (*sprites)[POS_ARMA],
+                       x_relativo, y_relativo + OFFSET_Y_ARMA, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
+void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado){
+    float offset_x;
+    if (orientacion == DERECHA){
+        offset_x = OFFSET_X_CASCO_DER;
+    } else if (orientacion == IZQUIERDA) {
+        offset_x = OFFSET_X_CASCO_IZQ;
+    }
+
+    if (estado == ESTADO_AGACHADO){
+        float offset_y = OFFSET_Y_CASCO_AGACHADO;
+        if (orientacion == DERECHA){
+            offset_x = OFFSET_X_CASCO_AGACHADO_DER;
+            dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                            this->sprites_equipamiento[POS_CASCO], x_relativo - offset_x, y_relativo + offset_y, escala,
+                            ARRIBA, ID_GENERICO_ITEMS);
+        } else  {
+            offset_x = OFFSET_X_CASCO_AGACHADO_IZQ;
+            dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                            this->sprites_equipamiento[POS_CASCO], x_relativo - offset_x, y_relativo + offset_y, escala,
+                            ABAJO, ID_GENERICO_ITEMS);
+        }
+    } else {
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[POS_CASCO],
+                       x_relativo - offset_x, y_relativo + OFFSET_Y_CASCO, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
 void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
-    float escala = ESCALA_SPRITES_GRANDES;
-    int id;
-    float x;
-    float y;
-    orientacion_e orientacion;
-    estado_pato_e estado;
-    std::cout << "ENTRO A VER PATOS" << std::endl;
     for (auto& pato: estado_actual.info_patos) {
-        std::cout << pato.vivo << std::endl;
-        std::cout << pato.id << std::endl;
-        id = pato.id;
-        x = pato.posicion.coordenada_x;
-        y = pato.posicion.coordenada_y;
-        orientacion = pato.orientacion;
-        estado = pato.estado;
-        if (estado == ESTADO_PARADO) {
-            auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
-                           x_1, y_1 + OFFSET_Y, escala, orientacion, id);
-        } else if (estado == ESTADO_AGACHADO) {
-            auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato,
-                           this->sprites_pato[POS_SPRITE_AGACHADO], x_1, y_1 + OFFSET_Y, escala,
-                           orientacion, id);
-        } else if (estado == ESTADO_SALTANDO) {
-            auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato,
-                           this->sprites_pato[POS_SPRITE_SALTANDO], x_1, y_1 + OFFSET_Y, escala,
-                           orientacion, id);
-        } else if (estado == ESTADO_ALETEANDO) {
-            auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato,
-                           this->sprites_pato[POS_SPRITE_ALETEANDO], x_1, y_1 + OFFSET_Y, escala,
-                           orientacion, id);
-        } else if (estado == ESTADO_CAYENDO) {
-            auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato,
-                           this->sprites_pato[POS_SPRITE_CAYENDO], x_1, y_1 + OFFSET_Y, escala,
-                           orientacion, id);
-        } else if (estado == ESTADO_CAMINANDO) {
-            unsigned int current_ticks = SDL_GetTicks();
-            int sprite_index = UNO + (current_ticks / DIEZ) % CANTIDAD_SPRITES_CAMINAR;
-            auto [x_1, y_1] = convertir_a_relativo(x, y);
-            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index], x_1,
-                           y_1 + OFFSET_Y, escala, orientacion, id);
+        float escala = ESCALA_SPRITES_GRANDES;
+        int id = pato.id;
+        float x = pato.posicion.coordenada_x;
+        float y = pato.posicion.coordenada_y;
+        bool esta_vivo = pato.vivo;
+        bool tiene_arma = pato.arma;
+        int id_arma = pato.id_arma_equipada;
+        bool tiene_casco = pato.casco;
+        bool tiene_armadura = pato.armadura;
+        orientacion_e orientacion = pato.orientacion;
+        estado_pato_e estado = pato.estado;
+        auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
+        if (esta_vivo == false){
+            dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_MUERTO],
+                            x_relativo, y_relativo + OFFSET_Y, escala, orientacion, id);
+        } else {
+            dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado);
+            if (tiene_armadura) {
+                dibujar_armadura_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
+            }
+            if (tiene_arma) {
+                dibujar_arma_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado, id_arma);
+            }
+            if (tiene_casco){
+                dibujar_casco_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
+            }
         }
     }
 }
@@ -239,10 +360,10 @@ void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
     float x = POS_INICIAL_PATO_TABLERO;
     float y = POS_INICIAL_PATO_TABLERO;
     orientacion_e orientacion = DERECHA;
-    auto [x_1, y_1] = convertir_a_relativo(x, y);
+    auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
     for (int i = 0; i < OCHO; ++i) {
         dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
-                       x_1, y_1 + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i + UNO);
+                       x_relativo, y_relativo + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i + UNO);
     }
 }
 

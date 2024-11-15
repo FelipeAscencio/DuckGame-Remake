@@ -22,7 +22,7 @@ struct InformacionPato {
     posicion_t posicion;
     bool vivo;
     bool arma;
-    int id_arma_equipada; // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper
+    int id_arma_equipada; // 0 = no arma, 1 laser, 2 ak, 3 magnum, 4 shotgun, 5 sniper
     bool casco;
     bool armadura;
     orientacion_e orientacion;

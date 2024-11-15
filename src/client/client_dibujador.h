@@ -67,6 +67,18 @@ private:
                         const SDL_Rect& sprite, float x, float y, float escala,
                         orientacion_e orientacion, const int id);
 
+    // Dibuja un pato vivo en en la ventana.
+    void dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado_pato);
+
+    // Dibuja la armadura de un pato.
+    void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
+
+    // Dibuja el arma de un pato.
+    void dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado, int& id_arma);
+
+    // Dibuja el casco de un pato.
+    void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
+
     // Dibuja los patos del 'estado_actual' en la ventana.
     void dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 

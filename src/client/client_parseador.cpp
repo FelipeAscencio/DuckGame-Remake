@@ -9,6 +9,7 @@
 #define MEDIA_TIRA_SPRITES 3
 #define TIRA_COMPLETA_CAJAS 4
 #define TAMANIO_SPRITE_GRANDE 32
+#define TAMANIO_SPRITES_BUG 31 // Hay algunos sprites que no llegan justo a 32.
 #define TAMANIO_SPRITE_MEDIANO 16
 #define TAMANIO_SPRITE_CHICO 8
 #define INICIO_PATO_X 1
@@ -99,7 +100,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pato() {
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_ak() {
     std::vector<SDL_Rect> sprites_ak;
-    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_AK_47_X;
     int y_inicial = INICIO_AK_47_Y;
     iterador_de_parseo(sprites_ak, UNO, x_inicial, y_inicial, tamanio_sprite);
@@ -141,7 +142,7 @@ void Parseador::obtener_sprites_armadura(std::vector<SDL_Rect>& sprites_equipami
 }
 
 void Parseador::obtener_sprites_casco(std::vector<SDL_Rect>& sprites_equipamiento) {
-    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_CASCO_X;
     int y_inicial = INICIO_CASCO_Y;
     iterador_de_parseo(sprites_equipamiento, UNO, x_inicial, y_inicial, tamanio_sprite);
