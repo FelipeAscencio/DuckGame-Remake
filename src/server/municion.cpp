@@ -43,17 +43,6 @@ bool Municion::fuera_de_rango() {
     return ((int)distancia > autonomia);
 }
 
-int buscar_inclinacion(const inclinacion_e& inclinacion) {
-    int inc = 0;
-    if (inclinacion == PARA_ARRIBA) {
-        inc = -1;
-    } else if (inclinacion == PARA_ABAJO) {  // cppcheck-suppress knownConditionTrueFalse
-        inc = 1;
-    }
-
-    return inc;
-}
-
 int buscar_dispersion(const dispersion_e& dispersion) {
     int dis;
     switch (dispersion) {
@@ -77,76 +66,24 @@ int buscar_dispersion(const dispersion_e& dispersion) {
 }
 
 bool Municion::avanzar(Mapa& mapa) {
-    if (fuera_de_rango())
-        return false;
-
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
     if (posicion_mapa[0] == -1 || posicion_mapa[1] == -1)
         return false;
 
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
-    bool piso_o_techo =
-            mapa.piso_bloque(this->posicion_actual) || mapa.techo_bloque(this->posicion_actual);
-    int inc, dis;
+    bool techo = mapa.techo_bloque(this->posicion_actual);
     int lado;
-    if (this->sentido == DERECHA){
-        std::cout << "Derecha\n";
-        lado = 1;
-        if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 0){
-            std::cout << "Borde bloque y pared\n";
-            if (rebotes > 0){
-                this->sentido = IZQUIERDA;
-                this->rebotes -= 1;
-                lado = -1;
-            } else {
-                return false;
-            }
-        }
-        int vertical = subiendo ? -1 : 1;
-        if (piso_o_techo && mapa.mapa[posicion_mapa[1]+vertical][posicion_mapa[0]] != 0 && this->dispersion != NO){
-            std::cout << "Techo/piso bloque\n";
-            if (rebotes > 0){
-                rebotes -= 1;
-                this->inclinacion =  subiendo ? PARA_ABAJO : PARA_ARRIBA;
-                subiendo = !subiendo;
-            } else return false;
-        }
-        std::cout << "No hubo casos especiales\n";
-        this->posicion_actual.coordenada_x += lado*AVANZAR;
-        inc = buscar_inclinacion(this->inclinacion);
-        dis = buscar_dispersion(this->dispersion);
-        this->posicion_actual.coordenada_y = AVANZAR*(dis*inc);
-    } else if (this->sentido ==  IZQUIERDA){
-        lado = -1;
-        if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 0){
-            if (rebotes > 0){
-                this->sentido = DERECHA;
-                this->rebotes -= 1;
-                lado = 1;
-            } else return false;
-        }
-        int vertical = subiendo ? -1 : 1;
-        if (piso_o_techo && mapa.mapa[posicion_mapa[1]+vertical][posicion_mapa[0]] != 0 && this->dispersion != NO){
-            if (rebotes > 0){
-                this->rebotes -= 1;
-                this->inclinacion = subiendo ? PARA_ABAJO : PARA_ARRIBA;
-                subiendo = !subiendo;
-            } else return false;
-        }
-        this->posicion_actual.coordenada_x += AVANZAR*lado;
-        inc = buscar_inclinacion(this->inclinacion);
-        dis = buscar_dispersion(this->dispersion);
-        this->posicion_actual.coordenada_y += AVANZAR*(dis*inc);
+    int inc, dis;
+    if (this->sentido == ARRIBA){
+        if (techo && mapa.mapa[posicion_mapa[1]-1][posicion_mapa[0]] != 0) return false;
+        this->posicion_actual.coordenada_y -= AVANZAR;
     } else {
-        lado = subiendo ? -1 : 1;
-        if (piso_o_techo && mapa.mapa[posicion_mapa[1]+lado][posicion_mapa[0]] != 0){
-            if (this->rebotes > 0){
-                subiendo = !subiendo;
-                rebotes -= 1;
-                lado = -lado;
-            } else return false;
-        }
-        this->posicion_actual.coordenada_y += AVANZAR*lado;
+        lado = this->sentido == DERECHA ? 1 : -1;
+        if (borde_bloque && mapa.mapa[posicion_mapa[1]-1][posicion_mapa[0] + lado] != 0) return false;
+        this->posicion_actual.coordenada_x += AVANZAR * lado;
+        inc = subiendo ? -1 : 1;
+        dis = buscar_dispersion(this->dispersion);
+        this->posicion_actual.coordenada_y += AVANZAR*inc*dis;
     }
     return true;
 }

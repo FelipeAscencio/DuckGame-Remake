@@ -38,7 +38,7 @@ bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
     }
     if (debe_recargar) {
         debe_recargar = false;
-        return true;
+        return false;
     }
     for (int i = 0; i < PERDIGONES_POR_DISPARO; i++) {
         dispersion_e dispersion_bala = obtener_dispersion(i);
@@ -53,5 +53,7 @@ bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
         }
     }
     this->municiones -= 1;
+    debe_recargar = true;
+    std::cout << "Shotgun disparada\n";
     return true;
 }

@@ -11,9 +11,12 @@
 // Esta clase implementa la logica del arma 'AK-47'.
 class AK47: public Arma {
     dispersion_e ultima_bala_disparada;
+    int iteraciones_desde_disparo;
 
     // Modifica la dispersion de las balas en funcion de si el arma esta disparando o no.
     void modificar_dispersion_balas(bool disparando);
+
+    void control_atributos(Mapa& mapa) override;
 
 public:
     // Constructor de la clase.

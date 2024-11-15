@@ -50,9 +50,11 @@ typedef struct Posicion {
 
     // Compara la posicion propia con otra recibida por parametro, en caso de igualdad devuelve
     // true.
-    bool misma_posicion(const Posicion& otra) {
-        return this->coordenada_x == otra.coordenada_x &&
-               abs(this->coordenada_y - otra.coordenada_y) <= TILE_A_METRO / DOS;
+    bool misma_posicion(Posicion otra) {
+        float dx = abs(this->coordenada_x - otra.coordenada_x);
+        float dy = abs(this->coordenada_y - otra.coordenada_y);
+        bool resultado = (dx == 0 && dy <= TILE_A_METRO/2);
+        return resultado;
     }
 } posicion_t;
 

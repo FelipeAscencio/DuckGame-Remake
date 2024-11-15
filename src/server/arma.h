@@ -42,6 +42,10 @@ protected:
 
     std::vector<Municion*> balas;
 
+    virtual void control_atributos(Mapa& mapa);
+
+    void eliminar_bala(int indice);
+
 public:
     // Constructor de la clase.
     Arma(const int& id_arma, const std::string& nombre, const int& alcance, const int& municiones,

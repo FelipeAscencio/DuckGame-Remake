@@ -301,6 +301,10 @@ void Pato::chequear_estado(Mapa& mapa) {
 }
 
 void Pato::control_pre_comando(Mapa& mapa) {
+    if (this->arma_equipada)
+        this->posee_arma = true;
+    else 
+        this->posee_arma = false;
     iteraciones_desde_aleteo += 1;
     if (this->posicion.coordenada_x < 0 ||
         this->posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
@@ -372,8 +376,8 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             break;
         case COMANDO_DISPARO:
             if (arma_equipada) {
-                if (disparar(mapa)) {
-                    std::cout << "Disparo\n";
+                bool disparo = disparar(mapa);
+                if (disparo) {
                     if (arma_equipada->tiene_retroceso()) {
                         if (this->orientacion == DERECHA){
                             this->posicion.coordenada_x += MOVER_IZQUIERDA;
@@ -384,11 +388,13 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                         }
                     }
                 } else {
-                    delete arma_equipada;
-                    std::cout << "No tiene mas balas\n";
+                    if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones > 0) {
+                        break;
+                    }
+                    else if(arma_equipada){
+                        delete arma_equipada;
+                    }
                 }
-            } else {
-                std::cout << "No puedo disparar, no tengo arma bro\n";
             }
             break;
         case COMANDO_AGARRAR:
@@ -400,6 +406,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (this->arma_equipada){
                 delete this->arma_equipada;
             }
+            this->posee_arma = true;
             this->arma_equipada = new AK47(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
             break;
 
@@ -407,6 +414,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (this->arma_equipada){
                 delete this->arma_equipada;
             }
+            this->posee_arma = true;
             this->arma_equipada = new Shotgun(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
             break;
 
@@ -414,6 +422,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (this->arma_equipada){
                 delete this->arma_equipada;
             }
+            this->posee_arma = true;
             this->arma_equipada = new Magnum(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
             break;
 
@@ -421,6 +430,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (this->arma_equipada){
                 delete this->arma_equipada;
             }
+            this->posee_arma = true;
             this->arma_equipada = new PewPewLaser(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
             break;
 
@@ -428,6 +438,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             if (this->arma_equipada){
                 delete this->arma_equipada;
             }
+            this->posee_arma = true;
             this->arma_equipada = new Sniper(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
             break;
 
