@@ -30,17 +30,16 @@ private:
     orientacion_e sentido;
     const dispersion_e dispersion;
     inclinacion_e inclinacion;
-    int rebotes;
     bool subiendo;
     int nro_bala;
 
 public:
     // Constructor de la clase.
-    explicit Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientacion_e direccion,
-                      dispersion_e dispersion_bala, int rebotes, int nro);
+    explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
+                      const dispersion_e& dispersion_bala, const int& nro);
 
-    explicit Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientacion_e direccion,
-                      dispersion_e dispersion_bala, inclinacion_e inc, int rebotes, int nro);
+    explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
+                      const dispersion_e& dispersion_bala, const inclinacion_e& inc, const int& nro);
 
     // Verifica si la munición ha excedido su alcance máximo.
     bool fuera_de_rango();

@@ -16,6 +16,7 @@ class AK47: public Arma {
     // Modifica la dispersion de las balas en funcion de si el arma esta disparando o no.
     void modificar_dispersion_balas(bool disparando);
 
+    // Override de la funcion de Arma
     void control_atributos(Mapa& mapa) override;
 
 public:

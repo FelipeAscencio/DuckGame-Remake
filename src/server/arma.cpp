@@ -35,7 +35,7 @@ int Arma::municiones_restantes() { return this->municiones; }
 
 bool Arma::en_uso() { return this->agarrada; }
 
-void Arma::eliminar_bala(int indice){
+void Arma::eliminar_bala(const int& indice){
     Municion* auxiliar = balas[indice];
     balas.erase(balas.begin() + indice);
     delete auxiliar;

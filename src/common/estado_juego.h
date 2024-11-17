@@ -141,8 +141,8 @@ struct EstadoJuego {
         }
     }
 
-    // Agrega la informacion de un arma (recibida pro copia) en particular al vector.
-    void agregar_arma(const InformacionArma info) {
+    // Agrega la informacion de un arma (recibida por referencia constante) en particular al vector.
+    void agregar_arma(const InformacionArma& info) {
         info_armas.push_back(info);
         this->cantidad_armas++;
     }
@@ -154,12 +154,14 @@ struct EstadoJuego {
         this->cantidad_armas++;
     }
 
+    // Agrega la informacion de una bala disparada (recibida como un puntero)
     void agregar_bala(Municion* m){
         InformacionBala nueva(m);
         info_balas.push_back(nueva);
         this->cantidad_balas++;
     }
 
+    // Agrega la informacion de una bala (recibida por referencia constante) en particular al vector.
     void agregar_bala(const InformacionBala& bala){
         info_balas.push_back(bala);
         this->cantidad_balas++;
@@ -167,78 +169,6 @@ struct EstadoJuego {
 
     void definir_ganador(const int& id){
         this->id_ganador = id;
-    }
-
-    // Convierte el estado de juego en un texto, para verificar si funcionamiento sin interfaz
-    // grafica.
-    std::string to_string() {
-        std::ostringstream oss;
-        oss << "Jugadores : " << cantidad_jugadores << ". Armas: " << cantidad_armas << ". Balas: ";
-        oss << cantidad_balas << "\n. Armaduras: " << cantidad_armaduras
-            << ". Cascos: " << cantidad_cascos;
-        oss << ". Cajas: " << cantidad_cajas << "\n";
-
-        for (InformacionPato info: info_patos) {
-            oss << "PATO: \n ID: " << info.id << ". POSICION: (" << info.posicion.coordenada_x
-                << "," << info.posicion.coordenada_y << ")\n";
-            oss << "VIVO: " << (info.vivo ? "SI" : "NO")
-                << ". TIENE ARMA: " << (info.arma ? "SI" : "NO")
-                << ". ID ARMA: " << info.id_arma_equipada;
-            oss << "\nCASCO: " << (info.casco ? "SI" : "NO")
-                << ". ARMADURA: " << (info.armadura ? "SI" : "NO");
-            std::string sentido;
-            switch (info.orientacion) {
-                case DERECHA:
-                    sentido = "Derecha";
-                    break;
-
-                case IZQUIERDA:
-                    sentido = "Izquierda";
-                    break;
-
-                default:
-                    sentido = "Arriba";
-                    break;
-            }
-
-            std::string estado_pato;
-            switch (info.estado) {
-                case PARADO:
-                    estado_pato = "Parado";
-                    break;
-
-                case AGACHADO:
-                    estado_pato = "Agachado";
-                    break;
-
-                case SALTANDO:
-                    estado_pato = "Saltando";
-                    break;
-
-                case CAYENDO:
-                    estado_pato = "Cayendo";
-                    break;
-
-                case ALETEANDO:
-                    estado_pato = "Aleteando";
-                    break;
-
-                case CAMINANDO:
-                    estado_pato = "Caminando";
-                    break;
-            }
-
-            oss << "\nSENTIDO: " << sentido << ". ESTADO ACTUAL: " << estado_pato;
-            oss << "\n---------------------------------\n";
-        }
-
-        for (int i = 0; i < cantidad_armas; i++) {
-            oss << i << ". ID arma: " << this->info_armas[i].id_arma;
-            oss << "\nPosicion: " << this->info_armas[i].posicion.to_string();
-            oss << "----------------------------------\n";
-        }
-
-        return oss.str();
     }
 
     // Vacia la informacion de los patos.

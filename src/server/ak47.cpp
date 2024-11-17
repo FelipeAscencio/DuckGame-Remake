@@ -61,7 +61,7 @@ bool AK47::disparar(const orientacion_e& direccion, Mapa& mapa) {
         return false;
     Municion* bala_disparada =
             new Municion(this->id_arma, this->posicion_spawn, ALCANCE * TILE_A_METRO, direccion,
-                         this->ultima_bala_disparada, 0, this->balas.size());
+                         this->ultima_bala_disparada, this->balas.size());
     modificar_dispersion_balas(true);
     if (bala_disparada->avanzar(mapa)) {
         balas.push_back(bala_disparada);

@@ -59,7 +59,7 @@ private:
     void agacharse();
 
     // Cambia la orientacion del pato a la nueva direccion especificada.
-    void cambiar_orientacion(orientacion_e nueva_orientacion);
+    void cambiar_orientacion(const orientacion_e& nueva_orientacion);
 
     // El pato agarra un arma, actualizando su estado y la referencia al arma.
     bool agarrar_arma(Arma* arma);
@@ -110,7 +110,7 @@ public:
     void control_pre_comando(Mapa& mapa);
 
     // Realiza una accion segun el comando recibido.
-    void realizar_accion(int accion, Mapa& mapa);
+    void realizar_accion(const int& accion, Mapa& mapa);
 
     // Destructor de la clase.
     ~Pato();

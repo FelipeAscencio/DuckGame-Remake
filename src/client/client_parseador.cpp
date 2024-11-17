@@ -51,8 +51,8 @@ using namespace SDL2pp;
 
 Parseador::Parseador() {}
 
-void Parseador::iterador_de_parseo(std::vector<SDL_Rect>& sprites, int cantidad_sprites, int x,
-                                   int y, int tamanio_sprite) {
+void Parseador::iterador_de_parseo(std::vector<SDL_Rect>& sprites, const int& cantidad_sprites, const int& x,
+                                   const int& y, const int& tamanio_sprite) {
     for (int i = CERO; i < cantidad_sprites; ++i) {
         SDL_Rect rect;
         rect.x = x + i * tamanio_sprite;

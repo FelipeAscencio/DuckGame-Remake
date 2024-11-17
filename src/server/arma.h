@@ -36,15 +36,16 @@ protected:
     posicion_t posicion_spawn;
     bool agarrada;
     bool soltada;
+    std::vector<Municion*> balas;
 
     // Verifica si el arma puede ser agarrada nuevamente.
     bool puede_agarrarse();
 
-    std::vector<Municion*> balas;
-
+    // Realiza el chequeo de avance de las balas
     virtual void control_atributos(Mapa& mapa);
 
-    virtual void eliminar_bala(int indice);
+    // Elimina la bala en la posicion 'indice'
+    virtual void eliminar_bala(const int& indice);
 
 public:
     // Constructor de la clase.
@@ -80,6 +81,7 @@ public:
 
     int obtener_id() const { return id_arma; }
 
+    // Restaura la cantidad de municiones restantes del arma
     void recargar();
 
     virtual ~Arma();

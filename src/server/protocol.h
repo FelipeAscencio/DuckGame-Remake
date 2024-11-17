@@ -18,8 +18,10 @@ class Protocol {
 private:
     Socket& s;
 
+    // Serializa la informacion del ganador. Si esta en la mitad de una ronda, envia un valor dummy
     std::vector<uint8_t> serializar_ganador(const int& id);
 
+    // Serializa la informacion de una bala disparada (id del arma, posicion actual e inclinacion)
     std::vector<uint8_t> serializar_bala(const InformacionBala& info_bala);
 
     // Serializa la informacion de un pato (incluye posicion, equipo, estado y otros atributos).

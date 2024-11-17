@@ -14,8 +14,8 @@ using namespace SDL2pp;
 class Parseador {
 private:
     // Agrega los "Rect" al vector de "sprites" en base a los parametros recibidos.
-    void iterador_de_parseo(std::vector<SDL_Rect>& sprites, int cantidad_sprites, int x, int y,
-                            int tamanio_sprite);
+    void iterador_de_parseo(std::vector<SDL_Rect>& sprites, const int& cantidad_sprites, const int& x, const int& y,
+                            const int& tamanio_sprite);
 
     // Parsea el "sniper" con la correccion necesaria por el tipo de 'sprite' que tiene (alargado).
     void parsear_sniper(std::vector<SDL_Rect>& sprites);

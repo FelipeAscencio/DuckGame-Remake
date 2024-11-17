@@ -26,6 +26,7 @@ private:
     Mapa mapa;
     std::vector<bool> jugadores_vivos;
 
+    // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();
 
     // Verifica las posiciones de los jugadores para detectar impactos de balas y aplicar daños.

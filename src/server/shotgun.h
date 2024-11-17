@@ -14,7 +14,7 @@ private:
     bool debe_recargar;
     int alcance_maximo;
 
-    void eliminar_bala(int indice) override;
+    void eliminar_bala(const int& indice) override;
 
 public:
     // Constructor de la clase.

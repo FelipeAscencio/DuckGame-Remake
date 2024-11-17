@@ -216,7 +216,7 @@ bool Pato::tiene_casco() { return this->posee_casco; }
 
 orientacion_e Pato::obtener_orientacion() { return this->orientacion; }
 
-void Pato::cambiar_orientacion(orientacion_e nueva_orientacion) {
+void Pato::cambiar_orientacion(const orientacion_e& nueva_orientacion) {
     this->orientacion = nueva_orientacion;
 }
 
@@ -367,7 +367,7 @@ std::string orientacion_texto(const orientacion_e& direccion) {
     return "Arriba\n";
 }
 
-void Pato::realizar_accion(int accion, Mapa& mapa) {
+void Pato::realizar_accion(const int& accion, Mapa& mapa) {
     if (!vivo)
         return;
     switch (accion) {
