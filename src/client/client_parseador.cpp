@@ -159,7 +159,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_equipamiento() {
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
     std::vector<SDL_Rect> sprites_escopeta;
-    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_ESCOPETA_X;
     int y_inicial = INICIO_ESCOPETA_Y;
     iterador_de_parseo(sprites_escopeta, UNO, x_inicial, y_inicial, tamanio_sprite);
@@ -178,7 +178,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_laser() {
     std::vector<SDL_Rect> sprites_laser;
-    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_LASER_X;
     int y_inicial = INICIO_LASER_Y;
     iterador_de_parseo(sprites_laser, UNO, x_inicial, y_inicial, tamanio_sprite);
@@ -193,7 +193,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_laser() {
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_pistola() {
     std::vector<SDL_Rect> sprites_pistola;
-    int tamanio_sprite = TAMANIO_SPRITE_GRANDE;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_MANGUM_X;
     int y_inicial = INICIO_MAGNUM_Y;
     iterador_de_parseo(sprites_pistola, UNO, x_inicial, y_inicial, tamanio_sprite);
