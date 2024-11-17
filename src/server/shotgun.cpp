@@ -31,6 +31,18 @@ inclinacion_e obtener_inclinacion(int bala_disparada) {
     return PARA_ABAJO;
 }
 
+void Shotgun::eliminar_bala(int indice){
+    int inicio_tanda_balas = 0;
+    if (indice >= 6) inicio_tanda_balas = 6;
+    for (int i = 0; i < 6; i++){
+        Municion* auxiliar = balas[inicio_tanda_balas];
+        balas.erase(balas.begin() + inicio_tanda_balas);
+        delete auxiliar;
+    }
+    for (int i = indice; i < (int)balas.size(); i++){
+        balas[i]->nro_bala -= 6;
+    }
+}
 
 bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (this->municiones == 0) {
@@ -45,7 +57,7 @@ bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
         inclinacion_e inc = obtener_inclinacion(i);
         Municion* m =
                 new Municion(this->id_arma, this->posicion_spawn, ALCANCE_MAXIMO * TILE_A_METRO,
-                             direccion, dispersion_bala, inc, 0);
+                             direccion, dispersion_bala, inc, 0, this->balas.size());
         if (m->avanzar(mapa)) {
             balas.push_back(m);
         } else {

@@ -44,7 +44,7 @@ protected:
 
     virtual void control_atributos(Mapa& mapa);
 
-    void eliminar_bala(int indice);
+    virtual void eliminar_bala(int indice);
 
 public:
     // Constructor de la clase.

@@ -6,14 +6,15 @@
 #define AVANZAR 0.75
 
 Municion::Municion(int id, posicion_t pos, int alcance_max, orientacion_e direccion,
-                   dispersion_e dispersion_bala, int cantidad_rebotes):
+                   dispersion_e dispersion_bala, int cantidad_rebotes, int nro):
         id_arma(id),
         posicion_inicial(pos),
         posicion_actual(pos),
         autonomia(alcance_max),
         sentido(direccion),
         dispersion(dispersion_bala),
-        rebotes(cantidad_rebotes) {
+        rebotes(cantidad_rebotes),
+        nro_bala(nro) {
     if (dispersion == NO || sentido == ARRIBA) {
         inclinacion = NO_TIENE;
     } else {
@@ -24,7 +25,7 @@ Municion::Municion(int id, posicion_t pos, int alcance_max, orientacion_e direcc
 }
 
 Municion::Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientacion_e direccion,
-                   dispersion_e dispersion_bala, inclinacion_e inc, int cantidad_rebotes):
+                   dispersion_e dispersion_bala, inclinacion_e inc, int cantidad_rebotes, int nro):
         id_arma(id),
         posicion_inicial(pos_inicial),
         posicion_actual(posicion_inicial),
@@ -32,7 +33,8 @@ Municion::Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientaci
         sentido(direccion),
         dispersion(dispersion_bala),
         inclinacion(inc),
-        rebotes(cantidad_rebotes) {}
+        rebotes(cantidad_rebotes),
+        nro_bala(nro) {}
 
 bool Municion::fuera_de_rango() {
     float dx = this->posicion_actual.coordenada_x - this->posicion_inicial.coordenada_x;

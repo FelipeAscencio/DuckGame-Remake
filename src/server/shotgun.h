@@ -14,6 +14,8 @@ private:
     bool debe_recargar;
     int alcance_maximo;
 
+    void eliminar_bala(int indice) override;
+
 public:
     // Constructor de la clase.
     Shotgun(posicion_t posicion_inicial);

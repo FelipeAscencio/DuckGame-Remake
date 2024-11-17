@@ -39,6 +39,9 @@ void Arma::eliminar_bala(int indice){
     Municion* auxiliar = balas[indice];
     balas.erase(balas.begin() + indice);
     delete auxiliar;
+    for (int i = indice; i < (int)balas.size(); i++){
+        balas[i]->nro_bala -= 1;
+    }
 }
 
 void Arma::chequeo_balas(Mapa& mapa) {

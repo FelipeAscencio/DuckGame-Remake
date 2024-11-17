@@ -21,7 +21,7 @@ class Municion {
     friend class Gameloop;
     friend struct InformacionBala;
     friend struct EstadoJuego;
-
+    friend class Shotgun;
 private:
     const int id_arma;
     const posicion_t posicion_inicial;
@@ -32,14 +32,15 @@ private:
     inclinacion_e inclinacion;
     int rebotes;
     bool subiendo;
+    int nro_bala;
 
 public:
     // Constructor de la clase.
     explicit Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientacion_e direccion,
-                      dispersion_e dispersion_bala, int rebotes);
+                      dispersion_e dispersion_bala, int rebotes, int nro);
 
     explicit Municion(int id, posicion_t pos_inicial, int alcance_maximo, orientacion_e direccion,
-                      dispersion_e dispersion_bala, inclinacion_e inc, int rebotes);
+                      dispersion_e dispersion_bala, inclinacion_e inc, int rebotes, int nro);
 
     // Verifica si la munición ha excedido su alcance máximo.
     bool fuera_de_rango();
