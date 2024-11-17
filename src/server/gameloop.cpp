@@ -22,7 +22,7 @@ void Gameloop::chequear_nuevos_jugadores() {
         return;
     if (cantidad_jugadores < cantidad_queues) {
         for (size_t i = cantidad_jugadores; i < cantidad_queues; i++) {
-            jugadores.push_back(new Pato(i));
+            jugadores.push_back(new Pato(i, mapa));
             jugadores_vivos++;
         }
     }

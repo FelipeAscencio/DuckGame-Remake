@@ -92,7 +92,7 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Pato(int id);
+    explicit Pato(int id, Mapa& mapa);
 
     // Devuelve la posicion actual del pato.
     posicion_t obtener_posicion();

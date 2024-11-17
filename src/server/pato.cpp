@@ -36,20 +36,24 @@
 #define CHEAT_ARMADUAR 39
 #define CHEAT_CASCO 40
 
-Pato::Pato(int id):
+Pato::Pato(int id, Mapa& mapa):
         id_jugador(id),
-        posicion(5, 89),
+        posicion(mapa.posicion_inicial(id_jugador)),
         vivo(true),
-        posee_arma(true),
+        posee_arma(false),
         posee_armadura(true),
         posee_casco(true),
-        orientacion(DERECHA),
-        arma_equipada(new AK47(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2))),
+        arma_equipada(nullptr),
         estado_actual(PARADO),
         iteraciones_subiendo(0),
         iteraciones_desde_aleteo(FPS / 2),
         inmortal(false), 
-        sonido(SILENCIO) {}
+        sonido(SILENCIO) {
+            if(this->posicion.coordenada_x > mapa.largo/2)
+                this->orientacion = IZQUIERDA;
+            else 
+                this->orientacion = DERECHA;
+        }
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
@@ -268,8 +272,13 @@ void Pato::chequear_estado(Mapa& mapa) {
                 posicion_t posicion_cabeza_pato(this->posicion.coordenada_x,
                                                 this->posicion.coordenada_y - 8);
                 std::vector<int> pos_mapa = mapa.posicion_en_mapa(posicion_cabeza_pato);
-                if (mapa.techo_bloque(posicion_cabeza_pato) &&
-                    mapa.mapa[pos_mapa[1] - 1][pos_mapa[0]] == 1) {
+                if ((mapa.techo_bloque(posicion_cabeza_pato) && pos_mapa[1] == 0)){
+                    estado_actual = CAYENDO;
+                    iteraciones_subiendo = 0; 
+                }
+                bool bloque_mas_alto = pos_mapa[1] == 0;
+                if ((mapa.techo_bloque(posicion_cabeza_pato) &&
+                    mapa.mapa[pos_mapa[1] - !bloque_mas_alto][pos_mapa[0]] == 1)) {
                     estado_actual = CAYENDO;
                     iteraciones_subiendo = 0;
                 } else {
@@ -312,7 +321,7 @@ void Pato::control_pre_comando(Mapa& mapa) {
         this->vivo = false;
         return;
     }
-    if (this->posicion.coordenada_y < 0 || this->posicion.coordenada_y > mapa.alto * TILE_A_METRO) {
+    if (this->posicion.coordenada_y > mapa.alto * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir
         return;
     }

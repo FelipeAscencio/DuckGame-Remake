@@ -24,6 +24,7 @@ private:
     int largo;
     int alto;
     int** mapa;
+    int id_mapa;
 
 public:
     // Constructor de la clase.
@@ -39,6 +40,8 @@ public:
     bool piso_bloque(const posicion_t& pos);
 
     bool techo_bloque(const posicion_t& pos);
+
+    posicion_t posicion_inicial(const int& id_jugador);
 
     // Destructor de la clase.
     ~Mapa();
