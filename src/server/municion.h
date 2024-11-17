@@ -19,6 +19,8 @@ class Municion {
     friend class Arma;
     friend class Pato;
     friend class Gameloop;
+    friend struct InformacionBala;
+    friend struct EstadoJuego;
 
 private:
     const int id_arma;

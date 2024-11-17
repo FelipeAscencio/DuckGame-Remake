@@ -15,6 +15,7 @@
 #include "common/posicion.h"
 
 #define CERO 0
+#define ID_GANADOR 0xFD //valor dummy que indica que no hay un ganador de la ronda actual
 
 // 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
@@ -27,6 +28,7 @@ struct InformacionPato {
     bool armadura;
     orientacion_e orientacion;
     estado_pato_e estado;
+    sonido_e sonido;
 
     // Constructor del struct con punteros.
     explicit InformacionPato(Pato* p):
@@ -38,13 +40,14 @@ struct InformacionPato {
             casco(p->posee_casco),
             armadura(p->posee_armadura),
             orientacion(p->orientacion),
-            estado(p->estado_actual) {}
+            estado(p->estado_actual),
+            sonido(p->sonido) {}
 
     // Constructor del struct con parametros.
     explicit InformacionPato(const uint8_t& id_pato, const posicion_t& pos, bool esta_vivo,
                              bool tiene_arma, const uint8_t& id_arma, bool tiene_casco,
                              bool tiene_armadura, const orientacion_e& orientacion_pato,
-                             const estado_pato_e& estado_pato):
+                             const estado_pato_e& estado_pato, const sonido_e& sonido_pato):
             id(id_pato),
             posicion(pos),
             vivo(esta_vivo),
@@ -53,7 +56,8 @@ struct InformacionPato {
             casco(tiene_casco),
             armadura(tiene_armadura),
             orientacion(orientacion_pato),
-            estado(estado_pato) {}
+            estado(estado_pato),
+            sonido(sonido_pato) {}
 };
 
 // 'struct' que encapsula la informacion de todas las armas del juego.
@@ -69,6 +73,16 @@ struct InformacionArma {
 
     // Tercera variante del constructor del struct.
     explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
+};
+
+struct InformacionBala{
+    int id_arma;
+    posicion_t pos;
+    inclinacion_e inclinacion;
+
+    explicit InformacionBala(Municion* m): id_arma(m->id_arma), pos(m->posicion_actual), inclinacion(m->inclinacion){}
+    
+    explicit InformacionBala(int id, posicion_t posicion, inclinacion_e inc): id_arma(id), pos(posicion), inclinacion(inc){}
 };
 
 // 'struct' que sirve para comparar las 'ID'.
@@ -87,8 +101,11 @@ struct EstadoJuego {
     int cantidad_armaduras;
     int cantidad_cascos;
     int cantidad_cajas;
+    int id_ganador;
     std::vector<InformacionPato> info_patos;
     std::vector<InformacionArma> info_armas;
+    std::vector<InformacionBala> info_balas;
+
 
     // Constructor del struct.
     EstadoJuego():
@@ -97,7 +114,8 @@ struct EstadoJuego {
             cantidad_balas(CERO),
             cantidad_armaduras(CERO),
             cantidad_cascos(CERO),
-            cantidad_cajas(CERO) {}
+            cantidad_cajas(CERO), 
+            id_ganador(ID_GANADOR) {}
 
     // Verifica la existencia de la id recibida por parametro.
     bool chequear_id(const int& id) {
@@ -134,6 +152,21 @@ struct EstadoJuego {
         InformacionArma nueva(a);
         info_armas.push_back(nueva);
         this->cantidad_armas++;
+    }
+
+    void agregar_bala(Municion* m){
+        InformacionBala nueva(m);
+        info_balas.push_back(nueva);
+        this->cantidad_balas++;
+    }
+
+    void agregar_bala(const InformacionBala& bala){
+        info_balas.push_back(bala);
+        this->cantidad_balas++;
+    }
+
+    void definir_ganador(const int& id){
+        this->id_ganador = id;
     }
 
     // Convierte el estado de juego en un texto, para verificar si funcionamiento sin interfaz

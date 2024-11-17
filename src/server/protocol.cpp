@@ -11,6 +11,7 @@
 #define CODIGO_CASCO 0x09
 #define CODIGO_CAJA 0x0A
 #define CODIGO_CANTIDADES 0x0B
+#define CODIGO_GANADOR 0x0C
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
@@ -67,6 +68,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_pato(const Informacion
     info.push_back(pato_actual.armadura);
     info.push_back(pato_actual.orientacion);
     info.push_back(pato_actual.estado);
+    info.push_back(pato_actual.sonido);
     info.push_back(FIN_MENSAJE);
     return info;
 }
@@ -77,7 +79,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_cantidades(
     cantidades.push_back(CODIGO_CANTIDADES);
     cantidades.push_back(estado_actual.cantidad_jugadores);
     // esto despues hay que sacar el + 1
-    cantidades.push_back(estado_actual.cantidad_armas + 1);
+    cantidades.push_back(estado_actual.cantidad_armas);
     cantidades.push_back(estado_actual.cantidad_balas);
     cantidades.push_back(estado_actual.cantidad_armaduras);
     cantidades.push_back(estado_actual.cantidad_cascos);
@@ -100,6 +102,28 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_armas(const Informacio
     return arma;
 }
 
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_ganador(const int& id){
+    std::vector<uint8_t> ganador;
+    ganador.push_back(CODIGO_GANADOR);
+    ganador.push_back(id);
+    ganador.push_back(FIN_MENSAJE);
+    return ganador;
+}
+
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_bala(const InformacionBala& info_bala){
+    std::vector<uint8_t> bala;
+    bala.push_back(CODIGO_BALA);
+    bala.push_back(info_bala.id_arma);
+    std::vector<uint8_t> pos = separar_posicion_en_entero_y_decimal(info_bala.pos);
+    bala.push_back(pos[0]);
+    bala.push_back(pos[1]);
+    bala.push_back(pos[2]);
+    bala.push_back(pos[3]);
+    bala.push_back((uint8_t)info_bala.inclinacion);
+    bala.push_back(FIN_MENSAJE);
+    return bala;
+}
+
 bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
@@ -107,25 +131,24 @@ bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
 }
 
 bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
-    std::vector<uint8_t> cantidades = serializar_cantidades(estado_actual);
-    bool envio_correcto = _enviar(cantidades);
+    bool envio_correcto = _enviar(serializar_ganador(estado_actual.id_ganador));
+    envio_correcto = _enviar(serializar_cantidades(estado_actual));
     int i = 0;
     while (i < estado_actual.cantidad_jugadores && envio_correcto) {
-        std::vector<uint8_t> pato_actual = serializar_pato(estado_actual.info_patos[i]);
-        envio_correcto = _enviar(pato_actual);
+        envio_correcto = _enviar(serializar_pato(estado_actual.info_patos[i]));
         i++;
     }
     i = 0;
     while (i < estado_actual.cantidad_armas && envio_correcto) {
-        std::vector<uint8_t> arma_actual = serializar_armas(estado_actual.info_armas[i]);
-        envio_correcto = _enviar(arma_actual);
+        envio_correcto = _enviar(serializar_armas(estado_actual.info_armas[i]));
+        i++;
+    }
+    i = 0;
+    while (i < estado_actual.cantidad_balas && envio_correcto){
+        envio_correcto = _enviar(serializar_bala(estado_actual.info_balas[i]));
         i++;
     }
 
-    //// Esto despues hay que eliminarlo
-    InformacionArma ak(ID_AK47, 25, 89);
-    std::vector<uint8_t> byte_ak = serializar_armas(ak);
-    envio_correcto = _enviar(byte_ak);
     //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;

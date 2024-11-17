@@ -48,7 +48,8 @@ Pato::Pato(int id):
         estado_actual(PARADO),
         iteraciones_subiendo(0),
         iteraciones_desde_aleteo(FPS / 2),
-        inmortal(false) {}
+        inmortal(false), 
+        sonido(SILENCIO) {}
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
@@ -329,6 +330,9 @@ void Pato::control_pre_comando(Mapa& mapa) {
             posee_arma = false;
         }
     }
+    if (this->sonido != SILENCIO){
+        this->sonido = SILENCIO;
+    }
 }
 
 void Pato::recibir_disparo() {
@@ -387,11 +391,9 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                             this->arma_equipada->posicion_spawn.coordenada_x += MOVER_DERECHA;
                         }
                     }
+                    this->sonido = DISPARANDO;
                 } else {
-                    if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones > 0) {
-                        break;
-                    }
-                    else if(arma_equipada){
+                    if(arma_equipada){
                         delete arma_equipada;
                     }
                 }
@@ -402,6 +404,10 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
             // agarrar
             break;
         
+        case CUAK:
+            this->sonido = HACIENDO_CUAK;
+            break;
+
         case CHEAT_AK:
             if (this->arma_equipada){
                 delete this->arma_equipada;

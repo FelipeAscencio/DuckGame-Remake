@@ -13,7 +13,7 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa(1), jugadores_vivos(0) {}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -23,28 +23,49 @@ void Gameloop::chequear_nuevos_jugadores() {
     if (cantidad_jugadores < cantidad_queues) {
         for (size_t i = cantidad_jugadores; i < cantidad_queues; i++) {
             jugadores.push_back(new Pato(i));
+            jugadores_vivos++;
         }
     }
+}
+
+bool Gameloop::hay_ganador(){
+    return (this->jugadores.size() > 1 && this->jugadores_vivos == 1);
 }
 
 void Gameloop::actualizar_estado_jugadores() {
     for (Pato* p: jugadores) {
         p->control_pre_comando(this->mapa);
+        if (!p->vivo){
+            jugadores_vivos -= 1;
+        }
     }
 }
 
-void Gameloop::enviar_estado_juego() {
+void Gameloop::enviar_estado_juego(bool hubo_ganador) {
     EstadoJuego estado_actual;
     if (jugadores.empty()) {
 
     } else {
         for (Pato* p: jugadores) {
             estado_actual.agregar_info_pato(p);
+            if (p->arma_equipada){
+                for (Municion* m: p->arma_equipada->balas){
+                    estado_actual.agregar_bala(m);
+                }
+            }
         }
     }
     if (!this->armas_tiradas.empty()) {
         for (Arma* a: armas_tiradas) {
             estado_actual.agregar_arma(a);
+        }
+    }
+    if (hubo_ganador){
+        for (Pato* p: jugadores){
+            if (p->vivo){
+                estado_actual.definir_ganador(p->id_jugador);
+                break;
+            }
         }
     }
     queues_clientes.broadcast(estado_actual);
@@ -82,25 +103,28 @@ void Gameloop::loop_juego() {
         actualizar_balas_disparadas();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
-            for (Pato* p: jugadores) {
-                if (cmd.id_cliente == p->id_jugador) {
-                    p->realizar_accion(cmd.accion, mapa);
+            if(jugadores.size() > 1){
+                for (Pato* p: jugadores) {
+                    if (cmd.id_cliente == p->id_jugador) {
+                        p->realizar_accion(cmd.accion, mapa);
+                    }
                 }
             }
+            
         }
     }
-    enviar_estado_juego();
+    enviar_estado_juego(false);
 }
 
 void Gameloop::run() {
-    enviar_estado_juego();
+    enviar_estado_juego(false);
     auto t1 = std::chrono::steady_clock::now();
     unsigned long frame_count = 0;
 
     // Definir el intervalo de tiempo ideal para cada frame en milisegundos
     int ms_per_frame = 1000 / FPS;
 
-    while (juego_activo) {
+    while (juego_activo && !hay_ganador()) {
         loop_juego();
 
         // Calcular el tiempo transcurrido desde el inicio de este frame
@@ -116,6 +140,9 @@ void Gameloop::run() {
         // frames
         t1 += std::chrono::milliseconds(ms_per_frame);
         frame_count++;
+    }
+    if (juego_activo){
+        enviar_estado_juego(true);
     }
 }
 

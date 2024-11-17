@@ -24,6 +24,9 @@ private:
     std::vector<Pato*> jugadores;
     std::vector<Arma*> armas_tiradas;
     Mapa mapa;
+    int jugadores_vivos;
+
+    bool hay_ganador();
 
     // Verifica las posiciones de los jugadores para detectar impactos de balas y aplicar daños.
     void chequear_posiciones();
@@ -35,7 +38,7 @@ private:
     void actualizar_balas_disparadas();
 
     // Envia el estado del juego actual, incluyendo informacion de jugadores y armas en el mapa.
-    void enviar_estado_juego();
+    void enviar_estado_juego(bool hubo_ganador);
 
     // Revisa si hay nuevos jugadores y, de ser necesario, crea instancias de nuevos jugadores.
     void chequear_nuevos_jugadores();

@@ -18,6 +18,10 @@ class Protocol {
 private:
     Socket& s;
 
+    std::vector<uint8_t> serializar_ganador(const int& id);
+
+    std::vector<uint8_t> serializar_bala(const InformacionBala& info_bala);
+
     // Serializa la informacion de un pato (incluye posicion, equipo, estado y otros atributos).
     std::vector<uint8_t> serializar_pato(const InformacionPato& info_pato);
 
