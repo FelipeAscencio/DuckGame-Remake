@@ -130,8 +130,8 @@ posicion_t Mapa::posicion_inicial(const int& id_pato){
 
 Mapa::~Mapa() {
     for (int i = 0; i < alto; i++) {
-        delete mapa[i];
+        delete[] mapa[i];
     }
 
-    delete mapa;
+    delete[] mapa;
 }

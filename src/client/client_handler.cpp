@@ -17,6 +17,7 @@
 #define MUSICA_FONDO "/arcade-song.mp3"
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
+#define RW_CLOSE 2
 
 using namespace SDL2pp;
 
@@ -83,5 +84,10 @@ void Client::controlar_loop_juego() {
     }
 
     terminar_musica(musica_fondo);
+}
+
+Client::~Client(){
     finalizar_hilos();
+    this->socket.shutdown(RW_CLOSE);
+    this->socket.close();
 }
