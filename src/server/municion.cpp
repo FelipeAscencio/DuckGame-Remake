@@ -3,7 +3,7 @@
 #include <cmath>
 #include <cstdlib>
 
-#define AVANZAR 1
+#define AVANZAR 0.75
 
 Municion::Municion(int id, posicion_t pos, int alcance_max, orientacion_e direccion,
                    dispersion_e dispersion_bala, int cantidad_rebotes):

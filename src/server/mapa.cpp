@@ -95,17 +95,17 @@ posicion_t Mapa::posicion_inicial(const int& id_pato){
         else if (id_pato == 1)
             return posicion_t(175, 29);
         else if (id_pato == 2)
-            return posicion_t(63, 59);
+            return posicion_t(63, 49);
         else if (id_pato == 3)
-            return posicion_t(120, 79);
+            return posicion_t(115, 69);
         else if (id_pato == 4)
-            return posicion_t(192, 89);
+            return posicion_t(192, 79);
         else if (id_pato == 5)
-            return posicion_t(85, 109);
+            return posicion_t(85, 99);
         else if (id_pato == 6)
-            return posicion_t(137, 109);
+            return posicion_t(137, 99);
         else if (id_pato == 7)
-            return posicion_t(151, 79);
+            return posicion_t(149, 69);
     } else {
         if (id_pato == 0) 
             return posicion_t(63, 59);

@@ -13,7 +13,7 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(1), jugadores_vivos(0) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -23,20 +23,27 @@ void Gameloop::chequear_nuevos_jugadores() {
     if (cantidad_jugadores < cantidad_queues) {
         for (size_t i = cantidad_jugadores; i < cantidad_queues; i++) {
             jugadores.push_back(new Pato(i, mapa));
-            jugadores_vivos++;
+            jugadores_vivos.push_back(true);
         }
     }
 }
 
 bool Gameloop::hay_ganador(){
-    return (this->jugadores.size() > 1 && this->jugadores_vivos == 1);
+    if (jugadores.size() < 2) return false;
+    size_t vivos = jugadores.size();
+    for (auto pato: jugadores_vivos){
+        if (!pato) vivos -= 1;
+    }
+    return vivos == 1;
 }
 
 void Gameloop::actualizar_estado_jugadores() {
     for (Pato* p: jugadores) {
         p->control_pre_comando(this->mapa);
         if (!p->vivo){
-            jugadores_vivos -= 1;
+            if(jugadores_vivos[p->id_jugador]){
+                jugadores_vivos[p->id_jugador] = false;
+            }
         }
     }
 }

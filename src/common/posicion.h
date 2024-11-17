@@ -53,7 +53,7 @@ typedef struct Posicion {
     bool misma_posicion(Posicion otra) {
         float dx = abs(this->coordenada_x - otra.coordenada_x);
         float dy = abs(this->coordenada_y - otra.coordenada_y);
-        bool resultado = (dx <= 0.5 && dy <= TILE_A_METRO/2);
+        bool resultado = (dx < 0.5 && dy <= (TILE_A_METRO/2 + 0.5));
         return resultado;
     }
 } posicion_t;

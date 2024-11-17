@@ -44,7 +44,7 @@ private:
     void chequear_estado(Mapa& mapa);
 
     // Mueve al pato en la direccion especificada, considerando colisiones y limites del mapa.
-    bool mover(Mapa& mapa, const orientacion_e& direccion);
+    bool mover(Mapa& mapa, const orientacion_e& direccion, bool disparo);
 
     // Hace que el pato salte, cambiando su estado y posicion.
     void saltar();

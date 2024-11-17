@@ -41,8 +41,8 @@ Pato::Pato(int id, Mapa& mapa):
         posicion(mapa.posicion_inicial(id_jugador)),
         vivo(true),
         posee_arma(false),
-        posee_armadura(true),
-        posee_casco(true),
+        posee_armadura(false),
+        posee_casco(false),
         arma_equipada(nullptr),
         estado_actual(PARADO),
         iteraciones_subiendo(0),
@@ -80,8 +80,8 @@ bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
     return se_movio;
 }
 
-bool Pato::mover(Mapa& mapa, const orientacion_e& direccion) {
-    if (direccion != this->orientacion)
+bool Pato::mover(Mapa& mapa, const orientacion_e& direccion, bool disparo) {
+    if (!disparo && direccion != this->orientacion)
         cambiar_orientacion(direccion);
 
     bool se_movio;
@@ -346,17 +346,14 @@ void Pato::control_pre_comando(Mapa& mapa) {
 
 void Pato::recibir_disparo() {
     if (posee_casco) {
-        std::cout << "Pierdo el casco\n";
         posee_casco = false;  // Si le pegan un disparo, pierde el casco pero sigue vivo.
         return;
     }
     if (posee_armadura) {
-        std::cout << "Pierdo la armadura\n";
         posee_armadura = false;  // Si le pegan un disparo, pierde el armadura pero sigue vivo.
         return;
     }
     if (inmortal){
-        std::cout << "Inmortal\n";
         return;
     }
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
@@ -393,11 +390,9 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
                 if (disparo) {
                     if (arma_equipada->tiene_retroceso()) {
                         if (this->orientacion == DERECHA){
-                            this->posicion.coordenada_x += MOVER_IZQUIERDA;
-                            this->arma_equipada->posicion_spawn.coordenada_x += MOVER_IZQUIERDA;
+                            mover(mapa, IZQUIERDA, true);
                         } else if (this->orientacion == IZQUIERDA){
-                            this->posicion.coordenada_x += MOVER_DERECHA;
-                            this->arma_equipada->posicion_spawn.coordenada_x += MOVER_DERECHA;
+                            mover(mapa, DERECHA, true);
                         }
                     }
                     this->sonido = DISPARANDO;
@@ -477,7 +472,7 @@ void Pato::realizar_accion(int accion, Mapa& mapa) {
 
         default:
             orientacion_e sentido = (accion == COMANDO_DERECHA) ? DERECHA : IZQUIERDA;
-            mover(mapa, sentido);
+            mover(mapa, sentido, false);
             break;
     }
 }

@@ -24,7 +24,7 @@ private:
     std::vector<Pato*> jugadores;
     std::vector<Arma*> armas_tiradas;
     Mapa mapa;
-    int jugadores_vivos;
+    std::vector<bool> jugadores_vivos;
 
     bool hay_ganador();
 
