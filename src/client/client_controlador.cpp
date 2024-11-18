@@ -60,10 +60,11 @@ void Controlador::manejar_eventos(bool& jugador_activo) {
                 cola_eventos.try_push(COMANDO_CHEAT_SHOTGUN);
             } else if (sdlEvent.key.keysym.sym == SDLK_3) {
                 cola_eventos.try_push(COMANDO_CHEAT_MAGNUM);
-            } else if (sdlEvent.key.keysym.sym == SDLK_4) {
-                cola_eventos.try_push(COMANDO_CHEAT_LASER);
-            } else if (sdlEvent.key.keysym.sym == SDLK_5) {
-                cola_eventos.try_push(COMANDO_CHEAT_SNIPER);
+            // CHEATS PARA LAS ARMAS QUE FALTAN POR IMPLEMENTAR.
+            //} else if (sdlEvent.key.keysym.sym == SDLK_4) {
+            //    cola_eventos.try_push(COMANDO_CHEAT_LASER);
+            //} else if (sdlEvent.key.keysym.sym == SDLK_5) {
+            //    cola_eventos.try_push(COMANDO_CHEAT_SNIPER);
             }
         }
     }

@@ -8,9 +8,9 @@
 Municion::Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
                       const dispersion_e& dispersion_bala, const int& nro):
         id_arma(id),
-        posicion_inicial(pos),
-        posicion_actual(pos),
-        autonomia(alcance_max),
+        posicion_inicial(pos_inicial),
+        posicion_actual(pos_inicial),
+        autonomia(alcance_maximo),
         sentido(direccion),
         dispersion(dispersion_bala),
         nro_bala(nro) {
