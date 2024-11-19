@@ -26,7 +26,6 @@ void Aceptador::run() {
                 aceptando_jugadores = false;
             }
 
-            std::cout << "Antes de crear el ThreadUsuario\n";
             ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
             queues_clientes.agregar_queue(jugador->obtener_queue(), id);
             jugadores.push_back(jugador);

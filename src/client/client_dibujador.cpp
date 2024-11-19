@@ -31,6 +31,7 @@
 #define OFFSET_Y_CASCO 0.025
 #define OFFSET_X_CASCO_DER 0.004
 #define OFFSET_X_CASCO_IZQ -0.004
+#define OFFSET_Y_BALA 0.055
 #define OFFSET_X_CASCO_AGACHADO_DER 0.027
 #define OFFSET_X_CASCO_AGACHADO_IZQ -0.027
 #define OFFSET_Y_CASCO_AGACHADO 0.016
@@ -60,6 +61,7 @@
 #define POS_SPRITE_ALETEANDO 11
 #define POS_SPRITE_CAYENDO 8
 #define POS_ARMA 0
+#define POS_BALA_UNICA 1
 #define POS_CASCO 12
 #define POS_INICIAL_PATO_TABLERO 10
 #define GAP_PATO_TABLERO 0.1
@@ -402,8 +404,95 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
+SDL2pp::Texture* Dibujador::obtener_sprite_sheet_bala(int id_arma) {
+    if (id_arma == ID_PEW_PEW_LASER) {
+        return &this->sprite_sheet_laser;
+    } else if (id_arma == ID_AK) {
+        return &this->sprite_sheet_ak;
+    } else if (id_arma == ID_MAGNUM) {
+        return &this->sprite_sheet_pistola;
+    } else if (id_arma == ID_SHOTGUN) {
+        return &this->sprite_sheet_escopeta;
+    } else if (id_arma == ID_SNIPER){
+        return &this->sprite_sheet_sniper;
+    }
+
+    return nullptr;
+}
+
+std::vector<SDL_Rect>* Dibujador::obtener_sprites_bala(int id_arma) {
+    if (id_arma == ID_PEW_PEW_LASER) {
+        return &this->sprites_laser;
+    } else if (id_arma == ID_AK) {
+        return &this->sprites_ak;
+    } else if (id_arma == ID_MAGNUM) {
+        return &this->sprites_pistola;
+    } else if (id_arma == ID_SHOTGUN) {
+        return &this->sprites_escopeta;
+    } else if (id_arma == ID_SNIPER){
+        return &this->sprites_sniper;
+    }
+
+    return nullptr;
+}
+
+int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion, orientacion_e& orientacion){
+    if (orientacion == IZQUIERDA){
+        if (inclinacion == NO_TIENE){
+            return UNO;
+        } else if (inclinacion == PARA_ABAJO){
+            return DOS;
+        } else {
+            return OCHO;
+        }
+    } else if (orientacion == DERECHA){
+        if (inclinacion == NO_TIENE){
+            return CINCO;
+        } else if (inclinacion == PARA_ABAJO){
+            return CUATRO;
+        } else {
+            return SEIS;
+        }
+    } else {
+        if (inclinacion == NO_TIENE){
+            return SIETE;
+        } else if (inclinacion == PARA_ABAJO){
+            return OCHO;
+        } else {
+            return SEIS;
+        }
+    }
+
+    return CERO;
+}
+
+void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+    for (auto& bala: estado_actual.info_balas){
+        float escala = ESCALA_SPRITES_CHICOS;
+        float x = bala.pos.coordenada_x;
+        float y = bala.pos.coordenada_y;
+        int id_bala = bala.id_arma;
+        SDL2pp::Texture* sprite_sheet = obtener_sprite_sheet_bala(id_bala);
+        std::vector<SDL_Rect>* sprites = obtener_sprites_bala(id_bala);
+        inclinacion_e inclinacion = bala.inclinacion;
+        orientacion_e orientacion = DERECHA; // FALTA OBTENER LA ORIENTACION DEL ESTADO.
+        int indice;
+        if (id_bala == ID_MAGNUM || id_bala == ID_SHOTGUN){
+            indice = obtener_indice_sprite(inclinacion, orientacion);
+        } else {
+            indice = POS_BALA_UNICA;
+        }
+
+        auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
+        float offset_y = (y_relativo * OFFSET_Y) - OFFSET_Y_BALA;
+        dibujar_sprite(renderer, *sprite_sheet, (*sprites)[indice],
+                       x_relativo, y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
 void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     dibujar_patos(estado_actual, renderer);
+    dibujar_balas(estado_actual, renderer);
 }
 
 void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {

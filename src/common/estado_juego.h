@@ -15,7 +15,7 @@
 #include "common/posicion.h"
 
 #define CERO 0
-#define ID_GANADOR 0xFD //valor dummy que indica que no hay un ganador de la ronda actual
+#define ID_GANADOR 0xFD // Valor dummy que indica que no hay un ganador de la ronda actual.
 
 // 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
@@ -23,7 +23,7 @@ struct InformacionPato {
     posicion_t posicion;
     bool vivo;
     bool arma;
-    int id_arma_equipada; // 0 = no arma, 1 laser, 2 ak, 3 magnum, 4 shotgun, 5 sniper
+    int id_arma_equipada; // 0 = no arma, 1 laser, 2 ak, 3 magnum, 4 shotgun, 5 sniper.
     bool casco;
     bool armadura;
     orientacion_e orientacion;
@@ -62,7 +62,7 @@ struct InformacionPato {
 
 // 'struct' que encapsula la informacion de todas las armas del juego.
 struct InformacionArma {
-    int id_arma; // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper
+    int id_arma; // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
     posicion_t posicion;
 
     // Primera variante del constructor del struct.
