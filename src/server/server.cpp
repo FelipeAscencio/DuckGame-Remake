@@ -17,18 +17,27 @@ void Server::comenzar_juego() { g.start(); }
 void Server::leer_entrada() {
     std::string leido;
     while (std::getline(std::cin, leido)) {
-        if (leido == EXIT)
+        if (leido == EXIT){
+            g.finalizar_juego();
+            a.dejar_de_aceptar();
             break;
+        }
     }
 }
 
 void Server::start() {
     comenzar_a_aceptar();
     comenzar_juego();
-    leer_entrada();
+    while (true){
+        if (!g.jugando()){
+            g.finalizar_juego();
+            a.dejar_de_aceptar();
+            break;
+        }
+    }
 }
 
 Server::~Server() {
-    g.finalizar_juego();
-    a.dejar_de_aceptar();
+    // g.finalizar_juego();
+    // a.dejar_de_aceptar();
 }
