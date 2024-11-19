@@ -47,28 +47,28 @@ extern "C" {
 /**
  * Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL
  */
-#define SDL_TTF_MAJOR_VERSION   2
-#define SDL_TTF_MINOR_VERSION   20
-#define SDL_TTF_PATCHLEVEL      2
+#define SDL_TTF_MAJOR_VERSION 2
+#define SDL_TTF_MINOR_VERSION 20
+#define SDL_TTF_PATCHLEVEL 2
 
 /**
  * This macro can be used to fill a version structure with the compile-time
  * version of the SDL_ttf library.
  */
-#define SDL_TTF_VERSION(X)                          \
-{                                                   \
-    (X)->major = SDL_TTF_MAJOR_VERSION;             \
-    (X)->minor = SDL_TTF_MINOR_VERSION;             \
-    (X)->patch = SDL_TTF_PATCHLEVEL;                \
-}
+#define SDL_TTF_VERSION(X)                  \
+    {                                       \
+        (X)->major = SDL_TTF_MAJOR_VERSION; \
+        (X)->minor = SDL_TTF_MINOR_VERSION; \
+        (X)->patch = SDL_TTF_PATCHLEVEL;    \
+    }
 
 /**
  * Backwards compatibility
  */
-#define TTF_MAJOR_VERSION   SDL_TTF_MAJOR_VERSION
-#define TTF_MINOR_VERSION   SDL_TTF_MINOR_VERSION
-#define TTF_PATCHLEVEL      SDL_TTF_PATCHLEVEL
-#define TTF_VERSION(X)      SDL_TTF_VERSION(X)
+#define TTF_MAJOR_VERSION SDL_TTF_MAJOR_VERSION
+#define TTF_MINOR_VERSION SDL_TTF_MINOR_VERSION
+#define TTF_PATCHLEVEL SDL_TTF_PATCHLEVEL
+#define TTF_VERSION(X) SDL_TTF_VERSION(X)
 
 #if SDL_TTF_MAJOR_VERSION < 3 && SDL_MAJOR_VERSION < 3
 /**
@@ -87,9 +87,8 @@ extern "C" {
 /**
  *  This macro will evaluate to true if compiled with SDL_ttf at least X.Y.Z.
  */
-#define SDL_TTF_VERSION_ATLEAST(X, Y, Z) \
-    ((SDL_TTF_MAJOR_VERSION >= X) && \
-     (SDL_TTF_MAJOR_VERSION > X || SDL_TTF_MINOR_VERSION >= Y) && \
+#define SDL_TTF_VERSION_ATLEAST(X, Y, Z)                                                          \
+    ((SDL_TTF_MAJOR_VERSION >= X) && (SDL_TTF_MAJOR_VERSION > X || SDL_TTF_MINOR_VERSION >= Y) && \
      (SDL_TTF_MAJOR_VERSION > X || SDL_TTF_MINOR_VERSION > Y || SDL_TTF_PATCHLEVEL >= Z))
 
 /* Make sure this is defined (only available in newer SDL versions) */
@@ -110,7 +109,7 @@ extern "C" {
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC const SDL_version * SDLCALL TTF_Linked_Version(void);
+extern DECLSPEC const SDL_version* SDLCALL TTF_Linked_Version(void);
 
 /**
  * Query the version of the FreeType library in use.
@@ -125,7 +124,7 @@ extern DECLSPEC const SDL_version * SDLCALL TTF_Linked_Version(void);
  *
  * \sa TTF_Init
  */
-extern DECLSPEC void SDLCALL TTF_GetFreeTypeVersion(int *major, int *minor, int *patch);
+extern DECLSPEC void SDLCALL TTF_GetFreeTypeVersion(int* major, int* minor, int* patch);
 
 /**
  * Query the version of the HarfBuzz library in use.
@@ -138,12 +137,12 @@ extern DECLSPEC void SDLCALL TTF_GetFreeTypeVersion(int *major, int *minor, int 
  *
  * \since This function is available since SDL_ttf 2.0.18.
  */
-extern DECLSPEC void SDLCALL TTF_GetHarfBuzzVersion(int *major, int *minor, int *patch);
+extern DECLSPEC void SDLCALL TTF_GetHarfBuzzVersion(int* major, int* minor, int* patch);
 
 /**
  * ZERO WIDTH NO-BREAKSPACE (Unicode byte order mark)
  */
-#define UNICODE_BOM_NATIVE  0xFEFF
+#define UNICODE_BOM_NATIVE 0xFEFF
 #define UNICODE_BOM_SWAPPED 0xFFFE
 
 /**
@@ -202,7 +201,7 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFont(const char *file, int ptsize);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFont(const char* file, int ptsize);
 
 /**
  * Create a font from a file, using a specified face index.
@@ -226,7 +225,7 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFont(const char *file, int ptsize);
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndex(const char *file, int ptsize, long index);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontIndex(const char* file, int ptsize, long index);
 
 /**
  * Create a font from an SDL_RWops, using a specified point size.
@@ -251,7 +250,7 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndex(const char *file, int ptsiz
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontRW(SDL_RWops *src, int freesrc, int ptsize);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontRW(SDL_RWops* src, int freesrc, int ptsize);
 
 /**
  * Create a font from an SDL_RWops, using a specified face index.
@@ -281,7 +280,8 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontRW(SDL_RWops *src, int freesrc, i
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexRW(SDL_RWops *src, int freesrc, int ptsize, long index);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontIndexRW(SDL_RWops* src, int freesrc, int ptsize,
+                                                      long index);
 
 /**
  * Create a font from a file, using target resolutions (in DPI).
@@ -304,7 +304,8 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexRW(SDL_RWops *src, int frees
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPI(const char *file, int ptsize, unsigned int hdpi, unsigned int vdpi);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontDPI(const char* file, int ptsize, unsigned int hdpi,
+                                                  unsigned int vdpi);
 
 /**
  * Create a font from a file, using target resolutions (in DPI).
@@ -332,7 +333,8 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPI(const char *file, int ptsize,
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPI(const char *file, int ptsize, long index, unsigned int hdpi, unsigned int vdpi);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontIndexDPI(const char* file, int ptsize, long index,
+                                                       unsigned int hdpi, unsigned int vdpi);
 
 /**
  * Opens a font from an SDL_RWops with target resolutions (in DPI).
@@ -361,7 +363,8 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPI(const char *file, int pt
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPIRW(SDL_RWops *src, int freesrc, int ptsize, unsigned int hdpi, unsigned int vdpi);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontDPIRW(SDL_RWops* src, int freesrc, int ptsize,
+                                                    unsigned int hdpi, unsigned int vdpi);
 
 /**
  * Opens a font from an SDL_RWops with target resolutions (in DPI).
@@ -395,7 +398,9 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPIRW(SDL_RWops *src, int freesrc
  *
  * \sa TTF_CloseFont
  */
-extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPIRW(SDL_RWops *src, int freesrc, int ptsize, long index, unsigned int hdpi, unsigned int vdpi);
+extern DECLSPEC TTF_Font* SDLCALL TTF_OpenFontIndexDPIRW(SDL_RWops* src, int freesrc, int ptsize,
+                                                         long index, unsigned int hdpi,
+                                                         unsigned int vdpi);
 
 /**
  * Set a font's size dynamically.
@@ -408,7 +413,7 @@ extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPIRW(SDL_RWops *src, int fr
  *
  * \since This function is available since SDL_ttf 2.0.18.
  */
-extern DECLSPEC int SDLCALL TTF_SetFontSize(TTF_Font *font, int ptsize);
+extern DECLSPEC int SDLCALL TTF_SetFontSize(TTF_Font* font, int ptsize);
 
 /**
  * Set font size dynamically with target resolutions (in DPI).
@@ -423,15 +428,16 @@ extern DECLSPEC int SDLCALL TTF_SetFontSize(TTF_Font *font, int ptsize);
  *
  * \since This function is available since SDL_ttf 2.0.18.
  */
-extern DECLSPEC int SDLCALL TTF_SetFontSizeDPI(TTF_Font *font, int ptsize, unsigned int hdpi, unsigned int vdpi);
+extern DECLSPEC int SDLCALL TTF_SetFontSizeDPI(TTF_Font* font, int ptsize, unsigned int hdpi,
+                                               unsigned int vdpi);
 
 /**
  * Font style flags
  */
-#define TTF_STYLE_NORMAL        0x00
-#define TTF_STYLE_BOLD          0x01
-#define TTF_STYLE_ITALIC        0x02
-#define TTF_STYLE_UNDERLINE     0x04
+#define TTF_STYLE_NORMAL 0x00
+#define TTF_STYLE_BOLD 0x01
+#define TTF_STYLE_ITALIC 0x02
+#define TTF_STYLE_UNDERLINE 0x04
 #define TTF_STYLE_STRIKETHROUGH 0x08
 
 /**
@@ -452,7 +458,7 @@ extern DECLSPEC int SDLCALL TTF_SetFontSizeDPI(TTF_Font *font, int ptsize, unsig
  *
  * \sa TTF_SetFontStyle
  */
-extern DECLSPEC int SDLCALL TTF_GetFontStyle(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_GetFontStyle(const TTF_Font* font);
 
 /**
  * Set a font's current style.
@@ -474,7 +480,7 @@ extern DECLSPEC int SDLCALL TTF_GetFontStyle(const TTF_Font *font);
  *
  * \sa TTF_GetFontStyle
  */
-extern DECLSPEC void SDLCALL TTF_SetFontStyle(TTF_Font *font, int style);
+extern DECLSPEC void SDLCALL TTF_SetFontStyle(TTF_Font* font, int style);
 
 /**
  * Query a font's current outline.
@@ -486,7 +492,7 @@ extern DECLSPEC void SDLCALL TTF_SetFontStyle(TTF_Font *font, int style);
  *
  * \sa TTF_SetFontOutline
  */
-extern DECLSPEC int SDLCALL TTF_GetFontOutline(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_GetFontOutline(const TTF_Font* font);
 
 /**
  * Set a font's current outline.
@@ -498,17 +504,17 @@ extern DECLSPEC int SDLCALL TTF_GetFontOutline(const TTF_Font *font);
  *
  * \sa TTF_GetFontOutline
  */
-extern DECLSPEC void SDLCALL TTF_SetFontOutline(TTF_Font *font, int outline);
+extern DECLSPEC void SDLCALL TTF_SetFontOutline(TTF_Font* font, int outline);
 
 
 /**
  * Hinting flags
  */
-#define TTF_HINTING_NORMAL          0
-#define TTF_HINTING_LIGHT           1
-#define TTF_HINTING_MONO            2
-#define TTF_HINTING_NONE            3
-#define TTF_HINTING_LIGHT_SUBPIXEL  4
+#define TTF_HINTING_NORMAL 0
+#define TTF_HINTING_LIGHT 1
+#define TTF_HINTING_MONO 2
+#define TTF_HINTING_NONE 3
+#define TTF_HINTING_LIGHT_SUBPIXEL 4
 
 /**
  * Query a font's current FreeType hinter setting.
@@ -528,7 +534,7 @@ extern DECLSPEC void SDLCALL TTF_SetFontOutline(TTF_Font *font, int outline);
  *
  * \sa TTF_SetFontHinting
  */
-extern DECLSPEC int SDLCALL TTF_GetFontHinting(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_GetFontHinting(const TTF_Font* font);
 
 /**
  * Set a font's current hinter setting.
@@ -550,14 +556,14 @@ extern DECLSPEC int SDLCALL TTF_GetFontHinting(const TTF_Font *font);
  *
  * \sa TTF_GetFontHinting
  */
-extern DECLSPEC void SDLCALL TTF_SetFontHinting(TTF_Font *font, int hinting);
+extern DECLSPEC void SDLCALL TTF_SetFontHinting(TTF_Font* font, int hinting);
 
 /**
  * Special layout option for rendering wrapped text
  */
-#define TTF_WRAPPED_ALIGN_LEFT      0
-#define TTF_WRAPPED_ALIGN_CENTER    1
-#define TTF_WRAPPED_ALIGN_RIGHT     2
+#define TTF_WRAPPED_ALIGN_LEFT 0
+#define TTF_WRAPPED_ALIGN_CENTER 1
+#define TTF_WRAPPED_ALIGN_RIGHT 2
 
 /**
  * Query a font's current wrap alignment option.
@@ -575,7 +581,7 @@ extern DECLSPEC void SDLCALL TTF_SetFontHinting(TTF_Font *font, int hinting);
  *
  * \sa TTF_SetFontWrappedAlign
  */
-extern DECLSPEC int SDLCALL TTF_GetFontWrappedAlign(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_GetFontWrappedAlign(const TTF_Font* font);
 
 /**
  * Set a font's current wrap alignment option.
@@ -593,7 +599,7 @@ extern DECLSPEC int SDLCALL TTF_GetFontWrappedAlign(const TTF_Font *font);
  *
  * \sa TTF_GetFontWrappedAlign
  */
-extern DECLSPEC void SDLCALL TTF_SetFontWrappedAlign(TTF_Font *font, int align);
+extern DECLSPEC void SDLCALL TTF_SetFontWrappedAlign(TTF_Font* font, int align);
 
 /**
  * Query the total height of a font.
@@ -605,7 +611,7 @@ extern DECLSPEC void SDLCALL TTF_SetFontWrappedAlign(TTF_Font *font, int align);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC int SDLCALL TTF_FontHeight(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_FontHeight(const TTF_Font* font);
 
 /**
  * Query the offset from the baseline to the top of a font.
@@ -617,7 +623,7 @@ extern DECLSPEC int SDLCALL TTF_FontHeight(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC int SDLCALL TTF_FontAscent(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_FontAscent(const TTF_Font* font);
 
 /**
  * Query the offset from the baseline to the bottom of a font.
@@ -629,7 +635,7 @@ extern DECLSPEC int SDLCALL TTF_FontAscent(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC int SDLCALL TTF_FontDescent(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_FontDescent(const TTF_Font* font);
 
 /**
  * Query the recommended spacing between lines of text for a font.
@@ -639,7 +645,7 @@ extern DECLSPEC int SDLCALL TTF_FontDescent(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC int SDLCALL TTF_FontLineSkip(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_FontLineSkip(const TTF_Font* font);
 
 /**
  * Query whether or not kerning is allowed for a font.
@@ -649,7 +655,7 @@ extern DECLSPEC int SDLCALL TTF_FontLineSkip(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC int SDLCALL TTF_GetFontKerning(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_GetFontKerning(const TTF_Font* font);
 
 /**
  * Set if kerning is allowed for a font.
@@ -664,7 +670,7 @@ extern DECLSPEC int SDLCALL TTF_GetFontKerning(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC void SDLCALL TTF_SetFontKerning(TTF_Font *font, int allowed);
+extern DECLSPEC void SDLCALL TTF_SetFontKerning(TTF_Font* font, int allowed);
 
 /**
  * Query the number of faces of a font.
@@ -674,7 +680,7 @@ extern DECLSPEC void SDLCALL TTF_SetFontKerning(TTF_Font *font, int allowed);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC long SDLCALL TTF_FontFaces(const TTF_Font *font);
+extern DECLSPEC long SDLCALL TTF_FontFaces(const TTF_Font* font);
 
 /**
  * Query whether a font is fixed-width.
@@ -690,7 +696,7 @@ extern DECLSPEC long SDLCALL TTF_FontFaces(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC int SDLCALL TTF_FontFaceIsFixedWidth(const TTF_Font *font);
+extern DECLSPEC int SDLCALL TTF_FontFaceIsFixedWidth(const TTF_Font* font);
 
 /**
  * Query a font's family name.
@@ -706,7 +712,7 @@ extern DECLSPEC int SDLCALL TTF_FontFaceIsFixedWidth(const TTF_Font *font);
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC const char * SDLCALL TTF_FontFaceFamilyName(const TTF_Font *font);
+extern DECLSPEC const char* SDLCALL TTF_FontFaceFamilyName(const TTF_Font* font);
 
 /**
  * Query a font's style name.
@@ -722,7 +728,7 @@ extern DECLSPEC const char * SDLCALL TTF_FontFaceFamilyName(const TTF_Font *font
  *
  * \since This function is available since SDL_ttf 2.0.12.
  */
-extern DECLSPEC const char * SDLCALL TTF_FontFaceStyleName(const TTF_Font *font);
+extern DECLSPEC const char* SDLCALL TTF_FontFaceStyleName(const TTF_Font* font);
 
 /**
  * Check whether a glyph is provided by the font for a 16-bit codepoint.
@@ -744,7 +750,7 @@ extern DECLSPEC const char * SDLCALL TTF_FontFaceStyleName(const TTF_Font *font)
  *
  * \sa TTF_GlyphIsProvided32
  */
-extern DECLSPEC int SDLCALL TTF_GlyphIsProvided(TTF_Font *font, Uint16 ch);
+extern DECLSPEC int SDLCALL TTF_GlyphIsProvided(TTF_Font* font, Uint16 ch);
 
 /**
  * Check whether a glyph is provided by the font for a 32-bit codepoint.
@@ -760,7 +766,7 @@ extern DECLSPEC int SDLCALL TTF_GlyphIsProvided(TTF_Font *font, Uint16 ch);
  *
  * \since This function is available since SDL_ttf 2.0.18.
  */
-extern DECLSPEC int SDLCALL TTF_GlyphIsProvided32(TTF_Font *font, Uint32 ch);
+extern DECLSPEC int SDLCALL TTF_GlyphIsProvided32(TTF_Font* font, Uint32 ch);
 
 /**
  * Query the metrics (dimensions) of a font's 16-bit glyph.
@@ -785,9 +791,8 @@ extern DECLSPEC int SDLCALL TTF_GlyphIsProvided32(TTF_Font *font, Uint32 ch);
  *
  * \sa TTF_GlyphMetrics32
  */
-extern DECLSPEC int SDLCALL TTF_GlyphMetrics(TTF_Font *font, Uint16 ch,
-                        int *minx, int *maxx,
-                        int *miny, int *maxy, int *advance);
+extern DECLSPEC int SDLCALL TTF_GlyphMetrics(TTF_Font* font, Uint16 ch, int* minx, int* maxx,
+                                             int* miny, int* maxy, int* advance);
 
 /**
  * Query the metrics (dimensions) of a font's 32-bit glyph.
@@ -806,9 +811,8 @@ extern DECLSPEC int SDLCALL TTF_GlyphMetrics(TTF_Font *font, Uint16 ch,
  *
  * \since This function is available since SDL_ttf 2.0.18.
  */
-extern DECLSPEC int SDLCALL TTF_GlyphMetrics32(TTF_Font *font, Uint32 ch,
-                        int *minx, int *maxx,
-                        int *miny, int *maxy, int *advance);
+extern DECLSPEC int SDLCALL TTF_GlyphMetrics32(TTF_Font* font, Uint32 ch, int* minx, int* maxx,
+                                               int* miny, int* maxy, int* advance);
 
 /**
  * Calculate the dimensions of a rendered string of Latin1 text.
@@ -834,7 +838,7 @@ extern DECLSPEC int SDLCALL TTF_GlyphMetrics32(TTF_Font *font, Uint32 ch,
  * \sa TTF_SizeUTF8
  * \sa TTF_SizeUNICODE
  */
-extern DECLSPEC int SDLCALL TTF_SizeText(TTF_Font *font, const char *text, int *w, int *h);
+extern DECLSPEC int SDLCALL TTF_SizeText(TTF_Font* font, const char* text, int* w, int* h);
 
 /**
  * Calculate the dimensions of a rendered string of UTF-8 text.
@@ -854,7 +858,7 @@ extern DECLSPEC int SDLCALL TTF_SizeText(TTF_Font *font, const char *text, int *
  *
  * \sa TTF_SizeUNICODE
  */
-extern DECLSPEC int SDLCALL TTF_SizeUTF8(TTF_Font *font, const char *text, int *w, int *h);
+extern DECLSPEC int SDLCALL TTF_SizeUTF8(TTF_Font* font, const char* text, int* w, int* h);
 
 /**
  * Calculate the dimensions of a rendered string of UCS-2 text.
@@ -879,7 +883,7 @@ extern DECLSPEC int SDLCALL TTF_SizeUTF8(TTF_Font *font, const char *text, int *
  *
  * \sa TTF_SizeUTF8
  */
-extern DECLSPEC int SDLCALL TTF_SizeUNICODE(TTF_Font *font, const Uint16 *text, int *w, int *h);
+extern DECLSPEC int SDLCALL TTF_SizeUNICODE(TTF_Font* font, const Uint16* text, int* w, int* h);
 
 /**
  * Calculate how much of a Latin1 string will fit in a given width.
@@ -908,7 +912,8 @@ extern DECLSPEC int SDLCALL TTF_SizeUNICODE(TTF_Font *font, const Uint16 *text, 
  * \sa TTF_MeasureUTF8
  * \sa TTF_MeasureUNICODE
  */
-extern DECLSPEC int SDLCALL TTF_MeasureText(TTF_Font *font, const char *text, int measure_width, int *extent, int *count);
+extern DECLSPEC int SDLCALL TTF_MeasureText(TTF_Font* font, const char* text, int measure_width,
+                                            int* extent, int* count);
 
 /**
  * Calculate how much of a UTF-8 string will fit in a given width.
@@ -932,7 +937,8 @@ extern DECLSPEC int SDLCALL TTF_MeasureText(TTF_Font *font, const char *text, in
  * \sa TTF_MeasureUTF8
  * \sa TTF_MeasureUNICODE
  */
-extern DECLSPEC int SDLCALL TTF_MeasureUTF8(TTF_Font *font, const char *text, int measure_width, int *extent, int *count);
+extern DECLSPEC int SDLCALL TTF_MeasureUTF8(TTF_Font* font, const char* text, int measure_width,
+                                            int* extent, int* count);
 
 /**
  * Calculate how much of a UCS-2 string will fit in a given width.
@@ -961,7 +967,8 @@ extern DECLSPEC int SDLCALL TTF_MeasureUTF8(TTF_Font *font, const char *text, in
  * \sa TTF_MeasureUTF8
  * \sa TTF_MeasureUNICODE
  */
-extern DECLSPEC int SDLCALL TTF_MeasureUNICODE(TTF_Font *font, const Uint16 *text, int measure_width, int *extent, int *count);
+extern DECLSPEC int SDLCALL TTF_MeasureUNICODE(TTF_Font* font, const Uint16* text,
+                                               int measure_width, int* extent, int* count);
 
 /**
  * Render Latin1 text at fast quality to a new 8-bit surface.
@@ -995,8 +1002,8 @@ extern DECLSPEC int SDLCALL TTF_MeasureUNICODE(TTF_Font *font, const Uint16 *tex
  * \sa TTF_RenderUTF8_Solid
  * \sa TTF_RenderUNICODE_Solid
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid(TTF_Font *font,
-                const char *text, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_Solid(TTF_Font* font, const char* text,
+                                                          SDL_Color fg);
 
 /**
  * Render UTF-8 text at fast quality to a new 8-bit surface.
@@ -1026,8 +1033,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid(TTF_Font *font,
  * \sa TTF_RenderUTF8_Blended
  * \sa TTF_RenderUTF8_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid(TTF_Font *font,
-                const char *text, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_Solid(TTF_Font* font, const char* text,
+                                                          SDL_Color fg);
 
 /**
  * Render UCS-2 text at fast quality to a new 8-bit surface.
@@ -1060,8 +1067,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid(TTF_Font *font,
  *
  * \sa TTF_RenderUTF8_Solid
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Solid(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_Solid(TTF_Font* font, const Uint16* text,
+                                                             SDL_Color fg);
 
 /**
  * Render word-wrapped Latin1 text at fast quality to a new 8-bit surface.
@@ -1093,8 +1100,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Solid(TTF_Font *font,
  * \sa TTF_RenderUTF8_Solid_Wrapped
  * \sa TTF_RenderUNICODE_Solid_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_Solid_Wrapped(TTF_Font* font, const char* text,
+                                                                  SDL_Color fg, Uint32 wrapLength);
 
 /**
  * Render word-wrapped UTF-8 text at fast quality to a new 8-bit surface.
@@ -1122,8 +1129,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid_Wrapped(TTF_Font *fon
  * \sa TTF_RenderUTF8_Blended_Wrapped
  * \sa TTF_RenderUTF8_LCD_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_Solid_Wrapped(TTF_Font* font, const char* text,
+                                                                  SDL_Color fg, Uint32 wrapLength);
 
 /**
  * Render word-wrapped UCS-2 text at fast quality to a new 8-bit surface.
@@ -1155,8 +1162,10 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid_Wrapped(TTF_Font *fon
  *
  * \sa TTF_RenderUTF8_Solid_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Solid_Wrapped(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_Solid_Wrapped(TTF_Font* font,
+                                                                     const Uint16* text,
+                                                                     SDL_Color fg,
+                                                                     Uint32 wrapLength);
 
 /**
  * Render a single 16-bit glyph at fast quality to a new 8-bit surface.
@@ -1189,8 +1198,7 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Solid_Wrapped(TTF_Font *
  *
  * \sa TTF_RenderGlyph32_Solid
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Solid(TTF_Font *font,
-                Uint16 ch, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph_Solid(TTF_Font* font, Uint16 ch, SDL_Color fg);
 
 /**
  * Render a single 32-bit glyph at fast quality to a new 8-bit surface.
@@ -1221,8 +1229,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Solid(TTF_Font *font,
  * \sa TTF_RenderGlyph32_Blended
  * \sa TTF_RenderGlyph32_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Solid(TTF_Font *font,
-                Uint32 ch, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph32_Solid(TTF_Font* font, Uint32 ch,
+                                                             SDL_Color fg);
 
 /**
  * Render Latin1 text at high quality to a new 8-bit surface.
@@ -1257,8 +1265,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Solid(TTF_Font *font,
  * \sa TTF_RenderUTF8_Shaded
  * \sa TTF_RenderUNICODE_Shaded
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_Shaded(TTF_Font* font, const char* text,
+                                                           SDL_Color fg, SDL_Color bg);
 
 /**
  * Render UTF-8 text at high quality to a new 8-bit surface.
@@ -1287,8 +1295,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded(TTF_Font *font,
  *
  * \sa TTF_RenderUNICODE_Shaded
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_Shaded(TTF_Font* font, const char* text,
+                                                           SDL_Color fg, SDL_Color bg);
 
 /**
  * Render UCS-2 text at high quality to a new 8-bit surface.
@@ -1322,8 +1330,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded(TTF_Font *font,
  *
  * \sa TTF_RenderUTF8_Shaded
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Shaded(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_Shaded(TTF_Font* font, const Uint16* text,
+                                                              SDL_Color fg, SDL_Color bg);
 
 /**
  * Render word-wrapped Latin1 text at high quality to a new 8-bit surface.
@@ -1356,8 +1364,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Shaded(TTF_Font *font,
  * \sa TTF_RenderUTF8_Shaded_Wrapped
  * \sa TTF_RenderUNICODE_Shaded_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_Shaded_Wrapped(TTF_Font* font, const char* text,
+                                                                   SDL_Color fg, SDL_Color bg,
+                                                                   Uint32 wrapLength);
 
 /**
  * Render word-wrapped UTF-8 text at high quality to a new 8-bit surface.
@@ -1386,8 +1395,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded_Wrapped(TTF_Font *fo
  * \sa TTF_RenderUTF8_Blended_Wrapped
  * \sa TTF_RenderUTF8_LCD_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_Shaded_Wrapped(TTF_Font* font, const char* text,
+                                                                   SDL_Color fg, SDL_Color bg,
+                                                                   Uint32 wrapLength);
 
 /**
  * Render word-wrapped UCS-2 text at high quality to a new 8-bit surface.
@@ -1420,8 +1430,10 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded_Wrapped(TTF_Font *fo
  *
  * \sa TTF_RenderUTF8_Shaded_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Shaded_Wrapped(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_Shaded_Wrapped(TTF_Font* font,
+                                                                      const Uint16* text,
+                                                                      SDL_Color fg, SDL_Color bg,
+                                                                      Uint32 wrapLength);
 
 /**
  * Render a single 16-bit glyph at high quality to a new 8-bit surface.
@@ -1455,8 +1467,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Shaded_Wrapped(TTF_Font 
  *
  * \sa TTF_RenderGlyph32_Shaded
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Shaded(TTF_Font *font,
-                Uint16 ch, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph_Shaded(TTF_Font* font, Uint16 ch, SDL_Color fg,
+                                                            SDL_Color bg);
 
 /**
  * Render a single 32-bit glyph at high quality to a new 8-bit surface.
@@ -1488,8 +1500,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Shaded(TTF_Font *font,
  * \sa TTF_RenderGlyph32_Blended
  * \sa TTF_RenderGlyph32_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Shaded(TTF_Font *font,
-                Uint32 ch, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph32_Shaded(TTF_Font* font, Uint32 ch,
+                                                              SDL_Color fg, SDL_Color bg);
 
 /**
  * Render Latin1 text at high quality to a new ARGB surface.
@@ -1523,8 +1535,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Shaded(TTF_Font *font,
  * \sa TTF_RenderUTF8_Shaded
  * \sa TTF_RenderUNICODE_Shaded
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended(TTF_Font *font,
-                const char *text, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_Blended(TTF_Font* font, const char* text,
+                                                            SDL_Color fg);
 
 /**
  * Render UTF-8 text at high quality to a new ARGB surface.
@@ -1552,8 +1564,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended(TTF_Font *font,
  *
  * \sa TTF_RenderUNICODE_Blended
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended(TTF_Font *font,
-                const char *text, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_Blended(TTF_Font* font, const char* text,
+                                                            SDL_Color fg);
 
 /**
  * Render UCS-2 text at high quality to a new ARGB surface.
@@ -1586,8 +1598,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended(TTF_Font *font,
  *
  * \sa TTF_RenderUTF8_Blended
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Blended(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_Blended(TTF_Font* font, const Uint16* text,
+                                                               SDL_Color fg);
 
 /**
  * Render word-wrapped Latin1 text at high quality to a new ARGB surface.
@@ -1619,8 +1631,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Blended(TTF_Font *font,
  * \sa TTF_RenderUTF8_Blended_Wrapped
  * \sa TTF_RenderUNICODE_Blended_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_Blended_Wrapped(TTF_Font* font,
+                                                                    const char* text, SDL_Color fg,
+                                                                    Uint32 wrapLength);
 
 /**
  * Render word-wrapped UTF-8 text at high quality to a new ARGB surface.
@@ -1648,8 +1661,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended_Wrapped(TTF_Font *f
  * \sa TTF_RenderUTF8_Shaded_Wrapped
  * \sa TTF_RenderUTF8_LCD_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_Blended_Wrapped(TTF_Font* font,
+                                                                    const char* text, SDL_Color fg,
+                                                                    Uint32 wrapLength);
 
 /**
  * Render word-wrapped UCS-2 text at high quality to a new ARGB surface.
@@ -1681,8 +1695,10 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended_Wrapped(TTF_Font *f
  *
  * \sa TTF_RenderUTF8_Blended_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Blended_Wrapped(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_Blended_Wrapped(TTF_Font* font,
+                                                                       const Uint16* text,
+                                                                       SDL_Color fg,
+                                                                       Uint32 wrapLength);
 
 /**
  * Render a single 16-bit glyph at high quality to a new ARGB surface.
@@ -1715,8 +1731,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Blended_Wrapped(TTF_Font
  *
  * \sa TTF_RenderGlyph32_Blended
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Blended(TTF_Font *font,
-                Uint16 ch, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph_Blended(TTF_Font* font, Uint16 ch,
+                                                             SDL_Color fg);
 
 /**
  * Render a single 32-bit glyph at high quality to a new ARGB surface.
@@ -1747,8 +1763,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Blended(TTF_Font *font,
  * \sa TTF_RenderGlyph32_Shaded
  * \sa TTF_RenderGlyph32_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Blended(TTF_Font *font,
-                Uint32 ch, SDL_Color fg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph32_Blended(TTF_Font* font, Uint32 ch,
+                                                               SDL_Color fg);
 
 /**
  * Render Latin1 text at LCD subpixel quality to a new ARGB surface.
@@ -1783,8 +1799,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Blended(TTF_Font *font,
  * \sa TTF_RenderUTF8_LCD
  * \sa TTF_RenderUNICODE_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_LCD(TTF_Font* font, const char* text,
+                                                        SDL_Color fg, SDL_Color bg);
 
 /**
  * Render UTF-8 text at LCD subpixel quality to a new ARGB surface.
@@ -1813,8 +1829,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD(TTF_Font *font,
  *
  * \sa TTF_RenderUNICODE_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_LCD(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_LCD(TTF_Font* font, const char* text,
+                                                        SDL_Color fg, SDL_Color bg);
 
 /**
  * Render UCS-2 text at LCD subpixel quality to a new ARGB surface.
@@ -1848,8 +1864,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_LCD(TTF_Font *font,
  *
  * \sa TTF_RenderUTF8_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_LCD(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_LCD(TTF_Font* font, const Uint16* text,
+                                                           SDL_Color fg, SDL_Color bg);
 
 /**
  * Render word-wrapped Latin1 text at LCD subpixel quality to a new ARGB
@@ -1883,8 +1899,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_LCD(TTF_Font *font,
  * \sa TTF_RenderUTF8_LCD_Wrapped
  * \sa TTF_RenderUNICODE_LCD_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderText_LCD_Wrapped(TTF_Font* font, const char* text,
+                                                                SDL_Color fg, SDL_Color bg,
+                                                                Uint32 wrapLength);
 
 /**
  * Render word-wrapped UTF-8 text at LCD subpixel quality to a new ARGB
@@ -1914,8 +1931,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD_Wrapped(TTF_Font *font,
  * \sa TTF_RenderUTF8_Shaded_Wrapped
  * \sa TTF_RenderUTF8_Blended_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_LCD_Wrapped(TTF_Font *font,
-                const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUTF8_LCD_Wrapped(TTF_Font* font, const char* text,
+                                                                SDL_Color fg, SDL_Color bg,
+                                                                Uint32 wrapLength);
 
 /**
  * Render word-wrapped UCS-2 text at LCD subpixel quality to a new ARGB
@@ -1949,8 +1967,9 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_LCD_Wrapped(TTF_Font *font,
  *
  * \sa TTF_RenderUTF8_LCD_Wrapped
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_LCD_Wrapped(TTF_Font *font,
-                const Uint16 *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderUNICODE_LCD_Wrapped(TTF_Font* font,
+                                                                   const Uint16* text, SDL_Color fg,
+                                                                   SDL_Color bg, Uint32 wrapLength);
 
 /**
  * Render a single 16-bit glyph at LCD subpixel quality to a new ARGB surface.
@@ -1984,8 +2003,8 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_LCD_Wrapped(TTF_Font *fo
  *
  * \sa TTF_RenderGlyph32_LCD
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_LCD(TTF_Font *font,
-                Uint16 ch, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph_LCD(TTF_Font* font, Uint16 ch, SDL_Color fg,
+                                                         SDL_Color bg);
 
 /**
  * Render a single 32-bit glyph at LCD subpixel quality to a new ARGB surface.
@@ -2016,17 +2035,14 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_LCD(TTF_Font *font,
  * \sa TTF_RenderGlyph32_Shaded
  * \sa TTF_RenderGlyph32_Blended
  */
-extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_LCD(TTF_Font *font,
-                Uint32 ch, SDL_Color fg, SDL_Color bg);
+extern DECLSPEC SDL_Surface* SDLCALL TTF_RenderGlyph32_LCD(TTF_Font* font, Uint32 ch, SDL_Color fg,
+                                                           SDL_Color bg);
 
 
 /* For compatibility with previous versions, here are the old functions */
-#define TTF_RenderText(font, text, fg, bg)  \
-    TTF_RenderText_Shaded(font, text, fg, bg)
-#define TTF_RenderUTF8(font, text, fg, bg)  \
-    TTF_RenderUTF8_Shaded(font, text, fg, bg)
-#define TTF_RenderUNICODE(font, text, fg, bg)   \
-    TTF_RenderUNICODE_Shaded(font, text, fg, bg)
+#define TTF_RenderText(font, text, fg, bg) TTF_RenderText_Shaded(font, text, fg, bg)
+#define TTF_RenderUTF8(font, text, fg, bg) TTF_RenderUTF8_Shaded(font, text, fg, bg)
+#define TTF_RenderUNICODE(font, text, fg, bg) TTF_RenderUNICODE_Shaded(font, text, fg, bg)
 
 /**
  * Dispose of a previously-created font.
@@ -2052,7 +2068,7 @@ extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_LCD(TTF_Font *font,
  * \sa TTF_OpenFontIndexDPIRW
  * \sa TTF_OpenFontIndexRW
  */
-extern DECLSPEC void SDLCALL TTF_CloseFont(TTF_Font *font);
+extern DECLSPEC void SDLCALL TTF_CloseFont(TTF_Font* font);
 
 /**
  * Deinitialize SDL_ttf.
@@ -2115,7 +2131,8 @@ extern DECLSPEC int SDLCALL TTF_WasInit(void);
  *
  * \sa TTF_GetFontKerningSizeGlyphs
  */
-extern SDL_DEPRECATED DECLSPEC int TTF_GetFontKerningSize(TTF_Font *font, int prev_index, int index);
+extern SDL_DEPRECATED DECLSPEC int TTF_GetFontKerningSize(TTF_Font* font, int prev_index,
+                                                          int index);
 
 /**
  * Query the kerning size of two 16-bit glyphs.
@@ -2138,7 +2155,7 @@ extern SDL_DEPRECATED DECLSPEC int TTF_GetFontKerningSize(TTF_Font *font, int pr
  *
  * \sa TTF_GetFontKerningSizeGlyphs32
  */
-extern DECLSPEC int TTF_GetFontKerningSizeGlyphs(TTF_Font *font, Uint16 previous_ch, Uint16 ch);
+extern DECLSPEC int TTF_GetFontKerningSizeGlyphs(TTF_Font* font, Uint16 previous_ch, Uint16 ch);
 
 /**
  * Query the kerning size of two 32-bit glyphs.
@@ -2155,7 +2172,7 @@ extern DECLSPEC int TTF_GetFontKerningSizeGlyphs(TTF_Font *font, Uint16 previous
  *
  * \since This function is available since SDL_ttf 2.0.18.
  */
-extern DECLSPEC int TTF_GetFontKerningSizeGlyphs32(TTF_Font *font, Uint32 previous_ch, Uint32 ch);
+extern DECLSPEC int TTF_GetFontKerningSizeGlyphs32(TTF_Font* font, Uint32 previous_ch, Uint32 ch);
 
 /**
  * Enable Signed Distance Field rendering for a font.
@@ -2174,7 +2191,7 @@ extern DECLSPEC int TTF_GetFontKerningSizeGlyphs32(TTF_Font *font, Uint32 previo
  *
  * \sa TTF_GetFontSDF
  */
-extern DECLSPEC int TTF_SetFontSDF(TTF_Font *font, SDL_bool on_off);
+extern DECLSPEC int TTF_SetFontSDF(TTF_Font* font, SDL_bool on_off);
 
 /**
  * Query whether Signed Distance Field rendering is enabled for a font.
@@ -2187,33 +2204,32 @@ extern DECLSPEC int TTF_SetFontSDF(TTF_Font *font, SDL_bool on_off);
  *
  * \sa TTF_SetFontSDF
  */
-extern DECLSPEC SDL_bool TTF_GetFontSDF(const TTF_Font *font);
+extern DECLSPEC SDL_bool TTF_GetFontSDF(const TTF_Font* font);
 
 /**
  * Report SDL_ttf errors
  *
  * \sa TTF_GetError
  */
-#define TTF_SetError    SDL_SetError
+#define TTF_SetError SDL_SetError
 
 /**
  * Get last SDL_ttf error
  *
  * \sa TTF_SetError
  */
-#define TTF_GetError    SDL_GetError
+#define TTF_GetError SDL_GetError
 
 /**
  * Direction flags
  *
  * \sa TTF_SetFontDirection
  */
-typedef enum
-{
-  TTF_DIRECTION_LTR = 0,    /* Left to Right */
-  TTF_DIRECTION_RTL,        /* Right to Left */
-  TTF_DIRECTION_TTB,        /* Top to Bottom */
-  TTF_DIRECTION_BTT         /* Bottom to Top */
+typedef enum {
+    TTF_DIRECTION_LTR = 0, /* Left to Right */
+    TTF_DIRECTION_RTL,     /* Right to Left */
+    TTF_DIRECTION_TTB,     /* Top to Bottom */
+    TTF_DIRECTION_BTT      /* Bottom to Top */
 } TTF_Direction;
 
 /**
@@ -2284,7 +2300,7 @@ extern SDL_DEPRECATED DECLSPEC int SDLCALL TTF_SetScript(int script); /* hb_scri
  *
  * \since This function is available since SDL_ttf 2.20.0.
  */
-extern DECLSPEC int SDLCALL TTF_SetFontDirection(TTF_Font *font, TTF_Direction direction);
+extern DECLSPEC int SDLCALL TTF_SetFontDirection(TTF_Font* font, TTF_Direction direction);
 
 /**
  * Set script to be used for text shaping by a font.
@@ -2303,7 +2319,7 @@ extern DECLSPEC int SDLCALL TTF_SetFontDirection(TTF_Font *font, TTF_Direction d
  *
  * \since This function is available since SDL_ttf 2.20.0.
  */
-extern DECLSPEC int SDLCALL TTF_SetFontScriptName(TTF_Font *font, const char *script);
+extern DECLSPEC int SDLCALL TTF_SetFontScriptName(TTF_Font* font, const char* script);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

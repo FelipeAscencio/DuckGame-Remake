@@ -10,10 +10,12 @@ Magnum::Magnum(posicion_t posicion_inicial):
         Arma(ID_MAGNUM, MAGNUM, ALCANCE, MUNICIONES, true, posicion_inicial) {}
 
 bool Magnum::disparar(const orientacion_e& direccion, Mapa& mapa) {
-    if (this->municiones == 0) return false;
+    if (this->municiones == 0)
+        return false;
 
-    Municion* m = new Municion(ID_MAGNUM, posicion_spawn, (ALCANCE * TILE_A_METRO), direccion, NO, balas.size());
-    if (m->avanzar(mapa)){
+    Municion* m = new Municion(ID_MAGNUM, posicion_spawn, (ALCANCE * TILE_A_METRO), direccion, NO,
+                               balas.size());
+    if (m->avanzar(mapa)) {
         balas.push_back(m);
     } else {
         delete m;

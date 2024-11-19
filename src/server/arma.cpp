@@ -14,9 +14,7 @@ Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, co
 
 void Arma::agarrar() { this->agarrada = true; }
 
-void Arma::recargar(){
-    this->municiones = municiones_iniciales;
-}
+void Arma::recargar() { this->municiones = municiones_iniciales; }
 
 void Arma::soltar() {
     this->agarrada = false;
@@ -35,11 +33,11 @@ int Arma::municiones_restantes() { return this->municiones; }
 
 bool Arma::en_uso() { return this->agarrada; }
 
-void Arma::eliminar_bala(const int& indice){
+void Arma::eliminar_bala(const int& indice) {
     Municion* auxiliar = balas[indice];
     balas.erase(balas.begin() + indice);
     delete auxiliar;
-    for (int i = indice; i < (int)balas.size(); i++){
+    for (int i = indice; i < (int)balas.size(); i++) {
         balas[i]->nro_bala -= 1;
     }
 }
@@ -72,9 +70,7 @@ void Arma::chequeo_balas(Mapa& mapa) {
     }
 }
 
-void Arma::control_atributos(Mapa& mapa){
-    chequeo_balas(mapa);
-}
+void Arma::control_atributos(Mapa& mapa) { chequeo_balas(mapa); }
 
 Arma::~Arma() {
     for (Municion* m: balas) {

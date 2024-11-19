@@ -64,11 +64,21 @@
 #define FIN_COMUNICACION 0xFF
 
 static std::map<char, uint8_t> acciones = {
-        {DERECHA, ACCION_DERECHA}, {IZQUIERDA, ACCION_IZQUIERDA}, {AGACHARSE, ACCION_AGACHARSE},
-        {ARRIBA, ACCION_ARRIBA},   {SALTO, ACCION_SALTO},         {DISPARO, ACCION_DISPARAR},
-        {AGARRAR, ACCION_AGARRAR}, {CUAK, ACCION_CUAK}, {CHEAT_AK, ACCION_AK}, {CHEAT_SG, ACCION_SG},
-        {CHEAT_MAGNUM, ACCION_MAGNUM}, /*{CHEAT_LASER, ACCION_LASER}, {CHEAT_SNIPER, ACCION_SNIPER},*/ 
-        {CHEAT_INMORTALIDAD, ACCION_INMORTALIDAD}, {CHEAT_RECARGAR, ACCION_RECARGAR}, {CHEAT_ARMADURA, ACCION_ARMADUAR},
+        {DERECHA, ACCION_DERECHA},
+        {IZQUIERDA, ACCION_IZQUIERDA},
+        {AGACHARSE, ACCION_AGACHARSE},
+        {ARRIBA, ACCION_ARRIBA},
+        {SALTO, ACCION_SALTO},
+        {DISPARO, ACCION_DISPARAR},
+        {AGARRAR, ACCION_AGARRAR},
+        {CUAK, ACCION_CUAK},
+        {CHEAT_AK, ACCION_AK},
+        {CHEAT_SG, ACCION_SG},
+        {CHEAT_MAGNUM,
+         ACCION_MAGNUM}, /*{CHEAT_LASER, ACCION_LASER}, {CHEAT_SNIPER, ACCION_SNIPER},*/
+        {CHEAT_INMORTALIDAD, ACCION_INMORTALIDAD},
+        {CHEAT_RECARGAR, ACCION_RECARGAR},
+        {CHEAT_ARMADURA, ACCION_ARMADUAR},
         {CHEAT_CASCO, ACCION_CASCO}};
 
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
@@ -126,7 +136,8 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         posicion_t pos(x, y);
         InformacionPato pato_actual(info_pato[0], pos, info_pato[5], info_pato[6], info_pato[7],
                                     info_pato[8], info_pato[9], (orientacion_e)info_pato[10],
-                                    (estado_pato_e)info_pato[11], (sonido_e)info_pato[12], info_pato[13]);
+                                    (estado_pato_e)info_pato[11], (sonido_e)info_pato[12],
+                                    info_pato[13]);
         estado_actual.agregar_info_pato(pato_actual);
         info_pato.clear();
         info_pato.resize(14);
@@ -150,19 +161,19 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     }
     i = 0;
     std::vector<uint8_t> bala(7);
-    while (i < cantidades[2]){
+    while (i < cantidades[2]) {
         s.recvall(&leido, sizeof(leido), &was_closed);
         s.recvall(bala.data(), bala.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);
 
-        float x = bala[1] + (bala[2]/TILE_A_METRO);
-        float y = bala[3] + (bala[4]/TILE_A_METRO);
+        float x = bala[1] + (bala[2] / TILE_A_METRO);
+        float y = bala[3] + (bala[4] / TILE_A_METRO);
         posicion_t pos(x, y);
         InformacionBala nueva(bala[0], pos, (inclinacion_e)bala[5], (orientacion_e)bala[6]);
         estado_actual.agregar_bala(nueva);
         bala.clear();
         bala.resize(7);
-        i++; 
+        i++;
     }
 
     s.recvall(&leido, sizeof(leido), &was_closed);  // Lee el fin de  la comunicacion.

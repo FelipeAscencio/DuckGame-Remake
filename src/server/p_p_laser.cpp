@@ -14,6 +14,6 @@ PewPewLaser::PewPewLaser(posicion_t posicion_inicial):
 bool PewPewLaser::disparar(const orientacion_e& direccion, Mapa& mapa) {
     std::cout << mapa.piso_bloque(this->posicion_spawn) << std::endl;
     std::cout << direccion << std::endl;
-    std::cout << "Aun no esta implementado\n"; 
+    std::cout << "Aun no esta implementado\n";
     return false;
 }

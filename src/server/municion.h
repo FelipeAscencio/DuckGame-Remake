@@ -24,6 +24,7 @@ class Municion {
     friend struct InformacionBala;
     friend struct EstadoJuego;
     friend class Shotgun;
+
 private:
     const int id_arma;
     const posicion_t posicion_inicial;
@@ -37,18 +38,20 @@ private:
 
 public:
     // Primera variante del constructor de la clase.
-    explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
-                      const dispersion_e& dispersion_bala, const int& nro);
+    explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo,
+                      const orientacion_e& direccion, const dispersion_e& dispersion_bala,
+                      const int& nro);
 
     // Segunda variante del constructor de la clase.
-    explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
-                      const dispersion_e& dispersion_bala, const inclinacion_e& inc, const int& nro);
+    explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo,
+                      const orientacion_e& direccion, const dispersion_e& dispersion_bala,
+                      const inclinacion_e& inc, const int& nro);
 
     // Verifica si la municion ha excedido su alcance maximo.
     bool fuera_de_rango(Mapa& mapa);
 
     // Getter de sentido.
-    orientacion_e get_sentido() {return this->sentido;}
+    orientacion_e get_sentido() { return this->sentido; }
 
     // Avanza la posicion de la municion, considerando su direccion, inclinacion y dispersion.
     bool avanzar(Mapa& mapa);

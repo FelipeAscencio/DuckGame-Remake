@@ -14,7 +14,7 @@ void RecibidorCliente::run() {
 
         try {
             cola_estados.try_push(estado_actual);
-            if (estado_actual.id_ganador != SEGUIR_JUGANDO){
+            if (estado_actual.id_ganador != SEGUIR_JUGANDO) {
                 break;
             }
         } catch (const ClosedQueue& error) {

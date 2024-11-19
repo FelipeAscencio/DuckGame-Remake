@@ -7,9 +7,9 @@
 #include <vector>
 
 #include "ak47.h"
-#include "shotgun.h"
 #include "magnum.h"
 #include "p_p_laser.h"
+#include "shotgun.h"
 #include "sniper.h"
 
 #define FPS 30
@@ -47,16 +47,16 @@ Pato::Pato(int id, Mapa& mapa):
         estado_actual(PARADO),
         iteraciones_subiendo(0),
         iteraciones_desde_aleteo(FPS / 2),
-        inmortal(false), 
+        inmortal(false),
         sonido(SILENCIO),
         rondas_ganadas(0),
         iteraciones_mirando_para_arriba(0) {
-            if(this->posicion.coordenada_x > mapa.largo/2)
-                this->orientacion = IZQUIERDA;
-            else 
-                this->orientacion = DERECHA;
-            this->orientacion_anterior = orientacion;
-        }
+    if (this->posicion.coordenada_x > mapa.largo / 2)
+        this->orientacion = IZQUIERDA;
+    else
+        this->orientacion = DERECHA;
+    this->orientacion_anterior = orientacion;
+}
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
 
@@ -103,7 +103,7 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion, bool disparo) {
     if (se_movio) {
         float pasos = derecha ? MOVER_DERECHA : MOVER_IZQUIERDA;
         this->posicion.coordenada_x += pasos;
-        if(this->arma_equipada){
+        if (this->arma_equipada) {
             this->arma_equipada->posicion_spawn.coordenada_x += pasos;
         }
         if (estado_actual != SALTANDO && estado_actual != CAYENDO) {
@@ -116,7 +116,7 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion, bool disparo) {
 void Pato::saltar() {
     estado_actual = SALTANDO;
     this->posicion.coordenada_y -= SALTO_Y_CAIDA;
-    if(this->arma_equipada){
+    if (this->arma_equipada) {
         this->arma_equipada->posicion_spawn.coordenada_y -= SALTO_Y_CAIDA;
     }
     this->iteraciones_subiendo = 1;
@@ -129,7 +129,7 @@ void Pato::aletear() {
     if (estado_actual == CAYENDO) {
         estado_actual = ALETEANDO;
         this->posicion.coordenada_y -= 1.5;
-        if(this->arma_equipada){
+        if (this->arma_equipada) {
             this->arma_equipada->posicion_spawn.coordenada_y -= 1.5;
         }
         iteraciones_desde_aleteo = 0;
@@ -147,8 +147,8 @@ void Pato::caer(Mapa& mapa) {
     // Si no esta en el piso del bloque debe caer.
     if (!mapa.piso_bloque(this->posicion)) {
         this->posicion.coordenada_y += SALTO_Y_CAIDA;
-        if(this->arma_equipada){
-                this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
+        if (this->arma_equipada) {
+            this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
         }
         estado_actual = CAYENDO;
     } else {
@@ -160,9 +160,9 @@ void Pato::caer(Mapa& mapa) {
                     SALTO_Y_CAIDA;  // Como el eje Y aumenta hacia abajo, el chequeo es inverso y
                                     // debemos fijarnos si se paso del alto para ver si se cayo del
                                     // mapa por debajo
-        if(this->arma_equipada){
-            this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
-        }
+            if (this->arma_equipada) {
+                this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
+            }
             return;
         }
 
@@ -175,10 +175,10 @@ void Pato::caer(Mapa& mapa) {
             if (piso_a_la_derecha || piso_a_la_izquierda) {
                 bool yendo_derecha =
                         this->orientacion == DERECHA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2)-1);
+                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2) - 1);
                 bool yendo_izquierda =
                         this->orientacion == IZQUIERDA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / 2)-1);
+                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / 2) - 1);
                 if (yendo_derecha || yendo_izquierda) {
                     estado_actual = PARADO;
                     return;
@@ -186,7 +186,7 @@ void Pato::caer(Mapa& mapa) {
             }
 
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
-            if(this->arma_equipada){
+            if (this->arma_equipada) {
                 this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
             }
 
@@ -200,7 +200,7 @@ void Pato::caer(Mapa& mapa) {
             if (posicion_en_bloque < mitad_bloque) {
                 posicion.coordenada_y += SALTO_Y_CAIDA;
                 estado_actual = CAYENDO;
-                if(this->arma_equipada){
+                if (this->arma_equipada) {
                     this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
                 }
             }
@@ -252,25 +252,25 @@ bool Pato::agarrar_casco() {
 bool Pato::disparar(Mapa& mapa) {
     if (arma_equipada) {
         bool disparo = arma_equipada->disparar(this->orientacion, mapa);
-        if (disparo){
+        if (disparo) {
             if (arma_equipada->tiene_retroceso()) {
-                if (this->orientacion == DERECHA){
+                if (this->orientacion == DERECHA) {
                     mover(mapa, IZQUIERDA, true);
-                } else if (this->orientacion == IZQUIERDA){
+                } else if (this->orientacion == IZQUIERDA) {
                     mover(mapa, DERECHA, true);
                 }
             }
         }
-        if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones != 0) return true;
-        else return disparo;
+        if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones != 0)
+            return true;
+        else
+            return disparo;
     } else {
         return false;
     }
 }
 
-void Pato::agacharse() {
-    estado_actual = AGACHADO;
-}
+void Pato::agacharse() { estado_actual = AGACHADO; }
 
 void Pato::chequear_estado(Mapa& mapa) {
     switch (estado_actual) {
@@ -286,18 +286,18 @@ void Pato::chequear_estado(Mapa& mapa) {
                 posicion_t posicion_cabeza_pato(this->posicion.coordenada_x,
                                                 this->posicion.coordenada_y - 8);
                 std::vector<int> pos_mapa = mapa.posicion_en_mapa(posicion_cabeza_pato);
-                if ((mapa.techo_bloque(posicion_cabeza_pato) && pos_mapa[1] == 0)){
+                if ((mapa.techo_bloque(posicion_cabeza_pato) && pos_mapa[1] == 0)) {
                     estado_actual = CAYENDO;
-                    iteraciones_subiendo = 0; 
+                    iteraciones_subiendo = 0;
                 }
                 bool bloque_mas_alto = pos_mapa[1] == 0;
                 if ((mapa.techo_bloque(posicion_cabeza_pato) &&
-                    mapa.mapa[pos_mapa[1] - !bloque_mas_alto][pos_mapa[0]] == 1)) {
+                     mapa.mapa[pos_mapa[1] - !bloque_mas_alto][pos_mapa[0]] == 1)) {
                     estado_actual = CAYENDO;
                     iteraciones_subiendo = 0;
                 } else {
                     posicion.coordenada_y -= SALTO_Y_CAIDA;
-                    if(this->arma_equipada){
+                    if (this->arma_equipada) {
                         this->arma_equipada->posicion_spawn.coordenada_y -= SALTO_Y_CAIDA;
                     }
                     iteraciones_subiendo += 1;
@@ -310,7 +310,7 @@ void Pato::chequear_estado(Mapa& mapa) {
 
         case ALETEANDO:
             this->posicion.coordenada_y -= 1.5;
-            if(this->arma_equipada){
+            if (this->arma_equipada) {
                 this->arma_equipada->posicion_spawn.coordenada_y -= 1.5;
             }
             estado_actual = CAYENDO;
@@ -327,7 +327,7 @@ void Pato::chequear_estado(Mapa& mapa) {
 void Pato::control_pre_comando(Mapa& mapa) {
     if (this->arma_equipada)
         this->posee_arma = true;
-    else 
+    else
         this->posee_arma = false;
     iteraciones_desde_aleteo += 1;
     if (this->posicion.coordenada_x < 0 ||
@@ -341,7 +341,7 @@ void Pato::control_pre_comando(Mapa& mapa) {
     }
     if (orientacion == ARRIBA) {
         iteraciones_mirando_para_arriba += 1;
-        if(iteraciones_mirando_para_arriba == 20){
+        if (iteraciones_mirando_para_arriba == 20) {
             iteraciones_mirando_para_arriba = 0;
             this->orientacion = orientacion_anterior;
         }
@@ -357,7 +357,7 @@ void Pato::control_pre_comando(Mapa& mapa) {
             posee_arma = false;
         }
     }
-    if (this->sonido != SILENCIO){
+    if (this->sonido != SILENCIO) {
         this->sonido = SILENCIO;
     }
 }
@@ -371,7 +371,7 @@ void Pato::recibir_disparo() {
         posee_armadura = false;  // Si le pegan un disparo, pierde el armadura pero sigue vivo.
         return;
     }
-    if (inmortal){
+    if (inmortal) {
         return;
     }
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
@@ -401,7 +401,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
                 if (disparar(mapa)) {
                     this->sonido = DISPARANDO;
                 } else {
-                    if(arma_equipada){
+                    if (arma_equipada) {
                         delete arma_equipada;
                     }
                 }
@@ -411,49 +411,54 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
             // Logica para ver si el arma/casco/armadura esta en la misma posicion para
             // agarrar
             break;
-        
+
         case CUAK:
             this->sonido = HACIENDO_CUAK;
             break;
 
         case CHEAT_AK:
-            if (this->arma_equipada){
+            if (this->arma_equipada) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new AK47(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
+            this->arma_equipada = new AK47(
+                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
             break;
 
         case CHEAT_SG:
-            if (this->arma_equipada){
+            if (this->arma_equipada) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new Shotgun(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
+            this->arma_equipada = new Shotgun(
+                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
             break;
 
         case CHEAT_MAGNUM:
-            if (this->arma_equipada){
+            if (this->arma_equipada) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new Magnum(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
+            this->arma_equipada = new Magnum(
+                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
             break;
 
         case CHEAT_LASER:
-            if (this->arma_equipada){
+            if (this->arma_equipada) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new PewPewLaser(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
+            this->arma_equipada = new PewPewLaser(
+                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
             break;
 
         case CHEAT_SNIPER:
-            if (this->arma_equipada){
+            if (this->arma_equipada) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new Sniper(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
+            this->arma_equipada = new Sniper(
+                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
             break;
 
         case CHEAT_INMORTALIDAD:
@@ -461,7 +466,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
             break;
 
         case CHEAT_RECARGAR:
-            if (this->arma_equipada){
+            if (this->arma_equipada) {
                 this->arma_equipada->recargar();
             }
             break;
@@ -469,7 +474,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
         case CHEAT_CASCO:
             this->posee_casco = !this->posee_casco;
             break;
-        
+
         case CHEAT_ARMADUAR:
             this->posee_armadura = !this->posee_armadura;
             break;

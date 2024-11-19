@@ -28,23 +28,21 @@
 #ifndef SDL_mouse_h_
 #define SDL_mouse_h_
 
-#include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_error.h>
+#include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_video.h>
-
 #include <SDL2/begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct SDL_Cursor SDL_Cursor;   /**< Implementation dependent */
+typedef struct SDL_Cursor SDL_Cursor; /**< Implementation dependent */
 
 /**
  * \brief Cursor types for SDL_CreateSystemCursor().
  */
-typedef enum
-{
+typedef enum {
     SDL_SYSTEM_CURSOR_ARROW,     /**< Arrow */
     SDL_SYSTEM_CURSOR_IBEAM,     /**< I-beam */
     SDL_SYSTEM_CURSOR_WAIT,      /**< Wait */
@@ -63,10 +61,9 @@ typedef enum
 /**
  * \brief Scroll direction types for the Scroll event
  */
-typedef enum
-{
-    SDL_MOUSEWHEEL_NORMAL,    /**< The scroll direction is normal */
-    SDL_MOUSEWHEEL_FLIPPED    /**< The scroll direction is flipped / natural */
+typedef enum {
+    SDL_MOUSEWHEEL_NORMAL, /**< The scroll direction is normal */
+    SDL_MOUSEWHEEL_FLIPPED /**< The scroll direction is flipped / natural */
 } SDL_MouseWheelDirection;
 
 /* Function prototypes */
@@ -78,7 +75,7 @@ typedef enum
  *
  * \since This function is available since SDL 2.0.0.
  */
-extern DECLSPEC SDL_Window * SDLCALL SDL_GetMouseFocus(void);
+extern DECLSPEC SDL_Window* SDLCALL SDL_GetMouseFocus(void);
 
 /**
  * Retrieve the current state of the mouse.
@@ -101,7 +98,7 @@ extern DECLSPEC SDL_Window * SDLCALL SDL_GetMouseFocus(void);
  * \sa SDL_GetRelativeMouseState
  * \sa SDL_PumpEvents
  */
-extern DECLSPEC Uint32 SDLCALL SDL_GetMouseState(int *x, int *y);
+extern DECLSPEC Uint32 SDLCALL SDL_GetMouseState(int* x, int* y);
 
 /**
  * Get the current state of the mouse in relation to the desktop.
@@ -130,7 +127,7 @@ extern DECLSPEC Uint32 SDLCALL SDL_GetMouseState(int *x, int *y);
  *
  * \sa SDL_CaptureMouse
  */
-extern DECLSPEC Uint32 SDLCALL SDL_GetGlobalMouseState(int *x, int *y);
+extern DECLSPEC Uint32 SDLCALL SDL_GetGlobalMouseState(int* x, int* y);
 
 /**
  * Retrieve the relative state of the mouse.
@@ -149,7 +146,7 @@ extern DECLSPEC Uint32 SDLCALL SDL_GetGlobalMouseState(int *x, int *y);
  *
  * \sa SDL_GetMouseState
  */
-extern DECLSPEC Uint32 SDLCALL SDL_GetRelativeMouseState(int *x, int *y);
+extern DECLSPEC Uint32 SDLCALL SDL_GetRelativeMouseState(int* x, int* y);
 
 /**
  * Move the mouse cursor to the given position within the window.
@@ -168,8 +165,7 @@ extern DECLSPEC Uint32 SDLCALL SDL_GetRelativeMouseState(int *x, int *y);
  *
  * \sa SDL_WarpMouseGlobal
  */
-extern DECLSPEC void SDLCALL SDL_WarpMouseInWindow(SDL_Window * window,
-                                                   int x, int y);
+extern DECLSPEC void SDLCALL SDL_WarpMouseInWindow(SDL_Window* window, int x, int y);
 
 /**
  * Move the mouse to the given position in global screen space.
@@ -307,10 +303,8 @@ extern DECLSPEC SDL_bool SDLCALL SDL_GetRelativeMouseMode(void);
  * \sa SDL_SetCursor
  * \sa SDL_ShowCursor
  */
-extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateCursor(const Uint8 * data,
-                                                     const Uint8 * mask,
-                                                     int w, int h, int hot_x,
-                                                     int hot_y);
+extern DECLSPEC SDL_Cursor* SDLCALL SDL_CreateCursor(const Uint8* data, const Uint8* mask, int w,
+                                                     int h, int hot_x, int hot_y);
 
 /**
  * Create a color cursor.
@@ -326,8 +320,7 @@ extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateCursor(const Uint8 * data,
  * \sa SDL_CreateCursor
  * \sa SDL_FreeCursor
  */
-extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateColorCursor(SDL_Surface *surface,
-                                                          int hot_x,
+extern DECLSPEC SDL_Cursor* SDLCALL SDL_CreateColorCursor(SDL_Surface* surface, int hot_x,
                                                           int hot_y);
 
 /**
@@ -341,7 +334,7 @@ extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateColorCursor(SDL_Surface *surface,
  *
  * \sa SDL_FreeCursor
  */
-extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateSystemCursor(SDL_SystemCursor id);
+extern DECLSPEC SDL_Cursor* SDLCALL SDL_CreateSystemCursor(SDL_SystemCursor id);
 
 /**
  * Set the active cursor.
@@ -359,7 +352,7 @@ extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateSystemCursor(SDL_SystemCursor id);
  * \sa SDL_GetCursor
  * \sa SDL_ShowCursor
  */
-extern DECLSPEC void SDLCALL SDL_SetCursor(SDL_Cursor * cursor);
+extern DECLSPEC void SDLCALL SDL_SetCursor(SDL_Cursor* cursor);
 
 /**
  * Get the active cursor.
@@ -373,7 +366,7 @@ extern DECLSPEC void SDLCALL SDL_SetCursor(SDL_Cursor * cursor);
  *
  * \sa SDL_SetCursor
  */
-extern DECLSPEC SDL_Cursor *SDLCALL SDL_GetCursor(void);
+extern DECLSPEC SDL_Cursor* SDLCALL SDL_GetCursor(void);
 
 /**
  * Get the default cursor.
@@ -384,7 +377,7 @@ extern DECLSPEC SDL_Cursor *SDLCALL SDL_GetCursor(void);
  *
  * \sa SDL_CreateSystemCursor
  */
-extern DECLSPEC SDL_Cursor *SDLCALL SDL_GetDefaultCursor(void);
+extern DECLSPEC SDL_Cursor* SDLCALL SDL_GetDefaultCursor(void);
 
 /**
  * Free a previously-created cursor.
@@ -400,7 +393,7 @@ extern DECLSPEC SDL_Cursor *SDLCALL SDL_GetDefaultCursor(void);
  * \sa SDL_CreateCursor
  * \sa SDL_CreateSystemCursor
  */
-extern DECLSPEC void SDLCALL SDL_FreeCursor(SDL_Cursor * cursor);
+extern DECLSPEC void SDLCALL SDL_FreeCursor(SDL_Cursor* cursor);
 
 /**
  * Toggle whether or not the cursor is shown.
@@ -431,17 +424,17 @@ extern DECLSPEC int SDLCALL SDL_ShowCursor(int toggle);
  * - Button 2:  Middle mouse button
  * - Button 3:  Right mouse button
  */
-#define SDL_BUTTON(X)       (1 << ((X)-1))
-#define SDL_BUTTON_LEFT     1
-#define SDL_BUTTON_MIDDLE   2
-#define SDL_BUTTON_RIGHT    3
-#define SDL_BUTTON_X1       4
-#define SDL_BUTTON_X2       5
-#define SDL_BUTTON_LMASK    SDL_BUTTON(SDL_BUTTON_LEFT)
-#define SDL_BUTTON_MMASK    SDL_BUTTON(SDL_BUTTON_MIDDLE)
-#define SDL_BUTTON_RMASK    SDL_BUTTON(SDL_BUTTON_RIGHT)
-#define SDL_BUTTON_X1MASK   SDL_BUTTON(SDL_BUTTON_X1)
-#define SDL_BUTTON_X2MASK   SDL_BUTTON(SDL_BUTTON_X2)
+#define SDL_BUTTON(X) (1 << ((X)-1))
+#define SDL_BUTTON_LEFT 1
+#define SDL_BUTTON_MIDDLE 2
+#define SDL_BUTTON_RIGHT 3
+#define SDL_BUTTON_X1 4
+#define SDL_BUTTON_X2 5
+#define SDL_BUTTON_LMASK SDL_BUTTON(SDL_BUTTON_LEFT)
+#define SDL_BUTTON_MMASK SDL_BUTTON(SDL_BUTTON_MIDDLE)
+#define SDL_BUTTON_RMASK SDL_BUTTON(SDL_BUTTON_RIGHT)
+#define SDL_BUTTON_X1MASK SDL_BUTTON(SDL_BUTTON_X1)
+#define SDL_BUTTON_X2MASK SDL_BUTTON(SDL_BUTTON_X2)
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

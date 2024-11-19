@@ -17,7 +17,7 @@ void Server::comenzar_juego() { g.start(); }
 void Server::leer_entrada() {
     std::string leido;
     while (std::getline(std::cin, leido)) {
-        if (leido == EXIT){
+        if (leido == EXIT) {
             g.finalizar_juego();
             a.dejar_de_aceptar();
             break;

@@ -64,7 +64,7 @@ public:
     // Permito el movimiento del objeto.
     Client(Client&&) = default;
     Client& operator=(Client&&) = default;
-    
+
     ~Client();
 };
 

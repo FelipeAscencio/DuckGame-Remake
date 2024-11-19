@@ -11,7 +11,7 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa((rand()%2) + 1) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa((rand() % 2) + 1) {}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -26,11 +26,13 @@ void Gameloop::chequear_nuevos_jugadores() {
     }
 }
 
-bool Gameloop::hay_ganador(){
-    if (jugadores.size() < 2) return false;
+bool Gameloop::hay_ganador() {
+    if (jugadores.size() < 2)
+        return false;
     size_t vivos = jugadores.size();
-    for (auto pato: jugadores_vivos){
-        if (!pato) vivos -= 1;
+    for (auto pato: jugadores_vivos) {
+        if (!pato)
+            vivos -= 1;
     }
     return vivos == 1;
 }
@@ -38,8 +40,8 @@ bool Gameloop::hay_ganador(){
 void Gameloop::actualizar_estado_jugadores() {
     for (Pato* p: jugadores) {
         p->control_pre_comando(this->mapa);
-        if (!p->vivo){
-            if(jugadores_vivos[p->id_jugador]){
+        if (!p->vivo) {
+            if (jugadores_vivos[p->id_jugador]) {
                 jugadores_vivos[p->id_jugador] = false;
             }
         }
@@ -53,8 +55,8 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
     } else {
         for (Pato* p: jugadores) {
             estado_actual.agregar_info_pato(p);
-            if (p->arma_equipada){
-                for (Municion* m: p->arma_equipada->balas){
+            if (p->arma_equipada) {
+                for (Municion* m: p->arma_equipada->balas) {
                     estado_actual.agregar_bala(m);
                 }
             }
@@ -65,9 +67,9 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
             estado_actual.agregar_arma(a);
         }
     }
-    if (hubo_ganador){
-        for (Pato* p: jugadores){
-            if (p->vivo){
+    if (hubo_ganador) {
+        for (Pato* p: jugadores) {
+            if (p->vivo) {
                 estado_actual.definir_ganador(p->id_jugador);
                 p->rondas_ganadas += 1;
                 break;
@@ -87,18 +89,18 @@ void Gameloop::actualizar_balas_disparadas() {
 }
 
 void Gameloop::chequear_posiciones() {
-    for (Pato* p: jugadores){
-        if(p->arma_equipada && !p->arma_equipada->balas.empty()){
-            for (Municion* m: p->arma_equipada->balas){
-                for (Pato* otro: jugadores){
-                    if (p->id_jugador != otro->id_jugador){
-                        if (mapa.posicion_en_mapa(otro->posicion) == mapa.posicion_en_mapa(m->posicion_actual)){
-                            if (m->posicion_actual.misma_posicion(otro->posicion)){
+    for (Pato* p: jugadores) {
+        if (p->arma_equipada && !p->arma_equipada->balas.empty()) {
+            for (Municion* m: p->arma_equipada->balas) {
+                for (Pato* otro: jugadores) {
+                    if (p->id_jugador != otro->id_jugador) {
+                        if (mapa.posicion_en_mapa(otro->posicion) ==
+                            mapa.posicion_en_mapa(m->posicion_actual)) {
+                            if (m->posicion_actual.misma_posicion(otro->posicion)) {
                                 otro->recibir_disparo();
                                 p->arma_equipada->eliminar_bala(m->nro_bala);
                             }
                         }
-                        
                     }
                 }
             }
@@ -114,14 +116,13 @@ void Gameloop::loop_juego() {
         actualizar_balas_disparadas();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
-            if(jugadores.size() > 1){
+            if (jugadores.size() > 1) {
                 for (Pato* p: jugadores) {
                     if (cmd.id_cliente == p->id_jugador) {
                         p->realizar_accion(cmd.accion, mapa);
                     }
                 }
             }
-            
         }
     }
     enviar_estado_juego(false);
@@ -152,7 +153,7 @@ void Gameloop::run() {
         t1 += std::chrono::milliseconds(ms_per_frame);
         frame_count++;
     }
-    if (juego_activo){
+    if (juego_activo) {
         enviar_estado_juego(true);
     }
 }

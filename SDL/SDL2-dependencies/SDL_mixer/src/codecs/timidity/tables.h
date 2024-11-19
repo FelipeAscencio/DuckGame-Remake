@@ -11,7 +11,7 @@
 #ifndef TIMIDITY_TABLES_H
 #define TIMIDITY_TABLES_H
 
-#define timi_sine(x) (SDL_sin((2*PI/1024.0) * (x)))
+#define timi_sine(x) (SDL_sin((2 * PI / 1024.0) * (x)))
 
 #define SINE_CYCLE_LENGTH 1024
 

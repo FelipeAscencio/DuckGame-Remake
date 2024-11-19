@@ -104,7 +104,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_armas(const Informacio
     return arma;
 }
 
-std::vector<uint8_t> ServerProtocol::Protocol::serializar_ganador(const int& id){
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_ganador(const int& id) {
     std::vector<uint8_t> ganador;
     ganador.push_back(CODIGO_GANADOR);
     ganador.push_back(id);
@@ -112,7 +112,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_ganador(const int& id)
     return ganador;
 }
 
-std::vector<uint8_t> ServerProtocol::Protocol::serializar_bala(const InformacionBala& info_bala){
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_bala(const InformacionBala& info_bala) {
     std::vector<uint8_t> bala;
     bala.push_back(CODIGO_BALA);
     bala.push_back(info_bala.id_arma);
@@ -127,7 +127,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_bala(const Informacion
     return bala;
 }
 
-std::vector<uint8_t> ServerProtocol::Protocol::serializar_mapa(const int& mapa){
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_mapa(const int& mapa) {
     std::vector<uint8_t> bytes_mapa;
     bytes_mapa.push_back(CODIGO_MAPA);
     bytes_mapa.push_back(mapa);
@@ -156,7 +156,7 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
         i++;
     }
     i = 0;
-    while (i < estado_actual.cantidad_balas && envio_correcto){
+    while (i < estado_actual.cantidad_balas && envio_correcto) {
         envio_correcto = _enviar(serializar_bala(estado_actual.info_balas[i]));
         i++;
     }
@@ -173,7 +173,8 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
 }
 
 bool ServerProtocol::Protocol::accion_valida(const uint8_t& accion) {
-    return ((accion >= MOVER_DERECHA && accion <= CUAK) || (accion >= CHEAT_AK && accion <= CHEAT_CASCO));
+    return ((accion >= MOVER_DERECHA && accion <= CUAK) ||
+            (accion >= CHEAT_AK && accion <= CHEAT_CASCO));
 }
 
 bool ServerProtocol::Protocol::recibir(comando_t& cmd, const int& id_cliente) {

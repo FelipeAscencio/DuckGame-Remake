@@ -21,7 +21,7 @@ void EnviadorCliente::run() {
     }
 }
 
-void EnviadorCliente::stop() { 
+void EnviadorCliente::stop() {
     cola_comandos.push(COMANDO_EXIT);
     this->vivo = false;
 }

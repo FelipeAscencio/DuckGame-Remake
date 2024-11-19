@@ -3,8 +3,8 @@
 #define CLIENT_DIBUJADOR_H
 
 #include <string>
-#include <vector>
 #include <thread>
+#include <vector>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -72,22 +72,30 @@ private:
                         orientacion_e orientacion, const int& id);
 
     // Dibuja un pato vivo en en la ventana.
-    void dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e orientacion, estado_pato_e& estado_pato, sonido_e& sonido);
+    void dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo,
+                           float& y_relativo, orientacion_e orientacion, estado_pato_e& estado_pato,
+                           sonido_e& sonido);
 
     // Dibuja la armadura de un pato.
-    void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
-    
+    void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
+                               float& y_relativo, orientacion_e& orientacion,
+                               estado_pato_e& estado);
+
     // Dibuja el sniper (Metodo particular porque es el unico sprite que no es cuadrado).
     void dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y, orientacion_e orientacion);
-    
+
     // Preparar la renderizacion del sprite, para luego dibujarlo.
-    void renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
+    void renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo, float& y_relativo,
+                           orientacion_e& orientacion, estado_pato_e& estado);
 
     // Dibuja el arma de un pato.
-    void dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado, int& id_arma);
+    void dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
+                           float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado,
+                           int& id_arma);
 
     // Dibuja el casco de un pato.
-    void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
+    void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
+                            float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
 
     // Reproduce el sonido del 'disparo de ak'.
     void reproducir_disparo_ak();
@@ -140,7 +148,6 @@ private:
     // Dibuja el 'tablero' con los puntajes actuales del juego.
     void dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual);
 
-    
 
 public:
     // Constructor de la clase.

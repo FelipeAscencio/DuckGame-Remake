@@ -11,7 +11,8 @@
 
 AK47::AK47(posicion_t posicion_inicial):
         Arma(ID_AK47, AK_47, ALCANCE, MUNICIONES, true, posicion_inicial),
-        ultima_bala_disparada(NO), iteraciones_desde_disparo(0) {}
+        ultima_bala_disparada(NO),
+        iteraciones_desde_disparo(0) {}
 
 void AK47::modificar_dispersion_balas(bool disparando) {
     if (disparando) {
@@ -49,7 +50,7 @@ void AK47::modificar_dispersion_balas(bool disparando) {
     }
 }
 
-void AK47::control_atributos(Mapa& mapa){
+void AK47::control_atributos(Mapa& mapa) {
     Arma::control_atributos(mapa);
     if (iteraciones_desde_disparo > 0)
         modificar_dispersion_balas(false);

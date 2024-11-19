@@ -9,7 +9,7 @@
 #define MEDIA_TIRA_SPRITES 3
 #define TIRA_COMPLETA_CAJAS 4
 #define TAMANIO_SPRITE_GRANDE 32
-#define TAMANIO_SPRITES_BUG 31 // Hay algunos sprites que no llegan justo a 32.
+#define TAMANIO_SPRITES_BUG 31  // Hay algunos sprites que no llegan justo a 32.
 #define TAMANIO_SPRITE_MEDIANO 16
 #define TAMANIO_SPRITE_CHICO 8
 #define INICIO_PATO_X 1
@@ -51,8 +51,8 @@ using namespace SDL2pp;
 
 Parseador::Parseador() {}
 
-void Parseador::iterador_de_parseo(std::vector<SDL_Rect>& sprites, const int& cantidad_sprites, const int& x,
-                                   const int& y, const int& tamanio_sprite) {
+void Parseador::iterador_de_parseo(std::vector<SDL_Rect>& sprites, const int& cantidad_sprites,
+                                   const int& x, const int& y, const int& tamanio_sprite) {
     for (int i = CERO; i < cantidad_sprites; ++i) {
         SDL_Rect rect;
         rect.x = x + i * tamanio_sprite;

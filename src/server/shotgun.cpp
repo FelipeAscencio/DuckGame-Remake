@@ -31,30 +31,34 @@ inclinacion_e obtener_inclinacion(int bala_disparada) {
     return PARA_ABAJO;
 }
 
-void Shotgun::eliminar_bala(const int& indice){
+void Shotgun::eliminar_bala(const int& indice) {
     int inicio_tanda_balas = 0;
-    if (indice >= 6) inicio_tanda_balas = 6;
-    for (int i = 0; i < 6; i++){
+    if (indice >= 6)
+        inicio_tanda_balas = 6;
+    for (int i = 0; i < 6; i++) {
         Municion* auxiliar = balas[inicio_tanda_balas];
         balas.erase(balas.begin() + inicio_tanda_balas);
         delete auxiliar;
     }
-    for (int i = indice; i < (int)balas.size(); i++){
+    for (int i = indice; i < (int)balas.size(); i++) {
         balas[i]->nro_bala -= 6;
     }
 }
 
 bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
-    if (municiones == 0) return false;
+    if (municiones == 0)
+        return false;
 
-    if (debe_recargar){
+    if (debe_recargar) {
         debe_recargar = false;
     } else {
-        for (int i = 0; i < PERDIGONES_POR_DISPARO; i++){
+        for (int i = 0; i < PERDIGONES_POR_DISPARO; i++) {
             inclinacion_e inc = obtener_inclinacion(i);
             dispersion_e dis = obtener_dispersion(i);
-            Municion* m = new Municion(ID_SHOTGUN, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO), direccion, dis, inc, balas.size());
-            if (m->avanzar(mapa)){
+            Municion* m =
+                    new Municion(ID_SHOTGUN, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO),
+                                 direccion, dis, inc, balas.size());
+            if (m->avanzar(mapa)) {
                 balas.push_back(m);
             } else {
                 delete m;

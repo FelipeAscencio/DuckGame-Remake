@@ -4,7 +4,7 @@
 #define MENOS_UNO -1
 #define ANCHO_MIN 960
 #define ALTO_MIN 720
-#define VOLUMEN_MUSICA 5 // '5' Recomendado.
+#define VOLUMEN_MUSICA 5  // '5' Recomendado.
 #define FRECUENCIA_HZ 44100
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2
@@ -81,7 +81,7 @@ void Client::controlar_loop_juego() {
     terminar_musica(musica_fondo);
 }
 
-Client::~Client(){
+Client::~Client() {
     finalizar_hilos();
     this->socket.shutdown(RW_CLOSE);
     this->socket.close();

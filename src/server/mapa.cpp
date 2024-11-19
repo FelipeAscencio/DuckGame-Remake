@@ -11,7 +11,7 @@
 #define PRIMERA_POSICION 0
 #define SEGUNDA_POSICION 1
 
-Mapa::Mapa(int mapa) : id_mapa(mapa){
+Mapa::Mapa(int mapa): id_mapa(mapa) {
     std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(mapa) + TXT;
     std::ifstream archivo_mapa(ruta_mapa);
     if (!archivo_mapa.is_open()) {
@@ -48,8 +48,7 @@ std::vector<int> Mapa::posicion_en_mapa(const posicion_t& pos) {
     std::vector<int> posicion(2);
     bool x_fuera_rango = ((pos.coordenada_x / TILE_A_METRO) > largo) ||
                          ((pos.coordenada_x / TILE_A_METRO) < CERO);
-    bool y_fuera_rango =
-            (pos.coordenada_y / TILE_A_METRO) > alto || pos.coordenada_y < CERO;
+    bool y_fuera_rango = (pos.coordenada_y / TILE_A_METRO) > alto || pos.coordenada_y < CERO;
     if (x_fuera_rango || y_fuera_rango) {
         posicion[PRIMERA_POSICION] = MENOS_UNO;
         posicion[SEGUNDA_POSICION] = MENOS_UNO;
@@ -87,9 +86,9 @@ bool Mapa::techo_bloque(const posicion_t& pos) {
     return ((int)pos.coordenada_y % TILE_A_METRO == 0);
 }
 
-posicion_t Mapa::posicion_inicial(const int& id_pato){
-    if (this->id_mapa == 1){
-        if (id_pato == 0) 
+posicion_t Mapa::posicion_inicial(const int& id_pato) {
+    if (this->id_mapa == 1) {
+        if (id_pato == 0)
             return posicion_t(5, 89);
         else if (id_pato == 1)
             return posicion_t(175, 29);
@@ -106,7 +105,7 @@ posicion_t Mapa::posicion_inicial(const int& id_pato){
         else if (id_pato == 7)
             return posicion_t(149, 69);
     } else {
-        if (id_pato == 0) 
+        if (id_pato == 0)
             return posicion_t(63, 59);
         else if (id_pato == 1)
             return posicion_t(148, 69);
@@ -123,7 +122,7 @@ posicion_t Mapa::posicion_inicial(const int& id_pato){
         else if (id_pato == 7)
             return posicion_t(178, 129);
     }
-    return posicion_t(0,0);
+    return posicion_t(0, 0);
 }
 
 

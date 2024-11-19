@@ -15,7 +15,7 @@
 #include "common/posicion.h"
 
 #define CERO 0
-#define ID_GANADOR 0xFD // Valor dummy que indica que no hay un ganador de la ronda actual.
+#define ID_GANADOR 0xFD  // Valor dummy que indica que no hay un ganador de la ronda actual.
 
 // 'struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
@@ -23,7 +23,7 @@ struct InformacionPato {
     posicion_t posicion;
     bool vivo;
     bool arma;
-    int id_arma_equipada; // 0 = no arma, 1 laser, 2 ak, 3 magnum, 4 shotgun, 5 sniper.
+    int id_arma_equipada;  // 0 = no arma, 1 laser, 2 ak, 3 magnum, 4 shotgun, 5 sniper.
     bool casco;
     bool armadura;
     orientacion_e orientacion;
@@ -49,7 +49,8 @@ struct InformacionPato {
     explicit InformacionPato(const uint8_t& id_pato, const posicion_t& pos, bool esta_vivo,
                              bool tiene_arma, const uint8_t& id_arma, bool tiene_casco,
                              bool tiene_armadura, const orientacion_e& orientacion_pato,
-                             const estado_pato_e& estado_pato, const sonido_e& sonido_pato, const int& rondas):
+                             const estado_pato_e& estado_pato, const sonido_e& sonido_pato,
+                             const int& rondas):
             id(id_pato),
             posicion(pos),
             vivo(esta_vivo),
@@ -65,7 +66,7 @@ struct InformacionPato {
 
 // 'struct' que encapsula la informacion de todas las armas del juego.
 struct InformacionArma {
-    int id_arma; // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
+    int id_arma;  // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
     posicion_t posicion;
 
     // Primera variante del constructor del struct.
@@ -80,17 +81,23 @@ struct InformacionArma {
 
 
 // 'struct' que encapsula la informacion de todas las balas del juego.
-struct InformacionBala{
-    int id_arma; // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
+struct InformacionBala {
+    int id_arma;  // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
     posicion_t pos;
     inclinacion_e inclinacion;
     orientacion_e direccion;
 
     // Primera variante del constructor del struct.
-    explicit InformacionBala(Municion* m): id_arma(m->id_arma), pos(m->posicion_actual), inclinacion(m->inclinacion), direccion(m->sentido){}
-    
+    explicit InformacionBala(Municion* m):
+            id_arma(m->id_arma),
+            pos(m->posicion_actual),
+            inclinacion(m->inclinacion),
+            direccion(m->sentido) {}
+
     // Segundavariante del constructor del struct.
-    explicit InformacionBala(const int& id, const posicion_t& posicion, const inclinacion_e& inc, const orientacion_e& sentido): id_arma(id), pos(posicion), inclinacion(inc), direccion(sentido){}
+    explicit InformacionBala(const int& id, const posicion_t& posicion, const inclinacion_e& inc,
+                             const orientacion_e& sentido):
+            id_arma(id), pos(posicion), inclinacion(inc), direccion(sentido) {}
 };
 
 // 'struct' que sirve para comparar las 'ID'.
@@ -123,7 +130,7 @@ struct EstadoJuego {
             cantidad_balas(CERO),
             cantidad_armaduras(CERO),
             cantidad_cascos(CERO),
-            cantidad_cajas(CERO), 
+            cantidad_cajas(CERO),
             id_ganador(ID_GANADOR),
             id_mapa(0) {}
 
@@ -133,7 +140,7 @@ struct EstadoJuego {
             cantidad_balas(CERO),
             cantidad_armaduras(CERO),
             cantidad_cascos(CERO),
-            cantidad_cajas(CERO), 
+            cantidad_cajas(CERO),
             id_ganador(ID_GANADOR),
             id_mapa(mapa) {}
 
@@ -175,21 +182,20 @@ struct EstadoJuego {
     }
 
     // Agrega la informacion de una bala disparada (recibida como un puntero)
-    void agregar_bala(Municion* m){
+    void agregar_bala(Municion* m) {
         InformacionBala nueva(m);
         info_balas.push_back(nueva);
         this->cantidad_balas++;
     }
 
-    // Agrega la informacion de una bala (recibida por referencia constante) en particular al vector.
-    void agregar_bala(const InformacionBala& bala){
+    // Agrega la informacion de una bala (recibida por referencia constante) en particular al
+    // vector.
+    void agregar_bala(const InformacionBala& bala) {
         info_balas.push_back(bala);
         this->cantidad_balas++;
     }
 
-    void definir_ganador(const int& id){
-        this->id_ganador = id;
-    }
+    void definir_ganador(const int& id) { this->id_ganador = id; }
 
     // Vacia la informacion de los patos.
     void vaciar() { this->info_patos.clear(); }
