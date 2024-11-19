@@ -48,9 +48,7 @@ Pato::Pato(int id, Mapa& mapa):
         iteraciones_subiendo(0),
         iteraciones_desde_aleteo(FPS / 2),
         inmortal(false), 
-        sonido(SILENCIO),
-        rondas_ganadas(0),
-        iteraciones_mirando_arriba(0) {
+        sonido(SILENCIO) {
             if(this->posicion.coordenada_x > mapa.largo/2)
                 this->orientacion = IZQUIERDA;
             else 
@@ -327,12 +325,8 @@ void Pato::control_pre_comando(Mapa& mapa) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir.
         return;
     }
-    if (orientacion == ARRIBA){
-        iteraciones_mirando_arriba += 1;
-        if (iteraciones_mirando_arriba > 5){
-            iteraciones_mirando_arriba = 0;
-            this->orientacion = DERECHA;
-        }
+    if (orientacion == ARRIBA) {
+        cambiar_orientacion(DERECHA);
     }
     if (estado_actual != SALTANDO) {
         caer(mapa);
@@ -423,7 +417,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new AK47(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
+            this->arma_equipada = new AK47(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
             break;
 
         case CHEAT_SG:
@@ -431,7 +425,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new Shotgun(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
+            this->arma_equipada = new Shotgun(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
             break;
 
         case CHEAT_MAGNUM:
@@ -439,7 +433,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new Magnum(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
+            this->arma_equipada = new Magnum(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
             break;
 
         case CHEAT_LASER:
@@ -447,7 +441,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new PewPewLaser(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
+            this->arma_equipada = new PewPewLaser(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
             break;
 
         case CHEAT_SNIPER:
@@ -455,7 +449,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
                 delete this->arma_equipada;
             }
             this->posee_arma = true;
-            this->arma_equipada = new Sniper(posicion_t(posicion.coordenada_x, posicion.coordenada_y + TILE_A_METRO/2));
+            this->arma_equipada = new Sniper(posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO/2));
             break;
 
         case CHEAT_INMORTALIDAD:

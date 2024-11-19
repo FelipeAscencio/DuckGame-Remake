@@ -18,8 +18,6 @@ class Protocol {
 private:
     Socket& s;
 
-    std::vector<uint8_t> serializar_mapa(const int& mapa);
-
     // Serializa la informacion del ganador. Si esta en la mitad de una ronda, envia un valor dummy
     std::vector<uint8_t> serializar_ganador(const int& id);
 
