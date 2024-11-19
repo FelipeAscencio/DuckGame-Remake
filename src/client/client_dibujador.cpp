@@ -383,6 +383,52 @@ void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, fl
     }
 }
 
+void Dibujador::reproducir_disparo_ak() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_ak, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_explosion() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_explosion, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_escopeta() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_escopeta, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_laser() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_laser, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_sniper() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_sniper, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_disparo_pistola() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_pistola, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_quack() {
+    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_quack, CANTIDAD_DE_REPRODUCCIONES);
+}
+
+void Dibujador::reproducir_sonido_pato(const int& id_arma, const sonido_e& sonido){
+    if (sonido == HACIENDO_CUAK){
+        reproducir_quack();
+    } else {
+        if (id_arma == ID_MAGNUM){
+            reproducir_disparo_pistola();
+        } else if (id_arma == ID_AK){
+            reproducir_disparo_ak();
+        } else if (id_arma == ID_SHOTGUN){
+            reproducir_disparo_escopeta();
+        } else if (id_arma == ID_PEW_PEW_LASER){
+            reproducir_disparo_laser();
+        } else if (id_arma == ID_SNIPER){
+            reproducir_disparo_sniper();
+        }
+    }
+}
+
 void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& pato: estado_actual.info_patos) {
         float escala = ESCALA_SPRITES_GRANDES;
@@ -396,6 +442,7 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         bool tiene_armadura = pato.armadura;
         orientacion_e orientacion = pato.orientacion;
         estado_pato_e estado = pato.estado;
+        sonido_e sonido = pato.sonido;
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         if (esta_vivo == false){
             dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_MUERTO],
@@ -410,6 +457,9 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
             }
             if (tiene_casco){
                 dibujar_casco_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
+            }
+            if (sonido != SILENCIO){
+                reproducir_sonido_pato(id_arma, sonido);
             }
         }
     }
@@ -560,34 +610,6 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<in
     dibujar_patos_tablero(renderer);
     dibujar_puntos_tablero(renderer, puntajes);
     TTF_Quit();
-}
-
-void Dibujador::reproducir_disparo_ak() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_ak, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_explosion() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_explosion, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_disparo_escopeta() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_escopeta, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_disparo_laser() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_laser, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_disparo_sniper() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_sniper, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_disparo_pistola() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_pistola, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_quack() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_quack, CANTIDAD_DE_REPRODUCCIONES);
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo, const int& numero_mapa) {

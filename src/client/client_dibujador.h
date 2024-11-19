@@ -90,6 +90,9 @@ private:
     // Dibuja el casco de un pato.
     void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
 
+    // Reproduce el sonido emitido por el 'Pato' segun corresponda.
+    void reproducir_sonido_pato(const int& id_arma, const sonido_e& sonido);
+
     // Dibuja los patos del 'estado_actual' en la ventana.
     void dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
