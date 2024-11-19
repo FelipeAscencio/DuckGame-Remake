@@ -72,7 +72,7 @@ private:
                         orientacion_e orientacion, const int& id);
 
     // Dibuja un pato vivo en en la ventana.
-    void dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e orientacion, estado_pato_e& estado_pato);
+    void dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e orientacion, estado_pato_e& estado_pato, sonido_e& sonido);
 
     // Dibuja la armadura de un pato.
     void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);

@@ -68,6 +68,7 @@
 #define POS_SPRITE_SALTANDO 7
 #define POS_SPRITE_ALETEANDO 11
 #define POS_SPRITE_CAYENDO 8
+#define OFFSET_SPRITES_PATO_CUACK 12
 #define POS_ARMA 0
 #define POS_BALA_UNICA 1
 #define POS_CASCO 12
@@ -214,34 +215,39 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e orientacion, estado_pato_e& estado){
+void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo, float& y_relativo, orientacion_e orientacion, estado_pato_e& estado, sonido_e& sonido){
     if (orientacion == ARRIBA){
         orientacion = DERECHA; // Se corrige la orientacion del pato ya que lo que estara hacia arriba es el arma.
     }
 
+    int offset_indice = 0;
+    if (sonido == HACIENDO_CUAK){ // Se suma un offset a la tira de sprites si esta haciendo 'quack'.
+        offset_indice = OFFSET_SPRITES_PATO_CUACK;
+    }
+
     if (estado == ESTADO_PARADO) {
-        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
+        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO + offset_indice],
                        x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala, orientacion, id);
     } else if (estado == ESTADO_AGACHADO) {
         dibujar_sprite(renderer, this->sprite_sheet_pato,
-                       this->sprites_pato[POS_SPRITE_AGACHADO], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
+                       this->sprites_pato[POS_SPRITE_AGACHADO + offset_indice], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
                        orientacion, id);
     } else if (estado == ESTADO_SALTANDO) {
         dibujar_sprite(renderer, this->sprite_sheet_pato,
-                       this->sprites_pato[POS_SPRITE_SALTANDO], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
+                       this->sprites_pato[POS_SPRITE_SALTANDO + offset_indice], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
                        orientacion, id);
     } else if (estado == ESTADO_ALETEANDO) {
         dibujar_sprite(renderer, this->sprite_sheet_pato,
-                       this->sprites_pato[POS_SPRITE_ALETEANDO], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
+                       this->sprites_pato[POS_SPRITE_ALETEANDO + offset_indice], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
                        orientacion, id);
     } else if (estado == ESTADO_CAYENDO) {
         dibujar_sprite(renderer, this->sprite_sheet_pato,
-                       this->sprites_pato[POS_SPRITE_CAYENDO], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
+                       this->sprites_pato[POS_SPRITE_CAYENDO + offset_indice], x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala,
                        orientacion, id);
     } else if (estado == ESTADO_CAMINANDO) {
         unsigned int current_ticks = SDL_GetTicks();
         int sprite_index = UNO + (current_ticks / DIEZ) % CANTIDAD_SPRITES_CAMINAR;
-        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index], x_relativo,
+        dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[sprite_index + offset_indice], x_relativo,
                        y_relativo + (y_relativo * OFFSET_Y), escala, orientacion, id);
     }
 }
@@ -448,7 +454,7 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
             dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_MUERTO],
                             x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala, orientacion, id);
         } else {
-            dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado);
+            dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado, sonido);
             if (tiene_armadura) {
                 dibujar_armadura_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
             }
