@@ -28,6 +28,7 @@
 #define CUALQUIER_CANAL_LIBRE -1
 #define CANTIDAD_DE_REPRODUCCIONES 0
 #define SEGUIR_JUGANDO 253
+#define MOSTRAR_TABLERO 252
 #define FINAL_SLEEP 7
 #define TAMANIO_FUENTE 24
 #define ANCHO_VENTANA 960
@@ -39,7 +40,7 @@
 #define OFFSET_Y_CASCO 0.025
 #define OFFSET_X_CASCO_DER 0.004
 #define OFFSET_X_CASCO_IZQ -0.004
-#define OFFSET_Y_BALA 0.055
+#define OFFSET_Y_BALA 0.01
 #define OFFSET_X_CASCO_AGACHADO_DER 0.027
 #define OFFSET_X_CASCO_AGACHADO_IZQ -0.027
 #define OFFSET_Y_CASCO_AGACHADO 0.016
@@ -75,7 +76,7 @@
 #define POS_INICIAL_PATO_TABLERO 10
 #define GAP_PATO_TABLERO 0.1
 #define X_INICIAL_PUNTAJE 100
-#define Y_INICIAL_PUNTAJE 30
+#define Y_INICIAL_PUNTAJE 50
 #define GAP_PUNTAJE_TABLERO 72
 #define MENOS_UNO -1
 #define CERO 0
@@ -542,7 +543,7 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         SDL2pp::Texture* sprite_sheet = obtener_sprite_sheet_bala(id_bala);
         std::vector<SDL_Rect>* sprites = obtener_sprites_bala(id_bala);
         inclinacion_e inclinacion = bala.inclinacion;
-        orientacion_e orientacion = DERECHA; // FALTA OBTENER LA ORIENTACION DEL ESTADO.
+        orientacion_e orientacion = bala.direccion;
         int indice;
         if (id_bala == ID_MAGNUM || id_bala == ID_SHOTGUN){
             indice = obtener_indice_sprite(inclinacion, orientacion);
@@ -551,16 +552,16 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         }
 
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
-        float offset_y = (y_relativo * OFFSET_Y) - OFFSET_Y_BALA;
+        float offset_y = (y_relativo * OFFSET_Y) + OFFSET_Y_BALA;
         dibujar_sprite(renderer, *sprite_sheet, (*sprites)[indice],
                        x_relativo, y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
     }
 }
 
-void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer, const int& numero_mapa) {
-    if (numero_mapa == ID_MAPA_OVERWORLD){
+void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+    if (estado_actual.id_mapa == ID_MAPA_OVERWORLD){
         renderer.Copy(this->mapa1);
-    } else if (numero_mapa == ID_MAPA_INFIERNO){
+    } else if (estado_actual.id_mapa == ID_MAPA_INFIERNO){
         renderer.Copy(this->mapa2);
     }
 
@@ -576,7 +577,7 @@ void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
     auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
     for (int i = 0; i < OCHO; ++i) {
         dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
-                       x_relativo, y_relativo + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i + UNO);
+                       x_relativo, y_relativo + (i * GAP_PATO_TABLERO) + OFFSET_Y, escala, orientacion, i);
     }
 }
 
@@ -607,10 +608,16 @@ void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
     TTF_CloseFont(fuente);
 }
 
-void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes) {
+void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual) {
     if (TTF_Init() == MENOS_UNO) {
         std::cerr << MSJ_ERROR_TFF << TTF_GetError() << std::endl;
         return;
+    }
+
+    std::vector<int> puntajes(OCHO, CERO);
+    for (const auto& pato : estado_actual.info_patos) {
+        int id = pato.id;
+        puntajes[id] = pato.rondas_ganadas;
     }
 
     dibujar_patos_tablero(renderer);
@@ -619,7 +626,6 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<in
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
-    int numero_mapa = 1; // // CAMBIARLO MAS ADELANTE PARA QUE SALGA DEL ESTADO_JUEGO.
     EstadoJuego estado_actual;
     while (cola_estados.try_pop(estado_actual)) {
         this->ultimo_estado_recibido = estado_actual;
@@ -627,7 +633,10 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
 
     renderer.Clear();
     if (estado_actual.id_ganador == SEGUIR_JUGANDO){
-        dibujar_estado_juego(this->ultimo_estado_recibido, renderer, numero_mapa);
+        dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
+        renderer.Present();
+    } else if (estado_actual.id_ganador == MOSTRAR_TABLERO){
+        dibujar_tablero(renderer, this->ultimo_estado_recibido);
         renderer.Present();
     } else {
         jugador_activo = false;

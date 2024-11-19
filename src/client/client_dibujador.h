@@ -129,7 +129,7 @@ private:
     void dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja el 'estado_actual' en la ventana.
-    void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer, const int& numero_mapa);
+    void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja los patos en el tablero.
     void dibujar_patos_tablero(SDL2pp::Renderer& renderer);
@@ -138,7 +138,7 @@ private:
     void dibujar_puntos_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes);
 
     // Dibuja el 'tablero' con los puntajes actuales del juego.
-    void dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes);
+    void dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual);
 
     
 
