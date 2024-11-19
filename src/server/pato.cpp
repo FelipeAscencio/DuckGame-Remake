@@ -91,7 +91,7 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion, bool disparo) {
             (posicion.coordenada_x > (mapa.largo * TILE_A_METRO) - MOVER_DERECHA) && (derecha);
     bool fuera_mapa_por_izquierda = (posicion.coordenada_x < -MOVER_IZQUIERDA) && (!derecha);
     if (fuera_mapa_por_derecha || fuera_mapa_por_izquierda) {
-        this->vivo = false;  // se fue del mapa, se muere el jugador
+        this->vivo = false;  // Jugador que se va del mapa, muere.
         se_movio = true;
     } else {
         se_movio = chequeo_movimiento(mapa, direccion);
@@ -140,7 +140,8 @@ void Pato::caer(Mapa& mapa) {
         this->vivo = false;
         return;
     }
-    // si no esta en el piso del bloque, tiene que caer si o si
+
+    // Si no esta en el piso del bloque debe caer.
     if (!mapa.piso_bloque(this->posicion)) {
         this->posicion.coordenada_y += SALTO_Y_CAIDA;
         if(this->arma_equipada){
@@ -153,24 +154,22 @@ void Pato::caer(Mapa& mapa) {
         int tile_y = tile_actual[1] + 1;
         if (tile_y > mapa.alto) {
             posicion.coordenada_y +=
-                    SALTO_Y_CAIDA;  // como el eje Y aumenta hacia abajo, el chequeo es inverso y me
-                                    // tengo que fijar si me pase del alto para ver si me caigo del
+                    SALTO_Y_CAIDA;  // Como el eje Y aumenta hacia abajo, el chequeo es inverso y
+                                    // debemos fijarnos si se paso del alto para ver si se cayo del
                                     // mapa por debajo
         if(this->arma_equipada){
             this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
         }
             return;
         }
-        // si en el bloque de abajo no hay piso
-        if (mapa.mapa[tile_y][tile_x] == 0) {
-            // tecnicamente estoy en un bloque que no tiene piso abajo, pero el cuerpo del pato no
-            // paso por completo a ese nuevo bloque entonces no debe caer
 
+        // Si en el bloque de abajo no hay piso.
+        if (mapa.mapa[tile_y][tile_x] == 0) {
+            // Yecnicamente esta un bloque que no tiene piso abajo, pero el cuerpo del pato no
+            // paso por completo a ese nuevo bloque entonces no debe caer.
             bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
             bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
-
             if (piso_a_la_derecha || piso_a_la_izquierda) {
-
                 bool yendo_derecha =
                         this->orientacion == DERECHA &&
                         ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2));
@@ -182,14 +181,16 @@ void Pato::caer(Mapa& mapa) {
                     return;
                 }
             }
+
             this->posicion.coordenada_y += SALTO_Y_CAIDA;
             if(this->arma_equipada){
                 this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
             }
+
             estado_actual = CAYENDO;
 
-            // el bloque de abajo en el que estoy tiene su piso a "mitad del bloque" (el piso no
-            // esta alineado con el cambio de bloques)
+            // El bloque de abajo en el que esta tiene su piso a "mitad del bloque" (el piso no
+            // esta alineado con el cambio de bloques).
         } else if (mapa.mapa[tile_y - 1][tile_x] == 2) {
             int posicion_en_bloque = (int)posicion.coordenada_y % TILE_A_METRO;
             int mitad_bloque = TILE_A_METRO / 2;
@@ -221,7 +222,7 @@ void Pato::cambiar_orientacion(const orientacion_e& nueva_orientacion) {
 }
 
 bool Pato::agarrar_arma(Arma* arma) {
-    // aca deberia cheqeuar que esten en la misma posicion
+    // Aca deberia chequear que esten en la misma posicion.
     // if (arma_equipada) delete arma_equipada;
     this->posee_arma = true;
     this->arma_equipada = arma;
@@ -267,8 +268,7 @@ void Pato::chequear_estado(Mapa& mapa) {
             if (iteraciones_subiendo <
                 (3 * TILE_A_METRO / SALTO_Y_CAIDA) +
                         1) {  // Como los tiles miden 10 y sube de a 2 metros, se
-                              // necesitan 5 iteraciones para realizar un salto
-
+                              // necesitan 5 iteraciones para realizar un salto.
                 posicion_t posicion_cabeza_pato(this->posicion.coordenada_x,
                                                 this->posicion.coordenada_y - 8);
                 std::vector<int> pos_mapa = mapa.posicion_en_mapa(posicion_cabeza_pato);
@@ -322,7 +322,7 @@ void Pato::control_pre_comando(Mapa& mapa) {
         return;
     }
     if (this->posicion.coordenada_y > mapa.alto * TILE_A_METRO) {
-        this->vivo = false;  // Si esta fuera del mapa, tiene que morir
+        this->vivo = false;  // Si esta fuera del mapa, tiene que morir.
         return;
     }
     if (orientacion == ARRIBA) {
@@ -404,7 +404,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
             }
             break;
         case COMANDO_AGARRAR:
-            // logica para ver si el arma/casco/armadura esta en la misma posicion para
+            // Logica para ver si el arma/casco/armadura esta en la misma posicion para
             // agarrar
             break;
         

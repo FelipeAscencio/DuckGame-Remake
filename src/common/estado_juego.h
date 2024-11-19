@@ -75,13 +75,17 @@ struct InformacionArma {
     explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
 };
 
+
+// 'struct' que encapsula la informacion de todas las balas del juego.
 struct InformacionBala{
-    int id_arma;
+    int id_arma; // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
     posicion_t pos;
     inclinacion_e inclinacion;
 
+    // Primera variante del constructor del struct.
     explicit InformacionBala(Municion* m): id_arma(m->id_arma), pos(m->posicion_actual), inclinacion(m->inclinacion){}
     
+    // Segundavariante del constructor del struct.
     explicit InformacionBala(int id, posicion_t posicion, inclinacion_e inc): id_arma(id), pos(posicion), inclinacion(inc){}
 };
 

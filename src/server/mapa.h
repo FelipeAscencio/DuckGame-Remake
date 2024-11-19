@@ -10,6 +10,7 @@
 
 #define TILE_A_METRO 10
 
+// 'struct' auxiliar para encapsular un error.
 struct ErrorMapa: public std::runtime_error {
     ErrorMapa(): std::runtime_error("Se produjo un error al intentar crear el mapa") {}
 };

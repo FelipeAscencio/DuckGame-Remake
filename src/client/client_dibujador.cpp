@@ -131,13 +131,13 @@ Dibujador::Dibujador(Renderer& renderer, const int id,
         sonido_sniper(Mix_LoadWAV((DATA_PATH SONIDO_SNIPER))),
         sonido_quack(Mix_LoadWAV((DATA_PATH SONIDO_QUACK))) {}
 
-std::pair<float, float> Dibujador::convertir_a_relativo(float x, float y) {
+std::pair<float, float> Dibujador::convertir_a_relativo(float& x, float& y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
     float y_convertido = static_cast<float>(y) / MAX_COORD_Y;
     return {x_convertido, y_convertido};
 }
 
-SDL2pp::Rect Dibujador::calcular_dst_rect(float x, float y, float escala) {
+SDL2pp::Rect Dibujador::calcular_dst_rect(float& x, float& y, float& escala) {
     int ancho_ventana = ANCHO_VENTANA;
     int alto_ventana = ALTO_VENTANA;
     int ancho_escalado = static_cast<int>(ancho_ventana * escala);
@@ -151,8 +151,8 @@ SDL2pp::Rect Dibujador::calcular_dst_rect(float x, float y, float escala) {
 }
 
 void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                                     const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int id,
-                                     const double angle, SDL_RendererFlip& flip) {
+                                     const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int& id,
+                                     const double& angle, SDL_RendererFlip& flip) {
     SDL_Color color_mod;
     if (id == CERO) {  // ROJO
         color_mod = {MAX_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
@@ -188,8 +188,8 @@ void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture
 }
 
 void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
-                               const SDL_Rect& sprite, float x, float y, float escala,
-                               orientacion_e orientacion, const int id) {
+                               const SDL_Rect& sprite, float x, float y, float& escala,
+                               orientacion_e orientacion, const int& id) {
     SDL2pp::Rect dst_rect = calcular_dst_rect(x, y, escala);
     double angle = ANGULO_NULO;
     SDL_RendererFlip flip = SDL_FLIP_NONE;
@@ -304,7 +304,7 @@ void Dibujador::dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y, ori
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, float x_relativo, float y_relativo, orientacion_e orientacion, estado_pato_e estado){
+void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado){
     float offset_y = (y_relativo * OFFSET_Y) + OFFSET_Y_ARMA;
     if (estado == ESTADO_AGACHADO){
         if (orientacion == DERECHA){
@@ -465,7 +465,7 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-SDL2pp::Texture* Dibujador::obtener_sprite_sheet_bala(int id_arma) {
+SDL2pp::Texture* Dibujador::obtener_sprite_sheet_bala(int& id_arma) {
     if (id_arma == ID_PEW_PEW_LASER) {
         return &this->sprite_sheet_laser;
     } else if (id_arma == ID_AK) {
@@ -481,7 +481,7 @@ SDL2pp::Texture* Dibujador::obtener_sprite_sheet_bala(int id_arma) {
     return nullptr;
 }
 
-std::vector<SDL_Rect>* Dibujador::obtener_sprites_bala(int id_arma) {
+std::vector<SDL_Rect>* Dibujador::obtener_sprites_bala(int& id_arma) {
     if (id_arma == ID_PEW_PEW_LASER) {
         return &this->sprites_laser;
     } else if (id_arma == ID_AK) {
@@ -612,7 +612,8 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<in
     TTF_Quit();
 }
 
-void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo, const int& numero_mapa) {
+void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
+    int numero_mapa = 1; // // CAMBIARLO MAS ADELANTE PARA QUE SALGA DEL ESTADO_JUEGO.
     EstadoJuego estado_actual;
     while (cola_estados.try_pop(estado_actual)) {
         this->ultimo_estado_recibido = estado_actual;

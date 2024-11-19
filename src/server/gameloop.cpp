@@ -1,5 +1,3 @@
-
-// Copyright 2024 Axel Zielonka y Felipe Ascensio
 #include "server/gameloop.h"
 
 #include <algorithm>

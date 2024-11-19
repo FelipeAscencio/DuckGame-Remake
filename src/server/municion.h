@@ -9,8 +9,10 @@
 
 #include "mapa.h"
 
+// 'enum' que encapsula los tipos de dispersion de las balas.
 typedef enum Dispersion { NO, BAJA, MEDIA, ALTA } dispersion_e;
 
+// 'enum' que encapsula los tipos de inclinacion de las balas.
 typedef enum Inclinacion { NO_TIENE, PARA_ARRIBA, PARA_ABAJO } inclinacion_e;
 
 // La clase 'Municion' implementa la logica de las balas
@@ -34,19 +36,21 @@ private:
     int nro_bala;
 
 public:
-    // Constructor de la clase.
+    // Primera variante del constructor de la clase.
     explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
                       const dispersion_e& dispersion_bala, const int& nro);
 
+    // Segunda variante del constructor de la clase.
     explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo, const orientacion_e& direccion,
                       const dispersion_e& dispersion_bala, const inclinacion_e& inc, const int& nro);
 
-    // Verifica si la munición ha excedido su alcance máximo.
+    // Verifica si la municion ha excedido su alcance maximo.
     bool fuera_de_rango();
 
+    // Getter de sentido.
     orientacion_e get_sentido() {return this->sentido;}
 
-    // Avanza la posición de la munición, considerando su dirección, inclinación y dispersión.
+    // Avanza la posicion de la municion, considerando su direccion, inclinacion y dispersion.
     bool avanzar(Mapa& mapa);
 };
 

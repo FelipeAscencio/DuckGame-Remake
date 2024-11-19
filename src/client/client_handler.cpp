@@ -4,7 +4,7 @@
 #define MENOS_UNO -1
 #define ANCHO_MIN 960
 #define ALTO_MIN 720
-#define VOLUMEN_MUSICA 0
+#define VOLUMEN_MUSICA 0 // '10' Recomendado.
 #define FRECUENCIA_HZ 44100
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2
@@ -69,11 +69,10 @@ void Client::controlar_loop_juego() {
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     dibujador.emplace(renderer, this->id, cola_recibidor);
     iniciar_hilos();
-    int id_mapa = 1; // CAMBIARLO MAS ADELANTE PARA QUE ESTE EN EL DIBUJADOR.
     while (this->jugador_activo) {
         controlador.manejar_eventos(this->jugador_activo);
         if (dibujador) {
-            dibujador->renderizar(renderer, this->jugador_activo, id_mapa);
+            dibujador->renderizar(renderer, this->jugador_activo);
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));

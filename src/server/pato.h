@@ -10,6 +10,7 @@
 #include "server/arma.h"
 #include "server/mapa.h"
 
+// 'enum' utilizado para encapsular los sonidos del pato.
 enum sonido_e{
     SILENCIO, HACIENDO_CUAK, DISPARANDO
 };
