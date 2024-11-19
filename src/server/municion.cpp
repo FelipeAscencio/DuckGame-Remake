@@ -34,7 +34,8 @@ Municion::Municion(const int& id, const posicion_t& pos_inicial, const int& alca
         inclinacion(inc),
         nro_bala(nro) {}
 
-bool Municion::fuera_de_rango() {
+bool Municion::fuera_de_rango(Mapa& mapa) {
+    if (this->posicion_actual.coordenada_x >= mapa.largo * TILE_A_METRO || this->posicion_actual.coordenada_x <= 0 || this->posicion_actual.coordenada_y >= mapa.alto * TILE_A_METRO || this->posicion_actual.coordenada_y <= 0) return true;
     float dx = this->posicion_actual.coordenada_x - this->posicion_inicial.coordenada_x;
     float dy = this->posicion_actual.coordenada_y - this->posicion_inicial.coordenada_y;
     float s1 = pow(dx, 2);
@@ -67,16 +68,15 @@ float buscar_dispersion(const dispersion_e& dispersion) {
 
 bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
-    if (posicion_mapa[0] == -1 || posicion_mapa[1] == -1)
-        return false;
-
+    if (fuera_de_rango(mapa)) return false;
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
     bool techo = mapa.techo_bloque(this->posicion_actual);
     int lado;
     int inc;
     float dis;
     if (this->sentido == ARRIBA){
-        if (techo && mapa.mapa[posicion_mapa[1]-1][posicion_mapa[0]] != 0) return false;
+        int arriba_de_todo = posicion_mapa[1] == 0 ? 0 : 1;
+        if (techo && mapa.mapa[posicion_mapa[1] - arriba_de_todo][posicion_mapa[0]] != 0) return false;
         this->posicion_actual.coordenada_y -= AVANZAR;
     } else {
         lado = this->sentido == DERECHA ? 1 : -1;

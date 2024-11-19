@@ -55,7 +55,7 @@ void Arma::chequeo_balas(Mapa& mapa) {
         no_borre_ninguno = true;
         size_t i = 0;
         while (i < balas.size()) {
-            if (balas[i]->fuera_de_rango()) {
+            if (balas[i]->fuera_de_rango(mapa)) {
                 eliminar_bala(i);
                 no_borre_ninguno = false;
                 break;

@@ -45,7 +45,7 @@ public:
                       const dispersion_e& dispersion_bala, const inclinacion_e& inc, const int& nro);
 
     // Verifica si la municion ha excedido su alcance maximo.
-    bool fuera_de_rango();
+    bool fuera_de_rango(Mapa& mapa);
 
     // Getter de sentido.
     orientacion_e get_sentido() {return this->sentido;}

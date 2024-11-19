@@ -49,11 +49,13 @@ Pato::Pato(int id, Mapa& mapa):
         iteraciones_desde_aleteo(FPS / 2),
         inmortal(false), 
         sonido(SILENCIO),
-        rondas_ganadas(0) {
+        rondas_ganadas(0),
+        iteraciones_mirando_para_arriba(0) {
             if(this->posicion.coordenada_x > mapa.largo/2)
                 this->orientacion = IZQUIERDA;
             else 
                 this->orientacion = DERECHA;
+            this->orientacion_anterior = orientacion;
         }
 
 posicion_t Pato::obtener_posicion() { return this->posicion; }
@@ -327,7 +329,11 @@ void Pato::control_pre_comando(Mapa& mapa) {
         return;
     }
     if (orientacion == ARRIBA) {
-        cambiar_orientacion(DERECHA);
+        iteraciones_mirando_para_arriba += 1;
+        if(iteraciones_mirando_para_arriba == 20){
+            iteraciones_mirando_para_arriba = 0;
+            this->orientacion = orientacion_anterior;
+        }
     }
     if (estado_actual != SALTANDO) {
         caer(mapa);
@@ -360,20 +366,14 @@ void Pato::recibir_disparo() {
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
-std::string orientacion_texto(const orientacion_e& direccion) {
-    if (direccion == DERECHA)
-        return "Derecha\n";
-    if (direccion == IZQUIERDA)
-        return "Izquierda\n";
-    return "Arriba\n";
-}
-
 void Pato::realizar_accion(const int& accion, Mapa& mapa) {
     if (!vivo)
         return;
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
+            orientacion_anterior = orientacion;
             this->cambiar_orientacion(orientacion_e::ARRIBA);
+            iteraciones_mirando_para_arriba = 0;
             break;
         case COMANDO_AGACHARSE:
             agacharse();

@@ -28,13 +28,7 @@ void Server::leer_entrada() {
 void Server::start() {
     comenzar_a_aceptar();
     comenzar_juego();
-    while (true){
-        if (!g.jugando()){
-            g.finalizar_juego();
-            a.dejar_de_aceptar();
-            break;
-        }
-    }
+    leer_entrada();
 }
 
 Server::~Server() {

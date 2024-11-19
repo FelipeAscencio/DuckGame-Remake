@@ -25,7 +25,6 @@ private:
     std::vector<Arma*> armas_tiradas;
     Mapa mapa;
     std::vector<bool> jugadores_vivos;
-    bool fin_partida;
 
     // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();
@@ -60,7 +59,7 @@ public:
     void finalizar_juego() { this->juego_activo = false; }
 
     // Devuelve el estado del juego (true si sigue activo, false en caso contrario).
-    bool jugando() { return !fin_partida; }
+    bool jugando() { return juego_activo; }
 
     // Destructor de la clase.
     ~Gameloop();

@@ -11,7 +11,7 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(1), fin_partida(false) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -71,6 +71,7 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
                 estado_actual.definir_ganador(p->id_jugador);
                 p->rondas_ganadas += 1;
                 break;
+            } else {
             }
         }
     }
@@ -154,7 +155,6 @@ void Gameloop::run() {
     if (juego_activo){
         enviar_estado_juego(true);
     }
-    this->fin_partida = true;
 }
 
 Gameloop::~Gameloop() {
