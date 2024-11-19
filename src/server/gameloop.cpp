@@ -47,7 +47,7 @@ void Gameloop::actualizar_estado_jugadores() {
 }
 
 void Gameloop::enviar_estado_juego(bool hubo_ganador) {
-    EstadoJuego estado_actual;
+    EstadoJuego estado_actual(mapa.id_mapa);
     if (jugadores.empty()) {
 
     } else {
@@ -69,6 +69,7 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
         for (Pato* p: jugadores){
             if (p->vivo){
                 estado_actual.definir_ganador(p->id_jugador);
+                p->rondas_ganadas += 1;
                 break;
             }
         }
@@ -90,10 +91,13 @@ void Gameloop::chequear_posiciones() {
             for (Municion* m: p->arma_equipada->balas){
                 for (Pato* otro: jugadores){
                     if (p->id_jugador != otro->id_jugador){
-                        if (m->posicion_actual.misma_posicion(otro->posicion)){
-                            otro->recibir_disparo();
-                            p->arma_equipada->eliminar_bala(m->nro_bala);
+                        if (mapa.posicion_en_mapa(otro->posicion) == mapa.posicion_en_mapa(m->posicion_actual)){
+                            if (m->posicion_actual.misma_posicion(otro->posicion)){
+                                otro->recibir_disparo();
+                                p->arma_equipada->eliminar_bala(m->nro_bala);
+                            }
                         }
+                        
                     }
                 }
             }

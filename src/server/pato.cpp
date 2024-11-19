@@ -48,7 +48,8 @@ Pato::Pato(int id, Mapa& mapa):
         iteraciones_subiendo(0),
         iteraciones_desde_aleteo(FPS / 2),
         inmortal(false), 
-        sonido(SILENCIO) {
+        sonido(SILENCIO),
+        rondas_ganadas(0) {
             if(this->posicion.coordenada_x > mapa.largo/2)
                 this->orientacion = IZQUIERDA;
             else 

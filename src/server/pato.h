@@ -37,6 +37,7 @@ private:
     int iteraciones_desde_aleteo;
     bool inmortal;
     sonido_e sonido;
+    int rondas_ganadas;
 
     // Verifica si el pato puede moverse en la direccion especificada.
     bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);
