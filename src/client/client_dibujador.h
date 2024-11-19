@@ -72,6 +72,12 @@ private:
 
     // Dibuja la armadura de un pato.
     void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
+    
+    // Dibuja el sniper (Metodo particular porque es el unico sprite que no es cuadrado).
+    void dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y, orientacion_e orientacion);
+    
+    // Preparar la renderizacion del sprite, para luego dibujarlo.
+    void renderizar_sniper(SDL2pp::Renderer& renderer, float x_relativo, float y_relativo, orientacion_e orientacion, estado_pato_e estado);
 
     // Dibuja el arma de un pato.
     void dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado, int& id_arma);

@@ -37,6 +37,7 @@
 #define ANGULO_NULO 0.0
 #define ANGULO_90 90.0
 #define ANGULO_270 270.0
+#define ESCALA_SNIPER 1.0
 #define ESCALA_SPRITES_GRANDES 0.07
 #define ESCALA_SPRITES_MEDIANOS 0.04
 #define ESCALA_SPRITES_CHICOS 0.02
@@ -260,6 +261,49 @@ void Dibujador::dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala,
     }
 }
 
+void Dibujador::dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y, orientacion_e orientacion) {
+    const int ancho_ventana = ANCHO_VENTANA;
+    const int alto_ventana = ALTO_VENTANA;
+    const SDL_Rect& sprite = this->sprites_sniper[POS_ARMA];
+    int escala = ESCALA_SNIPER;
+    int ancho_escalado = static_cast<int>(DOS * sprite.w * escala);
+    int alto_escalado = static_cast<int>(DOS * sprite.h * escala);
+
+    // Centramos el sprite en el eje 'X' y ponemos el '0' del eje 'Y' en la parte inferior del
+    // sprite.
+    int dst_x = static_cast<int>(ancho_ventana * x) - (ancho_escalado / DOS);
+    int dst_y = static_cast<int>(alto_ventana * y) - alto_escalado;
+    SDL2pp::Rect dst_rect(dst_x, dst_y, ancho_escalado, alto_escalado);
+    double angle = ANGULO_NULO;
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    if (orientacion == IZQUIERDA) {
+        flip = SDL_FLIP_HORIZONTAL;
+    } else if (orientacion == ARRIBA) {
+        angle = ANGULO_270;
+    } else if (orientacion == ABAJO) {
+        angle = ANGULO_90;
+        flip = SDL_FLIP_HORIZONTAL;
+    }
+
+    renderer.Copy(this->sprite_sheet_sniper,
+                  SDL2pp::Optional<SDL2pp::Rect>(sprite),
+                  SDL2pp::Optional<SDL2pp::Rect>(dst_rect), angle,
+                  SDL2pp::Optional<SDL2pp::Point>(), flip);
+}
+
+void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, float x_relativo, float y_relativo, orientacion_e orientacion, estado_pato_e estado){
+    float offset_y = (y_relativo * OFFSET_Y) + OFFSET_Y_ARMA;
+    if (estado == ESTADO_AGACHADO){
+        if (orientacion == DERECHA){
+            dibujar_sniper(renderer, x_relativo, y_relativo + offset_y, ARRIBA);
+        } else {
+            dibujar_sniper(renderer, x_relativo, y_relativo + offset_y, ABAJO);
+        }
+    } else {
+        dibujar_sniper(renderer, x_relativo, y_relativo + offset_y, orientacion);
+    }
+}
+
 void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo, float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado, int& id_arma){
     SDL2pp::Texture* sprite_sheet = nullptr;
     std::vector<SDL_Rect>* sprites = nullptr;
@@ -276,8 +320,8 @@ void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, flo
         sprite_sheet = &this->sprite_sheet_escopeta;
         sprites = &this->sprites_escopeta;
     } else if (id_arma == ID_SNIPER){
-        sprite_sheet = &this->sprite_sheet_sniper;
-        sprites = &this->sprites_sniper;
+        renderizar_sniper(renderer, x_relativo, y_relativo, orientacion, estado);
+        return;
     }
 
     float offset_y = (y_relativo * OFFSET_Y) + OFFSET_Y_ARMA;
@@ -342,7 +386,7 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         if (esta_vivo == false){
             dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_MUERTO],
-                            x_relativo, y_relativo + OFFSET_Y, escala, orientacion, id);
+                            x_relativo, y_relativo + (y_relativo * OFFSET_Y), escala, orientacion, id);
         } else {
             dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado);
             if (tiene_armadura) {
@@ -409,7 +453,6 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, const std::vector<in
 
     dibujar_patos_tablero(renderer);
     dibujar_puntos_tablero(renderer, puntajes);
-
     TTF_Quit();
 }
 
