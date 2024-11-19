@@ -15,8 +15,8 @@
 #define recompute_envelope TIMI_NAMESPACE(recompute_envelope)
 #define apply_envelope_to_amp TIMI_NAMESPACE(apply_envelope_to_amp)
 
-extern void mix_voice(MidiSong* song, Sint32* buf, int v, Sint32 c);
-extern int recompute_envelope(MidiSong* song, int v);
-extern void apply_envelope_to_amp(MidiSong* song, int v);
+extern void mix_voice(MidiSong *song, Sint32 *buf, int v, Sint32 c);
+extern int recompute_envelope(MidiSong *song, int v);
+extern void apply_envelope_to_amp(MidiSong *song, int v);
 
 #endif /* TIMIDITY_MIX_H */

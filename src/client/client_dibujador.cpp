@@ -570,6 +570,7 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         int indice;
         if (id_bala == ID_MAGNUM || id_bala == ID_SHOTGUN) {
             indice = obtener_indice_sprite(inclinacion, orientacion);
+            escala = ESCALA_SPRITES_MEDIANOS;
         } else {
             indice = POS_BALA_UNICA;
         }

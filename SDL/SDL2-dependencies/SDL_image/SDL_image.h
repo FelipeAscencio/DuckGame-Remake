@@ -43,18 +43,18 @@ extern "C" {
  */
 #define SDL_IMAGE_MAJOR_VERSION 2
 #define SDL_IMAGE_MINOR_VERSION 6
-#define SDL_IMAGE_PATCHLEVEL 3
+#define SDL_IMAGE_PATCHLEVEL    3
 
 /**
  * This macro can be used to fill a version structure with the compile-time
  * version of the SDL_image library.
  */
-#define SDL_IMAGE_VERSION(X)                  \
-    {                                         \
-        (X)->major = SDL_IMAGE_MAJOR_VERSION; \
-        (X)->minor = SDL_IMAGE_MINOR_VERSION; \
-        (X)->patch = SDL_IMAGE_PATCHLEVEL;    \
-    }
+#define SDL_IMAGE_VERSION(X)                        \
+{                                                   \
+    (X)->major = SDL_IMAGE_MAJOR_VERSION;           \
+    (X)->minor = SDL_IMAGE_MINOR_VERSION;           \
+    (X)->patch = SDL_IMAGE_PATCHLEVEL;              \
+}
 
 #if SDL_IMAGE_MAJOR_VERSION < 3 && SDL_MAJOR_VERSION < 3
 /**
@@ -73,8 +73,8 @@ extern "C" {
 /**
  *  This macro will evaluate to true if compiled with SDL_image at least X.Y.Z.
  */
-#define SDL_IMAGE_VERSION_ATLEAST(X, Y, Z)                            \
-    ((SDL_IMAGE_MAJOR_VERSION >= X) &&                                \
+#define SDL_IMAGE_VERSION_ATLEAST(X, Y, Z) \
+    ((SDL_IMAGE_MAJOR_VERSION >= X) && \
      (SDL_IMAGE_MAJOR_VERSION > X || SDL_IMAGE_MINOR_VERSION >= Y) && \
      (SDL_IMAGE_MAJOR_VERSION > X || SDL_IMAGE_MINOR_VERSION > Y || SDL_IMAGE_PATCHLEVEL >= Z))
 
@@ -86,18 +86,19 @@ extern "C" {
  *
  * \returns SDL_image version
  */
-extern DECLSPEC const SDL_version* SDLCALL IMG_Linked_Version(void);
+extern DECLSPEC const SDL_version * SDLCALL IMG_Linked_Version(void);
 
 /**
  * Initialization flags
  */
-typedef enum {
-    IMG_INIT_JPG = 0x00000001,
-    IMG_INIT_PNG = 0x00000002,
-    IMG_INIT_TIF = 0x00000004,
-    IMG_INIT_WEBP = 0x00000008,
-    IMG_INIT_JXL = 0x00000010,
-    IMG_INIT_AVIF = 0x00000020
+typedef enum
+{
+    IMG_INIT_JPG    = 0x00000001,
+    IMG_INIT_PNG    = 0x00000002,
+    IMG_INIT_TIF    = 0x00000004,
+    IMG_INIT_WEBP   = 0x00000008,
+    IMG_INIT_JXL    = 0x00000010,
+    IMG_INIT_AVIF   = 0x00000020
 } IMG_InitFlags;
 
 /**
@@ -248,8 +249,7 @@ extern DECLSPEC void SDLCALL IMG_Quit(void);
  * \sa IMG_Load_RW
  * \sa SDL_FreeSurface
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadTyped_RW(SDL_RWops* src, int freesrc,
-                                                      const char* type);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTyped_RW(SDL_RWops *src, int freesrc, const char *type);
 
 /**
  * Load an image from a filesystem path into a software surface.
@@ -291,7 +291,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadTyped_RW(SDL_RWops* src, int freesr
  * \sa IMG_Load_RW
  * \sa SDL_FreeSurface
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_Load(const char* file);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_Load(const char *file);
 
 /**
  * Load an image from an SDL data source into a software surface.
@@ -344,9 +344,9 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_Load(const char* file);
  * \sa IMG_LoadTyped_RW
  * \sa SDL_FreeSurface
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_Load_RW(SDL_RWops* src, int freesrc);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_Load_RW(SDL_RWops *src, int freesrc);
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
+#if SDL_VERSION_ATLEAST(2,0,0)
 
 /**
  * Load an image from a filesystem path into a GPU texture.
@@ -382,7 +382,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_Load_RW(SDL_RWops* src, int freesrc);
  * \sa IMG_LoadTexture_RW
  * \sa SDL_DestroyTexture
  */
-extern DECLSPEC SDL_Texture* SDLCALL IMG_LoadTexture(SDL_Renderer* renderer, const char* file);
+extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTexture(SDL_Renderer *renderer, const char *file);
 
 /**
  * Load an image from an SDL data source into a GPU texture.
@@ -429,8 +429,7 @@ extern DECLSPEC SDL_Texture* SDLCALL IMG_LoadTexture(SDL_Renderer* renderer, con
  * \sa IMG_LoadTextureTyped_RW
  * \sa SDL_DestroyTexture
  */
-extern DECLSPEC SDL_Texture* SDLCALL IMG_LoadTexture_RW(SDL_Renderer* renderer, SDL_RWops* src,
-                                                        int freesrc);
+extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTexture_RW(SDL_Renderer *renderer, SDL_RWops *src, int freesrc);
 
 /**
  * Load an image from an SDL data source into a GPU texture.
@@ -485,8 +484,7 @@ extern DECLSPEC SDL_Texture* SDLCALL IMG_LoadTexture_RW(SDL_Renderer* renderer, 
  * \sa IMG_LoadTexture_RW
  * \sa SDL_DestroyTexture
  */
-extern DECLSPEC SDL_Texture* SDLCALL IMG_LoadTextureTyped_RW(SDL_Renderer* renderer, SDL_RWops* src,
-                                                             int freesrc, const char* type);
+extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTextureTyped_RW(SDL_Renderer *renderer, SDL_RWops *src, int freesrc, const char *type);
 #endif /* SDL 2.0 */
 
 /**
@@ -531,7 +529,7 @@ extern DECLSPEC SDL_Texture* SDLCALL IMG_LoadTextureTyped_RW(SDL_Renderer* rende
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isAVIF(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isAVIF(SDL_RWops *src);
 
 /**
  * Detect ICO image data on a readable/seekable SDL_RWops.
@@ -574,7 +572,7 @@ extern DECLSPEC int SDLCALL IMG_isAVIF(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isICO(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isICO(SDL_RWops *src);
 
 /**
  * Detect CUR image data on a readable/seekable SDL_RWops.
@@ -617,7 +615,7 @@ extern DECLSPEC int SDLCALL IMG_isICO(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isCUR(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isCUR(SDL_RWops *src);
 
 /**
  * Detect BMP image data on a readable/seekable SDL_RWops.
@@ -660,7 +658,7 @@ extern DECLSPEC int SDLCALL IMG_isCUR(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isBMP(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isBMP(SDL_RWops *src);
 
 /**
  * Detect GIF image data on a readable/seekable SDL_RWops.
@@ -703,7 +701,7 @@ extern DECLSPEC int SDLCALL IMG_isBMP(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isGIF(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isGIF(SDL_RWops *src);
 
 /**
  * Detect JPG image data on a readable/seekable SDL_RWops.
@@ -746,7 +744,7 @@ extern DECLSPEC int SDLCALL IMG_isGIF(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isJPG(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isJPG(SDL_RWops *src);
 
 /**
  * Detect JXL image data on a readable/seekable SDL_RWops.
@@ -789,7 +787,7 @@ extern DECLSPEC int SDLCALL IMG_isJPG(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isJXL(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isJXL(SDL_RWops *src);
 
 /**
  * Detect LBM image data on a readable/seekable SDL_RWops.
@@ -832,7 +830,7 @@ extern DECLSPEC int SDLCALL IMG_isJXL(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isLBM(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isLBM(SDL_RWops *src);
 
 /**
  * Detect PCX image data on a readable/seekable SDL_RWops.
@@ -875,7 +873,7 @@ extern DECLSPEC int SDLCALL IMG_isLBM(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isPCX(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isPCX(SDL_RWops *src);
 
 /**
  * Detect PNG image data on a readable/seekable SDL_RWops.
@@ -918,7 +916,7 @@ extern DECLSPEC int SDLCALL IMG_isPCX(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isPNG(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isPNG(SDL_RWops *src);
 
 /**
  * Detect PNM image data on a readable/seekable SDL_RWops.
@@ -961,7 +959,7 @@ extern DECLSPEC int SDLCALL IMG_isPNG(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isPNM(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isPNM(SDL_RWops *src);
 
 /**
  * Detect SVG image data on a readable/seekable SDL_RWops.
@@ -1004,7 +1002,7 @@ extern DECLSPEC int SDLCALL IMG_isPNM(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isSVG(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isSVG(SDL_RWops *src);
 
 /**
  * Detect QOI image data on a readable/seekable SDL_RWops.
@@ -1047,7 +1045,7 @@ extern DECLSPEC int SDLCALL IMG_isSVG(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isQOI(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isQOI(SDL_RWops *src);
 
 /**
  * Detect TIFF image data on a readable/seekable SDL_RWops.
@@ -1090,7 +1088,7 @@ extern DECLSPEC int SDLCALL IMG_isQOI(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isTIF(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isTIF(SDL_RWops *src);
 
 /**
  * Detect XCF image data on a readable/seekable SDL_RWops.
@@ -1133,7 +1131,7 @@ extern DECLSPEC int SDLCALL IMG_isTIF(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isXCF(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isXCF(SDL_RWops *src);
 
 /**
  * Detect XPM image data on a readable/seekable SDL_RWops.
@@ -1176,7 +1174,7 @@ extern DECLSPEC int SDLCALL IMG_isXCF(SDL_RWops* src);
  * \sa IMG_isXV
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isXPM(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isXPM(SDL_RWops *src);
 
 /**
  * Detect XV image data on a readable/seekable SDL_RWops.
@@ -1219,7 +1217,7 @@ extern DECLSPEC int SDLCALL IMG_isXPM(SDL_RWops* src);
  * \sa IMG_isXPM
  * \sa IMG_isWEBP
  */
-extern DECLSPEC int SDLCALL IMG_isXV(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isXV(SDL_RWops *src);
 
 /**
  * Detect WEBP image data on a readable/seekable SDL_RWops.
@@ -1262,7 +1260,7 @@ extern DECLSPEC int SDLCALL IMG_isXV(SDL_RWops* src);
  * \sa IMG_isXPM
  * \sa IMG_isXV
  */
-extern DECLSPEC int SDLCALL IMG_isWEBP(SDL_RWops* src);
+extern DECLSPEC int SDLCALL IMG_isWEBP(SDL_RWops *src);
 
 /**
  * Load a AVIF image directly.
@@ -1296,7 +1294,7 @@ extern DECLSPEC int SDLCALL IMG_isWEBP(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadAVIF_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadAVIF_RW(SDL_RWops *src);
 
 /**
  * Load a ICO image directly.
@@ -1330,7 +1328,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadAVIF_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadICO_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadICO_RW(SDL_RWops *src);
 
 /**
  * Load a CUR image directly.
@@ -1364,7 +1362,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadICO_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadCUR_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadCUR_RW(SDL_RWops *src);
 
 /**
  * Load a BMP image directly.
@@ -1398,7 +1396,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadCUR_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadBMP_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadBMP_RW(SDL_RWops *src);
 
 /**
  * Load a GIF image directly.
@@ -1432,7 +1430,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadBMP_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadGIF_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadGIF_RW(SDL_RWops *src);
 
 /**
  * Load a JPG image directly.
@@ -1466,7 +1464,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadGIF_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadJPG_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadJPG_RW(SDL_RWops *src);
 
 /**
  * Load a JXL image directly.
@@ -1500,7 +1498,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadJPG_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadJXL_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadJXL_RW(SDL_RWops *src);
 
 /**
  * Load a LBM image directly.
@@ -1534,7 +1532,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadJXL_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadLBM_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadLBM_RW(SDL_RWops *src);
 
 /**
  * Load a PCX image directly.
@@ -1568,7 +1566,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadLBM_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadPCX_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadPCX_RW(SDL_RWops *src);
 
 /**
  * Load a PNG image directly.
@@ -1602,7 +1600,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadPCX_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadPNG_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadPNG_RW(SDL_RWops *src);
 
 /**
  * Load a PNM image directly.
@@ -1636,7 +1634,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadPNG_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadPNM_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadPNM_RW(SDL_RWops *src);
 
 /**
  * Load a SVG image directly.
@@ -1670,7 +1668,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadPNM_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadSVG_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadSVG_RW(SDL_RWops *src);
 
 /**
  * Load a QOI image directly.
@@ -1704,7 +1702,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadSVG_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadQOI_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadQOI_RW(SDL_RWops *src);
 
 /**
  * Load a TGA image directly.
@@ -1738,7 +1736,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadQOI_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadTGA_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTGA_RW(SDL_RWops *src);
 
 /**
  * Load a TIFF image directly.
@@ -1772,7 +1770,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadTGA_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadTIF_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTIF_RW(SDL_RWops *src);
 
 /**
  * Load a XCF image directly.
@@ -1806,7 +1804,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadTIF_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadXCF_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadXCF_RW(SDL_RWops *src);
 
 /**
  * Load a XPM image directly.
@@ -1840,7 +1838,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadXCF_RW(SDL_RWops* src);
  * \sa IMG_LoadXV_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadXPM_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadXPM_RW(SDL_RWops *src);
 
 /**
  * Load a XV image directly.
@@ -1874,7 +1872,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadXPM_RW(SDL_RWops* src);
  * \sa IMG_LoadXPM_RW
  * \sa IMG_LoadWEBP_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadXV_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadXV_RW(SDL_RWops *src);
 
 /**
  * Load a WEBP image directly.
@@ -1908,7 +1906,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadXV_RW(SDL_RWops* src);
  * \sa IMG_LoadXPM_RW
  * \sa IMG_LoadXV_RW
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadWEBP_RW(SDL_RWops* src);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadWEBP_RW(SDL_RWops *src);
 
 /**
  * Load an SVG image, scaled to a specific size.
@@ -1929,7 +1927,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadWEBP_RW(SDL_RWops* src);
  *
  * \since This function is available since SDL_image 2.6.0.
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadSizedSVG_RW(SDL_RWops* src, int width, int height);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadSizedSVG_RW(SDL_RWops *src, int width, int height);
 
 /**
  * Load an XPM image from a memory array.
@@ -1948,7 +1946,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_LoadSizedSVG_RW(SDL_RWops* src, int wid
  *
  * \sa IMG_ReadXPMFromArrayToRGB888
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_ReadXPMFromArray(char** xpm);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_ReadXPMFromArray(char **xpm);
 
 /**
  * Load an XPM image from a memory array.
@@ -1967,7 +1965,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_ReadXPMFromArray(char** xpm);
  *
  * \sa IMG_ReadXPMFromArray
  */
-extern DECLSPEC SDL_Surface* SDLCALL IMG_ReadXPMFromArrayToRGB888(char** xpm);
+extern DECLSPEC SDL_Surface * SDLCALL IMG_ReadXPMFromArrayToRGB888(char **xpm);
 
 /**
  * Save an SDL_Surface into a PNG image file.
@@ -1984,7 +1982,7 @@ extern DECLSPEC SDL_Surface* SDLCALL IMG_ReadXPMFromArrayToRGB888(char** xpm);
  * \sa IMG_SaveJPG
  * \sa IMG_SaveJPG_RW
  */
-extern DECLSPEC int SDLCALL IMG_SavePNG(SDL_Surface* surface, const char* file);
+extern DECLSPEC int SDLCALL IMG_SavePNG(SDL_Surface *surface, const char *file);
 
 /**
  * Save an SDL_Surface into PNG image data, via an SDL_RWops.
@@ -2001,7 +1999,7 @@ extern DECLSPEC int SDLCALL IMG_SavePNG(SDL_Surface* surface, const char* file);
  * \sa IMG_SaveJPG
  * \sa IMG_SaveJPG_RW
  */
-extern DECLSPEC int SDLCALL IMG_SavePNG_RW(SDL_Surface* surface, SDL_RWops* dst, int freedst);
+extern DECLSPEC int SDLCALL IMG_SavePNG_RW(SDL_Surface *surface, SDL_RWops *dst, int freedst);
 
 /**
  * Save an SDL_Surface into a JPEG image file.
@@ -2020,7 +2018,7 @@ extern DECLSPEC int SDLCALL IMG_SavePNG_RW(SDL_Surface* surface, SDL_RWops* dst,
  * \sa IMG_SavePNG
  * \sa IMG_SavePNG_RW
  */
-extern DECLSPEC int SDLCALL IMG_SaveJPG(SDL_Surface* surface, const char* file, int quality);
+extern DECLSPEC int SDLCALL IMG_SaveJPG(SDL_Surface *surface, const char *file, int quality);
 
 /**
  * Save an SDL_Surface into JPEG image data, via an SDL_RWops.
@@ -2037,18 +2035,18 @@ extern DECLSPEC int SDLCALL IMG_SaveJPG(SDL_Surface* surface, const char* file, 
  * \sa IMG_SavePNG
  * \sa IMG_SavePNG_RW
  */
-extern DECLSPEC int SDLCALL IMG_SaveJPG_RW(SDL_Surface* surface, SDL_RWops* dst, int freedst,
-                                           int quality);
+extern DECLSPEC int SDLCALL IMG_SaveJPG_RW(SDL_Surface *surface, SDL_RWops *dst, int freedst, int quality);
 
 /**
  * Animated image support
  * Currently only animated GIFs are supported.
  */
-typedef struct {
-    int w, h;
-    int count;
-    SDL_Surface** frames;
-    int* delays;
+typedef struct
+{
+	int w, h;
+	int count;
+	SDL_Surface **frames;
+	int *delays;
 } IMG_Animation;
 
 /**
@@ -2064,7 +2062,7 @@ typedef struct {
  *
  * \sa IMG_FreeAnimation
  */
-extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadAnimation(const char* file);
+extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimation(const char *file);
 
 /**
  * Load an animation from an SDL_RWops.
@@ -2085,7 +2083,7 @@ extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadAnimation(const char* file);
  *
  * \sa IMG_FreeAnimation
  */
-extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadAnimation_RW(SDL_RWops* src, int freesrc);
+extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimation_RW(SDL_RWops *src, int freesrc);
 
 /**
  * Load an animation from an SDL datasource
@@ -2115,8 +2113,7 @@ extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadAnimation_RW(SDL_RWops* src, int 
  * \sa IMG_LoadAnimation_RW
  * \sa IMG_FreeAnimation
  */
-extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadAnimationTyped_RW(SDL_RWops* src, int freesrc,
-                                                                 const char* type);
+extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimationTyped_RW(SDL_RWops *src, int freesrc, const char *type);
 
 /**
  * Dispose of an IMG_Animation and free its resources.
@@ -2131,7 +2128,7 @@ extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadAnimationTyped_RW(SDL_RWops* src,
  * \sa IMG_LoadAnimation_RW
  * \sa IMG_LoadAnimationTyped_RW
  */
-extern DECLSPEC void SDLCALL IMG_FreeAnimation(IMG_Animation* anim);
+extern DECLSPEC void SDLCALL IMG_FreeAnimation(IMG_Animation *anim);
 
 /**
  * Load a GIF animation directly.
@@ -2151,21 +2148,21 @@ extern DECLSPEC void SDLCALL IMG_FreeAnimation(IMG_Animation* anim);
  * \sa IMG_LoadAnimationTyped_RW
  * \sa IMG_FreeAnimation
  */
-extern DECLSPEC IMG_Animation* SDLCALL IMG_LoadGIFAnimation_RW(SDL_RWops* src);
+extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadGIFAnimation_RW(SDL_RWops *src);
 
 /**
  * Report SDL_image errors
  *
  * \sa IMG_GetError
  */
-#define IMG_SetError SDL_SetError
+#define IMG_SetError    SDL_SetError
 
 /**
  * Get last SDL_image error
  *
  * \sa IMG_SetError
  */
-#define IMG_GetError SDL_GetError
+#define IMG_GetError    SDL_GetError
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
