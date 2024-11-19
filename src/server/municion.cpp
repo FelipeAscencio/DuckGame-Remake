@@ -74,13 +74,16 @@ bool Municion::avanzar(Mapa& mapa) {
     int lado;
     int inc;
     float dis;
+    int arriba_de_todo = posicion_mapa[1] == 0 ? 0 : 1;
     if (this->sentido == ARRIBA){
-        int arriba_de_todo = posicion_mapa[1] == 0 ? 0 : 1;
         if (techo && mapa.mapa[posicion_mapa[1] - arriba_de_todo][posicion_mapa[0]] != 0) return false;
         this->posicion_actual.coordenada_y -= AVANZAR;
+        inc = this->inclinacion == PARA_ARRIBA ? -1 : 1;
+        dis = buscar_dispersion(this->dispersion);
+        this->posicion_actual.coordenada_x += AVANZAR*inc*dis;
     } else {
         lado = this->sentido == DERECHA ? 1 : -1;
-        if (borde_bloque && mapa.mapa[posicion_mapa[1]-1][posicion_mapa[0] + lado] != 0) return false;
+        if (borde_bloque && mapa.mapa[posicion_mapa[1] - arriba_de_todo][posicion_mapa[0] + lado] != 0) return false;
         this->posicion_actual.coordenada_x += AVANZAR * lado;
         inc = subiendo ? -1 : 1;
         dis = buscar_dispersion(this->dispersion);

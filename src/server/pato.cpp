@@ -175,10 +175,10 @@ void Pato::caer(Mapa& mapa) {
             if (piso_a_la_derecha || piso_a_la_izquierda) {
                 bool yendo_derecha =
                         this->orientacion == DERECHA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2));
+                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2)-1);
                 bool yendo_izquierda =
                         this->orientacion == IZQUIERDA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / 2));
+                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / 2)-1);
                 if (yendo_derecha || yendo_izquierda) {
                     estado_actual = PARADO;
                     return;
@@ -251,7 +251,18 @@ bool Pato::agarrar_casco() {
 
 bool Pato::disparar(Mapa& mapa) {
     if (arma_equipada) {
-        return arma_equipada->disparar(this->orientacion, mapa);
+        bool disparo = arma_equipada->disparar(this->orientacion, mapa);
+        if (disparo){
+            if (arma_equipada->tiene_retroceso()) {
+                if (this->orientacion == DERECHA){
+                    mover(mapa, IZQUIERDA, true);
+                } else if (this->orientacion == IZQUIERDA){
+                    mover(mapa, DERECHA, true);
+                }
+            }
+        }
+        if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones != 0) return true;
+        else return disparo;
     } else {
         return false;
     }
@@ -387,15 +398,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
             break;
         case COMANDO_DISPARO:
             if (arma_equipada) {
-                bool disparo = disparar(mapa);
-                if (disparo) {
-                    if (arma_equipada->tiene_retroceso()) {
-                        if (this->orientacion == DERECHA){
-                            mover(mapa, IZQUIERDA, true);
-                        } else if (this->orientacion == IZQUIERDA){
-                            mover(mapa, DERECHA, true);
-                        }
-                    }
+                if (disparar(mapa)) {
                     this->sonido = DISPARANDO;
                 } else {
                     if(arma_equipada){

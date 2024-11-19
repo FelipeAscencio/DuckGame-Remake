@@ -5,7 +5,7 @@
 #define SHOTGUN "Shotgun"
 #define ALCANCE_MINIMO 7
 #define ALCANCE_MAXIMO 9
-#define MUNICIONES 2
+#define MUNICIONES 3
 #define PERDIGONES_POR_DISPARO 6
 
 Shotgun::Shotgun(posicion_t posicion_inicial):
@@ -24,9 +24,9 @@ dispersion_e obtener_dispersion(int bala_disparada) {
 }
 
 inclinacion_e obtener_inclinacion(int bala_disparada) {
-    if (bala_disparada == 0)
+    if (bala_disparada < 2)
         return NO_TIENE;
-    if (bala_disparada % 2 == 0)
+    if (bala_disparada < 4)
         return PARA_ARRIBA;
     return PARA_ABAJO;
 }
@@ -45,27 +45,23 @@ void Shotgun::eliminar_bala(const int& indice){
 }
 
 bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
-    if (this->municiones == 0) {
-        return false;
-    }
-    if (debe_recargar) {
+    if (municiones == 0) return false;
+
+    if (debe_recargar){
         debe_recargar = false;
-        return true;
-    }
-    for (int i = 0; i < PERDIGONES_POR_DISPARO; i++) {
-        dispersion_e dispersion_bala = obtener_dispersion(i);
-        inclinacion_e inc = obtener_inclinacion(i);
-        Municion* m =
-                new Municion(this->id_arma, this->posicion_spawn, ALCANCE_MAXIMO * TILE_A_METRO,
-                             direccion, dispersion_bala, inc, this->balas.size());
-        if (m->avanzar(mapa)) {
-            balas.push_back(m);
-        } else {
-            delete m;
+    } else {
+        for (int i = 0; i < PERDIGONES_POR_DISPARO; i++){
+            inclinacion_e inc = obtener_inclinacion(i);
+            dispersion_e dis = obtener_dispersion(i);
+            Municion* m = new Municion(ID_SHOTGUN, this->posicion_spawn, ALCANCE_MAXIMO * TILE_A_METRO, direccion, dis, inc, balas.size());
+            if (m->avanzar(mapa)){
+                balas.push_back(m);
+            } else {
+                delete m;
+            }
         }
+        municiones -= 1;
+        debe_recargar = true;
     }
-    this->municiones -= 1;
-    debe_recargar = true;
-    std::cout << "Shotgun disparada\n";
-    return true;
+    return debe_recargar;
 }
