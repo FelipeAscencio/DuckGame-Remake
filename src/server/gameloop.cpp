@@ -11,7 +11,7 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(1) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa((rand()%2) + 1) {}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();

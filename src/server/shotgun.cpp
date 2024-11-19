@@ -53,7 +53,7 @@ bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
         for (int i = 0; i < PERDIGONES_POR_DISPARO; i++){
             inclinacion_e inc = obtener_inclinacion(i);
             dispersion_e dis = obtener_dispersion(i);
-            Municion* m = new Municion(ID_SHOTGUN, this->posicion_spawn, ALCANCE_MAXIMO * TILE_A_METRO, direccion, dis, inc, balas.size());
+            Municion* m = new Municion(ID_SHOTGUN, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO), direccion, dis, inc, balas.size());
             if (m->avanzar(mapa)){
                 balas.push_back(m);
             } else {
