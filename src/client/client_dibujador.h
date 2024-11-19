@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <thread>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -22,6 +23,7 @@ using namespace SDL2pp;
 class Dibujador {
 private:
     const int id_jugador;
+    int numero_mapa;
     Queue<EstadoJuego>& cola_estados;
     EstadoJuego ultimo_estado_recibido;
     Parseador parseador;
@@ -33,7 +35,10 @@ private:
     Texture sprite_sheet_laser;
     Texture sprite_sheet_pistola;
     Texture sprite_sheet_sniper;
-    Texture mapa;
+    Texture mapa1;
+    Texture mapa2;
+    Texture pantalla_victoria;
+    Texture pantalla_derrota;
     std::vector<SDL_Rect> sprites_pato;
     std::vector<SDL_Rect> sprites_ak;
     std::vector<SDL_Rect> sprites_caja;
@@ -101,7 +106,7 @@ private:
     void dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja el 'estado_actual' en la ventana.
-    void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer, const int& numero_mapa);
 
     // Dibuja los patos en el tablero.
     void dibujar_patos_tablero(SDL2pp::Renderer& renderer);
@@ -135,11 +140,11 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id_jugador,
+    explicit Dibujador(Renderer& renderer, const int id_jugador,
                        Queue<EstadoJuego>& cola_recibidor);
 
     // Renderiza la imagen del estado actual de la partida para el 'Cliente'.
-    void renderizar(Renderer& renderer);
+    void renderizar(Renderer& renderer, bool& juego_activo, const int& numero_mapa);
 
     // Deshabilito las copias.
     Dibujador(const Dibujador&) = delete;

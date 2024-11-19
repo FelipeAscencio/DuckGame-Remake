@@ -19,8 +19,16 @@
 #define SONIDO_PISTOLA "/pistola.mp3"
 #define SONIDO_SNIPER "/sniper.mp3"
 #define SONIDO_QUACK "/Quack.mp3"
+#define RUTA_WIN_SCREEN "/winscreen.png"
+#define RUTA_LOSE_SCREEN "/losescreen.png"
+#define RUTA_MAPA_1 "/mapa1.png"
+#define RUTA_MAPA_2 "/mapa2.png"
+#define ID_MAPA_OVERWORLD 1
+#define ID_MAPA_INFIERNO 2
 #define CUALQUIER_CANAL_LIBRE -1
 #define CANTIDAD_DE_REPRODUCCIONES 0
+#define SEGUIR_JUGANDO 253
+#define FINAL_SLEEP 10
 #define TAMANIO_FUENTE 24
 #define ANCHO_VENTANA 960
 #define ALTO_VENTANA 720
@@ -88,7 +96,7 @@
 
 using namespace SDL2pp;
 
-Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int id,
+Dibujador::Dibujador(Renderer& renderer, const int id,
                      Queue<EstadoJuego>& cola_recibidor):
         id_jugador(id),
         cola_estados(cola_recibidor),
@@ -102,7 +110,10 @@ Dibujador::Dibujador(Renderer& renderer, const std::string& ruta_mapa, const int
         sprite_sheet_laser(renderer, DATA_PATH RUTA_SPR_LASER),
         sprite_sheet_pistola(renderer, DATA_PATH RUTA_SPR_PISTOLA),
         sprite_sheet_sniper(renderer, DATA_PATH RUTA_SPR_SNIPER),
-        mapa(renderer, (DATA_PATH + ruta_mapa).c_str()),
+        mapa1(renderer, DATA_PATH RUTA_MAPA_1),
+        mapa2(renderer, DATA_PATH RUTA_MAPA_2),
+        pantalla_victoria(renderer, DATA_PATH RUTA_WIN_SCREEN),
+        pantalla_derrota(renderer, DATA_PATH RUTA_LOSE_SCREEN),
         sprites_pato(parseador.obtener_sprites_pato()),
         sprites_ak(parseador.obtener_sprites_ak()),
         sprites_caja(parseador.obtener_sprites_caja()),
@@ -490,7 +501,13 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer, const int& numero_mapa) {
+    if (numero_mapa == ID_MAPA_OVERWORLD){
+        renderer.Copy(this->mapa1);
+    } else if (numero_mapa == ID_MAPA_INFIERNO){
+        renderer.Copy(this->mapa2);
+    }
+
     dibujar_patos(estado_actual, renderer);
     dibujar_balas(estado_actual, renderer);
 }
@@ -573,14 +590,25 @@ void Dibujador::reproducir_quack() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_quack, CANTIDAD_DE_REPRODUCCIONES);
 }
 
-void Dibujador::renderizar(SDL2pp::Renderer& renderer) {
+void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo, const int& numero_mapa) {
     EstadoJuego estado_actual;
     while (cola_estados.try_pop(estado_actual)) {
         this->ultimo_estado_recibido = estado_actual;
     }
 
     renderer.Clear();
-    renderer.Copy(this->mapa);
-    dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
-    renderer.Present();
+    if (estado_actual.id_ganador == SEGUIR_JUGANDO){
+        dibujar_estado_juego(this->ultimo_estado_recibido, renderer, numero_mapa);
+        renderer.Present();
+    } else {
+        jugador_activo = false;
+        if (estado_actual.id_ganador == this->id_jugador){
+            renderer.Copy(this->pantalla_victoria);
+        } else {
+            renderer.Copy(this->pantalla_derrota);
+        }
+
+        renderer.Present();
+        std::this_thread::sleep_for(std::chrono::seconds(FINAL_SLEEP));
+    }
 }
