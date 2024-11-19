@@ -15,7 +15,7 @@
 #define DECIMA_POSICION 9
 #define DECIMO_PRIMERA_POSICION 11
 #define DECIMO_SEGUNDA_POSICION 12
-#define TAMANIO_INFO_PATOS 10
+#define TAMANIO_INFO_PATOS 14
 
 #define ACCION_DERECHA 0x01
 #define ACCION_IZQUIERDA 0x02
@@ -100,17 +100,26 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     uint8_t leido = BYTE_NULO;
     bool was_closed = false;
 
+    //ganador
     s.recvall(&leido, sizeof(leido), &was_closed);
     s.recvall(&leido, sizeof(leido), &was_closed);
     estado_actual.id_ganador = leido;
     s.recvall(&leido, sizeof(leido), &was_closed);
 
+    //cantidades
     std::vector<uint8_t> cantidades(SEIS);
     s.recvall(&leido, sizeof(leido), &was_closed);
     s.recvall(cantidades.data(), cantidades.size(), &was_closed);
     s.recvall(&leido, sizeof(leido), &was_closed);
+
+    //mapa
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    estado_actual.id_mapa = leido;
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
     int i = 0;
-    std::vector<uint8_t> info_pato(13);
+    std::vector<uint8_t> info_pato(TAMANIO_INFO_PATOS);
     while (i < cantidades[PRIMERA_POSICION]) {
         s.recvall(&leido, sizeof(leido), &was_closed);  // Lee codigo del pato.
         s.recvall(info_pato.data(), info_pato.size(), &was_closed);
@@ -120,10 +129,10 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         posicion_t pos(x, y);
         InformacionPato pato_actual(info_pato[0], pos, info_pato[5], info_pato[6], info_pato[7],
                                     info_pato[8], info_pato[9], (orientacion_e)info_pato[10],
-                                    (estado_pato_e)info_pato[11], (sonido_e)info_pato[12]);
+                                    (estado_pato_e)info_pato[11], (sonido_e)info_pato[12], info_pato[13]);
         estado_actual.agregar_info_pato(pato_actual);
         info_pato.clear();
-        info_pato.resize(13);
+        info_pato.resize(TAMANIO_INFO_PATOS);
         i++;
     }
     i = 0;
@@ -143,7 +152,7 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         i++;
     }
     i = 0;
-    std::vector<uint8_t> bala(6);
+    std::vector<uint8_t> bala(7);
     while (i < cantidades[2]){
         s.recvall(&leido, sizeof(leido), &was_closed);
         s.recvall(bala.data(), bala.size(), &was_closed);
@@ -152,7 +161,7 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         float x = bala[1] + (bala[2]/TILE_A_METRO);
         float y = bala[3] + (bala[4]/TILE_A_METRO);
         posicion_t pos(x, y);
-        InformacionBala nueva(bala[0], pos, (inclinacion_e)bala[5]);
+        InformacionBala nueva(bala[0], pos, (inclinacion_e)bala[5], (orientacion_e)bala[6]);
         estado_actual.agregar_bala(nueva);
         bala.clear();
         bala.resize(6);

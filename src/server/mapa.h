@@ -20,6 +20,7 @@ struct ErrorMapa: public std::runtime_error {
 class Mapa {
     friend class Pato;
     friend class Municion;
+    friend class Gameloop;
 
 private:
     int largo;

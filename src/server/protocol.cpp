@@ -12,6 +12,7 @@
 #define CODIGO_CAJA 0x0A
 #define CODIGO_CANTIDADES 0x0B
 #define CODIGO_GANADOR 0x0C
+#define CODIGO_MAPA 0x0D
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
@@ -120,8 +121,17 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_bala(const Informacion
     bala.push_back(pos[2]);
     bala.push_back(pos[3]);
     bala.push_back((uint8_t)info_bala.inclinacion);
+    bala.push_back((uint8_t)info_bala.direccion);
     bala.push_back(FIN_MENSAJE);
     return bala;
+}
+
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_mapa(const int& mapa){
+    std::vector<uint8_t> byte_mapa;
+    byte_mapa.push_back(CODIGO_MAPA);
+    byte_mapa.push_back(mapa);
+    byte_mapa.push_back(FIN_MENSAJE);
+    return byte_mapa;
 }
 
 bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
@@ -131,8 +141,7 @@ bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
 }
 
 bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
-    bool envio_correcto = _enviar(serializar_ganador(estado_actual.id_ganador));
-    envio_correcto = _enviar(serializar_cantidades(estado_actual));
+    bool envio_correcto = _enviar(serializar_ganador(estado_actual.id_ganador)) && _enviar(serializar_cantidades(estado_actual)) && _enviar(serializar_mapa(estado_actual.id_mapa));
     int i = 0;
     while (i < estado_actual.cantidad_jugadores && envio_correcto) {
         envio_correcto = _enviar(serializar_pato(estado_actual.info_patos[i]));

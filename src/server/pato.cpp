@@ -48,7 +48,9 @@ Pato::Pato(int id, Mapa& mapa):
         iteraciones_subiendo(0),
         iteraciones_desde_aleteo(FPS / 2),
         inmortal(false), 
-        sonido(SILENCIO) {
+        sonido(SILENCIO),
+        rondas_ganadas(0),
+        iteraciones_mirando_arriba(0) {
             if(this->posicion.coordenada_x > mapa.largo/2)
                 this->orientacion = IZQUIERDA;
             else 
@@ -325,8 +327,12 @@ void Pato::control_pre_comando(Mapa& mapa) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir.
         return;
     }
-    if (orientacion == ARRIBA) {
-        cambiar_orientacion(DERECHA);
+    if (orientacion == ARRIBA){
+        iteraciones_mirando_arriba += 1;
+        if (iteraciones_mirando_arriba > 5){
+            iteraciones_mirando_arriba = 0;
+            this->orientacion = DERECHA;
+        }
     }
     if (estado_actual != SALTANDO) {
         caer(mapa);
