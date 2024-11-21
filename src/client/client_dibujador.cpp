@@ -71,6 +71,8 @@
 #define POS_SPRITE_ALETEANDO 11
 #define POS_SPRITE_CAYENDO 8
 #define OFFSET_SPRITES_PATO_CUACK 12
+#define POS_ARMADURA 0
+#define POS_CASCO 12
 #define POS_ARMA 0
 #define POS_BALA_UNICA 1
 #define POS_CASCO 12
@@ -504,7 +506,7 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-SDL2pp::Texture* Dibujador::obtener_sprite_sheet_bala(int& id_arma) {
+SDL2pp::Texture* Dibujador::obtener_sprite_sheet_arma_bala(int& id_arma) {
     if (id_arma == ID_PEW_PEW_LASER) {
         return &this->sprite_sheet_laser;
     } else if (id_arma == ID_AK) {
@@ -520,7 +522,7 @@ SDL2pp::Texture* Dibujador::obtener_sprite_sheet_bala(int& id_arma) {
     return nullptr;
 }
 
-std::vector<SDL_Rect>* Dibujador::obtener_sprites_bala(int& id_arma) {
+std::vector<SDL_Rect>* Dibujador::obtener_sprites_arma_bala(int& id_arma) {
     if (id_arma == ID_PEW_PEW_LASER) {
         return &this->sprites_laser;
     } else if (id_arma == ID_AK) {
@@ -572,8 +574,8 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         float x = bala.pos.coordenada_x;
         float y = bala.pos.coordenada_y;
         int id_bala = bala.id_arma;
-        SDL2pp::Texture* sprite_sheet = obtener_sprite_sheet_bala(id_bala);
-        std::vector<SDL_Rect>* sprites = obtener_sprites_bala(id_bala);
+        SDL2pp::Texture* sprite_sheet = obtener_sprite_sheet_arma_bala(id_bala);
+        std::vector<SDL_Rect>* sprites = obtener_sprites_arma_bala(id_bala);
         inclinacion_e inclinacion = bala.inclinacion;
         orientacion_e orientacion = bala.direccion;
         int indice;
@@ -591,6 +593,51 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
+void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+    for (auto& arma: estado_actual.info_armas) {
+        std::cout << "HAY UN ARMA" << std::endl;
+        float escala = ESCALA_SPRITES_GRANDES;
+        float x = arma.posicion.coordenada_x;
+        float y = arma.posicion.coordenada_y;
+        int id_arma = arma.id_arma;
+        SDL2pp::Texture* sprite_sheet = obtener_sprite_sheet_arma_bala(id_arma);
+        std::vector<SDL_Rect>* sprites = obtener_sprites_arma_bala(id_arma);
+        orientacion_e orientacion = DERECHA;
+        auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
+        float offset_y = (y_relativo * OFFSET_Y);
+        dibujar_sprite(renderer, *sprite_sheet, (*sprites)[POS_ARMA], x_relativo,
+                       y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
+void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+    for (auto& casco: estado_actual.info_cascos) {
+        std::cout << "HAY UN CASCO" << std::endl;
+        float escala = ESCALA_SPRITES_GRANDES;
+        float x = casco.coordenada_x;
+        float y = casco.coordenada_y;
+        orientacion_e orientacion = DERECHA;
+        auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
+        float offset_y = (y_relativo * OFFSET_Y);
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[POS_CASCO], x_relativo,
+                       y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
+void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+    for (auto& armadura: estado_actual.info_armaduras) {
+        std::cout << "HAY UN ARMADURA" << std::endl;
+        float escala = ESCALA_SPRITES_GRANDES;
+        float x = armadura.coordenada_x;
+        float y = armadura.coordenada_y;
+        orientacion_e orientacion = DERECHA;
+        auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
+        float offset_y = (y_relativo * OFFSET_Y);
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[POS_ARMADURA], x_relativo,
+                       y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
 void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     if (estado_actual.id_mapa == ID_MAPA_OVERWORLD) {
         renderer.Copy(this->mapa1);
@@ -600,6 +647,10 @@ void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Rendere
 
     dibujar_patos(estado_actual, renderer);
     dibujar_balas(estado_actual, renderer);
+    dibujar_armas(estado_actual, renderer);
+    dibujar_cascos(estado_actual, renderer);
+    dibujar_armaduras(estado_actual, renderer);
+    // SOLO FALTA DIBUJAR LAS CAJAS.
 }
 
 void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {

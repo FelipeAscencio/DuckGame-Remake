@@ -131,17 +131,26 @@ private:
     // Dibuja los patos del 'estado_actual' en la ventana.
     void dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
-    // Obtiene el 'Sprite Sheet' de la bala correspondiente al ID recibido.
-    SDL2pp::Texture* obtener_sprite_sheet_bala(int& id_arma);
+    // Obtiene el 'Sprite Sheet' del arma o bala correspondiente al ID recibido.
+    SDL2pp::Texture* obtener_sprite_sheet_arma_bala(int& id_arma);
 
-    // Obtiene los 'Sprites' de la bala correspondiente al ID recibido.
-    std::vector<SDL_Rect>* obtener_sprites_bala(int& id_arma);
+    // Obtiene los 'Sprites' del arma o bala correspondiente al ID recibido.
+    std::vector<SDL_Rect>* obtener_sprites_arma_bala(int& id_arma);
 
     // Obtiene el indice del perdigon actual de la bala.
     int obtener_indice_sprite(inclinacion_e& inclinacion, orientacion_e& orientacion);
 
     // Dibuja las balas del 'estado_actual' en la ventana.
     void dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
+    // Dibuja las armas spawneadas en el piso.
+    void dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
+    // Dibuja los cascos spawneados en el piso.
+    void dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
+    // Dibuja las armaduras spawneadas en el piso.
+    void dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja el 'estado_actual' de la partida.
     void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
