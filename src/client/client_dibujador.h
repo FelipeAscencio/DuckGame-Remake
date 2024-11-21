@@ -138,7 +138,7 @@ private:
     std::vector<SDL_Rect>* obtener_sprites_arma_bala(int& id_arma);
 
     // Obtiene el indice del perdigon actual de la bala.
-    int obtener_indice_sprite(inclinacion_e& inclinacion, orientacion_e& orientacion);
+    int obtener_indice_sprite(inclinacion_e& inclinacion);
 
     // Dibuja las balas del 'estado_actual' en la ventana.
     void dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);

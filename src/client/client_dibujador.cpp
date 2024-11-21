@@ -538,31 +538,13 @@ std::vector<SDL_Rect>* Dibujador::obtener_sprites_arma_bala(int& id_arma) {
     return nullptr;
 }
 
-int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion, orientacion_e& orientacion) {
-    if (orientacion == IZQUIERDA) {
-        if (inclinacion == NO_TIENE) {
-            return UNO;
-        } else if (inclinacion == PARA_ABAJO) {
-            return DOS;
-        } else {
-            return OCHO;
-        }
-    } else if (orientacion == DERECHA) {
-        if (inclinacion == NO_TIENE) {
-            return CINCO;
-        } else if (inclinacion == PARA_ABAJO) {
-            return CUATRO;
-        } else {
-            return SEIS;
-        }
+int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion) {
+    if (inclinacion == NO_TIENE){
+        return UNO;
+    } else if (inclinacion == PARA_ABAJO){
+        return DOS;
     } else {
-        if (inclinacion == NO_TIENE) {
-            return SIETE;
-        } else if (inclinacion == PARA_ABAJO) {
-            return OCHO;
-        } else {
-            return SEIS;
-        }
+        return TRES;
     }
 
     return CERO;
@@ -580,7 +562,7 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         orientacion_e orientacion = bala.direccion;
         int indice;
         if (id_bala == ID_MAGNUM || id_bala == ID_SHOTGUN) {
-            indice = obtener_indice_sprite(inclinacion, orientacion);
+            indice = obtener_indice_sprite(inclinacion);
             escala = ESCALA_SPRITES_MEDIANOS;
         } else {
             indice = POS_BALA_UNICA;
@@ -595,7 +577,6 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
 
 void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
     for (auto& arma: estado_actual.info_armas) {
-        std::cout << "HAY UN ARMA" << std::endl;
         float escala = ESCALA_SPRITES_GRANDES;
         float x = arma.posicion.coordenada_x;
         float y = arma.posicion.coordenada_y;
@@ -612,7 +593,6 @@ void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
 
 void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
     for (auto& casco: estado_actual.info_cascos) {
-        std::cout << "HAY UN CASCO" << std::endl;
         float escala = ESCALA_SPRITES_GRANDES;
         float x = casco.coordenada_x;
         float y = casco.coordenada_y;
@@ -626,7 +606,6 @@ void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& ren
 
 void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
     for (auto& armadura: estado_actual.info_armaduras) {
-        std::cout << "HAY UN ARMADURA" << std::endl;
         float escala = ESCALA_SPRITES_GRANDES;
         float x = armadura.coordenada_x;
         float y = armadura.coordenada_y;

@@ -12,6 +12,7 @@
 #define TAMANIO_SPRITES_BUG 31  // Hay algunos sprites que no llegan justo a 32.
 #define TAMANIO_SPRITE_MEDIANO 16
 #define TAMANIO_SPRITE_CHICO 8
+#define TAMANIO_SPRITE_CHICO_BUG 7 // Hay algunos sprites que no llegan justo a 8.
 #define INICIO_PATO_X 1
 #define INICIO_PATO_Y 10
 #define INICIO_PATO_QUACK_X 194
@@ -105,7 +106,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_ak() {
     int y_inicial = INICIO_AK_47_Y;
     iterador_de_parseo(sprites_ak, UNO, x_inicial, y_inicial, tamanio_sprite);
 
-    tamanio_sprite = TAMANIO_SPRITE_CHICO;
+    tamanio_sprite = TAMANIO_SPRITE_CHICO_BUG;
     x_inicial = INICIO_BALAS_AK_X;
     y_inicial = INICIO_BALAS_AK_Y;
     iterador_de_parseo(sprites_ak, UNO, x_inicial, y_inicial, tamanio_sprite);
