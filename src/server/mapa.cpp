@@ -1,5 +1,4 @@
 #include "server/mapa.h"
-
 #include <fstream>
 #include <string>
 
@@ -11,8 +10,8 @@
 #define PRIMERA_POSICION 0
 #define SEGUNDA_POSICION 1
 
-Mapa::Mapa(int mapa): id_mapa(mapa) {
-    std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(mapa) + TXT;
+Mapa::Mapa(): id_mapa((rand()%2) + 1){
+    std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(id_mapa) + TXT;
     std::ifstream archivo_mapa(ruta_mapa);
     if (!archivo_mapa.is_open()) {
         std::cerr << "Error leyendo archivo del mapa \n";
@@ -125,11 +124,25 @@ posicion_t Mapa::posicion_inicial(const int& id_pato) {
     return posicion_t(0, 0);
 }
 
+void Mapa::inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn){
+    if (id_mapa == 1){
+        puntos_spawn.push_back(Spawn(posicion_t(170,29)));
+        puntos_spawn.push_back(Spawn(posicion_t(130,95)));
+        puntos_spawn.push_back(Spawn(posicion_t(55,49)));
+        puntos_spawn.push_back(Spawn(posicion_t(20,89)));
+        puntos_spawn.push_back(Spawn(posicion_t(112,69)));   
+    } else {
+        puntos_spawn.push_back(Spawn(posicion_t(100,59)));
+        puntos_spawn.push_back(Spawn(posicion_t(25,99)));
+        puntos_spawn.push_back(Spawn(posicion_t(187,99)));
+        puntos_spawn.push_back(Spawn(posicion_t(91,129)));
+        puntos_spawn.push_back(Spawn(posicion_t(142,129)));
+    }
+}
 
 Mapa::~Mapa() {
     for (int i = 0; i < alto; i++) {
         delete[] mapa[i];
     }
-
     delete[] mapa;
 }

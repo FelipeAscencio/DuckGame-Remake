@@ -1,6 +1,11 @@
 #include "server/gameloop.h"
-
+#include "p_p_laser.h"
+#include "ak47.h"
+#include "shotgun.h"
+#include "magnum.h"
+#include "sniper.h"
 #include <algorithm>
+#include "spawn_place.h"
 
 #include <time.h>
 
@@ -11,7 +16,9 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa((rand() % 2) + 1) {}
+        queue(q), juego_activo(true), queues_clientes(l), mapa() {
+            mapa.inicializar_puntos_spawn(puntos_spawn);
+        }
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -62,10 +69,14 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
             }
         }
     }
-    if (!this->armas_tiradas.empty()) {
-        for (Arma* a: armas_tiradas) {
-            estado_actual.agregar_arma(a);
-        }
+    for (Arma* a: armas_tiradas){
+        estado_actual.agregar_arma(a);
+    }
+    for (posicion_t pos: cascos_tirados){
+        estado_actual.agregar_casco(pos);
+    }
+    for (posicion_t pos: armaduras_tiradas){
+        estado_actual.agregar_armadura(pos);
     }
     if (hubo_ganador) {
         for (Pato* p: jugadores) {
@@ -119,7 +130,7 @@ void Gameloop::loop_juego() {
             if (jugadores.size() > 1) {
                 for (Pato* p: jugadores) {
                     if (cmd.id_cliente == p->id_jugador) {
-                        p->realizar_accion(cmd.accion, mapa);
+                        p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados, armaduras_tiradas, puntos_spawn);
                     }
                 }
             }
@@ -155,6 +166,31 @@ void Gameloop::run() {
     }
     if (juego_activo) {
         enviar_estado_juego(true);
+    }
+}
+
+void Gameloop::spawnear_elementos(){
+    for(Spawn s: puntos_spawn){
+        int spawn = s.spawnear();
+        if (spawn != 0){
+            if (spawn == 1){
+                cascos_tirados.push_back(posicion_t(s.posicion));
+            } else if (spawn == 2){
+                armaduras_tiradas.push_back(posicion_t(s.posicion));
+            } else {
+                int arma = (rand()%5 + 1);
+                if (arma == 1)
+                    armas_tiradas.push_back(new PewPewLaser(s.posicion));
+                else if (arma == 2)
+                    armas_tiradas.push_back(new AK47(s.posicion));
+                else if (arma == 3)
+                    armas_tiradas.push_back(new Magnum(s.posicion));
+                else if (arma == 4)
+                    armas_tiradas.push_back(new Shotgun(s.posicion));
+                else 
+                    armas_tiradas.push_back(new Sniper(s.posicion));
+            }
+        }
     }
 }
 

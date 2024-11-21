@@ -135,6 +135,19 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_mapa(const int& mapa) 
     return bytes_mapa;
 }
 
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_casco_o_armadura(const posicion_t& pos, bool casco){
+    std::vector<uint8_t> bytes;
+    uint8_t codigo = casco ? CODIGO_CASCO : CODIGO_ARMADURA;
+    bytes.push_back(codigo);
+    std::vector<uint8_t> posicion_separada = separar_posicion_en_entero_y_decimal(pos);
+    bytes.push_back(posicion_separada[0]);
+    bytes.push_back(posicion_separada[1]);
+    bytes.push_back(posicion_separada[2]);
+    bytes.push_back(posicion_separada[3]);
+    bytes.push_back(FIN_MENSAJE);
+    return bytes;
+}
+
 bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
@@ -160,8 +173,17 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
         envio_correcto = _enviar(serializar_bala(estado_actual.info_balas[i]));
         i++;
     }
+    i = 0;
+    while(i < estado_actual.cantidad_armaduras && envio_correcto){
+        envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_armaduras[i], false));
+        i++;
+    }
+    i = 0;
+    while (i < estado_actual.cantidad_cascos && envio_correcto){
+        envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_cascos[i], true));
+        i++;
+    }
 
-    //// aca hay que agregar la logica para enviar las armas, balas, armaduras, etc.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;
         bool was_closed = false;

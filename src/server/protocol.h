@@ -18,6 +18,8 @@ class Protocol {
 private:
     Socket& s;
 
+    std::vector<uint8_t> serializar_casco_o_armadura(const posicion_t& pos, bool casco);
+
     std::vector<uint8_t> serializar_mapa(const int& mapa);
 
     // Serializa la informacion del ganador. Si esta en la mitad de una ronda, envia un valor dummy

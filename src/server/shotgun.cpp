@@ -37,8 +37,8 @@ void Shotgun::eliminar_bala(const int& indice) {
         inicio_tanda_balas = 6;
     for (int i = 0; i < 6; i++) {
         Municion* auxiliar = balas[inicio_tanda_balas];
-        balas.erase(balas.begin() + inicio_tanda_balas);
         delete auxiliar;
+        balas.erase(balas.begin() + inicio_tanda_balas);
     }
     for (int i = indice; i < (int)balas.size(); i++) {
         balas[i]->nro_bala -= 6;

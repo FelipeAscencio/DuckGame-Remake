@@ -121,6 +121,8 @@ struct EstadoJuego {
     std::vector<InformacionPato> info_patos;
     std::vector<InformacionArma> info_armas;
     std::vector<InformacionBala> info_balas;
+    std::vector<posicion_t> info_cascos;
+    std::vector<posicion_t> info_armaduras;
 
 
     // Constructor del struct.
@@ -193,6 +195,16 @@ struct EstadoJuego {
     void agregar_bala(const InformacionBala& bala) {
         info_balas.push_back(bala);
         this->cantidad_balas++;
+    }
+
+    void agregar_casco(const posicion_t& pos){
+        info_cascos.push_back(pos);
+        cantidad_cascos++;
+    }
+
+    void agregar_armadura(const posicion_t& pos){
+        info_armaduras.push_back(pos);
+        cantidad_armaduras++;
     }
 
     void definir_ganador(const int& id) { this->id_ganador = id; }

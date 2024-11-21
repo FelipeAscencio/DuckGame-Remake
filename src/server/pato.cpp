@@ -377,7 +377,57 @@ void Pato::recibir_disparo() {
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
-void Pato::realizar_accion(const int& accion, Mapa& mapa) {
+void Pato::pickup(std::vector<Arma*> armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns){
+    bool pickup = false;
+    size_t i = 0;
+    while (i < armas_tiradas.size()){
+        if (this->posicion.es_igual(armas_tiradas[i]->posicion_spawn)){
+            if (arma_equipada){
+                delete arma_equipada;
+                posee_arma = false;
+            }
+            this->arma_equipada = armas_tiradas[i];
+            this->posee_arma = true;
+            armas_tiradas[i] = nullptr;
+            armas_tiradas.erase(armas_tiradas.begin() + i);
+            pickup = true;
+        }
+        i++;
+    }
+    if (!pickup){
+        i = 0;
+        while (i < cascos_tirados.size()){
+            posicion_t posicion_casco = cascos_tirados[i];
+            if (this->posicion.es_igual(posicion_casco)){
+                posee_casco = true;
+                cascos_tirados.erase(cascos_tirados.begin() + i);
+                pickup = true;
+            }
+            i++;
+        }
+    }
+    if (!pickup){
+        i = 0;
+        while (i < armaduras_tiradas.size()){
+            posicion_t pos = armaduras_tiradas[i];
+            if (this->posicion.es_igual(pos)){
+                posee_armadura = true;
+                armaduras_tiradas.erase(armaduras_tiradas.begin() + i);
+                pickup = true;
+            }
+            i++;
+        }
+    }
+    if (pickup){
+        for (Spawn s: spawns){
+            if (this->posicion.es_igual(s.posicion)){
+                s.liberar();
+            }
+        }
+    }
+}
+
+void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Arma*>& armas_tiradas, std::vector<posicion_t> cascos_tirados, std::vector<posicion_t> armaduras_tiradas, std::vector<Spawn>& spawns) {
     if (!vivo)
         return;
     switch (accion) {
@@ -408,8 +458,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa) {
             }
             break;
         case COMANDO_AGARRAR:
-            // Logica para ver si el arma/casco/armadura esta en la misma posicion para
-            // agarrar
+            pickup(armas_tiradas, cascos_tirados, armaduras_tiradas, spawns);
             break;
 
         case CUAK:

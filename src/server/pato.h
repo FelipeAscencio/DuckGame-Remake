@@ -92,6 +92,8 @@ private:
     static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion,
                              const posicion_t& posicion_a_chequear);
 
+    void pickup(std::vector<Arma*> armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns);
+
 public:
     // Constructor de la clase.
     explicit Pato(int id, Mapa& mapa);
@@ -112,7 +114,7 @@ public:
     void control_pre_comando(Mapa& mapa);
 
     // Realiza una accion segun el comando recibido.
-    void realizar_accion(const int& accion, Mapa& mapa);
+    void realizar_accion(const int& accion, Mapa& mapa, std::vector<Arma*>& armas_tiradas, std::vector<posicion_t> cascos_tirados, std::vector<posicion_t> armaduras_tiradas, std::vector<Spawn>& spawns);
 
     // Destructor de la clase.
     ~Pato();

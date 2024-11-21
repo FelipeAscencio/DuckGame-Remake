@@ -56,6 +56,10 @@ typedef struct Posicion {
         bool resultado = (dx < 0.5 && dy <= (TILE_A_METRO - 1));
         return resultado;
     }
+
+    bool es_igual(const Posicion& otra){
+        return this->coordenada_x == otra.coordenada_x && this->coordenada_y == otra.coordenada_y;
+    }
 } posicion_t;
 
 #endif  // COMMON_POSICION_H_

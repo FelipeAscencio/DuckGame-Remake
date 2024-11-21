@@ -35,8 +35,8 @@ bool Arma::en_uso() { return this->agarrada; }
 
 void Arma::eliminar_bala(const int& indice) {
     Municion* auxiliar = balas[indice];
-    balas.erase(balas.begin() + indice);
     delete auxiliar;
+    balas.erase(balas.begin() + indice);
     for (int i = indice; i < (int)balas.size(); i++) {
         balas[i]->nro_bala -= 1;
     }

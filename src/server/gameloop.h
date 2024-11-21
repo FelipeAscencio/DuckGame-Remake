@@ -22,9 +22,12 @@ private:
     std::atomic<bool> juego_activo;
     ListaQueues& queues_clientes;
     std::vector<Pato*> jugadores;
-    std::vector<Arma*> armas_tiradas;
     Mapa mapa;
     std::vector<bool> jugadores_vivos;
+    std::vector<Arma*> armas_tiradas;
+    std::vector<Spawn> puntos_spawn;
+    std::vector<posicion_t> cascos_tirados;
+    std::vector<posicion_t> armaduras_tiradas;
 
     // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();
@@ -47,6 +50,7 @@ private:
     // Ejecuta una iteracion del ciclo de juego, procesando nuevos jugadores, posiciones y acciones.
     void loop_juego();
 
+    void spawnear_elementos();
 public:
     // Constructor de la clase.
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);

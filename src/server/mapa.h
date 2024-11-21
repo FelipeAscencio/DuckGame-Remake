@@ -7,6 +7,7 @@
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
+#include "spawn_place.h"
 
 #define TILE_A_METRO 10
 
@@ -27,10 +28,9 @@ private:
     int alto;
     int** mapa;
     int id_mapa;
-
 public:
     // Constructor de la clase.
-    explicit Mapa(int mapa);
+    explicit Mapa();
 
     // Convierte una posicion en coordenadas del mapa a unidades de "tiles".
     std::vector<int> posicion_en_mapa(const posicion_t& posicion);
@@ -44,6 +44,8 @@ public:
     bool techo_bloque(const posicion_t& pos);
 
     posicion_t posicion_inicial(const int& id_jugador);
+
+    void inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn);
 
     // Destructor de la clase.
     ~Mapa();

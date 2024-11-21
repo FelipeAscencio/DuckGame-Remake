@@ -18,6 +18,7 @@ target_sources(taller_server
     server.cpp
     shotgun.cpp
     sniper.cpp
+    spawn_place.cpp
     thread_usuario.cpp
     PUBLIC
     # .h files
@@ -37,5 +38,6 @@ target_sources(taller_server
     server.h
     shotgun.h
     sniper.h
+    spawn_place.h
     thread_usuario.h
     )
