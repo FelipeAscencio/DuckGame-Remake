@@ -658,7 +658,27 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
 
     renderer.Clear();
     if (estado_actual.id_ganador == SEGUIR_JUGANDO) {
+        int ancho_ventana = renderer.GetOutputWidth();
+        int alto_ventana = renderer.GetOutputHeight();
+        SDL2pp::Texture textura_escena(
+            renderer,
+            SDL_PIXELFORMAT_RGBA8888,
+            SDL_TEXTUREACCESS_TARGET,
+            ancho_ventana,
+            alto_ventana);
+
+        // Establecer la textura como destino de renderizado.
+        renderer.SetTarget(textura_escena);
+        renderer.Clear();
         dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
+        renderer.SetTarget();
+        SDL_Rect area_visible = {
+            0,                      // x inicial
+            alto_ventana / 2,       // y inicial
+            ancho_ventana / 2,      // ancho
+            alto_ventana / 2        // alto
+        };
+        renderer.Copy(textura_escena, area_visible, SDL2pp::NullOpt);
         renderer.Present();
     } else if (estado_actual.id_ganador == MOSTRAR_TABLERO) {
         dibujar_tablero(renderer, this->ultimo_estado_recibido);
