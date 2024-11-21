@@ -44,6 +44,7 @@
 #define OFFSET_X_CASCO_AGACHADO_DER 0.027
 #define OFFSET_X_CASCO_AGACHADO_IZQ -0.027
 #define OFFSET_Y_CASCO_AGACHADO 0.016
+#define OFFSET_ZOOM 200
 #define ANGULO_NULO 0.0
 #define ANGULO_90 90.0
 #define ANGULO_270 270.0
@@ -215,9 +216,17 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
+void Dibujador::calcular_limites_camara(float& x_relativo, float& y_relativo){
+    this->x_min = std::min(this->x_min, static_cast<int>(x_relativo * ANCHO_VENTANA));
+    this->y_min = std::min(this->y_min, static_cast<int>(y_relativo * ALTO_VENTANA));
+    this->x_max = std::max(this->x_max, static_cast<int>(x_relativo * ANCHO_VENTANA));
+    this->y_max = std::max(this->y_max, static_cast<int>(y_relativo * ALTO_VENTANA));
+}
+
 void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id,
                                   float& x_relativo, float& y_relativo, orientacion_e orientacion,
                                   estado_pato_e& estado, sonido_e& sonido) {
+    calcular_limites_camara(x_relativo, y_relativo);
     if (orientacion == ARRIBA) {
         orientacion = DERECHA;  // Se corrige la orientacion del pato ya que lo que estara hacia
                                 // arriba es el arma.
@@ -606,6 +615,58 @@ void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
     }
 }
 
+void Dibujador::reiniciar_valores_zoom(){
+    this->x_min = ANCHO_VENTANA;
+    this->y_min = ALTO_VENTANA;
+    this->x_max = CERO;
+    this->y_max = CERO;
+}
+
+void Dibujador::verificar_valores_zoom(){
+    this->x_min -= OFFSET_ZOOM;
+    if (this->x_min < CERO){
+        this->x_min = CERO;
+    }
+
+    this->y_min -= OFFSET_ZOOM;
+    if (this->y_min < CERO){
+        this->y_min = CERO;
+    }
+
+    this->x_max += OFFSET_ZOOM;
+    if (this->x_max > ANCHO_VENTANA){
+        this->x_max = ANCHO_VENTANA;
+    }
+
+    this->y_max += OFFSET_ZOOM;
+    if (this->y_max > ALTO_VENTANA){
+        this->y_max = ALTO_VENTANA;
+    }
+}
+
+void Dibujador::mostrar_estado_juego(SDL2pp::Renderer& renderer){
+    SDL2pp::Texture textura_escena(
+        renderer,
+        SDL_PIXELFORMAT_RGBA8888,
+        SDL_TEXTUREACCESS_TARGET,
+        ANCHO_VENTANA,
+        ALTO_VENTANA);
+    renderer.SetTarget(textura_escena);
+    renderer.Clear();
+    reiniciar_valores_zoom();
+    dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
+    verificar_valores_zoom();
+    renderer.SetTarget();
+    SDL_Rect area_visible = {
+        this->x_min,
+        this->y_min,
+        (this->x_max - this->x_min),
+        (this->y_max - this->y_min)
+    };
+    renderer.Copy(textura_escena, area_visible, SDL2pp::NullOpt);
+    renderer.Present(); 
+}
+
 void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
                                        const std::vector<int>& puntajes) {
     TTF_Font* fuente = TTF_OpenFont(DATA_PATH RUTA_FUENTE, TAMANIO_FUENTE);
@@ -648,6 +709,7 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_
     dibujar_patos_tablero(renderer);
     dibujar_puntos_tablero(renderer, puntajes);
     TTF_Quit();
+    renderer.Present();
 }
 
 void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
@@ -658,31 +720,9 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
 
     renderer.Clear();
     if (estado_actual.id_ganador == SEGUIR_JUGANDO) {
-        int ancho_ventana = renderer.GetOutputWidth();
-        int alto_ventana = renderer.GetOutputHeight();
-        SDL2pp::Texture textura_escena(
-            renderer,
-            SDL_PIXELFORMAT_RGBA8888,
-            SDL_TEXTUREACCESS_TARGET,
-            ancho_ventana,
-            alto_ventana);
-
-        // Establecer la textura como destino de renderizado.
-        renderer.SetTarget(textura_escena);
-        renderer.Clear();
-        dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
-        renderer.SetTarget();
-        SDL_Rect area_visible = {
-            0,                      // x inicial
-            alto_ventana / 2,       // y inicial
-            ancho_ventana / 2,      // ancho
-            alto_ventana / 2        // alto
-        };
-        renderer.Copy(textura_escena, area_visible, SDL2pp::NullOpt);
-        renderer.Present();
+        mostrar_estado_juego(renderer);
     } else if (estado_actual.id_ganador == MOSTRAR_TABLERO) {
         dibujar_tablero(renderer, this->ultimo_estado_recibido);
-        renderer.Present();
     } else {
         jugador_activo = false;
         if (estado_actual.id_ganador == this->id_jugador) {

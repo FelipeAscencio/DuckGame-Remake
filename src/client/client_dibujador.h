@@ -54,6 +54,10 @@ private:
     Mix_Chunk* sonido_escopeta;
     Mix_Chunk* sonido_sniper;
     Mix_Chunk* sonido_quack;
+    int x_min;
+    int y_min;
+    int x_max;
+    int y_max;
 
     // Devuelve el 'Rect' correspondiente segun los parametros recibidos.
     SDL2pp::Rect calcular_dst_rect(float& x, float& y, float& escala);
@@ -70,6 +74,9 @@ private:
     void dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
                         const SDL_Rect& sprite, float x, float y, float& escala,
                         orientacion_e orientacion, const int& id);
+
+    // Calcula los limites del 'Zoom' en relacion a los patos vivos, y si hay nuevo minimo o maximo actualiza el valor.
+    void calcular_limites_camara(float& x_relativo, float& y_relativo);
 
     // Dibuja un pato vivo en en la ventana.
     void dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int& id, float& x_relativo,
@@ -136,8 +143,17 @@ private:
     // Dibuja las balas del 'estado_actual' en la ventana.
     void dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
-    // Dibuja el 'estado_actual' en la ventana.
+    // Dibuja el 'estado_actual' de la partida.
     void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
+    // Reinicia los valores iniciales del 'Zoom' de la camara.
+    void reiniciar_valores_zoom();
+
+    // Verifica que los valores para aplicar el 'Zoom' de la camara sean validos, y si no los son los corrige.
+    void verificar_valores_zoom();
+
+    // Imprime la interfaz grafica para que el cliente pueda ver el estado del juego.
+    void mostrar_estado_juego(SDL2pp::Renderer& renderer);
 
     // Dibuja los patos en el tablero.
     void dibujar_patos_tablero(SDL2pp::Renderer& renderer);
