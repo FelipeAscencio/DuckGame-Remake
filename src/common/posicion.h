@@ -57,8 +57,11 @@ typedef struct Posicion {
         return resultado;
     }
 
-    bool es_igual(const Posicion& otra){
-        return this->coordenada_x == otra.coordenada_x && this->coordenada_y == otra.coordenada_y;
+    bool igual_para_pickup(const Posicion& otra){
+        float dx = abs(this->coordenada_x - otra.coordenada_x);
+        float dy = abs(this->coordenada_y - otra.coordenada_y);
+        bool resultado = dx <= 1.5 && dy <= TILE_A_METRO /2;
+        return resultado;
     }
 } posicion_t;
 

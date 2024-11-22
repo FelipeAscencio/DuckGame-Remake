@@ -224,14 +224,6 @@ void Pato::cambiar_orientacion(const orientacion_e& nueva_orientacion) {
     this->orientacion = nueva_orientacion;
 }
 
-bool Pato::agarrar_arma(Arma* arma) {
-    // Aca deberia chequear que esten en la misma posicion.
-    // if (arma_equipada) delete arma_equipada;
-    this->posee_arma = true;
-    this->arma_equipada = arma;
-    return true;
-}
-
 void Pato::soltar_arma() {
     // if (arma_equipada) delete arma_equipada;
     this->posee_arma = false;
@@ -377,40 +369,65 @@ void Pato::recibir_disparo() {
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
-void Pato::pickup(std::vector<Arma*> armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns){
+void Pato::equipar_arma(const int& id_arma){
+    if (arma_equipada){
+        delete arma_equipada;
+        posee_arma = false;
+    }
+    posicion_t pos(this->posicion.coordenada_x, this->posicion.coordenada_y - TILE_A_METRO/2);
+    if (id_arma == ID_PP_LASER)
+        this->arma_equipada = new PewPewLaser(pos);
+    else if(id_arma == ID_AK47)
+        this->arma_equipada = new AK47(pos);
+    else if(id_arma == ID_MAGNUM)
+        this->arma_equipada = new Magnum(pos);
+    else if(id_arma == ID_SHOTGUN)
+        this->arma_equipada = new Shotgun(pos);
+    else 
+        this->arma_equipada = new Sniper(pos);
+    this->posee_arma = true;
+}
+
+void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns){
+    std::lock_guard<std::mutex> lck(mtx);
+    bool alguno = false;
+    int tipo_pickup = 0;
+    for (size_t i = 0; i < spawns.size(); i++){
+        if (this->posicion.igual_para_pickup(spawns[i]->posicion)){
+            alguno = true;
+            tipo_pickup = spawns[i]->contenido;
+        }
+    }
+    if (!alguno) return;
+    std::cout << tipo_pickup << std::endl;
     bool pickup = false;
     size_t i = 0;
-    while (i < armas_tiradas.size()){
-        if (this->posicion.es_igual(armas_tiradas[i]->posicion_spawn)){
-            if (arma_equipada){
-                delete arma_equipada;
-                posee_arma = false;
+    if (tipo_pickup == 3){
+        while (i < armas_tiradas.size()){
+            if (this->posicion.igual_para_pickup(armas_tiradas[i].posicion)){
+                int id_arma = armas_tiradas[i].id_arma;
+                equipar_arma(id_arma);
+                armas_tiradas.erase(armas_tiradas.begin() + i);
+                pickup = true;
             }
-            this->arma_equipada = armas_tiradas[i];
-            this->posee_arma = true;
-            armas_tiradas[i] = nullptr;
-            armas_tiradas.erase(armas_tiradas.begin() + i);
-            pickup = true;
+            i++;
         }
-        i++;
-    }
-    if (!pickup){
+    } else if (tipo_pickup == 1){
         i = 0;
         while (i < cascos_tirados.size()){
             posicion_t posicion_casco = cascos_tirados[i];
-            if (this->posicion.es_igual(posicion_casco)){
+            if (this->posicion.igual_para_pickup(posicion_casco)){
                 posee_casco = true;
                 cascos_tirados.erase(cascos_tirados.begin() + i);
                 pickup = true;
             }
             i++;
         }
-    }
-    if (!pickup){
+    } else {
         i = 0;
         while (i < armaduras_tiradas.size()){
             posicion_t pos = armaduras_tiradas[i];
-            if (this->posicion.es_igual(pos)){
+            if (this->posicion.igual_para_pickup(pos)){
                 posee_armadura = true;
                 armaduras_tiradas.erase(armaduras_tiradas.begin() + i);
                 pickup = true;
@@ -419,15 +436,15 @@ void Pato::pickup(std::vector<Arma*> armas_tiradas, std::vector<posicion_t>& cas
         }
     }
     if (pickup){
-        for (Spawn s: spawns){
-            if (this->posicion.es_igual(s.posicion)){
-                s.liberar();
+        for (size_t i = 0; i < spawns.size(); i++){
+            if (this->posicion.igual_para_pickup(spawns[i]->posicion)){
+                spawns[i]->liberar();
             }
         }
     }
 }
 
-void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Arma*>& armas_tiradas, std::vector<posicion_t> cascos_tirados, std::vector<posicion_t> armaduras_tiradas, std::vector<Spawn>& spawns) {
+void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns) {
     if (!vivo)
         return;
     switch (accion) {
@@ -466,48 +483,23 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Arma*>& ar
             break;
 
         case CHEAT_AK:
-            if (this->arma_equipada) {
-                delete this->arma_equipada;
-            }
-            this->posee_arma = true;
-            this->arma_equipada = new AK47(
-                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
+            equipar_arma(ID_AK47);
             break;
 
         case CHEAT_SG:
-            if (this->arma_equipada) {
-                delete this->arma_equipada;
-            }
-            this->posee_arma = true;
-            this->arma_equipada = new Shotgun(
-                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
+            equipar_arma(ID_SHOTGUN);
             break;
 
         case CHEAT_MAGNUM:
-            if (this->arma_equipada) {
-                delete this->arma_equipada;
-            }
-            this->posee_arma = true;
-            this->arma_equipada = new Magnum(
-                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
+            equipar_arma(ID_MAGNUM);
             break;
 
         case CHEAT_LASER:
-            if (this->arma_equipada) {
-                delete this->arma_equipada;
-            }
-            this->posee_arma = true;
-            this->arma_equipada = new PewPewLaser(
-                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
+            equipar_arma(ID_PP_LASER);
             break;
 
         case CHEAT_SNIPER:
-            if (this->arma_equipada) {
-                delete this->arma_equipada;
-            }
-            this->posee_arma = true;
-            this->arma_equipada = new Sniper(
-                    posicion_t(posicion.coordenada_x, posicion.coordenada_y - TILE_A_METRO / 2));
+            equipar_arma(ID_SNIPER);
             break;
 
         case CHEAT_INMORTALIDAD:

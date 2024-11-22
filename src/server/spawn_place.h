@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "../common/posicion.h"
+#include <mutex>
+#include <utility>
 
 class Spawn{
     friend class Mapa;
@@ -14,11 +16,11 @@ class Spawn{
         int nro_random_spawn;
         bool libre;
         int contenido;
-    
+        std::mutex mtx;
     public:
         Spawn(posicion_t posicion);
 
-        int spawnear();
+        bool spawnear();
 
         void liberar();
 

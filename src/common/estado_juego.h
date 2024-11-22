@@ -13,6 +13,7 @@
 #include "common/estado_fisico.h"
 #include "common/orientacion.h"
 #include "common/posicion.h"
+#include "informacion_arma.h"
 
 #define CERO 0
 #define ID_GANADOR 0xFD  // Valor dummy que indica que no hay un ganador de la ronda actual.
@@ -62,21 +63,6 @@ struct InformacionPato {
             estado(estado_pato),
             sonido(sonido_pato),
             rondas_ganadas(rondas) {}
-};
-
-// 'struct' que encapsula la informacion de todas las armas del juego.
-struct InformacionArma {
-    int id_arma;  // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
-    posicion_t posicion;
-
-    // Primera variante del constructor del struct.
-    explicit InformacionArma(Arma* a): id_arma(a->id_arma), posicion(a->posicion_spawn) {}
-
-    // Segunda variante del constructor del struct.
-    explicit InformacionArma(uint8_t id, float x, float y): id_arma(id), posicion(x, y) {}
-
-    // Tercera variante del constructor del struct.
-    explicit InformacionArma(uint8_t id, posicion_t pos): id_arma(id), posicion(pos) {}
 };
 
 

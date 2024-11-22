@@ -124,19 +124,19 @@ posicion_t Mapa::posicion_inicial(const int& id_pato) {
     return posicion_t(0, 0);
 }
 
-void Mapa::inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn){
+void Mapa::inicializar_puntos_spawn(std::vector<Spawn*>& puntos_spawn){
     if (id_mapa == 1){
-        puntos_spawn.push_back(Spawn(posicion_t(170,29)));
-        puntos_spawn.push_back(Spawn(posicion_t(130,95)));
-        puntos_spawn.push_back(Spawn(posicion_t(55,49)));
-        puntos_spawn.push_back(Spawn(posicion_t(20,89)));
-        puntos_spawn.push_back(Spawn(posicion_t(112,69)));   
+        puntos_spawn.push_back(new Spawn(posicion_t(170,29)));
+        puntos_spawn.push_back(new Spawn(posicion_t(130,99)));
+        puntos_spawn.push_back(new Spawn(posicion_t(55,49)));
+        puntos_spawn.push_back(new Spawn(posicion_t(20,89)));
+        puntos_spawn.push_back(new Spawn(posicion_t(112,69)));   
     } else {
-        puntos_spawn.push_back(Spawn(posicion_t(100,59)));
-        puntos_spawn.push_back(Spawn(posicion_t(25,99)));
-        puntos_spawn.push_back(Spawn(posicion_t(187,99)));
-        puntos_spawn.push_back(Spawn(posicion_t(91,129)));
-        puntos_spawn.push_back(Spawn(posicion_t(142,129)));
+        puntos_spawn.push_back(new Spawn(posicion_t(100,59)));
+        puntos_spawn.push_back(new Spawn(posicion_t(25,99)));
+        puntos_spawn.push_back(new Spawn(posicion_t(187,99)));
+        puntos_spawn.push_back(new Spawn(posicion_t(91,129)));
+        puntos_spawn.push_back(new Spawn(posicion_t(142,129)));
     }
 }
 

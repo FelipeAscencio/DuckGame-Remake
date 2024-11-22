@@ -3,12 +3,13 @@
 #define SERVER_PATO_H_
 
 #include <iostream>
-
+#include <mutex>
 #include "../common/estado_fisico.h"
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
 #include "server/arma.h"
 #include "server/mapa.h"
+#include "../common/informacion_arma.h"
 
 // 'enum' utilizado para encapsular los sonidos del pato.
 enum sonido_e { SILENCIO, HACIENDO_CUAK, DISPARANDO };
@@ -38,6 +39,7 @@ private:
     int rondas_ganadas;
     int iteraciones_mirando_para_arriba;
     orientacion_e orientacion_anterior;
+    std::mutex mtx;
 
     // Verifica si el pato puede moverse en la direccion especificada.
     bool chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion);
@@ -62,9 +64,6 @@ private:
 
     // Cambia la orientacion del pato a la nueva direccion especificada.
     void cambiar_orientacion(const orientacion_e& nueva_orientacion);
-
-    // El pato agarra un arma, actualizando su estado y la referencia al arma.
-    bool agarrar_arma(Arma* arma);
 
     // El pato suelta el arma equipada.
     void soltar_arma();
@@ -92,7 +91,9 @@ private:
     static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion,
                              const posicion_t& posicion_a_chequear);
 
-    void pickup(std::vector<Arma*> armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns);
+    void pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns);
+
+    void equipar_arma(const int& id_arma);
 
 public:
     // Constructor de la clase.
@@ -114,7 +115,7 @@ public:
     void control_pre_comando(Mapa& mapa);
 
     // Realiza una accion segun el comando recibido.
-    void realizar_accion(const int& accion, Mapa& mapa, std::vector<Arma*>& armas_tiradas, std::vector<posicion_t> cascos_tirados, std::vector<posicion_t> armaduras_tiradas, std::vector<Spawn>& spawns);
+    void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns);
 
     // Destructor de la clase.
     ~Pato();

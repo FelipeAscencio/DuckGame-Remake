@@ -16,7 +16,7 @@
 #define MIL 1000
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa() {
+        queue(q), juego_activo(true), queues_clientes(l), mapa(), puntos_spawn() {
             mapa.inicializar_puntos_spawn(puntos_spawn);
         }
 
@@ -69,7 +69,7 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
             }
         }
     }
-    for (Arma* a: armas_tiradas){
+    for (InformacionArma a: armas_tiradas){
         estado_actual.agregar_arma(a);
     }
     for (posicion_t pos: cascos_tirados){
@@ -125,6 +125,7 @@ void Gameloop::loop_juego() {
         chequear_posiciones();
         actualizar_estado_jugadores();
         actualizar_balas_disparadas();
+        spawnear_elementos();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
             if (jugadores.size() > 1) {
@@ -170,25 +171,17 @@ void Gameloop::run() {
 }
 
 void Gameloop::spawnear_elementos(){
-    for(Spawn s: puntos_spawn){
-        int spawn = s.spawnear();
-        if (spawn != 0){
-            if (spawn == 1){
-                cascos_tirados.push_back(posicion_t(s.posicion));
-            } else if (spawn == 2){
-                armaduras_tiradas.push_back(posicion_t(s.posicion));
+    for(size_t i = 0; i < puntos_spawn.size(); i++){
+        bool spawn = puntos_spawn[i]->spawnear();
+        if (spawn){
+            if (puntos_spawn[i]->contenido == 1){
+                cascos_tirados.push_back(posicion_t(puntos_spawn[i]->posicion));
+            } else if (puntos_spawn[i]->contenido == 2){
+                armaduras_tiradas.push_back(posicion_t(puntos_spawn[i]->posicion));
             } else {
                 int arma = (rand()%5 + 1);
-                if (arma == 1)
-                    armas_tiradas.push_back(new PewPewLaser(s.posicion));
-                else if (arma == 2)
-                    armas_tiradas.push_back(new AK47(s.posicion));
-                else if (arma == 3)
-                    armas_tiradas.push_back(new Magnum(s.posicion));
-                else if (arma == 4)
-                    armas_tiradas.push_back(new Shotgun(s.posicion));
-                else 
-                    armas_tiradas.push_back(new Sniper(s.posicion));
+                InformacionArma arma_nueva(arma, puntos_spawn[i]->posicion);
+                armas_tiradas.push_back(arma_nueva);
             }
         }
     }
@@ -201,6 +194,14 @@ Gameloop::~Gameloop() {
             delete jugadores[i];
         }
     }
+    std::cout << "Eliminando spawns\n";  
+    for (size_t i = 0; i < puntos_spawn.size(); i++){
+        if (puntos_spawn[i]){
+            delete puntos_spawn[i];
+        }
+    }
+    puntos_spawn.clear();
+    armas_tiradas.clear();
     jugadores.clear();
     this->join();
 }

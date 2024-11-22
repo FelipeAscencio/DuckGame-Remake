@@ -20,4 +20,5 @@ target_sources(taller_common
     socket.h
     thread.h
     queue.h
+    informacion_arma.h
     )
