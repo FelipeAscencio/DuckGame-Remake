@@ -39,6 +39,7 @@
 #define OFFSET_MAPA_2 0.03
 #define OFFSET_Y_TABLERO 0.06
 #define OFFSET_Y_ARMA 0.005
+#define OFFSET_Y_SNIPER -0.02
 #define OFFSET_Y_CASCO 0.025
 #define OFFSET_X_CASCO_DER 0.004
 #define OFFSET_X_CASCO_IZQ -0.004
@@ -346,7 +347,7 @@ void Dibujador::dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y,
 
 void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo, float& y_relativo,
                                   orientacion_e& orientacion, estado_pato_e& estado) {
-    float offset_y = (y_relativo * OFFSET_GENERAL_Y) + OFFSET_Y_ARMA;
+    float offset_y = (y_relativo * OFFSET_GENERAL_Y) + OFFSET_Y_SNIPER;
     if (estado == ESTADO_AGACHADO) {
         if (orientacion == DERECHA) {
             dibujar_sniper(renderer, x_relativo, y_relativo + offset_y, ARRIBA);
@@ -495,13 +496,16 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         } else {
             dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado,
                               sonido);
-            if (tiene_armadura) {
-                dibujar_armadura_pato(renderer, escala, x_relativo, y_relativo, orientacion,
-                                      estado);
-            }
             if (tiene_arma) {
                 dibujar_arma_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado,
                                   id_arma);
+            }
+            if (orientacion == ARRIBA){
+                orientacion = DERECHA;
+            }
+            if (tiene_armadura) {
+                dibujar_armadura_pato(renderer, escala, x_relativo, y_relativo, orientacion,
+                                      estado);
             }
             if (tiene_casco) {
                 dibujar_casco_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
@@ -593,6 +597,11 @@ void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         orientacion_e orientacion = DERECHA;
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         float offset_y = (y_relativo * OFFSET_GENERAL_Y);
+        if (id_arma == ID_SNIPER){
+            offset_y += OFFSET_Y_SNIPER;
+            dibujar_sniper(renderer, x_relativo, y_relativo + offset_y, orientacion);
+            return;
+        }
         dibujar_sprite(renderer, *sprite_sheet, (*sprites)[POS_ARMA], x_relativo,
                        y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
     }
