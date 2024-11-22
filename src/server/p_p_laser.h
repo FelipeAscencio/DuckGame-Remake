@@ -12,13 +12,15 @@
 class PewPewLaser: public Arma {
 private:
     int alcance_maximo;
-
+    int iteraciones_desde_disparo;
 public:
     // Constructor de la clase.
     PewPewLaser(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
+
+    void control_atributos(Mapa& mapa) override;
 };
 
 #endif  // P_P_LASER_H
