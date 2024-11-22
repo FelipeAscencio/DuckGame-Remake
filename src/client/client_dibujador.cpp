@@ -278,8 +278,12 @@ void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int
 }
 
 void Dibujador::dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                                      float& y_relativo, orientacion_e& orientacion,
+                                      float& y_relativo, orientacion_e orientacion,
                                       estado_pato_e& estado) {
+    if (orientacion == ARRIBA){
+        orientacion = DERECHA;
+    }
+    
     if (estado == ESTADO_PARADO) {
         dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
                        this->sprites_equipamiento[POS_SPRITE_PARADO], x_relativo,
@@ -397,8 +401,12 @@ void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, flo
 }
 
 void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                                   float& y_relativo, orientacion_e& orientacion,
+                                   float& y_relativo, orientacion_e orientacion,
                                    estado_pato_e& estado) {
+    if (orientacion == ARRIBA){
+        orientacion = DERECHA;
+    }
+
     float offset_x;
     float offset_y = (y_relativo * OFFSET_GENERAL_Y);
     if (orientacion == DERECHA) {
@@ -496,19 +504,16 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         } else {
             dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado,
                               sonido);
-            if (tiene_arma) {
-                dibujar_arma_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado,
-                                  id_arma);
-            }
-            if (orientacion == ARRIBA){
-                orientacion = DERECHA;
-            }
             if (tiene_armadura) {
                 dibujar_armadura_pato(renderer, escala, x_relativo, y_relativo, orientacion,
                                       estado);
             }
             if (tiene_casco) {
                 dibujar_casco_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
+            }
+            if (tiene_arma) {
+                dibujar_arma_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado,
+                                  id_arma);
             }
             if (sonido != SILENCIO) {
                 reproducir_sonido_pato(id_arma, sonido);

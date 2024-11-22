@@ -85,7 +85,7 @@ private:
 
     // Dibuja la armadura de un pato.
     void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                               float& y_relativo, orientacion_e& orientacion,
+                               float& y_relativo, orientacion_e orientacion,
                                estado_pato_e& estado);
 
     // Dibuja el sniper (Metodo particular porque es el unico sprite que no es cuadrado).
@@ -102,7 +102,7 @@ private:
 
     // Dibuja el casco de un pato.
     void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                            float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado);
+                            float& y_relativo, orientacion_e orientacion, estado_pato_e& estado);
 
     // Reproduce el sonido del 'disparo de ak'.
     void reproducir_disparo_ak();
