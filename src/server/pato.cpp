@@ -11,8 +11,7 @@
 #include "p_p_laser.h"
 #include "shotgun.h"
 #include "sniper.h"
-
-#define FPS 30
+#include "config_juego.h"
 
 #define MOVER_DERECHA 0.5
 #define MOVER_IZQUIERDA -0.5
@@ -46,7 +45,7 @@ Pato::Pato(int id, Mapa& mapa):
         arma_equipada(nullptr),
         estado_actual(PARADO),
         iteraciones_subiendo(0),
-        iteraciones_desde_aleteo(FPS / 2),
+        iteraciones_desde_aleteo(ConfigJuego::FPS / 2),
         inmortal(false),
         sonido(SILENCIO),
         rondas_ganadas(0),
@@ -123,7 +122,7 @@ void Pato::saltar() {
 }
 
 void Pato::aletear() {
-    if (iteraciones_desde_aleteo < FPS / 2) {
+    if (iteraciones_desde_aleteo < ConfigJuego::FPS / 2) {
         return;
     }
     if (estado_actual == CAYENDO) {

@@ -20,6 +20,7 @@ target_sources(taller_server
     sniper.cpp
     spawn_place.cpp
     thread_usuario.cpp
+    config_juego.cpp
     PUBLIC
     # .h files
     aceptador.h
@@ -40,4 +41,5 @@ target_sources(taller_server
     sniper.h
     spawn_place.h
     thread_usuario.h
+    config_juego.h
     )

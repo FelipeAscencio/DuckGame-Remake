@@ -1,16 +1,13 @@
 #include "ak47.h"
-
+#include "config_juego.h"
 #include <iostream>
 
 #define AK_47 "AK-47"
-#define ALCANCE 13
-#define MUNICIONES 30
-#define TILE_A_METRO 10
 #define CERO 0
 #define BALAS_POR_DISPARO 1
 
 AK47::AK47(posicion_t posicion_inicial):
-        Arma(ID_AK47, AK_47, ALCANCE, MUNICIONES, true, posicion_inicial),
+        Arma(ID_AK47, AK_47, ConfigJuego::ALCANCE_AK47, ConfigJuego::MUNICIONES_AK47, true, posicion_inicial),
         ultima_bala_disparada(NO),
         iteraciones_desde_disparo(0) {}
 
@@ -60,7 +57,7 @@ void AK47::control_atributos(Mapa& mapa) {
 bool AK47::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (this->municiones == CERO)
         return false;
-    Municion bala_disparada(this->id_arma, this->posicion_spawn, ALCANCE * TILE_A_METRO, direccion,
+    Municion bala_disparada(this->id_arma, this->posicion_spawn, (ConfigJuego::ALCANCE_AK47 * TILE_A_METRO), direccion,
                          this->ultima_bala_disparada, this->balas.size());
     modificar_dispersion_balas(true);
     if (bala_disparada.avanzar(mapa)) {

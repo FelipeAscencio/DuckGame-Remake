@@ -1,4 +1,5 @@
 #include "spawn_place.h"
+#include "config_juego.h"
 
 #define ITERACIONES_MINIMAS_RESPAWN 180 
 
@@ -16,7 +17,7 @@ bool Spawn::spawnear(){
     this->iteraciones_desde_spawn++;
     if(!libre) return false; 
     if (iteraciones_desde_spawn < ITERACIONES_MINIMAS_RESPAWN) return false;
-    if (iteraciones_desde_spawn % 30 == 0){
+    if (iteraciones_desde_spawn % ConfigJuego::FPS == 0){
         if (rand() % 10 != nro_random_spawn) return false;
         libre = false;
         contenido = (rand()%3) + 1;

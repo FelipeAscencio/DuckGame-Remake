@@ -6,10 +6,9 @@
 #include "sniper.h"
 #include <algorithm>
 #include "spawn_place.h"
-
+#include "config_juego.h"
 #include <time.h>
 
-#define FPS 30
 #define CERO 0
 #define UNO 1
 #define CIEN 100
@@ -173,7 +172,7 @@ void Gameloop::run() {
     unsigned long frame_count = 0;
 
     // Definir el intervalo de tiempo ideal para cada frame en milisegundos
-    int ms_per_frame = 1000 / FPS;
+    int ms_per_frame = 1000 / ConfigJuego::FPS;
 
     while (juego_activo && !hay_ganador()) {
         loop_juego();
@@ -182,7 +181,7 @@ void Gameloop::run() {
         auto t2 = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
-        // Dormir el tiempo restante para completar el intervalo de 30 FPS
+        // Dormir el tiempo restante para completar el intervalo de 30 ConfigJuego::FPS
         if (elapsed < ms_per_frame) {
             std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
         }

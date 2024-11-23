@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include "config_juego.h"
 
 #include "server/server.h"
 
@@ -31,6 +32,7 @@ void secuencia_logica_servidor(const char* servicio) {
 
 int main(int argc, const char* argv[]) {
     srand((unsigned)time(NULL));
+    ConfigJuego::cargar_configuracion("../config_juego.yaml");
     try {
         if (!argumentos_validos(argc)) {
             return FALLA;
