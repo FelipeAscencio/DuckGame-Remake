@@ -203,7 +203,23 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         casco.resize(4);
         i++;
     }
+    i = 0;
+    std::vector<uint8_t> caja(5);
+    while (i < cantidades[5]){
+        s.recvall(&leido, sizeof(leido), &was_closed);
+        s.recvall(caja.data(), caja.size(), &was_closed);
+        s.recvall(&leido, sizeof(leido), &was_closed);
 
+        float x = caja[0] + (caja[1]/TILE_A_METRO);
+        float y = caja[2] + (caja[3]/TILE_A_METRO);
+
+        InformacionCaja c(posicion_t(x,y), (damage_e)caja[4]);
+        estado_actual.agregar_caja(c);
+
+        caja.clear();
+        caja.resize(5);
+        i++;
+    }
     s.recvall(&leido, sizeof(leido), &was_closed);  // Lee el fin de  la comunicacion.
     return !was_closed;
 }

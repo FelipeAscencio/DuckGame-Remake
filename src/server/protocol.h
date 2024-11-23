@@ -18,6 +18,8 @@ class Protocol {
 private:
     Socket& s;
 
+    std::vector<uint8_t> serializar_caja(const InformacionCaja& caja);
+
     std::vector<uint8_t> serializar_casco_o_armadura(const posicion_t& pos, bool casco);
 
     std::vector<uint8_t> serializar_mapa(const int& mapa);

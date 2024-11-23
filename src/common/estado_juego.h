@@ -14,6 +14,7 @@
 #include "common/orientacion.h"
 #include "common/posicion.h"
 #include "informacion_arma.h"
+#include "../server/caja.h"
 
 #define CERO 0
 #define ID_GANADOR 0xFD  // Valor dummy que indica que no hay un ganador de la ronda actual.
@@ -86,6 +87,14 @@ struct InformacionBala {
             id_arma(id), pos(posicion), inclinacion(inc), direccion(sentido) {}
 };
 
+struct InformacionCaja{
+    posicion_t posicion;
+    damage_e estado;
+
+    explicit InformacionCaja(const Caja& c): posicion(c.posicion), estado(c.estado){}
+    explicit InformacionCaja(const posicion_t& pos, const damage_e& rotura): posicion(pos), estado(rotura){}
+};
+
 // 'struct' que sirve para comparar las 'ID'.
 struct MismoID {
     const int id;
@@ -109,6 +118,7 @@ struct EstadoJuego {
     std::vector<InformacionBala> info_balas;
     std::vector<posicion_t> info_cascos;
     std::vector<posicion_t> info_armaduras;
+    std::vector<InformacionCaja> info_cajas;
 
 
     // Constructor del struct.
@@ -191,6 +201,16 @@ struct EstadoJuego {
     void agregar_armadura(const posicion_t& pos){
         info_armaduras.push_back(pos);
         cantidad_armaduras++;
+    }
+
+    void agregar_caja(const Caja& c){
+        info_cajas.push_back(InformacionCaja(c));
+        cantidad_cajas++;
+    }
+
+    void agregar_caja(const InformacionCaja& c){
+        info_cajas.push_back(c);
+        cantidad_cajas++;
     }
 
     void definir_ganador(const int& id) { this->id_ganador = id; }

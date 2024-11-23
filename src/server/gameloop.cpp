@@ -17,6 +17,11 @@
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
         queue(q), juego_activo(true), queues_clientes(l), mapa(), puntos_spawn() {
             mapa.inicializar_puntos_spawn(puntos_spawn);
+            for (int i = 0; i < 3; i++){
+                cajas.push_back(Caja(mapa.posicion_caja(i), i));
+                std::vector<int> bloque_caja = mapa.posicion_en_mapa(cajas[i].posicion);
+                mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 3;
+            }
         }
 
 void Gameloop::chequear_nuevos_jugadores() {
@@ -118,6 +123,40 @@ void Gameloop::chequear_posiciones() {
                 }
             }
         }
+    }
+    size_t i = 0;
+    while (i < balas_volando.size()){
+        for (Pato* p: jugadores){
+            if(mapa.posicion_en_mapa(balas_volando[i].posicion_actual) == mapa.posicion_en_mapa(p->posicion)){
+                if (balas_volando[i].posicion_actual.misma_posicion(p->posicion)){
+                    p->recibir_disparo();
+                    balas_volando.erase(balas_volando.begin() + i);
+                    break;
+                }
+            }
+        }
+        for (Caja c: cajas){
+            if (mapa.posicion_en_mapa(balas_volando[i].posicion_actual) == mapa.posicion_en_mapa(c.posicion)){
+                if (balas_volando[i].posicion_actual.misma_posicion(c.posicion)){
+                    c.recibir_disparo();
+                    if (c.destruida){
+                        int spawn = c.destruir();
+                        if (spawn == 1){
+                            cascos_tirados.push_back(c.posicion);
+                        } else if (spawn == 2){
+                            armaduras_tiradas.push_back(c.posicion);
+                        } else if (spawn == 3){
+                            int id_arma = (rand()%5) + 1;
+                            armas_tiradas.push_back(InformacionArma(id_arma, c.posicion));
+                        }
+                        cajas.erase(cajas.begin() + c.id);
+                    }
+                    balas_volando.erase(balas_volando.begin() + i);
+                    break;
+                }
+            }
+        }
+        i++;
     }
 }
 

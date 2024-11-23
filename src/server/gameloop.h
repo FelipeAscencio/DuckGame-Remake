@@ -13,6 +13,7 @@
 #include "server/mapa.h"
 #include "server/pato.h"
 #include "server/queues_jugadores.h"
+#include "caja.h"
 
 // La clase 'Gameloop' implementa la logica del bucle
 // del juego y el control de los 'FPS'.
@@ -29,6 +30,8 @@ private:
     std::vector<posicion_t> cascos_tirados;
     std::vector<posicion_t> armaduras_tiradas;
     std::vector<Municion> balas_volando;
+    std::vector<Caja> cajas;
+
 
     // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();

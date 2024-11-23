@@ -148,6 +148,19 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_casco_o_armadura(const
     return bytes;
 }
 
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_caja(const InformacionCaja& c){
+    std::vector<uint8_t> bytes;
+    std::vector<uint8_t> pos = separar_posicion_en_entero_y_decimal(c.posicion);
+    bytes.push_back(CODIGO_CAJA);
+    bytes.push_back(pos[0]);
+    bytes.push_back(pos[1]);
+    bytes.push_back(pos[2]);
+    bytes.push_back(pos[3]);
+    bytes.push_back(c.estado);
+    bytes.push_back(FIN_MENSAJE);
+    return bytes;
+}
+
 bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
@@ -181,6 +194,11 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     i = 0;
     while (i < estado_actual.cantidad_cascos && envio_correcto){
         envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_cascos[i], true));
+        i++;
+    }
+    i = 0;
+    while (i < estado_actual.cantidad_cajas && envio_correcto){
+        envio_correcto = _enviar(serializar_caja(estado_actual.info_cajas[i]));
         i++;
     }
 

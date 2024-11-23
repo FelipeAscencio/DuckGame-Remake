@@ -21,6 +21,7 @@ target_sources(taller_server
     spawn_place.cpp
     thread_usuario.cpp
     config_juego.cpp
+    caja.cpp
     PUBLIC
     # .h files
     aceptador.h
@@ -42,4 +43,5 @@ target_sources(taller_server
     spawn_place.h
     thread_usuario.h
     config_juego.h
+    caja.h
     )

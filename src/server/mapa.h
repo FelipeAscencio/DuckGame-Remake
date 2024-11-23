@@ -47,6 +47,8 @@ public:
 
     void inicializar_puntos_spawn(std::vector<Spawn*>& puntos_spawn);
 
+    posicion_t posicion_caja(const int& id_caja);
+
     // Destructor de la clase.
     ~Mapa();
 };

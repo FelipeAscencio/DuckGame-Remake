@@ -140,6 +140,26 @@ void Mapa::inicializar_puntos_spawn(std::vector<Spawn*>& puntos_spawn){
     }
 }
 
+posicion_t Mapa::posicion_caja(const int& caja){
+    if (id_mapa == 1){
+        if (caja == 0){
+            return posicion_t(85, 99);
+        } else if (caja == 1){
+            return posicion_t(35, 89);
+        } else {
+            return posicion_t(45, 49);
+        }
+    } else {
+        if (caja == 0){
+            return posicion_t(105, 129);
+        } else if (caja == 1){
+            return posicion_t(85, 59);
+        } else {
+            return posicion_t(55, 129);
+        }
+    }
+}
+
 Mapa::~Mapa() {
     for (int i = 0; i < alto; i++) {
         delete[] mapa[i];
