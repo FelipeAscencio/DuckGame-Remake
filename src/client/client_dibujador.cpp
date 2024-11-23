@@ -78,6 +78,9 @@
 #define POS_CASCO 12
 #define POS_ARMA 0
 #define POS_BALA_UNICA 1
+#define POS_CAJA_INTACTA 0
+#define POS_CAJA_ROTA 2
+#define POS_CAJA_MUY_ROTA 3
 #define POS_CASCO 12
 #define POS_INICIAL_PATO_TABLERO 10
 #define GAP_PATO_TABLERO 0.1
@@ -638,6 +641,29 @@ void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& 
     }
 }
 
+void Dibujador::dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+    for (auto& caja: estado_actual.info_cajas) {
+        float escala = ESCALA_SPRITES_MEDIANOS;
+        float x = caja.posicion.coordenada_x;
+        float y = caja.posicion.coordenada_y;
+        damage_e estado_caja = caja.estado;
+        orientacion_e orientacion = DERECHA;
+        int indice;
+        if (estado_caja == INTACTA){
+            indice = POS_CAJA_INTACTA;
+        } else if (estado_caja == ROTA){
+            indice = POS_CAJA_ROTA;
+        } else {
+            indice = POS_CAJA_MUY_ROTA;
+        }
+
+        auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
+        float offset_y = (y_relativo * OFFSET_GENERAL_Y);
+        dibujar_sprite(renderer, this->sprite_sheet_caja, this->sprites_caja[indice], x_relativo,
+                       y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+    }
+}
+
 void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     if (estado_actual.id_mapa == ID_MAPA_OVERWORLD) {
         renderer.Copy(this->mapa1);
@@ -652,7 +678,7 @@ void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Rendere
     dibujar_armas(estado_actual, renderer);
     dibujar_cascos(estado_actual, renderer);
     dibujar_armaduras(estado_actual, renderer);
-    // SOLO FALTA DIBUJAR LAS CAJAS.
+    dibujar_cajas(estado_actual, renderer);
 }
 
 void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {

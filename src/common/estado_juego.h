@@ -87,6 +87,7 @@ struct InformacionBala {
             id_arma(id), pos(posicion), inclinacion(inc), direccion(sentido) {}
 };
 
+// 'struct' que encapsula la informacion de todas las cajas del juego.
 struct InformacionCaja{
     posicion_t posicion;
     damage_e estado;

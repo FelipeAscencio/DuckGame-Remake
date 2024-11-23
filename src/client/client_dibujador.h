@@ -152,6 +152,9 @@ private:
     // Dibuja las armaduras spawneadas en el piso.
     void dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
+    // Dibuja las cajas spawneadas en el piso en su respectivo estado (INTACTA - ROTA - MUY_ROTA).
+    void dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+
     // Dibuja el 'estado_actual' de la partida.
     void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
