@@ -36,6 +36,9 @@ Municion::Municion(const int& id, const posicion_t& pos_inicial, const int& alca
         inclinacion(inc),
         nro_bala(nro) {}
 
+Municion::Municion(const Municion& m) : id_arma(m.id_arma), posicion_inicial(m.posicion_inicial), posicion_actual(m.posicion_actual), autonomia(m.autonomia),
+sentido(m.sentido), dispersion(m.dispersion), inclinacion(m.inclinacion), nro_bala(m.nro_bala){}
+
 bool Municion::fuera_de_rango(Mapa& mapa) {
     if (this->posicion_actual.coordenada_x >= mapa.largo * TILE_A_METRO ||
         this->posicion_actual.coordenada_x <= 0 ||

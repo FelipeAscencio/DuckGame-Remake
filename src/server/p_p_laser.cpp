@@ -20,28 +20,19 @@ inclinacion_e buscar_inclinacion(const int& bala){
 
 dispersion_e buscar_dispersion(const int& bala){
     if (bala == 0) return NO;
-    else return MEDIA;
-}
-
-void PewPewLaser::control_atributos(Mapa& mapa){
-    Arma::control_atributos(mapa);
-    iteraciones_desde_disparo += 1;
+    else return ALTA;
 }
 
 bool PewPewLaser::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (this->municiones == 0) return false;
-    if (iteraciones_desde_disparo == 0) return true;
     inclinacion_e inc;
     dispersion_e dis;
     for (int i = 0; i < LASERS_POR_DISPARO; i++){
-        Municion* m = new Municion(ID_PP_LASER, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO), direccion, dis, inc, municiones_iniciales - municiones);    
-        if (m->avanzar(mapa)){
+        Municion m(ID_PP_LASER, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO), direccion, dis, inc, balas.size());    
+        if (m.avanzar(mapa)){
             balas.push_back(m);
-        } else {
-            delete m;
         }
     }
-    iteraciones_desde_disparo = 0;
     municiones -= 1;
     return true;
 }

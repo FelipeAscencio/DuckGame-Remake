@@ -74,11 +74,11 @@ struct InformacionBala {
     orientacion_e direccion;
 
     // Primera variante del constructor del struct.
-    explicit InformacionBala(Municion* m):
-            id_arma(m->id_arma),
-            pos(m->posicion_actual),
-            inclinacion(m->inclinacion),
-            direccion(m->sentido) {}
+    explicit InformacionBala(Municion m):
+            id_arma(m.id_arma),
+            pos(m.posicion_actual),
+            inclinacion(m.inclinacion),
+            direccion(m.sentido) {}
 
     // Segundavariante del constructor del struct.
     explicit InformacionBala(const int& id, const posicion_t& posicion, const inclinacion_e& inc,
@@ -170,7 +170,7 @@ struct EstadoJuego {
     }
 
     // Agrega la informacion de una bala disparada (recibida como un puntero)
-    void agregar_bala(Municion* m) {
+    void agregar_bala(Municion m) {
         InformacionBala nueva(m);
         info_balas.push_back(nueva);
         this->cantidad_balas++;

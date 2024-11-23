@@ -316,7 +316,7 @@ void Pato::chequear_estado(Mapa& mapa) {
     }
 }
 
-void Pato::control_pre_comando(Mapa& mapa) {
+void Pato::control_pre_comando(Mapa& mapa, std::vector<Municion>& balas_volando) {
     if (this->arma_equipada)
         this->posee_arma = true;
     else
@@ -344,6 +344,10 @@ void Pato::control_pre_comando(Mapa& mapa) {
     chequear_estado(mapa);
     if (posee_arma) {
         if (this->arma_equipada->municiones_restantes() == 0) {
+            for (Municion m: arma_equipada->balas){
+                Municion aux(m);
+                balas_volando.push_back(aux);
+            }
             delete this->arma_equipada;
             arma_equipada = nullptr;
             posee_arma = false;
@@ -369,8 +373,12 @@ void Pato::recibir_disparo() {
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
-void Pato::equipar_arma(const int& id_arma){
+void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando){
     if (arma_equipada){
+        for (Municion m: arma_equipada->balas){
+            Municion aux(m);
+            balas_volando.push_back(aux);
+        }
         delete arma_equipada;
         posee_arma = false;
     }
@@ -388,7 +396,7 @@ void Pato::equipar_arma(const int& id_arma){
     this->posee_arma = true;
 }
 
-void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns){
+void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando){
     std::lock_guard<std::mutex> lck(mtx);
     bool alguno = false;
     int tipo_pickup = 0;
@@ -406,7 +414,7 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
         while (i < armas_tiradas.size()){
             if (this->posicion.igual_para_pickup(armas_tiradas[i].posicion)){
                 int id_arma = armas_tiradas[i].id_arma;
-                equipar_arma(id_arma);
+                equipar_arma(id_arma, balas_volando);
                 armas_tiradas.erase(armas_tiradas.begin() + i);
                 pickup = true;
             }
@@ -444,7 +452,7 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
     }
 }
 
-void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns) {
+void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando) {
     if (!vivo)
         return;
     switch (accion) {
@@ -469,13 +477,17 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
                     this->sonido = DISPARANDO;
                 } else {
                     if (arma_equipada) {
+                        for (Municion m: arma_equipada->balas){
+                            Municion aux(m);
+                            balas_volando.push_back(aux);
+                        }
                         delete arma_equipada;
                     }
                 }
             }
             break;
         case COMANDO_AGARRAR:
-            pickup(armas_tiradas, cascos_tirados, armaduras_tiradas, spawns);
+            pickup(armas_tiradas, cascos_tirados, armaduras_tiradas, spawns, balas_volando);
             break;
 
         case CUAK:
@@ -483,23 +495,23 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
             break;
 
         case CHEAT_AK:
-            equipar_arma(ID_AK47);
+            equipar_arma(ID_AK47, balas_volando);
             break;
 
         case CHEAT_SG:
-            equipar_arma(ID_SHOTGUN);
+            equipar_arma(ID_SHOTGUN, balas_volando);
             break;
 
         case CHEAT_MAGNUM:
-            equipar_arma(ID_MAGNUM);
+            equipar_arma(ID_MAGNUM, balas_volando);
             break;
 
         case CHEAT_LASER:
-            equipar_arma(ID_PP_LASER);
+            equipar_arma(ID_PP_LASER, balas_volando);
             break;
 
         case CHEAT_SNIPER:
-            equipar_arma(ID_SNIPER);
+            equipar_arma(ID_SNIPER, balas_volando);
             break;
 
         case CHEAT_INMORTALIDAD:

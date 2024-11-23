@@ -36,12 +36,10 @@ void Shotgun::eliminar_bala(const int& indice) {
     if (indice >= 6)
         inicio_tanda_balas = 6;
     for (int i = 0; i < 6; i++) {
-        Municion* auxiliar = balas[inicio_tanda_balas];
-        delete auxiliar;
         balas.erase(balas.begin() + inicio_tanda_balas);
     }
     for (int i = indice; i < (int)balas.size(); i++) {
-        balas[i]->nro_bala -= 6;
+        balas[i].nro_bala -= 6;
     }
 }
 
@@ -55,13 +53,10 @@ bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
         for (int i = 0; i < PERDIGONES_POR_DISPARO; i++) {
             inclinacion_e inc = obtener_inclinacion(i);
             dispersion_e dis = obtener_dispersion(i);
-            Municion* m =
-                    new Municion(ID_SHOTGUN, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO),
+            Municion m(ID_SHOTGUN, this->posicion_spawn, (ALCANCE_MAXIMO * TILE_A_METRO),
                                  direccion, dis, inc, balas.size());
-            if (m->avanzar(mapa)) {
+            if (m.avanzar(mapa)) {
                 balas.push_back(m);
-            } else {
-                delete m;
             }
         }
         municiones -= 1;

@@ -46,7 +46,7 @@ bool Gameloop::hay_ganador() {
 
 void Gameloop::actualizar_estado_jugadores() {
     for (Pato* p: jugadores) {
-        p->control_pre_comando(this->mapa);
+        p->control_pre_comando(this->mapa, balas_volando);
         if (!p->vivo) {
             if (jugadores_vivos[p->id_jugador]) {
                 jugadores_vivos[p->id_jugador] = false;
@@ -63,11 +63,14 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
         for (Pato* p: jugadores) {
             estado_actual.agregar_info_pato(p);
             if (p->arma_equipada) {
-                for (Municion* m: p->arma_equipada->balas) {
+                for (Municion m: p->arma_equipada->balas) {
                     estado_actual.agregar_bala(m);
                 }
             }
         }
+    }
+    for (Municion m: balas_volando){
+        estado_actual.agregar_bala(m);
     }
     for (InformacionArma a: armas_tiradas){
         estado_actual.agregar_arma(a);
@@ -102,14 +105,14 @@ void Gameloop::actualizar_balas_disparadas() {
 void Gameloop::chequear_posiciones() {
     for (Pato* p: jugadores) {
         if (p->arma_equipada && !p->arma_equipada->balas.empty()) {
-            for (Municion* m: p->arma_equipada->balas) {
+            for (Municion m: p->arma_equipada->balas) {
                 for (Pato* otro: jugadores) {
                     if (p->id_jugador != otro->id_jugador) {
                         if (mapa.posicion_en_mapa(otro->posicion) ==
-                            mapa.posicion_en_mapa(m->posicion_actual)) {
-                            if (m->posicion_actual.misma_posicion(otro->posicion)) {
+                            mapa.posicion_en_mapa(m.posicion_actual)) {
+                            if (m.posicion_actual.misma_posicion(otro->posicion)) {
                                 otro->recibir_disparo();
-                                p->arma_equipada->eliminar_bala(m->nro_bala);
+                                p->arma_equipada->eliminar_bala(m.nro_bala);
                             }
                         }
                     }
@@ -126,18 +129,42 @@ void Gameloop::loop_juego() {
         actualizar_estado_jugadores();
         actualizar_balas_disparadas();
         spawnear_elementos();
+        control_balas();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
             if (jugadores.size() > 1) {
                 for (Pato* p: jugadores) {
                     if (cmd.id_cliente == p->id_jugador) {
-                        p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados, armaduras_tiradas, puntos_spawn);
+                        p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados, armaduras_tiradas, puntos_spawn, balas_volando);
                     }
                 }
             }
         }
     }
     enviar_estado_juego(false);
+}
+
+void Gameloop::control_balas(){
+    bool no_borre_ninguno = false;
+    while (!no_borre_ninguno){
+        no_borre_ninguno = true;
+        size_t i = 0;
+        while (i < balas_volando.size()){
+            if (balas_volando[i].fuera_de_rango(mapa)){
+                balas_volando.erase(balas_volando.begin() + i);
+                no_borre_ninguno = false;
+                break;
+            } else {
+                if (balas_volando[i].avanzar(mapa)){
+                    i++;
+                } else {
+                    balas_volando.erase(balas_volando.begin() + i);
+                    no_borre_ninguno = false;
+                    break;
+                }
+            }
+        }
+    }
 }
 
 void Gameloop::run() {
@@ -194,7 +221,6 @@ Gameloop::~Gameloop() {
             delete jugadores[i];
         }
     }
-    std::cout << "Eliminando spawns\n";  
     for (size_t i = 0; i < puntos_spawn.size(); i++){
         if (puntos_spawn[i]){
             delete puntos_spawn[i];

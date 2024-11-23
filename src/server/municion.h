@@ -26,12 +26,12 @@ class Municion {
     friend class Shotgun;
 
 private:
-    const int id_arma;
-    const posicion_t posicion_inicial;
+    int id_arma;
+    posicion_t posicion_inicial;
     posicion_t posicion_actual;
-    const int autonomia;
+    int autonomia;
     orientacion_e sentido;
-    const dispersion_e dispersion;
+    dispersion_e dispersion;
     inclinacion_e inclinacion;
     bool subiendo;
     int nro_bala;
@@ -46,6 +46,8 @@ public:
     explicit Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo,
                       const orientacion_e& direccion, const dispersion_e& dispersion_bala,
                       const inclinacion_e& inc, const int& nro);
+
+    Municion(const Municion& m);
 
     // Verifica si la municion ha excedido su alcance maximo.
     bool fuera_de_rango(Mapa& mapa);

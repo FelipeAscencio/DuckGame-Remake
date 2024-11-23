@@ -36,7 +36,7 @@ protected:
     posicion_t posicion_spawn;
     bool agarrada;
     bool soltada;
-    std::vector<Municion*> balas;
+    std::vector<Municion> balas;
 
     // Verifica si el arma puede ser agarrada nuevamente.
     bool puede_agarrarse();

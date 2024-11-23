@@ -34,11 +34,9 @@ int Arma::municiones_restantes() { return this->municiones; }
 bool Arma::en_uso() { return this->agarrada; }
 
 void Arma::eliminar_bala(const int& indice) {
-    Municion* auxiliar = balas[indice];
-    delete auxiliar;
     balas.erase(balas.begin() + indice);
     for (int i = indice; i < (int)balas.size(); i++) {
-        balas[i]->nro_bala -= 1;
+        balas[i].nro_bala -= 1;
     }
 }
 
@@ -53,12 +51,12 @@ void Arma::chequeo_balas(Mapa& mapa) {
         no_borre_ninguno = true;
         size_t i = 0;
         while (i < balas.size()) {
-            if (balas[i]->fuera_de_rango(mapa)) {
+            if (balas[i].fuera_de_rango(mapa)) {
                 eliminar_bala(i);
                 no_borre_ninguno = false;
                 break;
             } else {
-                if (balas[i]->avanzar(mapa))
+                if (balas[i].avanzar(mapa))
                     i++;
                 else {
                     eliminar_bala(i);
@@ -73,9 +71,6 @@ void Arma::chequeo_balas(Mapa& mapa) {
 void Arma::control_atributos(Mapa& mapa) { chequeo_balas(mapa); }
 
 Arma::~Arma() {
-    for (Municion* m: balas) {
-        delete m;
-    }
     balas.clear();
     municiones = 0;
     soltada = true;

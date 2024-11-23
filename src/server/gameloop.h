@@ -28,6 +28,7 @@ private:
     std::vector<Spawn*> puntos_spawn;
     std::vector<posicion_t> cascos_tirados;
     std::vector<posicion_t> armaduras_tiradas;
+    std::vector<Municion> balas_volando;
 
     // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();
@@ -51,6 +52,8 @@ private:
     void loop_juego();
 
     void spawnear_elementos();
+
+    void control_balas();
 public:
     // Constructor de la clase.
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);
