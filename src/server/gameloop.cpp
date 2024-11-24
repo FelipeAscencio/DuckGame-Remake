@@ -247,7 +247,6 @@ void Gameloop::control_balas(){
 
 bool Gameloop::fin_partida(){
     if (rondas_jugadas % 5 != 0) return false;
-    if (rondas_jugadas < 10) return false;
     bool ganador_unico = false;
     int maximas_ganadas = 0;
     for (Pato* p: jugadores){
@@ -259,6 +258,7 @@ bool Gameloop::fin_partida(){
             ganador_unico = false;
         }
     }
+    if (maximas_ganadas < 10) ganador_unico = false;
     return ganador_unico;
 }
 
