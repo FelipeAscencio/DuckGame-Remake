@@ -32,7 +32,6 @@ private:
     std::vector<Municion> balas_volando;
     std::vector<Caja> cajas;
 
-
     // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();
 

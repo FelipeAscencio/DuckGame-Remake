@@ -20,7 +20,7 @@ Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
             for (int i = 0; i < 3; i++){
                 cajas.push_back(Caja(mapa.posicion_caja(i), i));
                 std::vector<int> bloque_caja = mapa.posicion_en_mapa(cajas[i].posicion);
-                mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 3;
+                mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 2;
             }
         }
 
@@ -85,6 +85,9 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
     for (posicion_t pos: armaduras_tiradas){
         estado_actual.agregar_armadura(pos);
     }
+    for (size_t i = 0; i < cajas.size(); i++){
+        if (!cajas[i].destruida) estado_actual.agregar_caja(cajas[i]);
+    }
     if (hubo_ganador) {
         for (Pato* p: jugadores) {
             if (p->vivo) {
@@ -121,6 +124,30 @@ void Gameloop::chequear_posiciones() {
                         }
                     }
                 }
+                for (size_t i = 0; i < cajas.size(); i++){
+                    if (!cajas[i].destruida){
+                        if (mapa.posicion_en_mapa(m.posicion_actual) == mapa.posicion_en_mapa(cajas[i].posicion)){
+                            if (m.posicion_actual.misma_posicion(cajas[i].posicion)){
+                                cajas[i].recibir_disparo();
+                                p->arma_equipada->eliminar_bala(m.nro_bala);
+                                if (cajas[i].destruida){
+                                    posicion_t posicion_caja = cajas[i].posicion;
+                                    int arma = cajas[i].destruir();
+                                    if (arma == 1){
+                                        cascos_tirados.push_back(posicion_caja);
+                                    } else if (arma == 2){
+                                        armaduras_tiradas.push_back(posicion_caja);
+                                    } else if(arma == 3){
+                                        int id_arma = rand()%5 + 1;
+                                        armas_tiradas.push_back(InformacionArma(id_arma, posicion_caja));
+                                    }
+                                    std::vector<int> caja_en_mapa = mapa.posicion_en_mapa(cajas[i].posicion);
+                                    mapa.mapa[caja_en_mapa[1]][caja_en_mapa[0]] = 0;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -135,21 +162,22 @@ void Gameloop::chequear_posiciones() {
                 }
             }
         }
-        for (Caja c: cajas){
-            if (mapa.posicion_en_mapa(balas_volando[i].posicion_actual) == mapa.posicion_en_mapa(c.posicion)){
-                if (balas_volando[i].posicion_actual.misma_posicion(c.posicion)){
-                    c.recibir_disparo();
-                    if (c.destruida){
-                        int spawn = c.destruir();
+        for (size_t i = 0; i < cajas.size(); i++){
+            if (mapa.posicion_en_mapa(balas_volando[i].posicion_actual) == mapa.posicion_en_mapa(cajas[i].posicion)){
+                if (balas_volando[i].posicion_actual.misma_posicion(cajas[i].posicion)){
+                    cajas[i].recibir_disparo();
+                    if (cajas[i].destruida){
+                        int spawn = cajas[i].destruir();
                         if (spawn == 1){
-                            cascos_tirados.push_back(c.posicion);
+                            cascos_tirados.push_back(cajas[i].posicion);
                         } else if (spawn == 2){
-                            armaduras_tiradas.push_back(c.posicion);
+                            armaduras_tiradas.push_back(cajas[i].posicion);
                         } else if (spawn == 3){
                             int id_arma = (rand()%5) + 1;
-                            armas_tiradas.push_back(InformacionArma(id_arma, c.posicion));
+                            armas_tiradas.push_back(InformacionArma(id_arma, cajas[i].posicion));
                         }
-                        cajas.erase(cajas.begin() + c.id);
+                        std::vector<int> caja_en_mapa = mapa.posicion_en_mapa(cajas[i].posicion);
+                        mapa.mapa[caja_en_mapa[1]][caja_en_mapa[0]] = 0;
                     }
                     balas_volando.erase(balas_volando.begin() + i);
                     break;
@@ -173,7 +201,7 @@ void Gameloop::loop_juego() {
             if (jugadores.size() > 1) {
                 for (Pato* p: jugadores) {
                     if (cmd.id_cliente == p->id_jugador) {
-                        p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados, armaduras_tiradas, puntos_spawn, balas_volando);
+                        p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados, armaduras_tiradas, puntos_spawn, balas_volando, cajas);
                     }
                 }
             }
