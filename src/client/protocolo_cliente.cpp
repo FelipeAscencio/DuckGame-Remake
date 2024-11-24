@@ -34,6 +34,7 @@
 #define ACCION_RECARGAR 0x26
 #define ACCION_ARMADUAR 0x27
 #define ACCION_CASCO 0x28
+#define ACCION_RONDAS 0x29
 
 #define DERECHA 'D'
 #define IZQUIERDA 'A'
@@ -52,6 +53,7 @@
 #define CHEAT_RECARGAR 'R'
 #define CHEAT_ARMADURA 'L'
 #define CHEAT_CASCO 'P'
+#define CHEAT_RONDAS 'Z'
 
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
@@ -79,7 +81,8 @@ static std::map<char, uint8_t> acciones = {
         {CHEAT_INMORTALIDAD, ACCION_INMORTALIDAD},
         {CHEAT_RECARGAR, ACCION_RECARGAR},
         {CHEAT_ARMADURA, ACCION_ARMADUAR},
-        {CHEAT_CASCO, ACCION_CASCO}};
+        {CHEAT_CASCO, ACCION_CASCO},
+        {CHEAT_RONDAS, ACCION_RONDAS}};
 
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;

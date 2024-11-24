@@ -96,6 +96,8 @@ private:
 
     void equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando);
 
+    void aumentar_rondas_ganadas() { this->rondas_ganadas += 5;}
+
 public:
     // Constructor de la clase.
     explicit Pato(int id, Mapa& mapa);

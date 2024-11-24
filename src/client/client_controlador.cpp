@@ -18,6 +18,7 @@
 #define COMANDO_CHEAT_ARMADURA 'L'
 #define COMANDO_CHEAT_CASCO 'P'
 #define COMANDO_CHEAT_RECARGAR 'R'
+#define COMANDO_CHEAT_RONDAS 'Z'
 
 using namespace SDL2pp;
 
@@ -64,6 +65,8 @@ void Controlador::manejar_eventos(bool& jugador_activo) {
                    cola_eventos.try_push(COMANDO_CHEAT_LASER);
             } else if (sdlEvent.key.keysym.sym == SDLK_5) {
                     cola_eventos.try_push(COMANDO_CHEAT_SNIPER);
+            } else if (sdlEvent.key.keysym.sym == SDLK_z){
+                    cola_eventos.try_push(COMANDO_CHEAT_RONDAS);
             }
         }
     }

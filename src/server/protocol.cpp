@@ -33,6 +33,7 @@
 #define CHEAT_RECARGAR 38
 #define CHEAT_ARMADUAR 39
 #define CHEAT_CASCO 40
+#define CHEAT_RONDAS 41
 
 #define PRIMERA_POSICION 0
 #define SEGUNDA_POSICION 1
@@ -214,7 +215,7 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
 
 bool ServerProtocol::Protocol::accion_valida(const uint8_t& accion) {
     return ((accion >= MOVER_DERECHA && accion <= CUAK) ||
-            (accion >= CHEAT_AK && accion <= CHEAT_CASCO));
+            (accion >= CHEAT_AK && accion <= CHEAT_RONDAS));
 }
 
 bool ServerProtocol::Protocol::recibir(comando_t& cmd, const int& id_cliente) {

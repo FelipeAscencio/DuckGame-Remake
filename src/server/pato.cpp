@@ -34,6 +34,7 @@
 #define CHEAT_RECARGAR 38
 #define CHEAT_ARMADUAR 39
 #define CHEAT_CASCO 40
+#define CHEAT_RONDAS 41
 
 Pato::Pato(int id, Mapa& mapa):
         id_jugador(id),
@@ -536,6 +537,10 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
 
         case CHEAT_ARMADUAR:
             this->posee_armadura = !this->posee_armadura;
+            break;
+
+        case CHEAT_RONDAS:
+            aumentar_rondas_ganadas();
             break;
 
         default:
