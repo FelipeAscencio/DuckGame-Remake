@@ -545,6 +545,25 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
     }
 }
 
+void Pato::resetear(Mapa& mapa){
+    this->vivo = true;
+    if(arma_equipada){
+        delete arma_equipada;
+        arma_equipada = nullptr;
+    }
+    posee_arma = false;
+    posee_armadura = false;
+    posee_casco = false;
+    iteraciones_desde_aleteo = ConfigJuego::FPS / 2;
+    iteraciones_mirando_para_arriba = 0;
+    iteraciones_subiendo = 0;
+    sonido = SILENCIO;
+    estado_actual = PARADO;
+    inmortal = false;
+    this->posicion = mapa.posicion_inicial(this->id_jugador);
+    orientacion_anterior = this->orientacion;
+}
+
 Pato::~Pato() {
     if (arma_equipada)
         delete arma_equipada;

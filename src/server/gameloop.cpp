@@ -14,15 +14,25 @@
 #define CIEN 100
 #define MIL 1000
 
+#define INGAME 1
+#define ENTRE_RONDAS 2
+#define CADA_5_RONDAS 3
+
+#define VALOR_ENTRE_RONDAS 0xFC
+
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(), puntos_spawn() {
+        queue(q), juego_activo(true), queues_clientes(l), mapa(), puntos_spawn(), rondas_jugadas(0) {
             mapa.inicializar_puntos_spawn(puntos_spawn);
-            for (int i = 0; i < 3; i++){
-                cajas.push_back(Caja(mapa.posicion_caja(i), i));
-                std::vector<int> bloque_caja = mapa.posicion_en_mapa(cajas[i].posicion);
-                mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 2;
-            }
+            inicializar_cajas();    
         }
+
+void Gameloop::inicializar_cajas(){
+    for (int i = 0; i < 3; i++){
+        cajas.push_back(Caja(mapa.posicion_caja(i), i));
+        std::vector<int> bloque_caja = mapa.posicion_en_mapa(cajas[i].posicion);
+        mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 2;
+    }
+}
 
 void Gameloop::chequear_nuevos_jugadores() {
     size_t cantidad_jugadores = jugadores.size();
@@ -59,7 +69,7 @@ void Gameloop::actualizar_estado_jugadores() {
     }
 }
 
-void Gameloop::enviar_estado_juego(bool hubo_ganador) {
+void Gameloop::enviar_estado_juego(const int& tipo_envio) {
     EstadoJuego estado_actual(mapa.id_mapa);
     if (jugadores.empty()) {
 
@@ -88,7 +98,7 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
     for (size_t i = 0; i < cajas.size(); i++){
         if (!cajas[i].destruida) estado_actual.agregar_caja(cajas[i]);
     }
-    if (hubo_ganador) {
+    if (tipo_envio == ENTRE_RONDAS) {
         for (Pato* p: jugadores) {
             if (p->vivo) {
                 estado_actual.definir_ganador(p->id_jugador);
@@ -97,6 +107,8 @@ void Gameloop::enviar_estado_juego(bool hubo_ganador) {
             } else {
             }
         }
+    } else if (tipo_envio == CADA_5_RONDAS){
+        estado_actual.id_ganador = VALOR_ENTRE_RONDAS;
     }
     queues_clientes.broadcast(estado_actual);
 }
@@ -207,7 +219,7 @@ void Gameloop::loop_juego() {
             }
         }
     }
-    enviar_estado_juego(false);
+    enviar_estado_juego(INGAME);
 }
 
 void Gameloop::control_balas(){
@@ -233,33 +245,78 @@ void Gameloop::control_balas(){
     }
 }
 
+bool Gameloop::fin_partida(){
+    if (rondas_jugadas % 5 != 0) return false;
+    if (rondas_jugadas < 10) return false;
+    bool ganador_unico = false;
+    int maximas_ganadas = 0;
+    for (Pato* p: jugadores){
+        if (p->rondas_ganadas > maximas_ganadas){
+            maximas_ganadas = p->rondas_ganadas;
+            ganador_unico = true;
+        }
+        if (p->rondas_ganadas == maximas_ganadas){
+            ganador_unico = false;
+        }
+    }
+    return ganador_unico;
+}
+
+void Gameloop::resetear_jugadores(){
+    for (size_t i = 0; i < jugadores_vivos.size(); i++){
+        jugadores_vivos[i] = true;
+    }
+    for (Pato* p: jugadores){
+        p->resetear(mapa);
+    }
+}
+
 void Gameloop::run() {
-    enviar_estado_juego(false);
-    auto t1 = std::chrono::steady_clock::now();
-    unsigned long frame_count = 0;
+    enviar_estado_juego(INGAME);
+    while (juego_activo && !fin_partida()) {
+        auto t1 = std::chrono::steady_clock::now();
+        unsigned long frame_count = 0;
 
-    // Definir el intervalo de tiempo ideal para cada frame en milisegundos
-    int ms_per_frame = 1000 / ConfigJuego::FPS;
+        // Definir el intervalo de tiempo ideal para cada frame en milisegundos
+        int ms_per_frame = 1000 / ConfigJuego::FPS;
+        while (!hay_ganador()){
+            loop_juego();
 
-    while (juego_activo && !hay_ganador()) {
-        loop_juego();
+            // Calcular el tiempo transcurrido desde el inicio de este frame
+            auto t2 = std::chrono::steady_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
-        // Calcular el tiempo transcurrido desde el inicio de este frame
-        auto t2 = std::chrono::steady_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+            // Dormir el tiempo restante para completar el intervalo de 30 ConfigJuego::FPS
+            if (elapsed < ms_per_frame) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
+            }
 
-        // Dormir el tiempo restante para completar el intervalo de 30 ConfigJuego::FPS
-        if (elapsed < ms_per_frame) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
+            // Actualizar `t1` sumando un intervalo fijo para mantener la consistencia en el tiempo de
+            // frames
+            t1 += std::chrono::milliseconds(ms_per_frame);
+            frame_count++;
+        }
+        rondas_jugadas += 1;
+        for (int i = 0; i < 50; i++){
+            enviar_estado_juego(ENTRE_RONDAS);
         }
 
-        // Actualizar `t1` sumando un intervalo fijo para mantener la consistencia en el tiempo de
-        // frames
-        t1 += std::chrono::milliseconds(ms_per_frame);
-        frame_count++;
-    }
-    if (juego_activo) {
-        enviar_estado_juego(true);
+        mapa.resetear();
+        cajas.clear();
+        inicializar_cajas();
+        puntos_spawn.clear();
+        mapa.inicializar_puntos_spawn(puntos_spawn);
+        cascos_tirados.clear();
+        armaduras_tiradas.clear();
+        armas_tiradas.clear();
+        balas_volando.clear();
+        resetear_jugadores();
+
+        if (rondas_jugadas % 5 == 0){
+            for (int i = 0; i < 50; i++){
+                enviar_estado_juego(CADA_5_RONDAS);
+            }
+        }
     }
 }
 

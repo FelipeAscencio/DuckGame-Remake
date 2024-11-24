@@ -28,6 +28,8 @@ private:
     int alto;
     int** mapa;
     int id_mapa;
+
+    void cargar_mapa(const int& id_mapa);
 public:
     // Constructor de la clase.
     explicit Mapa();
@@ -48,6 +50,8 @@ public:
     void inicializar_puntos_spawn(std::vector<Spawn*>& puntos_spawn);
 
     posicion_t posicion_caja(const int& id_caja);
+
+    void resetear();
 
     // Destructor de la clase.
     ~Mapa();

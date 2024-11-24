@@ -118,6 +118,8 @@ public:
     // Realiza una accion segun el comando recibido.
     void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
 
+    void resetear(Mapa& mapa);
+
     // Destructor de la clase.
     ~Pato();
 };

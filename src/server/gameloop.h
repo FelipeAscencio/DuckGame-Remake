@@ -31,6 +31,13 @@ private:
     std::vector<posicion_t> armaduras_tiradas;
     std::vector<Municion> balas_volando;
     std::vector<Caja> cajas;
+    int rondas_jugadas;
+
+    void resetear_jugadores();
+
+    void inicializar_cajas();
+
+    bool fin_partida();
 
     // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
     bool hay_ganador();
@@ -45,7 +52,7 @@ private:
     void actualizar_balas_disparadas();
 
     // Envia el estado del juego actual, incluyendo informacion de jugadores y armas en el mapa.
-    void enviar_estado_juego(bool hubo_ganador);
+    void enviar_estado_juego(const int& tipo_envio);
 
     // Revisa si hay nuevos jugadores y, de ser necesario, crea instancias de nuevos jugadores.
     void chequear_nuevos_jugadores();

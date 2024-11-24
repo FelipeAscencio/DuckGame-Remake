@@ -11,6 +11,12 @@
 #define SEGUNDA_POSICION 1
 
 Mapa::Mapa(): id_mapa((rand()%2) + 1){
+    try {
+        cargar_mapa(this->id_mapa);
+    } catch (const ErrorMapa&){}
+}
+
+void Mapa::cargar_mapa(const int& id_mapa){
     std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(id_mapa) + TXT;
     std::ifstream archivo_mapa(ruta_mapa);
     if (!archivo_mapa.is_open()) {
@@ -158,6 +164,18 @@ posicion_t Mapa::posicion_caja(const int& caja){
             return posicion_t(55, 129);
         }
     }
+}
+
+void Mapa::resetear(){
+    for (int i = 0; i < alto; i++) {
+        delete[] mapa[i];
+    }
+    delete[] mapa;
+
+    this->id_mapa = rand()%2 + 1;
+    try{
+        cargar_mapa(id_mapa);
+    } catch (const ErrorMapa&){}
 }
 
 Mapa::~Mapa() {
