@@ -47,6 +47,7 @@
 #define OFFSET_X_CASCO_AGACHADO_DER 0.027
 #define OFFSET_X_CASCO_AGACHADO_IZQ -0.027
 #define OFFSET_Y_CASCO_AGACHADO 0.016
+#define OFFSET_Y_CAJA -0.005
 #define OFFSET_ZOOM 200
 #define ANGULO_NULO 0.0
 #define ANGULO_90 90.0
@@ -643,7 +644,7 @@ void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& 
 
 void Dibujador::dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& caja: estado_actual.info_cajas) {
-        float escala = ESCALA_SPRITES_MEDIANOS;
+        float escala = ESCALA_SPRITES_GRANDES;
         float x = caja.posicion.coordenada_x;
         float y = caja.posicion.coordenada_y;
         damage_e estado_caja = caja.estado;
@@ -658,7 +659,7 @@ void Dibujador::dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         }
 
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
-        float offset_y = (y_relativo * OFFSET_GENERAL_Y);
+        float offset_y = (y_relativo * OFFSET_GENERAL_Y) + OFFSET_Y_CAJA;
         dibujar_sprite(renderer, this->sprite_sheet_caja, this->sprites_caja[indice], x_relativo,
                        y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
     }
@@ -673,12 +674,12 @@ void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Rendere
         OFFSET_GENERAL_Y = OFFSET_MAPA_2;
     }
 
-    dibujar_patos(estado_actual, renderer);
-    dibujar_balas(estado_actual, renderer);
     dibujar_armas(estado_actual, renderer);
     dibujar_cascos(estado_actual, renderer);
     dibujar_armaduras(estado_actual, renderer);
     dibujar_cajas(estado_actual, renderer);
+    dibujar_patos(estado_actual, renderer);
+    dibujar_balas(estado_actual, renderer);
 }
 
 void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
@@ -748,6 +749,11 @@ void Dibujador::mostrar_estado_juego(SDL2pp::Renderer& renderer){
 
 void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
                                        const std::vector<int>& puntajes) {
+    if (TTF_Init() == MENOS_UNO) {
+        std::cerr << MSJ_ERROR_TFF << TTF_GetError() << std::endl;
+        return;
+    }
+
     TTF_Font* fuente = TTF_OpenFont(DATA_PATH RUTA_FUENTE, TAMANIO_FUENTE);
     int pos_x = X_INICIAL_PUNTAJE;
     int pos_y = Y_INICIAL_PUNTAJE;
@@ -771,14 +777,10 @@ void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
     }
 
     TTF_CloseFont(fuente);
+    TTF_Quit();
 }
 
 void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual) {
-    if (TTF_Init() == MENOS_UNO) {
-        std::cerr << MSJ_ERROR_TFF << TTF_GetError() << std::endl;
-        return;
-    }
-
     std::vector<int> puntajes(OCHO, CERO);
     for (const auto& pato: estado_actual.info_patos) {
         int id = pato.id;
@@ -787,7 +789,6 @@ void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_
 
     dibujar_patos_tablero(renderer);
     dibujar_puntos_tablero(renderer, puntajes);
-    TTF_Quit();
     renderer.Present();
 }
 
