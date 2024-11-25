@@ -15,8 +15,8 @@
 #define MIL 1000
 
 #define INGAME 1
-#define ENTRE_RONDAS 2
-#define CADA_5_RONDAS 3
+#define CADA_5_RONDAS 2
+#define GANADOR 3
 
 #define VALOR_ENTRE_RONDAS 0xFC
 
@@ -98,7 +98,7 @@ void Gameloop::enviar_estado_juego(const int& tipo_envio) {
     for (size_t i = 0; i < cajas.size(); i++){
         if (!cajas[i].destruida) estado_actual.agregar_caja(cajas[i]);
     }
-    if (tipo_envio == ENTRE_RONDAS) {
+    if (tipo_envio == GANADOR) {
         for (Pato* p: jugadores) {
             if (p->vivo) {
                 estado_actual.definir_ganador(p->id_jugador);
@@ -297,9 +297,6 @@ void Gameloop::run() {
             frame_count++;
         }
         rondas_jugadas += 1;
-        for (int i = 0; i < 50; i++){
-            enviar_estado_juego(ENTRE_RONDAS);
-        }
 
         mapa.resetear();
         cajas.clear();
@@ -318,6 +315,7 @@ void Gameloop::run() {
             }
         }
     }
+    enviar_estado_juego(GANADOR);
 }
 
 void Gameloop::spawnear_elementos(){
