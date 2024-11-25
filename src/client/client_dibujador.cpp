@@ -674,10 +674,10 @@ void Dibujador::dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Rendere
         OFFSET_GENERAL_Y = OFFSET_MAPA_2;
     }
 
+    dibujar_cajas(estado_actual, renderer);
     dibujar_armas(estado_actual, renderer);
     dibujar_cascos(estado_actual, renderer);
     dibujar_armaduras(estado_actual, renderer);
-    dibujar_cajas(estado_actual, renderer);
     dibujar_patos(estado_actual, renderer);
     dibujar_balas(estado_actual, renderer);
 }

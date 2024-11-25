@@ -11,6 +11,7 @@
 #define TAMANIO_SPRITE_GRANDE 32
 #define TAMANIO_SPRITES_BUG 31  // Hay algunos sprites que no llegan justo a 32.
 #define TAMANIO_SPRITE_MEDIANO 16
+#define TAMANIO_SPRITE_MEDIANO_BUG 15 // Hay algunos sprites que no llegan justo a 16.
 #define TAMANIO_SPRITE_CHICO 8
 #define TAMANIO_SPRITE_CHICO_BUG 7 // Hay algunos sprites que no llegan justo a 8.
 #define INICIO_PATO_X 1
@@ -160,7 +161,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_equipamiento() {
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
     std::vector<SDL_Rect> sprites_escopeta;
-    int tamanio_sprite = TAMANIO_SPRITES_BUG;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG - UNO;
     int x_inicial = INICIO_ESCOPETA_X;
     int y_inicial = INICIO_ESCOPETA_Y;
     iterador_de_parseo(sprites_escopeta, UNO, x_inicial, y_inicial, tamanio_sprite);
@@ -215,7 +216,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_sniper() {
     std::vector<SDL_Rect> sprites_sniper;
     parsear_sniper(sprites_sniper);
 
-    int tamanio_sprite = TAMANIO_SPRITE_MEDIANO;
+    int tamanio_sprite = TAMANIO_SPRITE_MEDIANO_BUG;
     int x_inicial = INICIO_BALAS_SNIPER_X;
     int y_inicial = INICIO_BALAS_SNIPER_Y;
     iterador_de_parseo(sprites_sniper, UNO, x_inicial, y_inicial, tamanio_sprite);
