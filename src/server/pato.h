@@ -92,7 +92,7 @@ private:
     static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion,
                              const posicion_t& posicion_a_chequear);
 
-    void pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
+    void pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
 
     void equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando);
 
@@ -118,7 +118,7 @@ public:
     void control_pre_comando(Mapa& mapa, std::vector<Municion>& balas_volando);
 
     // Realiza una accion segun el comando recibido.
-    void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
+    void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
 
     void resetear(Mapa& mapa);
 

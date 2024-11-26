@@ -21,7 +21,7 @@
 #define VALOR_ENTRE_RONDAS 0xFC
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(), puntos_spawn(), rondas_jugadas(0) {
+        queue(q), juego_activo(true), queues_clientes(l), mapa(), rondas_jugadas(0) {
             mapa.inicializar_puntos_spawn(puntos_spawn);
             inicializar_cajas();    
         }
@@ -330,15 +330,15 @@ void Gameloop::run() {
 
 void Gameloop::spawnear_elementos(){
     for(size_t i = 0; i < puntos_spawn.size(); i++){
-        bool spawn = puntos_spawn[i]->spawnear();
+        bool spawn = puntos_spawn[i].spawnear();
         if (spawn){
-            if (puntos_spawn[i]->contenido == 1){
-                cascos_tirados.push_back(posicion_t(puntos_spawn[i]->posicion));
-            } else if (puntos_spawn[i]->contenido == 2){
-                armaduras_tiradas.push_back(posicion_t(puntos_spawn[i]->posicion));
+            if (puntos_spawn[i].contenido == 1){
+                cascos_tirados.push_back(posicion_t(puntos_spawn[i].posicion));
+            } else if (puntos_spawn[i].contenido == 2){
+                armaduras_tiradas.push_back(posicion_t(puntos_spawn[i].posicion));
             } else {
                 int arma = (rand()%5 + 1);
-                InformacionArma arma_nueva(arma, puntos_spawn[i]->posicion);
+                InformacionArma arma_nueva(arma, puntos_spawn[i].posicion);
                 armas_tiradas.push_back(arma_nueva);
             }
         }
@@ -350,11 +350,6 @@ Gameloop::~Gameloop() {
     for (size_t i = 0; i < jugadores.size(); i++) {
         if (jugadores[i]) {
             delete jugadores[i];
-        }
-    }
-    for (size_t i = 0; i < puntos_spawn.size(); i++){
-        if (puntos_spawn[i]){
-            delete puntos_spawn[i];
         }
     }
     puntos_spawn.clear();

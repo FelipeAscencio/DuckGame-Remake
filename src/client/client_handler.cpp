@@ -1,4 +1,5 @@
 #include "client_handler.h"
+#include "../common/liberror.h"
 
 #define CERO 0
 #define MENOS_UNO -1
@@ -86,6 +87,10 @@ void Client::controlar_loop_juego() {
 
 Client::~Client() {
     finalizar_hilos();
-    this->socket.shutdown(RW_CLOSE);
+    try{
+        this->socket.shutdown(RW_CLOSE);
+    } catch (const LibError& e){
+        std::cerr << e.what() << std::endl;
+    }
     this->socket.close();
 }

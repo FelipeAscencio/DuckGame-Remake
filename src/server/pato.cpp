@@ -397,17 +397,17 @@ void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando
     this->posee_arma = true;
 }
 
-void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas){
+void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas){
     std::lock_guard<std::mutex> lck(mtx);
     bool alguno = false;
     int tipo_pickup = 0;
-    for (size_t i = 0; i < spawns.size(); i++){
-        if (this->posicion.igual_para_pickup(spawns[i]->posicion)){
+    for (size_t i = 0; i < spawn.size(); i++){
+        if (this->posicion.igual_para_pickup(spawn[i].posicion)){
             alguno = true;
-            tipo_pickup = spawns[i]->contenido;
+            tipo_pickup = spawn[i].contenido;
         }
     }
-    for (size_t i = 0; i < spawns.size(); i++){
+    for (size_t i = 0; i < spawn.size(); i++){
         if (this->posicion.igual_para_pickup(cajas[i].posicion)){
             alguno = true;
             tipo_pickup = cajas[i].contenido;
@@ -452,15 +452,15 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
         }
     }
     if (pickup){
-        for (size_t i = 0; i < spawns.size(); i++){
-            if (this->posicion.igual_para_pickup(spawns[i]->posicion)){
-                spawns[i]->liberar();
+        for (size_t i = 0; i < spawn.size(); i++){
+            if (this->posicion.igual_para_pickup(spawn[i].posicion)){
+                spawn[i].liberar();
             }
         }
     }
 }
 
-void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn*>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas) {
+void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas) {
     if (!vivo)
         return;
     switch (accion) {
@@ -495,7 +495,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
             }
             break;
         case COMANDO_AGARRAR:
-            pickup(armas_tiradas, cascos_tirados, armaduras_tiradas, spawns, balas_volando, cajas);
+            pickup(armas_tiradas, cascos_tirados, armaduras_tiradas, spawn, balas_volando, cajas);
             break;
 
         case CUAK:

@@ -26,7 +26,7 @@ private:
     Mapa mapa;
     std::vector<bool> jugadores_vivos;
     std::vector<InformacionArma> armas_tiradas;
-    std::vector<Spawn*> puntos_spawn;
+    std::vector<Spawn> puntos_spawn;
     std::vector<posicion_t> cascos_tirados;
     std::vector<posicion_t> armaduras_tiradas;
     std::vector<Municion> balas_volando;

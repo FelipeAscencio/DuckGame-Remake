@@ -5,6 +5,7 @@
 #include "../common/posicion.h"
 #include <mutex>
 #include <utility>
+#include <memory>
 
 class Spawn{
     friend class Mapa;
@@ -16,7 +17,7 @@ class Spawn{
         int nro_random_spawn;
         bool libre;
         int contenido;
-        std::mutex mtx;
+        std::unique_ptr<std::mutex> mtx;
     public:
         Spawn(posicion_t posicion);
 
