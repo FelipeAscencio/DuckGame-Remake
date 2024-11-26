@@ -41,8 +41,8 @@ void Aceptador::run() {
             recolectar();
         } catch (const LibError& e) {
             if (!aceptando_jugadores) {
-                syslog(LOG_INFO, "%s%s. No hay clientes esperando a ser aceptados\n",
-                       EXCEPCION_ESPERADA, e.what());
+                // syslog(LOG_INFO, "%s%s. No hay clientes esperando a ser aceptados\n",
+                //        EXCEPCION_ESPERADA, e.what());
             } else {
                 syslog(LOG_ERR, "%s%s\n", EXCEPCION_INESPERADA, e.what());
             }
