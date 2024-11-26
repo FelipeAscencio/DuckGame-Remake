@@ -28,7 +28,6 @@
 #define CUALQUIER_CANAL_LIBRE -1
 #define CANTIDAD_DE_REPRODUCCIONES 0
 #define SEGUIR_JUGANDO 253
-#define MOSTRAR_TABLERO 252
 #define FINAL_SLEEP 7
 #define TAMANIO_FUENTE 24
 #define ANCHO_VENTANA 960
@@ -800,9 +799,14 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
 
     renderer.Clear();
     if (estado_actual.id_ganador == SEGUIR_JUGANDO) {
+        if (estado_actual.ingame == false){
+            if ((estado_actual.rondas_jugadas % CINCO) == CERO && estado_actual.rondas_jugadas != CERO){
+                dibujar_tablero(renderer, estado_actual);
+                return;
+            }
+        }
+
         mostrar_estado_juego(renderer);
-    } else if (estado_actual.id_ganador == MOSTRAR_TABLERO) {
-        dibujar_tablero(renderer, this->ultimo_estado_recibido);
     } else {
         jugador_activo = false;
         if (estado_actual.id_ganador == this->id_jugador) {
