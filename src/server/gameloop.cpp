@@ -360,5 +360,5 @@ Gameloop::~Gameloop() {
     puntos_spawn.clear();
     armas_tiradas.clear();
     jugadores.clear();
-    this->join();
+    // this->join();
 }

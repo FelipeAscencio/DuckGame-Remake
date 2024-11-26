@@ -21,7 +21,8 @@ void Server::leer_entrada() {
 void Server::start() {
     comenzar_a_aceptar();
     comenzar_juego();
-    while (g.jugando()){}
+    // while (g.jugando()){}
+    g.join();
     g.finalizar_juego();
     a.dejar_de_aceptar();
 }
