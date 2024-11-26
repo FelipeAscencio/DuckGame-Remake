@@ -25,6 +25,11 @@ using namespace SDL2pp;
 // La clase 'Client' implementa toda la logica de control
 // de los eventos y el dibujo del 'Cliente'.
 // Ademas de los hilos de comunicacion con el 'Server'.
+
+struct ErrorPartidaLlena: public std::runtime_error {
+    ErrorPartidaLlena(): std::runtime_error("La partida esta llena, no se puede inicializar el cliente en este momento"){}
+};
+
 class Client {
 private:
     Queue<char> cola_enviador;

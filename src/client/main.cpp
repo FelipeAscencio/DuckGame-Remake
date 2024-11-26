@@ -35,8 +35,12 @@ int main(int argc, const char* argv[]) {
 
         const char* hostname = argv[POS_HOSTNAME];
         const char* servicio = argv[POS_SERVICIO];
-        Client client(hostname, servicio);
-        client.controlar_loop_juego();
+        try {
+            Client client(hostname, servicio);
+            client.controlar_loop_juego();
+        } catch (const ErrorPartidaLlena& e){
+            std::cerr << e.what() << std::endl;
+        }
         return EXITO;
     } catch (const std::exception& error) {
         std::cerr << MSJ_EXCEPCION_CONOCIDA << error.what() << std::endl;

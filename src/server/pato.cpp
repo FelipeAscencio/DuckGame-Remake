@@ -66,6 +66,7 @@ bool Pato::buscar_pared(Mapa& mapa, const orientacion_e& direccion,
     int bloque_x = tile_actual[0];
     int bloque_y = tile_actual[1];
     int lado = (direccion == DERECHA) ? 1 : -1;
+    if (tile_actual[0] == mapa.largo - 1) return false;
     if (direccion == DERECHA && bloque_x == mapa.largo)
         return false;
     if (direccion == IZQUIERDA && bloque_x == 0)

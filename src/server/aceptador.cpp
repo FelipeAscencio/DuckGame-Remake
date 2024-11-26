@@ -21,16 +21,23 @@ void Aceptador::run() {
         try {
             Socket peer = skt.accept();
             bool error_envio_id = false;
-            peer.sendall(&(id), sizeof(id), &error_envio_id);
-            if (error_envio_id) {
-                aceptando_jugadores = false;
+            if (jugadores.size() < 8){
+                peer.sendall(&(id), sizeof(id), &error_envio_id);
+                if (error_envio_id) {
+                    aceptando_jugadores = false;
+                }
+                ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
+                queues_clientes.agregar_queue(jugador->obtener_queue(), id);
+                jugadores.push_back(jugador);
+                jugador->iniciar();
+                id++;
+            } else {
+                uint8_t dummy = 0xFF;
+                peer.sendall(&dummy, sizeof(dummy), &error_envio_id);
+                if (error_envio_id){
+                    aceptando_jugadores = false;   
+                }
             }
-
-            ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
-            queues_clientes.agregar_queue(jugador->obtener_queue(), id);
-            jugadores.push_back(jugador);
-            jugador->iniciar();
-            id++;
             recolectar();
         } catch (const LibError& e) {
             if (!aceptando_jugadores) {

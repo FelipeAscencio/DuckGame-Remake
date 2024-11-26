@@ -88,18 +88,30 @@ bool Municion::avanzar(Mapa& mapa) {
     if (this->sentido == ARRIBA) {
         if (techo && mapa.mapa[posicion_mapa[1] - arriba_de_todo][posicion_mapa[0]] != 0)
             return false;
-        this->posicion_actual.coordenada_y -= AVANZAR;
         inc = this->inclinacion == PARA_ARRIBA ? -1 : 1;
         dis = buscar_dispersion(this->dispersion);
+        if (dis != 0){
+            if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + inc] != 0){
+                return false;
+            }
+        }
+        this->posicion_actual.coordenada_y -= AVANZAR;
         this->posicion_actual.coordenada_x += AVANZAR * inc * dis;
     } else {
         lado = this->sentido == DERECHA ? 1 : -1;
         if (borde_bloque &&
-            mapa.mapa[posicion_mapa[1] - arriba_de_todo][posicion_mapa[0] + lado] != 0)
+            mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 0 && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 3)
             return false;
-        this->posicion_actual.coordenada_x += AVANZAR * lado;
         inc = subiendo ? -1 : 1;
         dis = buscar_dispersion(this->dispersion);
+        if (dis != 0){
+            if (mapa.piso_bloque(this->posicion_actual) || techo){
+                if (mapa.mapa[posicion_mapa[1] - inc][posicion_mapa[0]] != 0){
+                    return false;
+                }
+            }
+        }
+        this->posicion_actual.coordenada_x += AVANZAR * lado;
         this->posicion_actual.coordenada_y += AVANZAR * inc * dis;
     }
     return true;

@@ -14,6 +14,7 @@
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
 #define RW_CLOSE 2
+#define ID_DUMMY 0xFF
 
 using namespace SDL2pp;
 
@@ -24,9 +25,11 @@ Client::Client(const char* hostname, const char* servicio):
         controlador(cola_enviador),
         socket(hostname, servicio),
         protocolo(socket),
-        id(protocolo.id_cliente),
         enviador(protocolo, cola_enviador, id),
-        recibidor(protocolo, cola_recibidor) {}
+        recibidor(protocolo, cola_recibidor) {
+            id = protocolo.id_cliente;
+            if (id == ID_DUMMY) throw ErrorPartidaLlena();
+        }
 
 Mix_Music* Client::iniciar_musica() {
     if (Mix_OpenAudio(FRECUENCIA_HZ, MIX_DEFAULT_FORMAT, AUDIO_ESTEREO, BUFFER_AUDIO) < CERO) {

@@ -30,7 +30,7 @@ void Gameloop::inicializar_cajas(){
     for (int i = 0; i < 3; i++){
         cajas.push_back(Caja(mapa.posicion_caja(i), i));
         std::vector<int> bloque_caja = mapa.posicion_en_mapa(cajas[i].posicion);
-        mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 2;
+        mapa.mapa[bloque_caja[1]][bloque_caja[0]] = 3;
     }
 }
 
@@ -102,7 +102,6 @@ void Gameloop::enviar_estado_juego(const int& tipo_envio) {
         for (Pato* p: jugadores) {
             if (p->vivo) {
                 estado_actual.definir_ganador(p->id_jugador);
-                p->rondas_ganadas += 1;
                 break;
             } else {
             }
@@ -296,6 +295,11 @@ void Gameloop::run() {
             t1 += std::chrono::milliseconds(ms_per_frame);
             frame_count++;
         }
+        for (size_t i = 0; i < jugadores_vivos.size(); i++){
+            if (jugadores_vivos[i]){
+                jugadores[i]->rondas_ganadas += 1;
+            }
+        }
         rondas_jugadas += 1;
 
         mapa.resetear();
@@ -310,12 +314,13 @@ void Gameloop::run() {
         resetear_jugadores();
 
         if (rondas_jugadas % 5 == 0){
-            for (int i = 0; i < 50; i++){
+            for (int i = 0; i < (ConfigJuego::FPS * 15); i++){
                 enviar_estado_juego(CADA_5_RONDAS);
             }
         }
     }
     enviar_estado_juego(GANADOR);
+    this->juego_activo = false;
 }
 
 void Gameloop::spawnear_elementos(){
