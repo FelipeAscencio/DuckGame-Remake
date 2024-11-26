@@ -38,7 +38,7 @@ public:
     void dejar_de_aceptar() { this->aceptando_jugadores = false; }
 
     // Destructor de la clase.
-    virtual ~Aceptador();
+    ~Aceptador() override;
 };
 
 #endif  // ACEPTADOR_H

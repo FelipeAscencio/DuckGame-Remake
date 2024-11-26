@@ -223,6 +223,17 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         caja.resize(5);
         i++;
     }
+    
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    estado_actual.rondas_jugadas = leido;
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    s.recvall(&leido, sizeof(leido), &was_closed);
+    estado_actual.ingame = (bool)leido;
+    s.recvall(&leido, sizeof(leido), &was_closed);
+
     s.recvall(&leido, sizeof(leido), &was_closed);  // Lee el fin de  la comunicacion.
     return !was_closed;
 }

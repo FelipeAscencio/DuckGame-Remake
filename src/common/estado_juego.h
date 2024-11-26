@@ -114,6 +114,8 @@ struct EstadoJuego {
     int cantidad_cajas;
     int id_ganador;
     int id_mapa;
+    int rondas_jugadas;
+    bool ingame;
     std::vector<InformacionPato> info_patos;
     std::vector<InformacionArma> info_armas;
     std::vector<InformacionBala> info_balas;
@@ -131,7 +133,9 @@ struct EstadoJuego {
             cantidad_cascos(CERO),
             cantidad_cajas(CERO),
             id_ganador(ID_GANADOR),
-            id_mapa(0) {}
+            id_mapa(0),
+            rondas_jugadas(0),
+            ingame(false) {}
 
     explicit EstadoJuego(const int& mapa):
             cantidad_jugadores(CERO),
@@ -141,7 +145,9 @@ struct EstadoJuego {
             cantidad_cascos(CERO),
             cantidad_cajas(CERO),
             id_ganador(ID_GANADOR),
-            id_mapa(mapa) {}
+            id_mapa(mapa),
+            rondas_jugadas(0),
+            ingame(false) {}
 
     // Verifica la existencia de la id recibida por parametro.
     bool chequear_id(const int& id) {

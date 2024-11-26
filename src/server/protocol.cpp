@@ -13,6 +13,8 @@
 #define CODIGO_CANTIDADES 0x0B
 #define CODIGO_GANADOR 0x0C
 #define CODIGO_MAPA 0x0D
+#define CODIGO_RONDAS_JUGADAS 0x0E
+#define CODIGO_BOOL_INGAME 0x0F
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
@@ -201,6 +203,17 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     while (i < estado_actual.cantidad_cajas && envio_correcto){
         envio_correcto = _enviar(serializar_caja(estado_actual.info_cajas[i]));
         i++;
+    }
+
+    std::vector<uint8_t> bytes(3);
+    bytes[0] = CODIGO_RONDAS_JUGADAS;
+    bytes[1] = estado_actual.rondas_jugadas;
+    bytes[2] = FIN_MENSAJE;
+    envio_correcto = _enviar(bytes);
+    if (envio_correcto){
+        bytes[0] = CODIGO_BOOL_INGAME;
+        bytes[1] = estado_actual.ingame;
+        envio_correcto = _enviar(bytes);
     }
 
     if (envio_correcto) {

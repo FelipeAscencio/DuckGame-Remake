@@ -33,6 +33,10 @@ private:
     std::vector<Caja> cajas;
     int rondas_jugadas;
 
+    void jugar_ronda();
+
+    void resetear_atributos();
+
     void resetear_jugadores();
 
     void inicializar_cajas();
@@ -52,7 +56,7 @@ private:
     void actualizar_balas_disparadas();
 
     // Envia el estado del juego actual, incluyendo informacion de jugadores y armas en el mapa.
-    void enviar_estado_juego(const int& tipo_envio);
+    void enviar_estado_juego(bool ingame);
 
     // Revisa si hay nuevos jugadores y, de ser necesario, crea instancias de nuevos jugadores.
     void chequear_nuevos_jugadores();
@@ -78,7 +82,7 @@ public:
     bool jugando() { return juego_activo; }
 
     // Destructor de la clase.
-    ~Gameloop();
+    ~Gameloop() override;
 };
 
 #endif  // SERVER_GAMELOOP_H_
