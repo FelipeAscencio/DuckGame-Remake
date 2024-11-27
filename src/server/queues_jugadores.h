@@ -33,6 +33,14 @@ public:
 
     // Elimina la cola asociada a un cliente usando su ID.
     void eliminar_queue(int id_cliente);
+
+    // Deshabilito las copias.
+    ListaQueues(const ListaQueues&) = delete;
+    ListaQueues& operator=(const ListaQueues&) = delete;
+
+    // Permito el movimiento del objeto.
+    ListaQueues(ListaQueues&&) = default;
+    ListaQueues& operator=(ListaQueues&&) = default;
 };
 
 #endif  // QUEUES_JUGADORES_H

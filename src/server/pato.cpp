@@ -36,6 +36,17 @@
 #define CHEAT_CASCO 40
 #define CHEAT_RONDAS 41
 
+#define POS_X 0
+#define POS_Y 1
+#define ITERACIONES_PARA_ARRIBA 20
+
+#define CERO 0
+#define UNO 1
+#define UNO_Y_MEDIO 1.5
+#define DOS 2
+#define TRES 3
+#define OCHO 8
+
 Pato::Pato(int id, Mapa& mapa):
         id_jugador(id),
         posicion(mapa.posicion_inicial(id_jugador)),
@@ -45,16 +56,17 @@ Pato::Pato(int id, Mapa& mapa):
         posee_casco(false),
         arma_equipada(nullptr),
         estado_actual(PARADO),
-        iteraciones_subiendo(0),
-        iteraciones_desde_aleteo(ConfigJuego::FPS / 2),
+        iteraciones_subiendo(CERO),
+        iteraciones_desde_aleteo(ConfigJuego::FPS / DOS),
         inmortal(false),
         sonido(SILENCIO),
-        rondas_ganadas(0),
-        iteraciones_mirando_para_arriba(0) {
-    if (this->posicion.coordenada_x > mapa.largo / 2)
+        rondas_ganadas(CERO),
+        iteraciones_mirando_para_arriba(CERO) {
+    if (this->posicion.coordenada_x > mapa.largo / DOS)
         this->orientacion = IZQUIERDA;
     else
         this->orientacion = DERECHA;
+
     this->orientacion_anterior = orientacion;
 }
 
@@ -63,15 +75,17 @@ posicion_t Pato::obtener_posicion() { return this->posicion; }
 bool Pato::buscar_pared(Mapa& mapa, const orientacion_e& direccion,
                         const posicion_t& posicion_a_chequear) {
     std::vector<int> tile_actual = mapa.posicion_en_mapa(posicion_a_chequear);
-    int bloque_x = tile_actual[0];
-    int bloque_y = tile_actual[1];
-    int lado = (direccion == DERECHA) ? 1 : -1;
-    if (tile_actual[0] == mapa.largo - 1) return false;
+    int bloque_x = tile_actual[POS_X];
+    int bloque_y = tile_actual[POS_Y];
+    int lado = (direccion == DERECHA) ? UNO : -UNO;
+    if (tile_actual[POS_X] == mapa.largo - UNO) return false;
     if (direccion == DERECHA && bloque_x == mapa.largo)
         return false;
-    if (direccion == IZQUIERDA && bloque_x == 0)
+
+    if (direccion == IZQUIERDA && bloque_x == CERO)
         return false;
-    return (mapa.mapa[bloque_y][bloque_x + lado] != 0);
+
+    return (mapa.mapa[bloque_y][bloque_x + lado] != CERO);
 }
 
 bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
@@ -81,6 +95,7 @@ bool Pato::chequeo_movimiento(Mapa& mapa, const orientacion_e& direccion) {
     } else {
         se_movio = !(Pato::buscar_pared(mapa, direccion, this->posicion));
     }
+
     return se_movio;
 }
 
@@ -90,7 +105,6 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion, bool disparo) {
 
     bool se_movio;
     bool derecha = (direccion == DERECHA);
-
     bool fuera_mapa_por_derecha =
             (posicion.coordenada_x > (mapa.largo * TILE_A_METRO) - MOVER_DERECHA) && (derecha);
     bool fuera_mapa_por_izquierda = (posicion.coordenada_x < -MOVER_IZQUIERDA) && (!derecha);
@@ -107,10 +121,12 @@ bool Pato::mover(Mapa& mapa, const orientacion_e& direccion, bool disparo) {
         if (this->arma_equipada) {
             this->arma_equipada->posicion_spawn.coordenada_x += pasos;
         }
+
         if (estado_actual != SALTANDO && estado_actual != CAYENDO) {
             estado_actual = CAMINANDO;
         }
     }
+
     return se_movio;
 }
 
@@ -120,27 +136,31 @@ void Pato::saltar() {
     if (this->arma_equipada) {
         this->arma_equipada->posicion_spawn.coordenada_y -= SALTO_Y_CAIDA;
     }
-    this->iteraciones_subiendo = 1;
+
+    this->iteraciones_subiendo = UNO;
 }
 
 void Pato::aletear() {
     if (iteraciones_desde_aleteo < ConfigJuego::FPS / 2) {
         return;
     }
+
     if (estado_actual == CAYENDO) {
         estado_actual = ALETEANDO;
-        this->posicion.coordenada_y -= 1.5;
+        this->posicion.coordenada_y -= UNO_Y_MEDIO;
         if (this->arma_equipada) {
-            this->arma_equipada->posicion_spawn.coordenada_y -= 1.5;
+            this->arma_equipada->posicion_spawn.coordenada_y -= UNO_Y_MEDIO;
         }
-        iteraciones_desde_aleteo = 0;
+
+        iteraciones_desde_aleteo = CERO;
     }
 }
 
 void Pato::caer(Mapa& mapa) {
     if (!this->vivo)
         return;
-    if (this->posicion.coordenada_y >= (mapa.alto * TILE_A_METRO) - 1) {
+
+    if (this->posicion.coordenada_y >= (mapa.alto * TILE_A_METRO) - UNO) {
         this->vivo = false;
         return;
     }
@@ -151,11 +171,12 @@ void Pato::caer(Mapa& mapa) {
         if (this->arma_equipada) {
             this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
         }
+
         estado_actual = CAYENDO;
     } else {
         std::vector<int> tile_actual = mapa.posicion_en_mapa(this->posicion);
-        int tile_x = tile_actual[0];
-        int tile_y = tile_actual[1] + 1;
+        int tile_x = tile_actual[POS_X];
+        int tile_y = tile_actual[POS_Y] + UNO;
         if (tile_y > mapa.alto) {
             posicion.coordenada_y +=
                     SALTO_Y_CAIDA;  // Como el eje Y aumenta hacia abajo, el chequeo es inverso y
@@ -164,22 +185,23 @@ void Pato::caer(Mapa& mapa) {
             if (this->arma_equipada) {
                 this->arma_equipada->posicion_spawn.coordenada_y += SALTO_Y_CAIDA;
             }
+
             return;
         }
 
         // Si en el bloque de abajo no hay piso.
-        if (mapa.mapa[tile_y][tile_x] == 0) {
+        if (mapa.mapa[tile_y][tile_x] == CERO) {
             // Yecnicamente esta un bloque que no tiene piso abajo, pero el cuerpo del pato no
             // paso por completo a ese nuevo bloque entonces no debe caer.
-            bool piso_a_la_izquierda = (tile_x > 0 && (mapa.mapa[tile_y][tile_x - 1] == 1));
-            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + 1] == 1));
+            bool piso_a_la_izquierda = (tile_x > CERO && (mapa.mapa[tile_y][tile_x - UNO] == UNO));
+            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + UNO] == UNO));
             if (piso_a_la_derecha || piso_a_la_izquierda) {
                 bool yendo_derecha =
                         this->orientacion == DERECHA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / 2) - 1);
+                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / DOS) - UNO);
                 bool yendo_izquierda =
                         this->orientacion == IZQUIERDA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / 2) - 1);
+                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / DOS) - UNO);
                 if (yendo_derecha || yendo_izquierda) {
                     estado_actual = PARADO;
                     return;
@@ -195,9 +217,9 @@ void Pato::caer(Mapa& mapa) {
 
             // El bloque de abajo en el que esta tiene su piso a "mitad del bloque" (el piso no
             // esta alineado con el cambio de bloques).
-        } else if (mapa.mapa[tile_y - 1][tile_x] == 2) {
+        } else if (mapa.mapa[tile_y - UNO][tile_x] == DOS) {
             int posicion_en_bloque = (int)posicion.coordenada_y % TILE_A_METRO;
-            int mitad_bloque = TILE_A_METRO / 2;
+            int mitad_bloque = TILE_A_METRO / DOS;
             if (posicion_en_bloque < mitad_bloque) {
                 posicion.coordenada_y += SALTO_Y_CAIDA;
                 estado_actual = CAYENDO;
@@ -209,6 +231,7 @@ void Pato::caer(Mapa& mapa) {
             estado_actual = PARADO;
         }
     }
+
     if (this->posicion.coordenada_y > mapa.alto * TILE_A_METRO)
         this->vivo = false;
 }
@@ -226,7 +249,6 @@ void Pato::cambiar_orientacion(const orientacion_e& nueva_orientacion) {
 }
 
 void Pato::soltar_arma() {
-    // if (arma_equipada) delete arma_equipada;
     this->posee_arma = false;
 }
 
@@ -254,7 +276,8 @@ bool Pato::disparar(Mapa& mapa) {
                 }
             }
         }
-        if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones != 0)
+
+        if (arma_equipada->id_arma == ID_SHOTGUN && arma_equipada->municiones != CERO)
             return true;
         else
             return disparo;
@@ -273,45 +296,50 @@ void Pato::chequear_estado(Mapa& mapa) {
 
         case SALTANDO:
             if (iteraciones_subiendo <
-                (3 * TILE_A_METRO / SALTO_Y_CAIDA) +
-                        1) {  // Como los tiles miden 10 y sube de a 2 metros, se
+                (TRES * TILE_A_METRO / SALTO_Y_CAIDA) +
+                        UNO) {  // Como los tiles miden 10 y sube de a 2 metros, se
                               // necesitan 5 iteraciones para realizar un salto.
                 posicion_t posicion_cabeza_pato(this->posicion.coordenada_x,
-                                                this->posicion.coordenada_y - 8);
+                                                this->posicion.coordenada_y - OCHO);
                 std::vector<int> pos_mapa = mapa.posicion_en_mapa(posicion_cabeza_pato);
-                if ((mapa.techo_bloque(posicion_cabeza_pato) && pos_mapa[1] == 0)) {
+                if ((mapa.techo_bloque(posicion_cabeza_pato) && pos_mapa[UNO] == CERO)) {
                     estado_actual = CAYENDO;
-                    iteraciones_subiendo = 0;
+                    iteraciones_subiendo = CERO;
                 }
-                bool bloque_mas_alto = pos_mapa[1] == 0;
+
+                bool bloque_mas_alto = pos_mapa[UNO] == CERO;
                 if ((mapa.techo_bloque(posicion_cabeza_pato) &&
-                     mapa.mapa[pos_mapa[1] - !bloque_mas_alto][pos_mapa[0]] == 1)) {
+                     mapa.mapa[pos_mapa[UNO] - !bloque_mas_alto][pos_mapa[CERO]] == UNO)) {
                     estado_actual = CAYENDO;
-                    iteraciones_subiendo = 0;
+                    iteraciones_subiendo = CERO;
                 } else {
                     posicion.coordenada_y -= SALTO_Y_CAIDA;
                     if (this->arma_equipada) {
                         this->arma_equipada->posicion_spawn.coordenada_y -= SALTO_Y_CAIDA;
                     }
-                    iteraciones_subiendo += 1;
+
+                    iteraciones_subiendo += UNO;
                 }
             } else {
                 estado_actual = CAYENDO;
-                iteraciones_subiendo = 0;
+                iteraciones_subiendo = CERO;
             }
+
             break;
 
         case ALETEANDO:
-            this->posicion.coordenada_y -= 1.5;
+            this->posicion.coordenada_y -= UNO_Y_MEDIO;
             if (this->arma_equipada) {
-                this->arma_equipada->posicion_spawn.coordenada_y -= 1.5;
+                this->arma_equipada->posicion_spawn.coordenada_y -= UNO_Y_MEDIO;
             }
+
             estado_actual = CAYENDO;
             break;
 
         case CAMINANDO:
             estado_actual = PARADO;
             break;
+
         default:
             break;
     }
@@ -322,38 +350,45 @@ void Pato::control_pre_comando(Mapa& mapa, std::vector<Municion>& balas_volando)
         this->posee_arma = true;
     else
         this->posee_arma = false;
-    iteraciones_desde_aleteo += 1;
-    if (this->posicion.coordenada_x < 0 ||
+
+    iteraciones_desde_aleteo += UNO;
+    if (this->posicion.coordenada_x < CERO ||
         this->posicion.coordenada_x > mapa.largo * TILE_A_METRO) {
         this->vivo = false;
         return;
     }
+
     if (this->posicion.coordenada_y > mapa.alto * TILE_A_METRO) {
         this->vivo = false;  // Si esta fuera del mapa, tiene que morir.
         return;
     }
+
     if (orientacion == ARRIBA) {
-        iteraciones_mirando_para_arriba += 1;
-        if (iteraciones_mirando_para_arriba == 20) {
-            iteraciones_mirando_para_arriba = 0;
+        iteraciones_mirando_para_arriba += UNO;
+        if (iteraciones_mirando_para_arriba == ITERACIONES_PARA_ARRIBA) {
+            iteraciones_mirando_para_arriba = CERO;
             this->orientacion = orientacion_anterior;
         }
     }
+
     if (estado_actual != SALTANDO) {
         caer(mapa);
     }
+
     chequear_estado(mapa);
     if (posee_arma) {
-        if (this->arma_equipada->municiones_restantes() == 0) {
+        if (this->arma_equipada->municiones_restantes() == CERO) {
             for (Municion m: arma_equipada->balas){
                 Municion aux(m);
                 balas_volando.push_back(aux);
             }
+
             delete this->arma_equipada;
             arma_equipada = nullptr;
             posee_arma = false;
         }
     }
+
     if (this->sonido != SILENCIO) {
         this->sonido = SILENCIO;
     }
@@ -364,13 +399,16 @@ void Pato::recibir_disparo() {
         posee_casco = false;  // Si le pegan un disparo, pierde el casco pero sigue vivo.
         return;
     }
+
     if (posee_armadura) {
         posee_armadura = false;  // Si le pegan un disparo, pierde el armadura pero sigue vivo.
         return;
     }
+
     if (inmortal) {
         return;
     }
+
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
@@ -380,10 +418,12 @@ void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando
             Municion aux(m);
             balas_volando.push_back(aux);
         }
+
         delete arma_equipada;
         posee_arma = false;
     }
-    posicion_t pos(this->posicion.coordenada_x, this->posicion.coordenada_y - TILE_A_METRO/2);
+
+    posicion_t pos(this->posicion.coordenada_x, this->posicion.coordenada_y - TILE_A_METRO/DOS);
     if (id_arma == ID_PP_LASER)
         this->arma_equipada = new PewPewLaser(pos);
     else if(id_arma == ID_AK47)
@@ -400,14 +440,15 @@ void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando
 void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas){
     std::lock_guard<std::mutex> lck(mtx);
     bool alguno = false;
-    int tipo_pickup = 0;
-    for (size_t i = 0; i < spawn.size(); i++){
+    int tipo_pickup = CERO;
+    for (size_t i = CERO; i < spawn.size(); i++){
         if (this->posicion.igual_para_pickup(spawn[i].posicion)){
             alguno = true;
             tipo_pickup = spawn[i].contenido;
         }
     }
-    for (size_t i = 0; i < spawn.size(); i++){
+
+    for (size_t i = CERO; i < spawn.size(); i++){
         if (this->posicion.igual_para_pickup(cajas[i].posicion)){
             alguno = true;
             tipo_pickup = cajas[i].contenido;
@@ -415,10 +456,10 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
     }
 
     if (!alguno) return;
-    if (tipo_pickup == 0) return;
+    if (tipo_pickup == CERO) return;
     bool pickup = false;
-    size_t i = 0;
-    if (tipo_pickup == 3){
+    size_t i = CERO;
+    if (tipo_pickup == TRES){
         while (i < armas_tiradas.size()){
             if (this->posicion.igual_para_pickup(armas_tiradas[i].posicion)){
                 int id_arma = armas_tiradas[i].id_arma;
@@ -426,10 +467,11 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
                 armas_tiradas.erase(armas_tiradas.begin() + i);
                 pickup = true;
             }
+
             i++;
         }
-    } else if (tipo_pickup == 1){
-        i = 0;
+    } else if (tipo_pickup == UNO){
+        i = CERO;
         while (i < cascos_tirados.size()){
             posicion_t posicion_casco = cascos_tirados[i];
             if (this->posicion.igual_para_pickup(posicion_casco)){
@@ -437,10 +479,11 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
                 cascos_tirados.erase(cascos_tirados.begin() + i);
                 pickup = true;
             }
+
             i++;
         }
     } else {
-        i = 0;
+        i = CERO;
         while (i < armaduras_tiradas.size()){
             posicion_t pos = armaduras_tiradas[i];
             if (this->posicion.igual_para_pickup(pos)){
@@ -448,11 +491,12 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
                 armaduras_tiradas.erase(armaduras_tiradas.begin() + i);
                 pickup = true;
             }
+
             i++;
         }
     }
     if (pickup){
-        for (size_t i = 0; i < spawn.size(); i++){
+        for (size_t i = CERO; i < spawn.size(); i++){
             if (this->posicion.igual_para_pickup(spawn[i].posicion)){
                 spawn[i].liberar();
             }
@@ -463,22 +507,27 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
 void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas) {
     if (!vivo)
         return;
+
     switch (accion) {
         case COMANDO_MIRAR_HACIA_ARRIBA:
             orientacion_anterior = orientacion;
             this->cambiar_orientacion(orientacion_e::ARRIBA);
-            iteraciones_mirando_para_arriba = 0;
+            iteraciones_mirando_para_arriba = CERO;
             break;
+
         case COMANDO_AGACHARSE:
             agacharse();
             break;
+
         case COMANDO_SALTO_Y_ALETEO:
             if (estado_actual == PARADO) {
                 saltar();
             } else {
                 aletear();
             }
+
             break;
+
         case COMANDO_DISPARO:
             if (arma_equipada) {
                 if (disparar(mapa)) {
@@ -493,7 +542,9 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
                     }
                 }
             }
+            
             break;
+
         case COMANDO_AGARRAR:
             pickup(armas_tiradas, cascos_tirados, armaduras_tiradas, spawn, balas_volando, cajas);
             break;
@@ -530,6 +581,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
             if (this->arma_equipada) {
                 this->arma_equipada->recargar();
             }
+
             break;
 
         case CHEAT_CASCO:
@@ -557,12 +609,13 @@ void Pato::resetear(Mapa& mapa){
         delete arma_equipada;
         arma_equipada = nullptr;
     }
+
     posee_arma = false;
     posee_armadura = false;
     posee_casco = false;
-    iteraciones_desde_aleteo = ConfigJuego::FPS / 2;
-    iteraciones_mirando_para_arriba = 0;
-    iteraciones_subiendo = 0;
+    iteraciones_desde_aleteo = ConfigJuego::FPS / DOS;
+    iteraciones_mirando_para_arriba = CERO;
+    iteraciones_subiendo = CERO;
     sonido = SILENCIO;
     estado_actual = PARADO;
     inmortal = false;

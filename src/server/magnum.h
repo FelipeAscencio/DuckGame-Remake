@@ -16,6 +16,14 @@ public:
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
+
+    // Deshabilito las copias.
+    Magnum(const Magnum&) = delete;
+    Magnum& operator=(const Magnum&) = delete;
+
+    // Permito el movimiento del objeto.
+    Magnum(Magnum&&) = default;
+    Magnum& operator=(Magnum&&) = default;
 };
 
 #endif  // MAGNUM_H

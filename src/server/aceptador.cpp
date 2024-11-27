@@ -2,7 +2,6 @@
 
 #include <utility>
 #include <vector>
-
 #include <syslog.h>
 
 #include "../common/liberror.h"
@@ -10,34 +9,39 @@
 #define EXCEPCION_ESPERADA "Se produjo una excepcion esperada: "
 #define EXCEPCION_INESPERADA "Se produjo una excepcion inesperada: "
 #define EXCEPCION_DESCONOCIDA "Se produjo una excepcion desconocida. "
+#define CERO 0
+#define MAX_CLIENTES_POR_PARTIDA 8
 #define RW_CLOSE 2
+#define VALOR_DUMMY 0xFF
 
 Aceptador::Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l):
         skt(servname), aceptando_jugadores(true), queue_juego(q), queues_clientes(l) {}
 
 void Aceptador::run() {
-    int id = 0;
+    int id = CERO;
     while (aceptando_jugadores) {
         try {
             Socket peer = skt.accept();
             bool error_envio_id = false;
-            if (jugadores.size() < 8){
+            if (jugadores.size() < MAX_CLIENTES_POR_PARTIDA){
                 peer.sendall(&(id), sizeof(id), &error_envio_id);
                 if (error_envio_id) {
                     aceptando_jugadores = false;
                 }
+
                 ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue_juego, id);
                 queues_clientes.agregar_queue(jugador->obtener_queue(), id);
                 jugadores.push_back(jugador);
                 jugador->iniciar();
                 id++;
             } else {
-                uint8_t dummy = 0xFF;
+                uint8_t dummy = VALOR_DUMMY;
                 peer.sendall(&dummy, sizeof(dummy), &error_envio_id);
                 if (error_envio_id){
                     aceptando_jugadores = false;   
                 }
             }
+
             recolectar();
         } catch (const LibError& e) {
             if (!aceptando_jugadores) {

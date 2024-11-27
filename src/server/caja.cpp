@@ -1,7 +1,8 @@
 #include "caja.h"
 
+#define CERO 0
 
-Caja::Caja(const posicion_t& pos, const int& id_caja): posicion(pos), estado(INTACTA), destruida(false), id(id_caja), contenido(0){}
+Caja::Caja(const posicion_t& pos, const int& id_caja): posicion(pos), estado(INTACTA), destruida(false), id(id_caja), contenido(CERO){}
 
 void Caja::recibir_disparo(){
     mtx = std::make_unique<std::mutex>();   

@@ -9,11 +9,12 @@
 #include "../common/posicion.h"
 #include "spawn_place.h"
 
+#define MSJ_ERROR_CREAR_MAPA "Se produjo un error al intentar crear el mapa"
 #define TILE_A_METRO 10
 
-// 'struct' auxiliar para encapsular un error.
+// 'Struct' auxiliar para encapsular un error.
 struct ErrorMapa: public std::runtime_error {
-    ErrorMapa(): std::runtime_error("Se produjo un error al intentar crear el mapa") {}
+    ErrorMapa(): std::runtime_error(MSJ_ERROR_CREAR_MAPA) {}
 };
 
 // La clase 'Mapa' implementa la logica del funcionamiento
@@ -29,6 +30,7 @@ private:
     int** mapa;
     int id_mapa;
 
+    // Carga el mapa segun el 'id' correspondiente.
     void cargar_mapa(const int& id_mapa);
 public:
     // Constructor de la clase.
@@ -43,18 +45,31 @@ public:
     // Verifica si una posicion esta en el limite inferior (piso) de un bloque.
     bool piso_bloque(const posicion_t& pos);
 
+    // Verifica si un pato va a chocarse con un techo.
     bool techo_bloque(const posicion_t& pos);
 
+    // Asigna una posicion inicial a un jugador.
     posicion_t posicion_inicial(const int& id_jugador);
 
+    // Inicializa los puntos de spawn segun corresponda.
     void inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn);
 
+    // Inicializa las posiciones de las cajas segun corresponda.
     posicion_t posicion_caja(const int& id_caja);
 
+    // Resetea el mapa para cambiar de ronda y randomiza el nuevo mapa.
     void resetear();
 
     // Destructor de la clase.
     ~Mapa();
+
+    // Deshabilito las copias.
+    Mapa(const Mapa&) = delete;
+    Mapa& operator=(const Mapa&) = delete;
+
+    // Permito el movimiento del objeto.
+    Mapa(Mapa&&) = default;
+    Mapa& operator=(Mapa&&) = default;
 };
 
 #endif  // SERVER_MAPA_H_

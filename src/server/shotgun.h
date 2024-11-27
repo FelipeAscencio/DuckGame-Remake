@@ -14,6 +14,7 @@ private:
     bool debe_recargar;
     int alcance_maximo;
 
+    // Elimina una bala en especifica segun el indice recibido.
     void eliminar_bala(const int& indice) override;
 
 public:
@@ -22,6 +23,14 @@ public:
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
+
+    // Deshabilito las copias.
+    Shotgun(const Shotgun&) = delete;
+    Shotgun& operator=(const Shotgun&) = delete;
+
+    // Permito el movimiento del objeto.
+    Shotgun(Shotgun&&) = default;
+    Shotgun& operator=(Shotgun&&) = default;
 };
 
 #endif  // SHOTGUN_H

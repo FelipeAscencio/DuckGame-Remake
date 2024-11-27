@@ -1,5 +1,8 @@
 #include "arma.h"
 
+#define CERO 0
+#define UNO 1
+
 Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, const int& municiones,
            bool tiene_retroceso, posicion_t posicion_inicial):
         id_arma(id),
@@ -36,7 +39,7 @@ bool Arma::en_uso() { return this->agarrada; }
 void Arma::eliminar_bala(const int& indice) {
     balas.erase(balas.begin() + indice);
     for (int i = indice; i < (int)balas.size(); i++) {
-        balas[i].nro_bala -= 1;
+        balas[i].nro_bala -= UNO;
     }
 }
 
@@ -49,7 +52,7 @@ void Arma::chequeo_balas(Mapa& mapa) {
     bool no_borre_ninguno = false;
     while (!no_borre_ninguno) {
         no_borre_ninguno = true;
-        size_t i = 0;
+        size_t i = CERO;
         while (i < balas.size()) {
             if (balas[i].fuera_de_rango(mapa)) {
                 eliminar_bala(i);
@@ -72,6 +75,6 @@ void Arma::control_atributos(Mapa& mapa) { chequeo_balas(mapa); }
 
 Arma::~Arma() {
     balas.clear();
-    municiones = 0;
+    municiones = CERO;
     soltada = true;
 }

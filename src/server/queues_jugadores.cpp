@@ -6,7 +6,6 @@ ListaQueues::ListaQueues() {}
 
 void ListaQueues::broadcast(const EstadoJuego& estado_actual) {
     std::lock_guard<std::mutex> lck(mtx);
-
     if (lista_queues.empty())
         return;
 

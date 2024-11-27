@@ -25,6 +25,14 @@ public:
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
+
+    // Deshabilito las copias.
+    AK47(const AK47&) = delete;
+    AK47& operator=(const AK47&) = delete;
+
+    // Permito el movimiento del objeto.
+    AK47(AK47&&) = default;
+    AK47& operator=(AK47&&) = default;
 };
 
 #endif  // AK47_H

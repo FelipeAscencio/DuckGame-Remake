@@ -39,6 +39,14 @@ public:
 
     // Destructor de la clase.
     ~Aceptador() override;
+
+    // Deshabilito las copias.
+    Aceptador(const Aceptador&) = delete;
+    Aceptador& operator=(const Aceptador&) = delete;
+
+    // Permito el movimiento del objeto.
+    Aceptador(Aceptador&&) = default;
+    Aceptador& operator=(Aceptador&&) = default;
 };
 
 #endif  // ACEPTADOR_H

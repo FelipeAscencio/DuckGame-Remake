@@ -32,6 +32,14 @@ public:
 
     // Destructor de la clase.
     ~Recibidor();
+
+    // Deshabilito las copias.
+    Recibidor(const Recibidor&) = delete;
+    Recibidor& operator=(const Recibidor&) = delete;
+
+    // Permito el movimiento del objeto.
+    Recibidor(Recibidor&&) = default;
+    Recibidor& operator=(Recibidor&&) = default;
 };
 
 #endif  // SERVER_RECIBIDOR_H_

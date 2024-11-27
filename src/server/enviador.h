@@ -31,6 +31,14 @@ public:
 
     // Destructor de la clase.
     ~Enviador();
+
+    // Deshabilito las copias.
+    Enviador(const Enviador&) = delete;
+    Enviador& operator=(const Enviador&) = delete;
+
+    // Permito el movimiento del objeto.
+    Enviador(Enviador&&) = default;
+    Enviador& operator=(Enviador&&) = default;
 };
 
 #endif  // SERVER_ENVIADOR_H_

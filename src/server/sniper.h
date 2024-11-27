@@ -16,6 +16,14 @@ public:
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;
+
+    // Deshabilito las copias.
+    Sniper(const Sniper&) = delete;
+    Sniper& operator=(const Sniper&) = delete;
+
+    // Permito el movimiento del objeto.
+    Sniper(Sniper&&) = default;
+    Sniper& operator=(Sniper&&) = default;
 };
 
 #endif  // SNIPER_H

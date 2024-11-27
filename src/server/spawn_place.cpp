@@ -2,15 +2,19 @@
 #include "config_juego.h"
 
 #define ITERACIONES_MINIMAS_RESPAWN 180 
+#define CERO 0
+#define UNO 1
+#define CANTIDAD_ITEM_LOOTEABLES 10
+#define VARIANTES_DE_LOOT 3
 
-Spawn::Spawn(posicion_t pos): posicion(pos), iteraciones_desde_spawn(0), nro_random_spawn(rand() % 10), libre(true), contenido(0){}
+Spawn::Spawn(posicion_t pos): posicion(pos), iteraciones_desde_spawn(CERO), nro_random_spawn(rand() % CANTIDAD_ITEM_LOOTEABLES), libre(true), contenido(CERO){}
 
 void Spawn::liberar() { 
     mtx = std::make_unique<std::mutex>();   
     std::lock_guard<std::mutex> lck(*mtx);
     this->libre = true; 
-    iteraciones_desde_spawn = 0;
-    contenido = 0;
+    iteraciones_desde_spawn = CERO;
+    contenido = CERO;
 }
 
 bool Spawn::spawnear(){
@@ -19,12 +23,12 @@ bool Spawn::spawnear(){
     this->iteraciones_desde_spawn++;
     if(!libre) return false; 
     if (iteraciones_desde_spawn < ITERACIONES_MINIMAS_RESPAWN) return false;
-    if (iteraciones_desde_spawn % ConfigJuego::FPS == 0){
-        if (rand() % 10 != nro_random_spawn) return false;
+    if (iteraciones_desde_spawn % ConfigJuego::FPS == CERO){
+        if (rand() % CANTIDAD_ITEM_LOOTEABLES != nro_random_spawn) return false;
         libre = false;
-        contenido = (rand()%3) + 1;
+        contenido = (rand()%VARIANTES_DE_LOOT) + UNO;
         return true;
     }
+
     return false;
 }
-

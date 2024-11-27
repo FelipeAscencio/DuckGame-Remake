@@ -5,6 +5,17 @@
 
 #define AVANZAR 0.75
 
+#define MENOS_UNO -1
+#define CERO 0
+#define UNO 1
+#define DOS 2
+#define TRES 3
+
+#define VALOR_DISPERSION_NULA 0
+#define VALOR_DISPERSION_BAJA 0.5
+#define VALOR_DISPERSION_MEDIA 1
+#define VALOR_DISPERSION_ALTA 1.5
+
 Municion::Municion(const int& id, const posicion_t& pos_inicial, const int& alcance_maximo,
                    const orientacion_e& direccion, const dispersion_e& dispersion_bala,
                    const int& nro):
@@ -18,9 +29,10 @@ Municion::Municion(const int& id, const posicion_t& pos_inicial, const int& alca
     if (dispersion == NO || sentido == ARRIBA) {
         inclinacion = NO_TIENE;
     } else {
-        int inc = (rand() % 2) + 1;
+        int inc = (rand() % DOS) + UNO;
         inclinacion = (inclinacion_e)inc;
     }
+
     subiendo = (this->sentido == ARRIBA) ? true : false;
 }
 
@@ -43,14 +55,15 @@ sentido(m.sentido), dispersion(m.dispersion), inclinacion(m.inclinacion), subien
 
 bool Municion::fuera_de_rango(Mapa& mapa) {
     if (this->posicion_actual.coordenada_x >= mapa.largo * TILE_A_METRO ||
-        this->posicion_actual.coordenada_x <= 0 ||
+        this->posicion_actual.coordenada_x <= CERO ||
         this->posicion_actual.coordenada_y >= mapa.alto * TILE_A_METRO ||
-        this->posicion_actual.coordenada_y <= 0)
+        this->posicion_actual.coordenada_y <= CERO)
         return true;
+
     float dx = this->posicion_actual.coordenada_x - this->posicion_inicial.coordenada_x;
     float dy = this->posicion_actual.coordenada_y - this->posicion_inicial.coordenada_y;
-    float s1 = pow(dx, 2);
-    float s2 = pow(dy, 2);
+    float s1 = pow(dx, DOS);
+    float s2 = pow(dy, DOS);
     float distancia = sqrt(s1 + s2);
     return ((int)distancia > autonomia);
 }
@@ -59,18 +72,19 @@ float buscar_dispersion(const dispersion_e& dispersion) {
     float dis;
     switch (dispersion) {
         case BAJA:
-            dis = 0.5;
+            dis = VALOR_DISPERSION_BAJA;
             break;
 
         case MEDIA:
-            dis = 1;
+            dis = VALOR_DISPERSION_MEDIA;
             break;
 
         case ALTA:
-            dis = 1.5;
+            dis = VALOR_DISPERSION_ALTA;
             break;
+
         default:
-            dis = 0;
+            dis = VALOR_DISPERSION_NULA;
             break;
     }
 
@@ -81,40 +95,46 @@ bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
     if (fuera_de_rango(mapa))
         return false;
+    
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
     bool techo = mapa.techo_bloque(this->posicion_actual);
     int lado;
     int inc;
     float dis;
-    int arriba_de_todo = posicion_mapa[1] == 0 ? 0 : 1;
+    int arriba_de_todo = posicion_mapa[UNO] == CERO ? CERO : UNO;
     if (this->sentido == ARRIBA) {
-        if (techo && mapa.mapa[posicion_mapa[1] - arriba_de_todo][posicion_mapa[0]] != 0)
+        if (techo && mapa.mapa[posicion_mapa[UNO] - arriba_de_todo][posicion_mapa[CERO]] != CERO)
             return false;
-        inc = this->inclinacion == PARA_ARRIBA ? -1 : 1;
+
+        inc = this->inclinacion == PARA_ARRIBA ? MENOS_UNO : UNO;
         dis = buscar_dispersion(this->dispersion);
-        if (dis != 0){
-            if (borde_bloque && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + inc] != 0){
+        if (dis != CERO){
+            if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + inc] != CERO){
                 return false;
             }
         }
+
         this->posicion_actual.coordenada_y -= AVANZAR;
         this->posicion_actual.coordenada_x += AVANZAR * inc * dis;
     } else {
-        lado = this->sentido == DERECHA ? 1 : -1;
+        lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
         if (borde_bloque &&
-            mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 0 && mapa.mapa[posicion_mapa[1]][posicion_mapa[0] + lado] != 3)
+            mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES)
             return false;
-        inc = subiendo ? -1 : 1;
+
+        inc = subiendo ? MENOS_UNO : UNO;
         dis = buscar_dispersion(this->dispersion);
-        if (dis != 0){
+        if (dis != CERO){
             if (mapa.piso_bloque(this->posicion_actual) || techo){
-                if (mapa.mapa[posicion_mapa[1] - inc][posicion_mapa[0]] != 0){
+                if (mapa.mapa[posicion_mapa[UNO] - inc][posicion_mapa[CERO]] != CERO){
                     return false;
                 }
             }
         }
+
         this->posicion_actual.coordenada_x += AVANZAR * lado;
         this->posicion_actual.coordenada_y += AVANZAR * inc * dis;
     }
+
     return true;
 }

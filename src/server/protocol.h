@@ -18,10 +18,13 @@ class Protocol {
 private:
     Socket& s;
 
+    // Serializa la informacion de las cajas.
     std::vector<uint8_t> serializar_caja(const InformacionCaja& caja);
 
+    // Serializa la informacion de los cascos y las armaduras.
     std::vector<uint8_t> serializar_casco_o_armadura(const posicion_t& pos, bool casco);
 
+    // Serializa la informacion de el mapa.
     std::vector<uint8_t> serializar_mapa(const int& mapa);
 
     // Serializa la informacion del ganador. Si esta en la mitad de una ronda, envia un valor dummy
@@ -55,6 +58,14 @@ public:
 
     // Verifica si una accion dada es valida dentro del rango permitido.
     static bool accion_valida(const uint8_t& accion);
+
+    // Deshabilito las copias.
+    Protocol(const Protocol&) = delete;
+    Protocol& operator=(const Protocol&) = delete;
+
+    // Permito el movimiento del objeto.
+    Protocol(Protocol&&) = default;
+    Protocol& operator=(Protocol&&) = default;
 };
 
 };  // namespace ServerProtocol

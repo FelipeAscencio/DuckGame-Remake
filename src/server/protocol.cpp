@@ -1,7 +1,6 @@
 #include "server/protocol.h"
 
 #include <vector>
-
 #include <netinet/in.h>
 
 #define CODIGO_PATO 0x05
@@ -41,17 +40,20 @@
 #define SEGUNDA_POSICION 1
 #define TERCERA_POSICION 2
 #define CUARTA_POSICION 3
+#define TAMANIO_VECTOR_BYTES 3
+
+#define CERO 0
 
 ServerProtocol::Protocol::Protocol(Socket& skt): s(skt) {}
 
 std::vector<uint8_t> separar_posicion_en_entero_y_decimal(const posicion_t& posicion) {
     std::vector<uint8_t> posiciones;
-    posiciones.push_back((uint8_t)posicion.coordenada_x);  // parte entera de x
+    posiciones.push_back((uint8_t)posicion.coordenada_x);  // Parte entera de X.
     posiciones.push_back((uint8_t)((posicion.coordenada_x - posiciones[PRIMERA_POSICION]) *
-                                   TILE_A_METRO));         // parte decimal de x
-    posiciones.push_back((uint8_t)posicion.coordenada_y);  // parte entera de y
+                                   TILE_A_METRO));         // Parte decimal de X.
+    posiciones.push_back((uint8_t)posicion.coordenada_y);  // Parte entera de Y.
     posiciones.push_back((uint8_t)((posicion.coordenada_y - posiciones[TERCERA_POSICION]) *
-                                   TILE_A_METRO));  // parte decimal de y
+                                   TILE_A_METRO));  // Parte decimal de Y.
     return posiciones;
 }
 
@@ -83,7 +85,6 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_cantidades(
     std::vector<uint8_t> cantidades;
     cantidades.push_back(CODIGO_CANTIDADES);
     cantidades.push_back(estado_actual.cantidad_jugadores);
-    // esto despues hay que sacar el + 1
     cantidades.push_back(estado_actual.cantidad_armas);
     cantidades.push_back(estado_actual.cantidad_balas);
     cantidades.push_back(estado_actual.cantidad_armaduras);
@@ -120,10 +121,10 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_bala(const Informacion
     bala.push_back(CODIGO_BALA);
     bala.push_back(info_bala.id_arma);
     std::vector<uint8_t> pos = separar_posicion_en_entero_y_decimal(info_bala.pos);
-    bala.push_back(pos[0]);
-    bala.push_back(pos[1]);
-    bala.push_back(pos[2]);
-    bala.push_back(pos[3]);
+    bala.push_back(pos[PRIMERA_POSICION]);
+    bala.push_back(pos[SEGUNDA_POSICION]);
+    bala.push_back(pos[TERCERA_POSICION]);
+    bala.push_back(pos[CUARTA_POSICION]);
     bala.push_back((uint8_t)info_bala.inclinacion);
     bala.push_back((uint8_t)info_bala.direccion);
     bala.push_back(FIN_MENSAJE);
@@ -143,10 +144,10 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_casco_o_armadura(const
     uint8_t codigo = casco ? CODIGO_CASCO : CODIGO_ARMADURA;
     bytes.push_back(codigo);
     std::vector<uint8_t> posicion_separada = separar_posicion_en_entero_y_decimal(pos);
-    bytes.push_back(posicion_separada[0]);
-    bytes.push_back(posicion_separada[1]);
-    bytes.push_back(posicion_separada[2]);
-    bytes.push_back(posicion_separada[3]);
+    bytes.push_back(posicion_separada[PRIMERA_POSICION]);
+    bytes.push_back(posicion_separada[SEGUNDA_POSICION]);
+    bytes.push_back(posicion_separada[TERCERA_POSICION]);
+    bytes.push_back(posicion_separada[CUARTA_POSICION]);
     bytes.push_back(FIN_MENSAJE);
     return bytes;
 }
@@ -155,10 +156,10 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_caja(const Informacion
     std::vector<uint8_t> bytes;
     std::vector<uint8_t> pos = separar_posicion_en_entero_y_decimal(c.posicion);
     bytes.push_back(CODIGO_CAJA);
-    bytes.push_back(pos[0]);
-    bytes.push_back(pos[1]);
-    bytes.push_back(pos[2]);
-    bytes.push_back(pos[3]);
+    bytes.push_back(pos[PRIMERA_POSICION]);
+    bytes.push_back(pos[SEGUNDA_POSICION]);
+    bytes.push_back(pos[TERCERA_POSICION]);
+    bytes.push_back(pos[CUARTA_POSICION]);
     bytes.push_back(c.estado);
     bytes.push_back(FIN_MENSAJE);
     return bytes;
@@ -171,51 +172,70 @@ bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
 }
 
 bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
+    // Envia el 'id' ganador (o el dummy).
     bool envio_correcto = _enviar(serializar_ganador(estado_actual.id_ganador));
     envio_correcto = _enviar(serializar_cantidades(estado_actual));
+
+    // Envia el 'id' del mapa actual.
     envio_correcto = _enviar(serializar_mapa(estado_actual.id_mapa));
-    int i = 0;
+    
+    // Envia el estado actual de todos los 'Patos'.
+    int i = CERO;
     while (i < estado_actual.cantidad_jugadores && envio_correcto) {
         envio_correcto = _enviar(serializar_pato(estado_actual.info_patos[i]));
         i++;
     }
-    i = 0;
+
+    // Envia las armas dropeadas en el juego.
+    i = CERO;
     while (i < estado_actual.cantidad_armas && envio_correcto) {
         envio_correcto = _enviar(serializar_armas(estado_actual.info_armas[i]));
         i++;
     }
-    i = 0;
+
+    // Envia todas las balas que actualmente estan activas en el juego.
+    i = CERO;
     while (i < estado_actual.cantidad_balas && envio_correcto) {
         envio_correcto = _enviar(serializar_bala(estado_actual.info_balas[i]));
         i++;
     }
-    i = 0;
+
+    // Envia las armaduras dropeadas en el juego.
+    i = CERO;
     while(i < estado_actual.cantidad_armaduras && envio_correcto){
         envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_armaduras[i], false));
         i++;
     }
-    i = 0;
+
+    // Envia los cascos dropeados en el juego.
+    i = CERO;
     while (i < estado_actual.cantidad_cascos && envio_correcto){
         envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_cascos[i], true));
         i++;
     }
-    i = 0;
+
+    // Envia las cajas que actualmente estan vivas en el juego.
+    i = CERO;
     while (i < estado_actual.cantidad_cajas && envio_correcto){
         envio_correcto = _enviar(serializar_caja(estado_actual.info_cajas[i]));
         i++;
     }
 
-    std::vector<uint8_t> bytes(3);
-    bytes[0] = CODIGO_RONDAS_JUGADAS;
-    bytes[1] = estado_actual.rondas_jugadas;
-    bytes[2] = FIN_MENSAJE;
+    // Envia la cantidad de rondas jugadas actualmente, el codigo de la ronda actual y el final del mensaje.
+    std::vector<uint8_t> bytes(TAMANIO_VECTOR_BYTES);
+    bytes[PRIMERA_POSICION] = CODIGO_RONDAS_JUGADAS;
+    bytes[SEGUNDA_POSICION] = estado_actual.rondas_jugadas;
+    bytes[TERCERA_POSICION] = FIN_MENSAJE;
     envio_correcto = _enviar(bytes);
+
+    // Envia el estado actual del juego 'INGAME' o 'ENTRE RONDAS'.
     if (envio_correcto){
-        bytes[0] = CODIGO_BOOL_INGAME;
-        bytes[1] = estado_actual.ingame;
+        bytes[PRIMERA_POSICION] = CODIGO_BOOL_INGAME;
+        bytes[SEGUNDA_POSICION] = estado_actual.ingame;
         envio_correcto = _enviar(bytes);
     }
 
+    // Envia el fin de la comunicacion.
     if (envio_correcto) {
         uint8_t cierre = FIN_COMUNICACION;
         bool was_closed = false;

@@ -84,7 +84,16 @@ public:
     // Restaura la cantidad de municiones restantes del arma
     void recargar();
 
+    // Destructor de la clase.
     virtual ~Arma();
+
+    // Deshabilito las copias.
+    Arma(const Arma&) = delete;
+    Arma& operator=(const Arma&) = delete;
+
+    // Permito el movimiento del objeto.
+    Arma(Arma&&) = default;
+    Arma& operator=(Arma&&) = default;
 };
 
 #endif  // ARMA_H

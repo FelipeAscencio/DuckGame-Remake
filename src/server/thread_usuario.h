@@ -39,6 +39,14 @@ public:
 
     // Destructor de la clase.
     ~ThreadUsuario();
+
+    // Deshabilito las copias.
+    ThreadUsuario(const ThreadUsuario&) = delete;
+    ThreadUsuario& operator=(const ThreadUsuario&) = delete;
+
+    // Permito el movimiento del objeto.
+    ThreadUsuario(ThreadUsuario&&) = default;
+    ThreadUsuario& operator=(ThreadUsuario&&) = default;
 };
 
 #endif  // THREAD_USUARIO_H

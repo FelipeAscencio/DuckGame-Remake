@@ -33,17 +33,22 @@ private:
     std::vector<Caja> cajas;
     int rondas_jugadas;
 
+    // Controla el flujo del juego de una ronda de la partida.
     void jugar_ronda();
 
+    // Resetea los atributos para cambiar de ronda.
     void resetear_atributos();
 
+    // Resetea los jugadores para cambiar de ronda.
     void resetear_jugadores();
 
+    // Inicializa las cajas en el mapa segun corresponda.
     void inicializar_cajas();
 
+    // Controla la logica de la condicion de victoria, si alguien gano devuelve 'true', caso contrario devuelve 'false'.
     bool fin_partida();
 
-    // Devuelve true si hay más de 2 jugadores conectados y solamente 1 vivo
+    // Devuelve true si hay mas de 2 jugadores conectados y solamente 1 vivo.
     bool hay_ganador();
 
     // Verifica las posiciones de los jugadores para detectar impactos de balas y aplicar daños.
@@ -64,11 +69,15 @@ private:
     // Ejecuta una iteracion del ciclo de juego, procesando nuevos jugadores, posiciones y acciones.
     void loop_juego();
 
+    // Spawnea los elementos segun corresponda en la partida.
     void spawnear_elementos();
 
+    // Controla la logica de las balas en el loop de la ronda.
     void control_balas();
 
+    // Envia el tablero de rondas a los 'Clientes'.
     void enviar_tablero_rondas();
+    
 public:
     // Constructor de la clase.
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);
@@ -85,6 +94,14 @@ public:
 
     // Destructor de la clase.
     ~Gameloop() override;
+
+    // Deshabilito las copias.
+    Gameloop(const Gameloop&) = delete;
+    Gameloop& operator=(const Gameloop&) = delete;
+
+    // Permito el movimiento del objeto.
+    Gameloop(Gameloop&&) = default;
+    Gameloop& operator=(Gameloop&&) = default;
 };
 
 #endif  // SERVER_GAMELOOP_H_

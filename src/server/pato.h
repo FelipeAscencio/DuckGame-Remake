@@ -12,7 +12,10 @@
 #include "../common/informacion_arma.h"
 #include "caja.h"
 
-// 'enum' utilizado para encapsular los sonidos del pato.
+#define CERO 0
+#define CINCO 5
+
+// 'Enum' utilizado para encapsular los sonidos del pato.
 enum sonido_e { SILENCIO, HACIENDO_CUAK, DISPARANDO };
 
 // La clase 'Pato' implementa toda la logica del
@@ -86,17 +89,22 @@ private:
 
     // Hace que el pato dispare su arma equipada, si tiene una.
     bool disparar(Mapa& mapa);
-    int obtener_id_arma() { return arma_equipada ? arma_equipada->obtener_id() : 0; }
+
+    // Obtiene el 'id' del arma equipada.
+    int obtener_id_arma() { return arma_equipada ? arma_equipada->obtener_id() : CERO; }
 
     // Verifica si hay una pared en la direccion especificada desde la posicion dada.
     static bool buscar_pared(Mapa& mapa, const orientacion_e& direccion,
                              const posicion_t& posicion_a_chequear);
 
+    // De ser posible, hace le 'Pickup' del item looteable en el piso.
     void pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
 
+    // Equipa el arma recibida por parametro al pato.
     void equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando);
 
-    void aumentar_rondas_ganadas() { this->rondas_ganadas += 5;}
+    // 'Cheat' que aumenta la cantidad de rondas ganadas por el 'Pato'.
+    void aumentar_rondas_ganadas() { this->rondas_ganadas += CINCO;}
 
 public:
     // Constructor de la clase.
@@ -120,10 +128,19 @@ public:
     // Realiza una accion segun el comando recibido.
     void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
 
+    // Resetea el estado del pato en el mapa al cambiar de ronda.
     void resetear(Mapa& mapa);
 
     // Destructor de la clase.
     ~Pato();
+
+    // Deshabilito las copias.
+    Pato(const Pato&) = delete;
+    Pato& operator=(const Pato&) = delete;
+
+    // Permito el movimiento del objeto.
+    Pato(Pato&&) = default;
+    Pato& operator=(Pato&&) = default;
 };
 
 #endif  // SERVER_PATO_H_

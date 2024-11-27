@@ -1,7 +1,6 @@
 #include "server/recibidor.h"
 
 #include <sstream>
-
 #include <syslog.h>
 
 #define EXCEPCION_INESPERADA "Se produjo una excepcion inesperada: "

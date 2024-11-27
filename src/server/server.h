@@ -26,9 +26,6 @@ private:
     // Inicia el ciclo principal del juego.
     void comenzar_juego();
 
-    // Lee la entrada estandar y espera el comando de salida.
-    void leer_entrada();
-
 public:
     // Constructor de la clase.
     explicit Server(const char* servname);
@@ -36,8 +33,13 @@ public:
     // Inicia el servidor, configurando aceptacion de jugadores, el juego, y entrada de comandos.
     void start();
 
-    // Destructor de la clase.
-    ~Server();
+    // Deshabilito las copias.
+    Server(const Server&) = delete;
+    Server& operator=(const Server&) = delete;
+
+    // Permito el movimiento del objeto.
+    Server(Server&&) = default;
+    Server& operator=(Server&&) = default;
 };
 
 #endif  // SERVER_SERVER_H_

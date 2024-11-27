@@ -14,20 +14,10 @@ void Server::comenzar_a_aceptar() { a.start(); }
 
 void Server::comenzar_juego() { g.start(); }
 
-void Server::leer_entrada() {
-    
-}
-
 void Server::start() {
     comenzar_a_aceptar();
     comenzar_juego();
-    // while (g.jugando()){}
     g.join();
     g.finalizar_juego();
     a.dejar_de_aceptar();
-}
-
-Server::~Server() {
-    // g.finalizar_juego();
-    // a.dejar_de_aceptar();
 }
