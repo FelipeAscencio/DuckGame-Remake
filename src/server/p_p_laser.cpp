@@ -25,7 +25,7 @@ inclinacion_e obtener_inclinacion(const int& bala) {
 dispersion_e obtener_dispersion(const int& bala) {
     if (bala == CERO)
         return NO;
-    return ALTA;
+    return MEDIA;
 }
 
 bool PewPewLaser::disparar(const orientacion_e& direccion, Mapa& mapa) {
@@ -35,7 +35,7 @@ bool PewPewLaser::disparar(const orientacion_e& direccion, Mapa& mapa) {
     for (int i = CERO; i < ConfigJuego::MUNICIONES_PP_LASER; i++) {
         inclinacion_e inc = obtener_inclinacion(i);
         dispersion_e dis = obtener_dispersion(i);
-        Municion m(ID_PP_LASER, this->posicion_spawn,
+        Municion m(ID_PP_LASER, ajustar_posicion_disparo(direccion),
                    (ConfigJuego::ALCANCE_MAXIMO_PP_LASER * TILE_A_METRO), direccion, dis, inc,
                    balas.size());
         if (m.avanzar(mapa)) {

@@ -38,6 +38,9 @@ protected:
     bool soltada;
     std::vector<Municion> balas;
 
+    // Ajusta la posicion inicial de la bala, haciendo que no sea exactamente la posicion del arma, segun la direccion
+    posicion_t ajustar_posicion_disparo(const orientacion_e& direccion);
+
     // Verifica si el arma puede ser agarrada nuevamente.
     bool puede_agarrarse();
 

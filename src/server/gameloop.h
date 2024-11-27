@@ -81,6 +81,7 @@ private:
     // Envia el tablero de rondas a los 'Clientes'.
     void enviar_tablero_rondas();
 
+    // Si se desconecto algun usuario, elimina a su pato
     void chequear_jugadores_desconectados();
 
 public:

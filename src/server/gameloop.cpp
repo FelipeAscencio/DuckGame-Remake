@@ -184,7 +184,7 @@ void Gameloop::chequear_posiciones() {
                     if (!cajas[i].destruida) {
                         if (mapa.posicion_en_mapa(m.posicion_actual) ==
                             mapa.posicion_en_mapa(cajas[i].posicion)) {
-                            if (m.posicion_actual.misma_posicion(cajas[i].posicion)) {
+                            if (m.posicion_actual.hit_caja(cajas[i].posicion, m.id_arma)) {
                                 cajas[i].recibir_disparo();
                                 p->arma_equipada->eliminar_bala(m.nro_bala);
                                 if (cajas[i].destruida) {
@@ -228,7 +228,7 @@ void Gameloop::chequear_posiciones() {
         for (size_t i = CERO; i < cajas.size(); i++) {
             if (mapa.posicion_en_mapa(balas_volando[i].posicion_actual) ==
                 mapa.posicion_en_mapa(cajas[i].posicion)) {
-                if (balas_volando[i].posicion_actual.misma_posicion(cajas[i].posicion)) {
+                if (balas_volando[i].posicion_actual.hit_caja(cajas[i].posicion, balas_volando[i].id_arma)) {
                     cajas[i].recibir_disparo();
                     if (cajas[i].destruida) {
                         int spawn = cajas[i].destruir();

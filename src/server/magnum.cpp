@@ -17,7 +17,7 @@ bool Magnum::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (this->municiones == CERO)
         return false;
 
-    Municion m(ID_MAGNUM, posicion_spawn, (ConfigJuego::ALCANCE_MAGNUM * TILE_A_METRO), direccion,
+    Municion m(ID_MAGNUM, ajustar_posicion_disparo(direccion), (ConfigJuego::ALCANCE_MAGNUM * TILE_A_METRO), direccion,
                NO, balas.size());
     if (m.avanzar(mapa)) {
         balas.push_back(m);

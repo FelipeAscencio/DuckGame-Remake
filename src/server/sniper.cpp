@@ -16,7 +16,7 @@ Sniper::Sniper(posicion_t posicion_inicial):
 bool Sniper::disparar(const orientacion_e& direccion, Mapa& mapa) {
     if (municiones == CERO)
         return false;
-    Municion bala(ID_SNIPER, this->posicion_spawn, (ConfigJuego::ALCANCE_SNIPER * TILE_A_METRO),
+    Municion bala(ID_SNIPER, ajustar_posicion_disparo(direccion), (ConfigJuego::ALCANCE_SNIPER * TILE_A_METRO),
                   direccion, NO, balas.size());
     if (bala.avanzar(mapa))
         balas.push_back(bala);

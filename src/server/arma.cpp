@@ -71,6 +71,19 @@ void Arma::chequeo_balas(Mapa& mapa) {
     }
 }
 
+posicion_t Arma::ajustar_posicion_disparo(const orientacion_e& direccion){
+    float dx = 0;
+    float dy = 0;
+    if (direccion == DERECHA){
+        dx = CERO_Y_MEDIO;
+    } else if (direccion == IZQUIERDA){
+        dx = -CERO_Y_MEDIO;
+    } else {
+        dy = -CERO_Y_MEDIO;
+    }
+    return (posicion_t(this->posicion_spawn.coordenada_x + dx, this->posicion_spawn.coordenada_y + dy));
+}
+
 void Arma::control_atributos(Mapa& mapa) { chequeo_balas(mapa); }
 
 Arma::~Arma() {

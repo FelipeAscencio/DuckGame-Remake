@@ -126,11 +126,10 @@ bool Municion::avanzar(Mapa& mapa) {
         this->posicion_actual.coordenada_x += AVANZAR * inc * dis;
     } else {
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
-        if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO &&
-            mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES)
-            return false;
-
         inc = subiendo ? MENOS_UNO : UNO;
+        if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES){
+            return false;
+        }
         dis = buscar_dispersion(this->dispersion);
         if (dis != CERO) {
             if (mapa.piso_bloque(this->posicion_actual) || techo) {
