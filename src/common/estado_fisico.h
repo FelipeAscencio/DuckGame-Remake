@@ -2,7 +2,7 @@
 #ifndef COMMON_ESTADO_FISICO_H_
 #define COMMON_ESTADO_FISICO_H_
 
-// 'enum' utilizado para indicar el estado de un 'Pato'.
+// 'Enum' utilizado para indicar el estado de un 'Pato'.
 typedef enum estado_fisico {
     PARADO,
     AGACHADO,

@@ -5,14 +5,16 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
 #include <math.h>
 
 #define CERO 0
+#define CERO_Y_MEDIO 0.5
+#define UNO 1
+#define UNO_Y_MEDIO 1.5
 #define DOS 2
 #define TILE_A_METRO 10
 
-// 'struct' que define la posicion en relacion al eje 'X' e 'Y' de una entidad.
+// 'Struct' que define la posicion en relacion al eje 'X' e 'Y' de una entidad.
 typedef struct Posicion {
     float coordenada_x;
     float coordenada_y;
@@ -53,16 +55,18 @@ typedef struct Posicion {
     bool misma_posicion(Posicion otra) {
         float dx = abs(this->coordenada_x - otra.coordenada_x);
         float dy = abs(this->coordenada_y - otra.coordenada_y);
-        bool resultado = (dx < 0.5 && dy <= (TILE_A_METRO - 1));
+        bool resultado = (dx < CERO_Y_MEDIO && dy <= (TILE_A_METRO - UNO));
         return resultado;
     }
 
+    // Se fija si el 'Pato' puede agarrar el loot, si es asi devuelve 'true', caso contrario devuelve 'false'.
     bool igual_para_pickup(const Posicion& otra){
         float dx = abs(this->coordenada_x - otra.coordenada_x);
         float dy = abs(this->coordenada_y - otra.coordenada_y);
-        bool resultado = dx <= 1.5 && dy <= TILE_A_METRO /2;
+        bool resultado = dx <= UNO_Y_MEDIO && dy <= TILE_A_METRO /DOS;
         return resultado;
     }
+    
 } posicion_t;
 
 #endif  // COMMON_POSICION_H_

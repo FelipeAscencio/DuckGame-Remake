@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cstdint>
 
-// 'struct' utilizado para encapsular un comando.
+// 'Struct' utilizado para encapsular un comando.
 typedef struct Comando {
     uint8_t id_cliente;
     uint8_t accion;

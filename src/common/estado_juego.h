@@ -19,7 +19,7 @@
 #define CERO 0
 #define ID_GANADOR 0xFD  // Valor dummy que indica que no hay un ganador de la ronda actual.
 
-// 'struct' que encapsula la informacion del pato para enviarla en el estado.
+// 'Struct' que encapsula la informacion del pato para enviarla en el estado.
 struct InformacionPato {
     int id;
     posicion_t posicion;
@@ -66,8 +66,7 @@ struct InformacionPato {
             rondas_ganadas(rondas) {}
 };
 
-
-// 'struct' que encapsula la informacion de todas las balas del juego.
+// 'Struct' que encapsula la informacion de todas las balas del juego.
 struct InformacionBala {
     int id_arma;  // 0 = no arma, 1 ak, 2 magnum, 3 laser, 4 shotgun, 5 sniper.
     posicion_t pos;
@@ -87,16 +86,19 @@ struct InformacionBala {
             id_arma(id), pos(posicion), inclinacion(inc), direccion(sentido) {}
 };
 
-// 'struct' que encapsula la informacion de todas las cajas del juego.
+// 'Struct' que encapsula la informacion de todas las cajas del juego.
 struct InformacionCaja{
     posicion_t posicion;
     damage_e estado;
-
+    
+    // Primer constructor del 'Struct'.
     explicit InformacionCaja(const Caja& c): posicion(c.posicion), estado(c.estado){}
+
+    // Segundo constructor del 'Struct'.
     explicit InformacionCaja(const posicion_t& pos, const damage_e& rotura): posicion(pos), estado(rotura){}
 };
 
-// 'struct' que sirve para comparar las 'ID'.
+// 'Struct' que sirve para comparar las 'ID'.
 struct MismoID {
     const int id;
     explicit MismoID(int id_buscado): id(id_buscado) {}
@@ -104,7 +106,7 @@ struct MismoID {
     bool operator()(Pato* p) const { return p->id_jugador == id; }
 };
 
-// 'struct' que encapsula el estado actual del juego para enviarlo al 'Cliente'.
+// 'Struct' que encapsula el estado actual del juego para enviarlo al 'Cliente'.
 struct EstadoJuego {
     int cantidad_jugadores;
     int cantidad_armas;
@@ -123,8 +125,7 @@ struct EstadoJuego {
     std::vector<posicion_t> info_armaduras;
     std::vector<InformacionCaja> info_cajas;
 
-
-    // Constructor del struct.
+    // Primer constructor del struct.
     explicit EstadoJuego():
             cantidad_jugadores(CERO),
             cantidad_armas(CERO),
@@ -137,6 +138,7 @@ struct EstadoJuego {
             rondas_jugadas(0),
             ingame(false) {}
 
+    // Segundo constructor del struct.
     explicit EstadoJuego(const int& mapa):
             cantidad_jugadores(CERO),
             cantidad_armas(CERO),
@@ -200,26 +202,31 @@ struct EstadoJuego {
         this->cantidad_balas++;
     }
 
+    // Agrega la informacion de un casco (recibido por referencia constante) al vector.
     void agregar_casco(const posicion_t& pos){
         info_cascos.push_back(pos);
         cantidad_cascos++;
     }
 
+    // Agrega la informacion de una armadura (recibida por referencia constante) al vector.
     void agregar_armadura(const posicion_t& pos){
         info_armaduras.push_back(pos);
         cantidad_armaduras++;
     }
 
+    // Agrega la informacion de una caja (recibida por referencia constante) al vector.
     void agregar_caja(const Caja& c){
         info_cajas.push_back(InformacionCaja(c));
         cantidad_cajas++;
     }
 
+    // Agrega la informacion de una caja (recibida por referencia constante de la estructura de informacion) al vector.
     void agregar_caja(const InformacionCaja& c){
         info_cajas.push_back(c);
         cantidad_cajas++;
     }
 
+    // Asigna el 'id' del jugador ganador de la partida (o el valor dummy) segun corresponda.
     void definir_ganador(const int& id) { this->id_ganador = id; }
 
     // Vacia la informacion de los patos.
