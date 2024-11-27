@@ -31,6 +31,7 @@ sudo apt-get --yes install gcc
 sudo apt-get --yes install cmake
 sudo apt-get --yes install g++
 sudo apt-get --yes install build-essential libgl1-mesa-dev libclang-16-dev
+sudo apt install valgrind
 
 imprimir_msj $ORANGE "║ Instalación de los paquetes apt necesarios para Qt 5 ║"
 
@@ -46,6 +47,11 @@ imprimir_msj $ORANGE "║ Instalación de paquetes apt necesarios para gtest ║
 
 sudo apt-get --yes install libyaml-cpp-dev
 sudo apt-get --yes install libgtest-dev
+
+imprimir_msj $ORANGE "║ Instalación de dependencias VULKAN para INTEL y AMD║"
+
+sudo apt install vulkan-tools
+sudo apt install mesa-vulkan-drivers
 
 # Dependencias necesarias para cargar imagenes, sonidos y textos en "SDL2".
 imprimir_msj $ORANGE "║ Compilando dependencias SDL2 ║"

@@ -7,4 +7,4 @@ SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR/src/build" || exit
 
 # Ejecutar el comando "./taller_client" pasando los argumentos recibidos por el script.
-./taller_client "$@"
+LIBGL_ALWAYS_SOFTWARE=1 ./taller_client "$@"
