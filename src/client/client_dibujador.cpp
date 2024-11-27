@@ -245,7 +245,7 @@ void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int
                                 // arriba es el arma.
     }
 
-    int offset_indice = 0;
+    int offset_indice = CERO;
     if (sonido ==
         HACIENDO_CUAK) {  // Se suma un offset a la tira de sprites si esta haciendo 'quack'.
         offset_indice = OFFSET_SPRITES_PATO_CUACK;
@@ -511,13 +511,16 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
                 dibujar_armadura_pato(renderer, escala, x_relativo, y_relativo, orientacion,
                                       estado);
             }
+
             if (tiene_casco) {
                 dibujar_casco_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado);
             }
+
             if (tiene_arma) {
                 dibujar_arma_pato(renderer, escala, x_relativo, y_relativo, orientacion, estado,
                                   id_arma);
             }
+
             if (sonido != SILENCIO) {
                 reproducir_sonido_pato(id_arma, sonido);
             }
@@ -687,7 +690,7 @@ void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
     float y = POS_INICIAL_PATO_TABLERO;
     orientacion_e orientacion = DERECHA;
     auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
-    for (int i = 0; i < OCHO; ++i) {
+    for (int i = CERO; i < OCHO; ++i) {
         dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_PARADO],
                        x_relativo, y_relativo + (i * GAP_PATO_TABLERO) + OFFSET_Y_TABLERO, escala,
                        orientacion, i);
@@ -757,7 +760,7 @@ void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
     int pos_x = X_INICIAL_PUNTAJE;
     int pos_y = Y_INICIAL_PUNTAJE;
     int separacion_y = GAP_PUNTAJE_TABLERO;
-    for (size_t i = 0; i < puntajes.size(); ++i) {
+    for (size_t i = CERO; i < puntajes.size(); ++i) {
         std::string texto_puntaje = PUNTAJE_STR + std::to_string(puntajes[i]);
         SDL_Color color_texto = {MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB, MAX_INTENSIDAD_RGB,
                                  MAX_INTENSIDAD_RGB};  // COLOR BLANCO.

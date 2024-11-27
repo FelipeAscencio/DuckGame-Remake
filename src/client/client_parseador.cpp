@@ -101,12 +101,14 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pato() {
 }
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_ak() {
+    // Obtiene los sprites del arma.
     std::vector<SDL_Rect> sprites_ak;
     int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_AK_47_X;
     int y_inicial = INICIO_AK_47_Y;
     iterador_de_parseo(sprites_ak, UNO, x_inicial, y_inicial, tamanio_sprite);
 
+    // Obtiene los sprites de las balas.
     tamanio_sprite = TAMANIO_SPRITE_CHICO_BUG;
     x_inicial = INICIO_BALAS_AK_X;
     y_inicial = INICIO_BALAS_AK_Y;
@@ -160,12 +162,14 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_equipamiento() {
 }
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
+    // Obtiene los sprites del arma.
     std::vector<SDL_Rect> sprites_escopeta;
     int tamanio_sprite = TAMANIO_SPRITES_BUG - DOS;
     int x_inicial = INICIO_ESCOPETA_X;
     int y_inicial = INICIO_ESCOPETA_Y;
     iterador_de_parseo(sprites_escopeta, UNO, x_inicial, y_inicial, tamanio_sprite);
 
+    // Obtiene los sprites de las balas.
     tamanio_sprite = TAMANIO_SPRITE_MEDIANO;
     x_inicial = INICIO_BALAS_ESCOPETA_X;
     y_inicial = INICIO_BALAS_ESCOPETA_Y;
@@ -179,12 +183,14 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
 }
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_laser() {
+    // Obtiene los sprites del laser.
     std::vector<SDL_Rect> sprites_laser;
     int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_LASER_X;
     int y_inicial = INICIO_LASER_Y;
     iterador_de_parseo(sprites_laser, UNO, x_inicial, y_inicial, tamanio_sprite);
 
+    // Obtiene los sprites de las balas.
     tamanio_sprite = TAMANIO_SPRITE_CHICO_BUG;
     x_inicial = INICIO_BALAS_LASER_X;
     y_inicial = INICIO_BALAS_LASER_Y;
@@ -194,12 +200,14 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_laser() {
 }
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_pistola() {
+    // Obtiene los sprites del arma.
     std::vector<SDL_Rect> sprites_pistola;
     int tamanio_sprite = TAMANIO_SPRITES_BUG;
     int x_inicial = INICIO_MANGUM_X;
     int y_inicial = INICIO_MAGNUM_Y;
     iterador_de_parseo(sprites_pistola, UNO, x_inicial, y_inicial, tamanio_sprite);
 
+    // Obtiene los sprites de las balas.
     tamanio_sprite = TAMANIO_SPRITE_MEDIANO;
     x_inicial = INICIO_BALAS_MAGNUM_X;
     y_inicial = INICIO_BALAS_MAGNUM_Y;
@@ -213,9 +221,11 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_pistola() {
 }
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_sniper() {
+    // Obtiene los sprites del arma.
     std::vector<SDL_Rect> sprites_sniper;
     parsear_sniper(sprites_sniper);
 
+    // Obtiene los sprites de las balas.
     int tamanio_sprite = TAMANIO_SPRITE_MEDIANO_BUG;
     int x_inicial = INICIO_BALAS_SNIPER_X;
     int y_inicial = INICIO_BALAS_SNIPER_Y;
@@ -225,12 +235,14 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_sniper() {
 }
 
 std::vector<SDL_Rect> Parseador::obtener_sprites_looteables() {
+    // Obtiene los sprites de las armaduras looteables.
     std::vector<SDL_Rect> sprites_loot;
     int tamanio_sprite = TAMANIO_SPRITE_MEDIANO;
     int x_inicial = INICIO_ARMADURA_LOOT_X;
     int y_inicial = INICIO_ARMADURA_LOOT_Y;
     iterador_de_parseo(sprites_loot, UNO, x_inicial, y_inicial, tamanio_sprite);
 
+    // Obtiene los sprites de los cascos looteables.
     tamanio_sprite = TAMANIO_SPRITE_MEDIANO;
     x_inicial = INICIO_CASCO_LOOT_X;
     y_inicial = INICIO_CASCO_LOOT_Y;

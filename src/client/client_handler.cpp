@@ -92,5 +92,6 @@ Client::~Client() {
     } catch (const LibError& e){
         std::cerr << e.what() << std::endl;
     }
+    
     this->socket.close();
 }

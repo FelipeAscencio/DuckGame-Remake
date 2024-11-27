@@ -176,7 +176,6 @@ private:
     // Dibuja el 'tablero' con los puntajes actuales del juego.
     void dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual);
 
-
 public:
     // Constructor de la clase.
     explicit Dibujador(Renderer& renderer, const int id_jugador,
