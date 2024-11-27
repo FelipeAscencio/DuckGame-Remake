@@ -11,12 +11,14 @@
 
 #define CERO 0
 #define UNO 1
+#define CINCO 5
 #define CIEN 100
 #define MIL 1000
 
 #define INGAME 1
 #define CADA_5_RONDAS 2
 #define GANADOR 3
+#define CANTIDAD_ITERACIONES_TABLERO 70
 
 #define VALOR_ENTRE_RONDAS 0xFC
 
@@ -316,12 +318,33 @@ void Gameloop::resetear_atributos(){
     resetear_jugadores();
 }
 
+void Gameloop::enviar_tablero_rondas(){
+    for (int i = 0; i < CANTIDAD_ITERACIONES_TABLERO; i++){
+        auto t1 = std::chrono::steady_clock::now();
+        unsigned long frame_count = 0;
+        int ms_per_frame = 1000 / ConfigJuego::FPS;
+        enviar_estado_juego(false);
+        auto t2 = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+        if (elapsed < ms_per_frame) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
+        }
+
+        t1 += std::chrono::milliseconds(ms_per_frame);
+        frame_count++;
+    }
+}
+
 void Gameloop::run() {
     enviar_estado_juego(true);
     while (juego_activo && !fin_partida()){
         jugar_ronda();
         rondas_jugadas += 1;
-        enviar_estado_juego(false);
+        if ((rondas_jugadas % CINCO) == CERO){
+            enviar_tablero_rondas();
+        } else {
+            enviar_estado_juego(false);
+        }
         resetear_atributos();
     }
     enviar_estado_juego(false);

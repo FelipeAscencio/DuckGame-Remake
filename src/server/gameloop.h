@@ -67,6 +67,8 @@ private:
     void spawnear_elementos();
 
     void control_balas();
+
+    void enviar_tablero_rondas();
 public:
     // Constructor de la clase.
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);

@@ -189,8 +189,8 @@ void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture
                      MAX_INTENSIDAD_RGB};
     } else if (id == SEIS) {  // MARRON
         color_mod = {MED_INTENSIDAD_RGB, RGB_AUX_MARRON_1, RGB_AUX_MARRON_2, MAX_INTENSIDAD_RGB};
-    } else if (id == SIETE) {  // NEGRO
-        color_mod = {MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB, MIN_INTENSIDAD_RGB,
+    } else if (id == SIETE) {  // GRIS
+        color_mod = {MED_INTENSIDAD_RGB, MED_INTENSIDAD_RGB, MED_INTENSIDAD_RGB,
                      MAX_INTENSIDAD_RGB};
     }
 

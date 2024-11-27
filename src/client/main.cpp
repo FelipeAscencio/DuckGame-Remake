@@ -13,6 +13,7 @@
 #define MSJ_ERROR_FORMATO "Error de formato: El esperado es './client <hostname> <servicio>'."
 #define MSJ_EXCEPCION_CONOCIDA "Hubo un error y se capturo la excepcion: "
 #define MSJ_EXCEPCION_DESCONOCIDA "Hubo un error pero no se conoce la excepcion capturada."
+#define MSJ_PARTIDA_LLENA "Esta partida ya esta llena."
 
 // PRE: - .
 // POST: Devuelve 'true' si la cantidad de argumentos recibida por consola es la correcta.
@@ -38,12 +39,13 @@ int main(int argc, const char* argv[]) {
         try {
             Client client(hostname, servicio);
             client.controlar_loop_juego();
-        } catch (const ErrorPartidaLlena& e){
-            std::cerr << e.what() << std::endl;
+        } catch (const ErrorPartidaLlena& error){
+            std::cerr << MSJ_PARTIDA_LLENA << std::endl;
         }
+
         return EXITO;
     } catch (const std::exception& error) {
-        std::cerr << MSJ_EXCEPCION_CONOCIDA << error.what() << std::endl;
+        std::cerr << MSJ_EXCEPCION_CONOCIDA << MSJ_PARTIDA_LLENA << std::endl;
         return FALLA;
     } catch (...) {
         std::cerr << MSJ_EXCEPCION_DESCONOCIDA << std::endl;
