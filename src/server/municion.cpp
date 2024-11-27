@@ -47,11 +47,19 @@ Municion::Municion(const int& id, const posicion_t& pos_inicial, const int& alca
         dispersion(dispersion_bala),
         inclinacion(inc),
         nro_bala(nro) {
-            subiendo = (this->sentido == ARRIBA) ? true : false;
-        }
+    subiendo = (this->sentido == ARRIBA) ? true : false;
+}
 
-Municion::Municion(const Municion& m) : id_arma(m.id_arma), posicion_inicial(m.posicion_inicial), posicion_actual(m.posicion_actual), autonomia(m.autonomia),
-sentido(m.sentido), dispersion(m.dispersion), inclinacion(m.inclinacion), subiendo(m.subiendo), nro_bala(m.nro_bala) {}
+Municion::Municion(const Municion& m):
+        id_arma(m.id_arma),
+        posicion_inicial(m.posicion_inicial),
+        posicion_actual(m.posicion_actual),
+        autonomia(m.autonomia),
+        sentido(m.sentido),
+        dispersion(m.dispersion),
+        inclinacion(m.inclinacion),
+        subiendo(m.subiendo),
+        nro_bala(m.nro_bala) {}
 
 bool Municion::fuera_de_rango(Mapa& mapa) {
     if (this->posicion_actual.coordenada_x >= mapa.largo * TILE_A_METRO ||
@@ -95,7 +103,7 @@ bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
     if (fuera_de_rango(mapa))
         return false;
-    
+
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
     bool techo = mapa.techo_bloque(this->posicion_actual);
     int lado;
@@ -108,8 +116,8 @@ bool Municion::avanzar(Mapa& mapa) {
 
         inc = this->inclinacion == PARA_ARRIBA ? MENOS_UNO : UNO;
         dis = buscar_dispersion(this->dispersion);
-        if (dis != CERO){
-            if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + inc] != CERO){
+        if (dis != CERO) {
+            if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + inc] != CERO) {
                 return false;
             }
         }
@@ -118,15 +126,15 @@ bool Municion::avanzar(Mapa& mapa) {
         this->posicion_actual.coordenada_x += AVANZAR * inc * dis;
     } else {
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
-        if (borde_bloque &&
-            mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES)
+        if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO &&
+            mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES)
             return false;
 
         inc = subiendo ? MENOS_UNO : UNO;
         dis = buscar_dispersion(this->dispersion);
-        if (dis != CERO){
-            if (mapa.piso_bloque(this->posicion_actual) || techo){
-                if (mapa.mapa[posicion_mapa[UNO] - inc][posicion_mapa[CERO]] != CERO){
+        if (dis != CERO) {
+            if (mapa.piso_bloque(this->posicion_actual) || techo) {
+                if (mapa.mapa[posicion_mapa[UNO] - inc][posicion_mapa[CERO]] != CERO) {
                     return false;
                 }
             }

@@ -2,8 +2,9 @@
 #include <exception>
 #include <iostream>
 
-#include "config_juego.h"
 #include "server/server.h"
+
+#include "config_juego.h"
 
 #define RUTA_ARCHIVO_YAML "../config_juego.yaml"
 #define MSJ_ERROR_FORMATO "Error de formato: El esperado es './server <puerto>'.\n"
@@ -27,7 +28,7 @@ bool argumentos_validos(int argumentos) {
         std::cout << MSJ_ERROR_FORMATO << std::endl;
         return false;
     }
-    
+
     return true;
 }
 

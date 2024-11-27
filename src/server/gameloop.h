@@ -13,6 +13,7 @@
 #include "server/mapa.h"
 #include "server/pato.h"
 #include "server/queues_jugadores.h"
+
 #include "caja.h"
 
 // La clase 'Gameloop' implementa la logica del bucle
@@ -45,7 +46,8 @@ private:
     // Inicializa las cajas en el mapa segun corresponda.
     void inicializar_cajas();
 
-    // Controla la logica de la condicion de victoria, si alguien gano devuelve 'true', caso contrario devuelve 'false'.
+    // Controla la logica de la condicion de victoria, si alguien gano devuelve 'true', caso
+    // contrario devuelve 'false'.
     bool fin_partida();
 
     // Devuelve true si hay mas de 2 jugadores conectados y solamente 1 vivo.
@@ -77,7 +79,7 @@ private:
 
     // Envia el tablero de rondas a los 'Clientes'.
     void enviar_tablero_rondas();
-    
+
 public:
     // Constructor de la clase.
     explicit Gameloop(Queue<comando_t>& q, ListaQueues& l);

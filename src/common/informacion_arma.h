@@ -3,8 +3,10 @@
 #define INFORMACION_ARMA_H
 
 #include <iostream>
-#include "posicion.h"
+
 #include "../server/arma.h"
+
+#include "posicion.h"
 
 // 'Struct' que encapsula la informacion de todas las armas del juego.
 struct InformacionArma {

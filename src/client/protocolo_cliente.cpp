@@ -66,24 +66,24 @@
 #define CHEAT_RONDAS 'Z'
 
 // 'Mapa' que encapsula todas las acciones posibles del juego recibidas en el 'Protocolo'.
-static std::map<char, uint8_t> acciones = {
-        {DERECHA, ACCION_DERECHA},
-        {IZQUIERDA, ACCION_IZQUIERDA},
-        {AGACHARSE, ACCION_AGACHARSE},
-        {ARRIBA, ACCION_ARRIBA},
-        {SALTO, ACCION_SALTO},
-        {DISPARO, ACCION_DISPARAR},
-        {AGARRAR, ACCION_AGARRAR},
-        {CUAK, ACCION_CUAK},
-        {CHEAT_AK, ACCION_AK},
-        {CHEAT_SG, ACCION_SG},
-        {CHEAT_MAGNUM,
-         ACCION_MAGNUM}, {CHEAT_LASER, ACCION_LASER}, {CHEAT_SNIPER, ACCION_SNIPER},
-        {CHEAT_INMORTALIDAD, ACCION_INMORTALIDAD},
-        {CHEAT_RECARGAR, ACCION_RECARGAR},
-        {CHEAT_ARMADURA, ACCION_ARMADUAR},
-        {CHEAT_CASCO, ACCION_CASCO},
-        {CHEAT_RONDAS, ACCION_RONDAS}};
+static std::map<char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA},
+                                           {IZQUIERDA, ACCION_IZQUIERDA},
+                                           {AGACHARSE, ACCION_AGACHARSE},
+                                           {ARRIBA, ACCION_ARRIBA},
+                                           {SALTO, ACCION_SALTO},
+                                           {DISPARO, ACCION_DISPARAR},
+                                           {AGARRAR, ACCION_AGARRAR},
+                                           {CUAK, ACCION_CUAK},
+                                           {CHEAT_AK, ACCION_AK},
+                                           {CHEAT_SG, ACCION_SG},
+                                           {CHEAT_MAGNUM, ACCION_MAGNUM},
+                                           {CHEAT_LASER, ACCION_LASER},
+                                           {CHEAT_SNIPER, ACCION_SNIPER},
+                                           {CHEAT_INMORTALIDAD, ACCION_INMORTALIDAD},
+                                           {CHEAT_RECARGAR, ACCION_RECARGAR},
+                                           {CHEAT_ARMADURA, ACCION_ARMADUAR},
+                                           {CHEAT_CASCO, ACCION_CASCO},
+                                           {CHEAT_RONDAS, ACCION_RONDAS}};
 
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
     bool closed = false;
@@ -141,10 +141,10 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         float x = info_pato[UNO] + (info_pato[DOS] / TILE_A_METRO);
         float y = info_pato[TRES] + (info_pato[CUATRO] / TILE_A_METRO);
         posicion_t pos(x, y);
-        InformacionPato pato_actual(info_pato[CERO], pos, info_pato[CINCO], info_pato[SEIS], info_pato[SIETE],
-                                    info_pato[OCHO], info_pato[NUEVE], (orientacion_e)info_pato[DIEZ],
-                                    (estado_pato_e)info_pato[ONCE], (sonido_e)info_pato[DOCE],
-                                    info_pato[TRECE]);
+        InformacionPato pato_actual(info_pato[CERO], pos, info_pato[CINCO], info_pato[SEIS],
+                                    info_pato[SIETE], info_pato[OCHO], info_pato[NUEVE],
+                                    (orientacion_e)info_pato[DIEZ], (estado_pato_e)info_pato[ONCE],
+                                    (sonido_e)info_pato[DOCE], info_pato[TRECE]);
         estado_actual.agregar_info_pato(pato_actual);
         info_pato.clear();
         info_pato.resize(CATORCE);
@@ -178,7 +178,8 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         float x = bala[UNO] + (bala[DOS] / TILE_A_METRO);
         float y = bala[TRES] + (bala[CUATRO] / TILE_A_METRO);
         posicion_t pos(x, y);
-        InformacionBala nueva(bala[CERO], pos, (inclinacion_e)bala[CINCO], (orientacion_e)bala[SEIS]);
+        InformacionBala nueva(bala[CERO], pos, (inclinacion_e)bala[CINCO],
+                              (orientacion_e)bala[SEIS]);
         estado_actual.agregar_bala(nueva);
         bala.clear();
         bala.resize(SIETE);
@@ -188,12 +189,12 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     // Recibe la 'informacion de las armaduras spawneadas' de la partida.
     i = CERO;
     std::vector<uint8_t> armadura(CUATRO);
-    while (i < cantidades[TRES]){
+    while (i < cantidades[TRES]) {
         s.recvall(&leido, sizeof(leido), &was_closed);
         s.recvall(armadura.data(), armadura.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);
-        float x = armadura[CERO] + (armadura[UNO]/TILE_A_METRO);
-        float y = armadura[DOS] + (armadura[TRES]/TILE_A_METRO);
+        float x = armadura[CERO] + (armadura[UNO] / TILE_A_METRO);
+        float y = armadura[DOS] + (armadura[TRES] / TILE_A_METRO);
         estado_actual.agregar_armadura(posicion_t(x, y));
         armadura.clear();
         armadura.resize(CUATRO);
@@ -203,12 +204,12 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     // Recibe la 'informacion de los cascos spawneados' de la partida.
     i = CERO;
     std::vector<uint8_t> casco(CUATRO);
-    while (i < cantidades[CUATRO]){
+    while (i < cantidades[CUATRO]) {
         s.recvall(&leido, sizeof(leido), &was_closed);
         s.recvall(casco.data(), casco.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);
-        float x = casco[CERO] + (casco[UNO]/TILE_A_METRO);
-        float y = casco[DOS] + (casco[TRES]/TILE_A_METRO);
+        float x = casco[CERO] + (casco[UNO] / TILE_A_METRO);
+        float y = casco[DOS] + (casco[TRES] / TILE_A_METRO);
         estado_actual.agregar_casco(posicion_t(x, y));
         casco.clear();
         casco.resize(CUATRO);
@@ -218,19 +219,19 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
     // Recibe la 'informacion de las cajas' de la partida.
     i = CERO;
     std::vector<uint8_t> caja(CINCO);
-    while (i < cantidades[CINCO]){
+    while (i < cantidades[CINCO]) {
         s.recvall(&leido, sizeof(leido), &was_closed);
         s.recvall(caja.data(), caja.size(), &was_closed);
         s.recvall(&leido, sizeof(leido), &was_closed);
-        float x = caja[CERO] + (caja[UNO]/TILE_A_METRO);
-        float y = caja[DOS] + (caja[TRES]/TILE_A_METRO);
-        InformacionCaja c(posicion_t(x,y), (damage_e)caja[4]);
+        float x = caja[CERO] + (caja[UNO] / TILE_A_METRO);
+        float y = caja[DOS] + (caja[TRES] / TILE_A_METRO);
+        InformacionCaja c(posicion_t(x, y), (damage_e)caja[4]);
         estado_actual.agregar_caja(c);
         caja.clear();
         caja.resize(CINCO);
         i++;
     }
-    
+
     // Recibe la 'cantidad de rondas jugadas' de la partida.
     s.recvall(&leido, sizeof(leido), &was_closed);
     s.recvall(&leido, sizeof(leido), &was_closed);

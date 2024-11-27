@@ -3,17 +3,18 @@
 #define SPAWN_PLACE_H
 
 #include <iostream>
-#include "../common/posicion.h"
+#include <memory>
 #include <mutex>
 #include <utility>
-#include <memory>
+
+#include "../common/posicion.h"
 
 // La clase 'Spawn' implementa la logica de los Spawn Places.
-class Spawn{
+class Spawn {
     friend class Mapa;
     friend class Pato;
     friend class Gameloop;
-    
+
 private:
     const posicion_t posicion;
     int iteraciones_desde_spawn;

@@ -3,21 +3,20 @@
 #define CAJA_H
 
 #include <iostream>
-#include <mutex>
 #include <memory>
+#include <mutex>
+
 #include "../common/posicion.h"
 
 // 'Enum' que encapsula los posibles estados de la 'Caja'.
-enum damage_e{
-    INTACTA, ROTA, MUY_ROTA
-};
+enum damage_e { INTACTA, ROTA, MUY_ROTA };
 
 // La clase 'Caja' implementa toda la logica relacionada a las cajas
 // del juego, controla sus estados y sus posibles interacciones en el transcurso del juego.
-class Caja{
-friend class Gameloop;
-friend struct InformacionCaja;
-friend class Pato;
+class Caja {
+    friend class Gameloop;
+    friend struct InformacionCaja;
+    friend class Pato;
 
 private:
     posicion_t posicion;

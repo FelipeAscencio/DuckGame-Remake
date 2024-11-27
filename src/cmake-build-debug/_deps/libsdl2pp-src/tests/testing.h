@@ -409,11 +409,9 @@ public:
 // wrappers to allow true variable number of arguments
 #define METHOD_WRAPPER(method, expr, ...) tester_.method(#expr, expr, __VA_ARGS__)
 #define METHOD_WRAPPER_EXCEPTION(expr, exception, ...) \
-    tester_.ExpectException<exception>(                \
-            #expr, [&]() { expr; }, #exception, __VA_ARGS__)
+    tester_.ExpectException<exception>(#expr, [&]() { expr; }, #exception, __VA_ARGS__)
 #define METHOD_WRAPPER_NO_EXCEPTION(expr, ...) \
-    tester_.ExpectNoException(                 \
-            #expr, [&]() { expr; }, __VA_ARGS__)
+    tester_.ExpectNoException(#expr, [&]() { expr; }, __VA_ARGS__)
 
 // checks
 #ifdef _MSC_VER
@@ -430,10 +428,9 @@ public:
         tester_.ExpectException<exception>(                                                \
                 #expr, [&]() { expr; }, #exception, __VA_ARGS__, Tester::DummyArgument()); \
     } while (0)
-#define EXPECT_NO_EXCEPTION(expr, ...)                                         \
-    do {                                                                       \
-        tester_.ExpectNoException(                                             \
-                #expr, [&]() { expr; }, __VA_ARGS__, Tester::DummyArgument()); \
+#define EXPECT_NO_EXCEPTION(expr, ...)                                                           \
+    do {                                                                                         \
+        tester_.ExpectNoException(#expr, [&]() { expr; }, __VA_ARGS__, Tester::DummyArgument()); \
     } while (0)
 #else
 #define EXPECT_TRUE(...)                                                  \

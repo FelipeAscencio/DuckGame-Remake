@@ -7,11 +7,11 @@
 #include <vector>
 
 #include "ak47.h"
+#include "config_juego.h"
 #include "magnum.h"
 #include "p_p_laser.h"
 #include "shotgun.h"
 #include "sniper.h"
-#include "config_juego.h"
 
 #define MOVER_DERECHA 0.5
 #define MOVER_IZQUIERDA -0.5
@@ -78,7 +78,8 @@ bool Pato::buscar_pared(Mapa& mapa, const orientacion_e& direccion,
     int bloque_x = tile_actual[POS_X];
     int bloque_y = tile_actual[POS_Y];
     int lado = (direccion == DERECHA) ? UNO : -UNO;
-    if (tile_actual[POS_X] == mapa.largo - UNO) return false;
+    if (tile_actual[POS_X] == mapa.largo - UNO)
+        return false;
     if (direccion == DERECHA && bloque_x == mapa.largo)
         return false;
 
@@ -194,14 +195,15 @@ void Pato::caer(Mapa& mapa) {
             // Yecnicamente esta un bloque que no tiene piso abajo, pero el cuerpo del pato no
             // paso por completo a ese nuevo bloque entonces no debe caer.
             bool piso_a_la_izquierda = (tile_x > CERO && (mapa.mapa[tile_y][tile_x - UNO] == UNO));
-            bool piso_a_la_derecha = (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + UNO] == UNO));
+            bool piso_a_la_derecha =
+                    (tile_x < mapa.largo && (mapa.mapa[tile_y][tile_x + UNO] == UNO));
             if (piso_a_la_derecha || piso_a_la_izquierda) {
-                bool yendo_derecha =
-                        this->orientacion == DERECHA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO < (TILE_A_METRO / DOS) - UNO);
-                bool yendo_izquierda =
-                        this->orientacion == IZQUIERDA &&
-                        ((int)this->posicion.coordenada_x % TILE_A_METRO >= (TILE_A_METRO / DOS) - UNO);
+                bool yendo_derecha = this->orientacion == DERECHA &&
+                                     ((int)this->posicion.coordenada_x % TILE_A_METRO <
+                                      (TILE_A_METRO / DOS) - UNO);
+                bool yendo_izquierda = this->orientacion == IZQUIERDA &&
+                                       ((int)this->posicion.coordenada_x % TILE_A_METRO >=
+                                        (TILE_A_METRO / DOS) - UNO);
                 if (yendo_derecha || yendo_izquierda) {
                     estado_actual = PARADO;
                     return;
@@ -248,9 +250,7 @@ void Pato::cambiar_orientacion(const orientacion_e& nueva_orientacion) {
     this->orientacion = nueva_orientacion;
 }
 
-void Pato::soltar_arma() {
-    this->posee_arma = false;
-}
+void Pato::soltar_arma() { this->posee_arma = false; }
 
 bool Pato::esta_vivo() { return this->vivo; }
 
@@ -298,7 +298,7 @@ void Pato::chequear_estado(Mapa& mapa) {
             if (iteraciones_subiendo <
                 (TRES * TILE_A_METRO / SALTO_Y_CAIDA) +
                         UNO) {  // Como los tiles miden 10 y sube de a 2 metros, se
-                              // necesitan 5 iteraciones para realizar un salto.
+                                // necesitan 5 iteraciones para realizar un salto.
                 posicion_t posicion_cabeza_pato(this->posicion.coordenada_x,
                                                 this->posicion.coordenada_y - OCHO);
                 std::vector<int> pos_mapa = mapa.posicion_en_mapa(posicion_cabeza_pato);
@@ -378,7 +378,7 @@ void Pato::control_pre_comando(Mapa& mapa, std::vector<Municion>& balas_volando)
     chequear_estado(mapa);
     if (posee_arma) {
         if (this->arma_equipada->municiones_restantes() == CERO) {
-            for (Municion m: arma_equipada->balas){
+            for (Municion m: arma_equipada->balas) {
                 Municion aux(m);
                 balas_volando.push_back(aux);
             }
@@ -412,9 +412,9 @@ void Pato::recibir_disparo() {
     vivo = false;  // Si llego a este punto, no tenia ni casco ni armadura, entonces muere.
 }
 
-void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando){
-    if (arma_equipada){
-        for (Municion m: arma_equipada->balas){
+void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando) {
+    if (arma_equipada) {
+        for (Municion m: arma_equipada->balas) {
             Municion aux(m);
             balas_volando.push_back(aux);
         }
@@ -423,45 +423,50 @@ void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando
         posee_arma = false;
     }
 
-    posicion_t pos(this->posicion.coordenada_x, this->posicion.coordenada_y - TILE_A_METRO/DOS);
+    posicion_t pos(this->posicion.coordenada_x, this->posicion.coordenada_y - TILE_A_METRO / DOS);
     if (id_arma == ID_PP_LASER)
         this->arma_equipada = new PewPewLaser(pos);
-    else if(id_arma == ID_AK47)
+    else if (id_arma == ID_AK47)
         this->arma_equipada = new AK47(pos);
-    else if(id_arma == ID_MAGNUM)
+    else if (id_arma == ID_MAGNUM)
         this->arma_equipada = new Magnum(pos);
-    else if(id_arma == ID_SHOTGUN)
+    else if (id_arma == ID_SHOTGUN)
         this->arma_equipada = new Shotgun(pos);
-    else 
+    else
         this->arma_equipada = new Sniper(pos);
     this->posee_arma = true;
 }
 
-void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas){
+void Pato::pickup(std::vector<InformacionArma>& armas_tiradas,
+                  std::vector<posicion_t>& cascos_tirados,
+                  std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn,
+                  std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas) {
     std::lock_guard<std::mutex> lck(mtx);
     bool alguno = false;
     int tipo_pickup = CERO;
-    for (size_t i = CERO; i < spawn.size(); i++){
-        if (this->posicion.igual_para_pickup(spawn[i].posicion)){
+    for (size_t i = CERO; i < spawn.size(); i++) {
+        if (this->posicion.igual_para_pickup(spawn[i].posicion)) {
             alguno = true;
             tipo_pickup = spawn[i].contenido;
         }
     }
 
-    for (size_t i = CERO; i < spawn.size(); i++){
-        if (this->posicion.igual_para_pickup(cajas[i].posicion)){
+    for (size_t i = CERO; i < spawn.size(); i++) {
+        if (this->posicion.igual_para_pickup(cajas[i].posicion)) {
             alguno = true;
             tipo_pickup = cajas[i].contenido;
         }
     }
 
-    if (!alguno) return;
-    if (tipo_pickup == CERO) return;
+    if (!alguno)
+        return;
+    if (tipo_pickup == CERO)
+        return;
     bool pickup = false;
     size_t i = CERO;
-    if (tipo_pickup == TRES){
-        while (i < armas_tiradas.size()){
-            if (this->posicion.igual_para_pickup(armas_tiradas[i].posicion)){
+    if (tipo_pickup == TRES) {
+        while (i < armas_tiradas.size()) {
+            if (this->posicion.igual_para_pickup(armas_tiradas[i].posicion)) {
                 int id_arma = armas_tiradas[i].id_arma;
                 equipar_arma(id_arma, balas_volando);
                 armas_tiradas.erase(armas_tiradas.begin() + i);
@@ -470,11 +475,11 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
 
             i++;
         }
-    } else if (tipo_pickup == UNO){
+    } else if (tipo_pickup == UNO) {
         i = CERO;
-        while (i < cascos_tirados.size()){
+        while (i < cascos_tirados.size()) {
             posicion_t posicion_casco = cascos_tirados[i];
-            if (this->posicion.igual_para_pickup(posicion_casco)){
+            if (this->posicion.igual_para_pickup(posicion_casco)) {
                 posee_casco = true;
                 cascos_tirados.erase(cascos_tirados.begin() + i);
                 pickup = true;
@@ -484,9 +489,9 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
         }
     } else {
         i = CERO;
-        while (i < armaduras_tiradas.size()){
+        while (i < armaduras_tiradas.size()) {
             posicion_t pos = armaduras_tiradas[i];
-            if (this->posicion.igual_para_pickup(pos)){
+            if (this->posicion.igual_para_pickup(pos)) {
                 posee_armadura = true;
                 armaduras_tiradas.erase(armaduras_tiradas.begin() + i);
                 pickup = true;
@@ -495,16 +500,20 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posic
             i++;
         }
     }
-    if (pickup){
-        for (size_t i = CERO; i < spawn.size(); i++){
-            if (this->posicion.igual_para_pickup(spawn[i].posicion)){
+    if (pickup) {
+        for (size_t i = CERO; i < spawn.size(); i++) {
+            if (this->posicion.igual_para_pickup(spawn[i].posicion)) {
                 spawn[i].liberar();
             }
         }
     }
 }
 
-void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas) {
+void Pato::realizar_accion(const int& accion, Mapa& mapa,
+                           std::vector<InformacionArma>& armas_tiradas,
+                           std::vector<posicion_t>& cascos_tirados,
+                           std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawn,
+                           std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas) {
     if (!vivo)
         return;
 
@@ -534,7 +543,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
                     this->sonido = DISPARANDO;
                 } else {
                     if (arma_equipada) {
-                        for (Municion m: arma_equipada->balas){
+                        for (Municion m: arma_equipada->balas) {
                             Municion aux(m);
                             balas_volando.push_back(aux);
                         }
@@ -542,7 +551,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
                     }
                 }
             }
-            
+
             break;
 
         case COMANDO_AGARRAR:
@@ -603,9 +612,9 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa, std::vector<Informacio
     }
 }
 
-void Pato::resetear(Mapa& mapa){
+void Pato::resetear(Mapa& mapa) {
     this->vivo = true;
-    if(arma_equipada){
+    if (arma_equipada) {
         delete arma_equipada;
         arma_equipada = nullptr;
     }

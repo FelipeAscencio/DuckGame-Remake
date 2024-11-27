@@ -9,12 +9,13 @@
 #include <vector>
 
 #include "../server/arma.h"
+#include "../server/caja.h"
 #include "../server/pato.h"
 #include "common/estado_fisico.h"
 #include "common/orientacion.h"
 #include "common/posicion.h"
+
 #include "informacion_arma.h"
-#include "../server/caja.h"
 
 #define CERO 0
 #define ID_GANADOR 0xFD  // Valor dummy que indica que no hay un ganador de la ronda actual.
@@ -87,15 +88,16 @@ struct InformacionBala {
 };
 
 // 'Struct' que encapsula la informacion de todas las cajas del juego.
-struct InformacionCaja{
+struct InformacionCaja {
     posicion_t posicion;
     damage_e estado;
-    
+
     // Primer constructor del 'Struct'.
-    explicit InformacionCaja(const Caja& c): posicion(c.posicion), estado(c.estado){}
+    explicit InformacionCaja(const Caja& c): posicion(c.posicion), estado(c.estado) {}
 
     // Segundo constructor del 'Struct'.
-    explicit InformacionCaja(const posicion_t& pos, const damage_e& rotura): posicion(pos), estado(rotura){}
+    explicit InformacionCaja(const posicion_t& pos, const damage_e& rotura):
+            posicion(pos), estado(rotura) {}
 };
 
 // 'Struct' que sirve para comparar las 'ID'.
@@ -203,25 +205,26 @@ struct EstadoJuego {
     }
 
     // Agrega la informacion de un casco (recibido por referencia constante) al vector.
-    void agregar_casco(const posicion_t& pos){
+    void agregar_casco(const posicion_t& pos) {
         info_cascos.push_back(pos);
         cantidad_cascos++;
     }
 
     // Agrega la informacion de una armadura (recibida por referencia constante) al vector.
-    void agregar_armadura(const posicion_t& pos){
+    void agregar_armadura(const posicion_t& pos) {
         info_armaduras.push_back(pos);
         cantidad_armaduras++;
     }
 
     // Agrega la informacion de una caja (recibida por referencia constante) al vector.
-    void agregar_caja(const Caja& c){
+    void agregar_caja(const Caja& c) {
         info_cajas.push_back(InformacionCaja(c));
         cantidad_cajas++;
     }
 
-    // Agrega la informacion de una caja (recibida por referencia constante de la estructura de informacion) al vector.
-    void agregar_caja(const InformacionCaja& c){
+    // Agrega la informacion de una caja (recibida por referencia constante de la estructura de
+    // informacion) al vector.
+    void agregar_caja(const InformacionCaja& c) {
         info_cajas.push_back(c);
         cantidad_cajas++;
     }

@@ -11,9 +11,9 @@
 #define TAMANIO_SPRITE_GRANDE 32
 #define TAMANIO_SPRITES_BUG 31  // Hay algunos sprites que no llegan justo a 32.
 #define TAMANIO_SPRITE_MEDIANO 16
-#define TAMANIO_SPRITE_MEDIANO_BUG 15 // Hay algunos sprites que no llegan justo a 16.
+#define TAMANIO_SPRITE_MEDIANO_BUG 15  // Hay algunos sprites que no llegan justo a 16.
 #define TAMANIO_SPRITE_CHICO 8
-#define TAMANIO_SPRITE_CHICO_BUG 7 // Hay algunos sprites que no llegan justo a 8.
+#define TAMANIO_SPRITE_CHICO_BUG 7  // Hay algunos sprites que no llegan justo a 8.
 #define INICIO_PATO_X 1
 #define INICIO_PATO_Y 10
 #define INICIO_PATO_QUACK_X 194

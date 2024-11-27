@@ -1,7 +1,8 @@
 #include "shotgun.h"
 
-#include "config_juego.h"
 #include <iostream>
+
+#include "config_juego.h"
 
 #define SHOTGUN "Shotgun"
 
@@ -12,7 +13,8 @@
 #define CANTIDAD_INDICES_SHOTGUN 6
 
 Shotgun::Shotgun(posicion_t posicion_inicial):
-        Arma(ID_SHOTGUN, SHOTGUN, ConfigJuego::ALCANCE_MINIMO_SHOTGUN, ConfigJuego::MUNICIONES_SHOTGUN, true, posicion_inicial),
+        Arma(ID_SHOTGUN, SHOTGUN, ConfigJuego::ALCANCE_MINIMO_SHOTGUN,
+             ConfigJuego::MUNICIONES_SHOTGUN, true, posicion_inicial),
         debe_recargar(false),
         alcance_maximo(ConfigJuego::ALCANCE_MAXIMO_SHOTGUN) {}
 
@@ -32,7 +34,7 @@ inclinacion_e obtener_inclinacion(int bala_disparada) {
         return NO_TIENE;
     if (bala_disparada < CUATRO)
         return PARA_ARRIBA;
-    
+
     return PARA_ABAJO;
 }
 
@@ -60,8 +62,9 @@ bool Shotgun::disparar(const orientacion_e& direccion, Mapa& mapa) {
         for (int i = CERO; i < ConfigJuego::PERDIGONES_POR_DISPARO_SG; i++) {
             inclinacion_e inc = obtener_inclinacion(i);
             dispersion_e dis = obtener_dispersion(i);
-            Municion m(ID_SHOTGUN, this->posicion_spawn, (ConfigJuego::ALCANCE_MAXIMO_SHOTGUN * TILE_A_METRO),
-                                 direccion, dis, inc, balas.size());
+            Municion m(ID_SHOTGUN, this->posicion_spawn,
+                       (ConfigJuego::ALCANCE_MAXIMO_SHOTGUN * TILE_A_METRO), direccion, dis, inc,
+                       balas.size());
             if (m.avanzar(mapa)) {
                 balas.push_back(m);
             }

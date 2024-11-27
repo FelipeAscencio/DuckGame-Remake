@@ -2,8 +2,8 @@
 #ifndef COMMON_COMANDO_H_
 #define COMMON_COMANDO_H_
 
-#include <iostream>
 #include <cstdint>
+#include <iostream>
 
 // 'Struct' utilizado para encapsular un comando.
 typedef struct Comando {

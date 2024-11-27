@@ -75,7 +75,8 @@ private:
                         const SDL_Rect& sprite, float x, float y, float& escala,
                         orientacion_e orientacion, const int& id);
 
-    // Calcula los limites del 'Zoom' en relacion a los patos vivos, y si hay nuevo minimo o maximo actualiza el valor.
+    // Calcula los limites del 'Zoom' en relacion a los patos vivos, y si hay nuevo minimo o maximo
+    // actualiza el valor.
     void calcular_limites_camara(float& x_relativo, float& y_relativo);
 
     // Dibuja un pato vivo en en la ventana.
@@ -85,8 +86,7 @@ private:
 
     // Dibuja la armadura de un pato.
     void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                               float& y_relativo, orientacion_e orientacion,
-                               estado_pato_e& estado);
+                               float& y_relativo, orientacion_e orientacion, estado_pato_e& estado);
 
     // Dibuja el sniper (Metodo particular porque es el unico sprite que no es cuadrado).
     void dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y, orientacion_e orientacion);
@@ -161,7 +161,8 @@ private:
     // Reinicia los valores iniciales del 'Zoom' de la camara.
     void reiniciar_valores_zoom();
 
-    // Verifica que los valores para aplicar el 'Zoom' de la camara sean validos, y si no los son los corrige.
+    // Verifica que los valores para aplicar el 'Zoom' de la camara sean validos, y si no los son
+    // los corrige.
     void verificar_valores_zoom();
 
     // Imprime la interfaz grafica para que el cliente pueda ver el estado del juego.

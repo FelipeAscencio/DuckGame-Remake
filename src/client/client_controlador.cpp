@@ -62,11 +62,11 @@ void Controlador::manejar_eventos(bool& jugador_activo) {
             } else if (sdlEvent.key.keysym.sym == SDLK_3) {
                 cola_eventos.try_push(COMANDO_CHEAT_MAGNUM);
             } else if (sdlEvent.key.keysym.sym == SDLK_4) {
-                   cola_eventos.try_push(COMANDO_CHEAT_LASER);
+                cola_eventos.try_push(COMANDO_CHEAT_LASER);
             } else if (sdlEvent.key.keysym.sym == SDLK_5) {
-                    cola_eventos.try_push(COMANDO_CHEAT_SNIPER);
-            } else if (sdlEvent.key.keysym.sym == SDLK_z){
-                    cola_eventos.try_push(COMANDO_CHEAT_RONDAS);
+                cola_eventos.try_push(COMANDO_CHEAT_SNIPER);
+            } else if (sdlEvent.key.keysym.sym == SDLK_z) {
+                cola_eventos.try_push(COMANDO_CHEAT_RONDAS);
             }
         }
     }

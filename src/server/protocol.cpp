@@ -1,6 +1,7 @@
 #include "server/protocol.h"
 
 #include <vector>
+
 #include <netinet/in.h>
 
 #define CODIGO_PATO 0x05
@@ -139,7 +140,8 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_mapa(const int& mapa) 
     return bytes_mapa;
 }
 
-std::vector<uint8_t> ServerProtocol::Protocol::serializar_casco_o_armadura(const posicion_t& pos, bool casco){
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_casco_o_armadura(const posicion_t& pos,
+                                                                           bool casco) {
     std::vector<uint8_t> bytes;
     uint8_t codigo = casco ? CODIGO_CASCO : CODIGO_ARMADURA;
     bytes.push_back(codigo);
@@ -152,7 +154,7 @@ std::vector<uint8_t> ServerProtocol::Protocol::serializar_casco_o_armadura(const
     return bytes;
 }
 
-std::vector<uint8_t> ServerProtocol::Protocol::serializar_caja(const InformacionCaja& c){
+std::vector<uint8_t> ServerProtocol::Protocol::serializar_caja(const InformacionCaja& c) {
     std::vector<uint8_t> bytes;
     std::vector<uint8_t> pos = separar_posicion_en_entero_y_decimal(c.posicion);
     bytes.push_back(CODIGO_CAJA);
@@ -178,7 +180,7 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
 
     // Envia el 'id' del mapa actual.
     envio_correcto = _enviar(serializar_mapa(estado_actual.id_mapa));
-    
+
     // Envia el estado actual de todos los 'Patos'.
     int i = CERO;
     while (i < estado_actual.cantidad_jugadores && envio_correcto) {
@@ -202,26 +204,28 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
 
     // Envia las armaduras dropeadas en el juego.
     i = CERO;
-    while(i < estado_actual.cantidad_armaduras && envio_correcto){
-        envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_armaduras[i], false));
+    while (i < estado_actual.cantidad_armaduras && envio_correcto) {
+        envio_correcto =
+                _enviar(serializar_casco_o_armadura(estado_actual.info_armaduras[i], false));
         i++;
     }
 
     // Envia los cascos dropeados en el juego.
     i = CERO;
-    while (i < estado_actual.cantidad_cascos && envio_correcto){
+    while (i < estado_actual.cantidad_cascos && envio_correcto) {
         envio_correcto = _enviar(serializar_casco_o_armadura(estado_actual.info_cascos[i], true));
         i++;
     }
 
     // Envia las cajas que actualmente estan vivas en el juego.
     i = CERO;
-    while (i < estado_actual.cantidad_cajas && envio_correcto){
+    while (i < estado_actual.cantidad_cajas && envio_correcto) {
         envio_correcto = _enviar(serializar_caja(estado_actual.info_cajas[i]));
         i++;
     }
 
-    // Envia la cantidad de rondas jugadas actualmente, el codigo de la ronda actual y el final del mensaje.
+    // Envia la cantidad de rondas jugadas actualmente, el codigo de la ronda actual y el final del
+    // mensaje.
     std::vector<uint8_t> bytes(TAMANIO_VECTOR_BYTES);
     bytes[PRIMERA_POSICION] = CODIGO_RONDAS_JUGADAS;
     bytes[SEGUNDA_POSICION] = estado_actual.rondas_jugadas;
@@ -229,7 +233,7 @@ bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     envio_correcto = _enviar(bytes);
 
     // Envia el estado actual del juego 'INGAME' o 'ENTRE RONDAS'.
-    if (envio_correcto){
+    if (envio_correcto) {
         bytes[PRIMERA_POSICION] = CODIGO_BOOL_INGAME;
         bytes[SEGUNDA_POSICION] = estado_actual.ingame;
         envio_correcto = _enviar(bytes);

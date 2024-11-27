@@ -1,4 +1,5 @@
 #include "client_handler.h"
+
 #include "../common/liberror.h"
 
 #define CERO 0
@@ -28,9 +29,10 @@ Client::Client(const char* hostname, const char* servicio):
         protocolo(socket),
         enviador(protocolo, cola_enviador, id),
         recibidor(protocolo, cola_recibidor) {
-            id = protocolo.id_cliente;
-            if (id == ID_DUMMY) throw ErrorPartidaLlena();
-        }
+    id = protocolo.id_cliente;
+    if (id == ID_DUMMY)
+        throw ErrorPartidaLlena();
+}
 
 Mix_Music* Client::iniciar_musica() {
     if (Mix_OpenAudio(FRECUENCIA_HZ, MIX_DEFAULT_FORMAT, AUDIO_ESTEREO, BUFFER_AUDIO) < CERO) {
@@ -87,11 +89,11 @@ void Client::controlar_loop_juego() {
 
 Client::~Client() {
     finalizar_hilos();
-    try{
+    try {
         this->socket.shutdown(RW_CLOSE);
-    } catch (const LibError& e){
+    } catch (const LibError& e) {
         std::cerr << e.what() << std::endl;
     }
-    
+
     this->socket.close();
 }

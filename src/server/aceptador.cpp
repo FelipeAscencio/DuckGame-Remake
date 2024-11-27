@@ -2,6 +2,7 @@
 
 #include <utility>
 #include <vector>
+
 #include <syslog.h>
 
 #include "../common/liberror.h"
@@ -23,7 +24,7 @@ void Aceptador::run() {
         try {
             Socket peer = skt.accept();
             bool error_envio_id = false;
-            if (jugadores.size() < MAX_CLIENTES_POR_PARTIDA){
+            if (jugadores.size() < MAX_CLIENTES_POR_PARTIDA) {
                 peer.sendall(&(id), sizeof(id), &error_envio_id);
                 if (error_envio_id) {
                     aceptando_jugadores = false;
@@ -37,8 +38,8 @@ void Aceptador::run() {
             } else {
                 uint8_t dummy = VALOR_DUMMY;
                 peer.sendall(&dummy, sizeof(dummy), &error_envio_id);
-                if (error_envio_id){
-                    aceptando_jugadores = false;   
+                if (error_envio_id) {
+                    aceptando_jugadores = false;
                 }
             }
 

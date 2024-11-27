@@ -20,13 +20,14 @@
 #include "client_recibidor.h"
 #include "protocolo_cliente.h"
 
-#define MSJ_PARTIDA_LLENA "La partida esta llena, no se puede inicializar el cliente en este momento"
+#define MSJ_PARTIDA_LLENA \
+    "La partida esta llena, no se puede inicializar el cliente en este momento"
 
 using namespace SDL2pp;
 
 // 'Struct' utilizado para encapsular el error de la partida llena.
 struct ErrorPartidaLlena: public std::runtime_error {
-    ErrorPartidaLlena(): std::runtime_error(MSJ_PARTIDA_LLENA){}
+    ErrorPartidaLlena(): std::runtime_error(MSJ_PARTIDA_LLENA) {}
 };
 
 // La clase 'Client' implementa toda la logica de control

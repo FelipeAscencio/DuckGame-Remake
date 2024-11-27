@@ -106,9 +106,9 @@
 #define ID_SNIPER 5
 
 // Se decidio utilizar una variable global y no un atributo de la clase, porque
-// conceptualmente este es un valor fijo, que solo oscila entre 2 valores y no 
+// conceptualmente este es un valor fijo, que solo oscila entre 2 valores y no
 // depende del dibujador, sino del mapa actual.
-float OFFSET_GENERAL_Y; // '0.06' para el 'mapa 1' y '0.05' para el 'mapa 2'.
+float OFFSET_GENERAL_Y;  // '0.06' para el 'mapa 1' y '0.05' para el 'mapa 2'.
 
 using namespace SDL2pp;
 
@@ -229,7 +229,7 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::calcular_limites_camara(float& x_relativo, float& y_relativo){
+void Dibujador::calcular_limites_camara(float& x_relativo, float& y_relativo) {
     this->x_min = std::min(this->x_min, static_cast<int>(x_relativo * ANCHO_VENTANA));
     this->y_min = std::min(this->y_min, static_cast<int>(y_relativo * ALTO_VENTANA));
     this->x_max = std::max(this->x_max, static_cast<int>(x_relativo * ANCHO_VENTANA));
@@ -283,10 +283,10 @@ void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int
 void Dibujador::dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
                                       float& y_relativo, orientacion_e orientacion,
                                       estado_pato_e& estado) {
-    if (orientacion == ARRIBA){
+    if (orientacion == ARRIBA) {
         orientacion = DERECHA;
     }
-    
+
     if (estado == ESTADO_PARADO) {
         dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
                        this->sprites_equipamiento[POS_SPRITE_PARADO], x_relativo,
@@ -406,7 +406,7 @@ void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, flo
 void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
                                    float& y_relativo, orientacion_e orientacion,
                                    estado_pato_e& estado) {
-    if (orientacion == ARRIBA){
+    if (orientacion == ARRIBA) {
         orientacion = DERECHA;
     }
 
@@ -502,8 +502,8 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         if (esta_vivo == false) {
             dibujar_sprite(renderer, this->sprite_sheet_pato, this->sprites_pato[POS_SPRITE_MUERTO],
-                           x_relativo, y_relativo + (y_relativo * OFFSET_GENERAL_Y), escala, orientacion,
-                           id);
+                           x_relativo, y_relativo + (y_relativo * OFFSET_GENERAL_Y), escala,
+                           orientacion, id);
         } else {
             dibujar_pato_vivo(renderer, escala, id, x_relativo, y_relativo, orientacion, estado,
                               sonido);
@@ -561,9 +561,9 @@ std::vector<SDL_Rect>* Dibujador::obtener_sprites_arma_bala(int& id_arma) {
 }
 
 int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion) {
-    if (inclinacion == NO_TIENE){
+    if (inclinacion == NO_TIENE) {
         return UNO;
-    } else if (inclinacion == PARA_ABAJO){
+    } else if (inclinacion == PARA_ABAJO) {
         return DOS;
     } else {
         return TRES;
@@ -597,7 +597,7 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& arma: estado_actual.info_armas) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = arma.posicion.coordenada_x;
@@ -608,7 +608,7 @@ void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         orientacion_e orientacion = DERECHA;
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         float offset_y = (y_relativo * OFFSET_GENERAL_Y);
-        if (id_arma == ID_SNIPER){
+        if (id_arma == ID_SNIPER) {
             offset_y += OFFSET_Y_SNIPER;
             dibujar_sniper(renderer, x_relativo, y_relativo + offset_y, orientacion);
             return;
@@ -618,7 +618,7 @@ void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& casco: estado_actual.info_cascos) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = casco.coordenada_x;
@@ -626,12 +626,13 @@ void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& ren
         orientacion_e orientacion = DERECHA;
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         float offset_y = (y_relativo * OFFSET_GENERAL_Y);
-        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[POS_CASCO], x_relativo,
-                       y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                       this->sprites_equipamiento[POS_CASCO], x_relativo, y_relativo + offset_y,
+                       escala, orientacion, ID_GENERICO_ITEMS);
     }
 }
 
-void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer){
+void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& armadura: estado_actual.info_armaduras) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = armadura.coordenada_x;
@@ -639,8 +640,9 @@ void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& 
         orientacion_e orientacion = DERECHA;
         auto [x_relativo, y_relativo] = convertir_a_relativo(x, y);
         float offset_y = (y_relativo * OFFSET_GENERAL_Y);
-        dibujar_sprite(renderer, this->sprite_sheet_equipamiento, this->sprites_equipamiento[POS_ARMADURA], x_relativo,
-                       y_relativo + offset_y, escala, orientacion, ID_GENERICO_ITEMS);
+        dibujar_sprite(renderer, this->sprite_sheet_equipamiento,
+                       this->sprites_equipamiento[POS_ARMADURA], x_relativo, y_relativo + offset_y,
+                       escala, orientacion, ID_GENERICO_ITEMS);
     }
 }
 
@@ -652,9 +654,9 @@ void Dibujador::dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
         damage_e estado_caja = caja.estado;
         orientacion_e orientacion = DERECHA;
         int indice;
-        if (estado_caja == INTACTA){
+        if (estado_caja == INTACTA) {
             indice = POS_CAJA_INTACTA;
-        } else if (estado_caja == ROTA){
+        } else if (estado_caja == ROTA) {
             indice = POS_CAJA_ROTA;
         } else {
             indice = POS_CAJA_MUY_ROTA;
@@ -697,56 +699,48 @@ void Dibujador::dibujar_patos_tablero(SDL2pp::Renderer& renderer) {
     }
 }
 
-void Dibujador::reiniciar_valores_zoom(){
+void Dibujador::reiniciar_valores_zoom() {
     this->x_min = ANCHO_VENTANA;
     this->y_min = ALTO_VENTANA;
     this->x_max = CERO;
     this->y_max = CERO;
 }
 
-void Dibujador::verificar_valores_zoom(){
+void Dibujador::verificar_valores_zoom() {
     this->x_min -= OFFSET_ZOOM;
-    if (this->x_min < CERO){
+    if (this->x_min < CERO) {
         this->x_min = CERO;
     }
 
     this->y_min -= OFFSET_ZOOM;
-    if (this->y_min < CERO){
+    if (this->y_min < CERO) {
         this->y_min = CERO;
     }
 
     this->x_max += OFFSET_ZOOM;
-    if (this->x_max > ANCHO_VENTANA){
+    if (this->x_max > ANCHO_VENTANA) {
         this->x_max = ANCHO_VENTANA;
     }
 
     this->y_max += OFFSET_ZOOM;
-    if (this->y_max > ALTO_VENTANA){
+    if (this->y_max > ALTO_VENTANA) {
         this->y_max = ALTO_VENTANA;
     }
 }
 
-void Dibujador::mostrar_estado_juego(SDL2pp::Renderer& renderer){
-    SDL2pp::Texture textura_escena(
-        renderer,
-        SDL_PIXELFORMAT_RGBA8888,
-        SDL_TEXTUREACCESS_TARGET,
-        ANCHO_VENTANA,
-        ALTO_VENTANA);
+void Dibujador::mostrar_estado_juego(SDL2pp::Renderer& renderer) {
+    SDL2pp::Texture textura_escena(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,
+                                   ANCHO_VENTANA, ALTO_VENTANA);
     renderer.SetTarget(textura_escena);
     renderer.Clear();
     reiniciar_valores_zoom();
     dibujar_estado_juego(this->ultimo_estado_recibido, renderer);
     verificar_valores_zoom();
     renderer.SetTarget();
-    SDL_Rect area_visible = {
-        this->x_min,
-        this->y_min,
-        (this->x_max - this->x_min),
-        (this->y_max - this->y_min)
-    };
+    SDL_Rect area_visible = {this->x_min, this->y_min, (this->x_max - this->x_min),
+                             (this->y_max - this->y_min)};
     renderer.Copy(textura_escena, area_visible, SDL2pp::NullOpt);
-    renderer.Present(); 
+    renderer.Present();
 }
 
 void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
@@ -802,8 +796,9 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
 
     renderer.Clear();
     if (estado_actual.id_ganador == SEGUIR_JUGANDO) {
-        if (estado_actual.ingame == false){
-            if ((estado_actual.rondas_jugadas % CINCO) == CERO && estado_actual.rondas_jugadas != CERO){
+        if (estado_actual.ingame == false) {
+            if ((estado_actual.rondas_jugadas % CINCO) == CERO &&
+                estado_actual.rondas_jugadas != CERO) {
                 dibujar_tablero(renderer, estado_actual);
                 return;
             }

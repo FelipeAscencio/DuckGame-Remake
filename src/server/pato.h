@@ -4,12 +4,14 @@
 
 #include <iostream>
 #include <mutex>
+
 #include "../common/estado_fisico.h"
+#include "../common/informacion_arma.h"
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
 #include "server/arma.h"
 #include "server/mapa.h"
-#include "../common/informacion_arma.h"
+
 #include "caja.h"
 
 #define CERO 0
@@ -98,13 +100,16 @@ private:
                              const posicion_t& posicion_a_chequear);
 
     // De ser posible, hace le 'Pickup' del item looteable en el piso.
-    void pickup(std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
+    void pickup(std::vector<InformacionArma>& armas_tiradas,
+                std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas,
+                std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando,
+                const std::vector<Caja>& cajas);
 
     // Equipa el arma recibida por parametro al pato.
     void equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando);
 
     // 'Cheat' que aumenta la cantidad de rondas ganadas por el 'Pato'.
-    void aumentar_rondas_ganadas() { this->rondas_ganadas += CINCO;}
+    void aumentar_rondas_ganadas() { this->rondas_ganadas += CINCO; }
 
 public:
     // Constructor de la clase.
@@ -126,7 +131,10 @@ public:
     void control_pre_comando(Mapa& mapa, std::vector<Municion>& balas_volando);
 
     // Realiza una accion segun el comando recibido.
-    void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas, std::vector<posicion_t>& cascos_tirados, std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns, std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
+    void realizar_accion(const int& accion, Mapa& mapa, std::vector<InformacionArma>& armas_tiradas,
+                         std::vector<posicion_t>& cascos_tirados,
+                         std::vector<posicion_t>& armaduras_tiradas, std::vector<Spawn>& spawns,
+                         std::vector<Municion>& balas_volando, const std::vector<Caja>& cajas);
 
     // Resetea el estado del pato en el mapa al cambiar de ronda.
     void resetear(Mapa& mapa);

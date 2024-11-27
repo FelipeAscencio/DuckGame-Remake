@@ -94,13 +94,13 @@
 #define POS_CAJA_2_MAPA_2_Y 59
 #define POS_CAJA_3_MAPA_2_Y 129
 
-Mapa::Mapa(): id_mapa((rand()%CANTIDAD_MAPAS) + UNO){
+Mapa::Mapa(): id_mapa((rand() % CANTIDAD_MAPAS) + UNO) {
     try {
         cargar_mapa(this->id_mapa);
-    } catch (const ErrorMapa&){}
+    } catch (const ErrorMapa&) {}
 }
 
-void Mapa::cargar_mapa(const int& id_mapa){
+void Mapa::cargar_mapa(const int& id_mapa) {
     std::string ruta_mapa = ARCHIVO_MAPA + std::to_string(id_mapa) + TXT;
     std::ifstream archivo_mapa(ruta_mapa);
     if (!archivo_mapa.is_open()) {
@@ -124,8 +124,7 @@ void Mapa::cargar_mapa(const int& id_mapa){
         while (j < largo) {
             char c;
             archivo_mapa >> c;
-            this->mapa[i][j] =
-                    ((int)c - CONSTANTE_AUXILIAR_CHAR_MAPA);
+            this->mapa[i][j] = ((int)c - CONSTANTE_AUXILIAR_CHAR_MAPA);
             j++;
         }
 
@@ -216,13 +215,13 @@ posicion_t Mapa::posicion_inicial(const int& id_pato) {
     return posicion_t(CERO, CERO);
 }
 
-void Mapa::inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn){
-    if (id_mapa == ID_PRIMER_MAPA){
+void Mapa::inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn) {
+    if (id_mapa == ID_PRIMER_MAPA) {
         puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_1_MAPA_1_X, POS_SPAWN_1_MAPA_1_Y)));
         puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_2_MAPA_1_X, POS_SPAWN_2_MAPA_1_Y)));
         puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_3_MAPA_1_X, POS_SPAWN_3_MAPA_1_Y)));
         puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_4_MAPA_1_X, POS_SPAWN_4_MAPA_1_Y)));
-        puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_5_MAPA_1_X, POS_SPAWN_5_MAPA_1_Y)));   
+        puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_5_MAPA_1_X, POS_SPAWN_5_MAPA_1_Y)));
     } else {
         puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_1_MAPA_2_X, POS_SPAWN_1_MAPA_2_Y)));
         puntos_spawn.push_back(Spawn(posicion_t(POS_SPAWN_2_MAPA_2_X, POS_SPAWN_2_MAPA_2_Y)));
@@ -232,19 +231,19 @@ void Mapa::inicializar_puntos_spawn(std::vector<Spawn>& puntos_spawn){
     }
 }
 
-posicion_t Mapa::posicion_caja(const int& caja){
-    if (id_mapa == ID_PRIMER_MAPA){
-        if (caja == CERO){
+posicion_t Mapa::posicion_caja(const int& caja) {
+    if (id_mapa == ID_PRIMER_MAPA) {
+        if (caja == CERO) {
             return posicion_t(POS_CAJA_1_MAPA_1_X, POS_CAJA_1_MAPA_1_Y);
-        } else if (caja == UNO){
+        } else if (caja == UNO) {
             return posicion_t(POS_CAJA_2_MAPA_1_X, POS_CAJA_2_MAPA_1_Y);
         } else {
             return posicion_t(POS_CAJA_3_MAPA_1_X, POS_CAJA_3_MAPA_1_Y);
         }
     } else {
-        if (caja == CERO){
+        if (caja == CERO) {
             return posicion_t(POS_CAJA_1_MAPA_2_X, POS_CAJA_1_MAPA_2_Y);
-        } else if (caja == UNO){
+        } else if (caja == UNO) {
             return posicion_t(POS_CAJA_2_MAPA_2_X, POS_CAJA_2_MAPA_2_Y);
         } else {
             return posicion_t(POS_CAJA_3_MAPA_2_X, POS_CAJA_3_MAPA_2_Y);
@@ -252,16 +251,16 @@ posicion_t Mapa::posicion_caja(const int& caja){
     }
 }
 
-void Mapa::resetear(){
+void Mapa::resetear() {
     for (int i = CERO; i < alto; i++) {
         delete[] mapa[i];
     }
 
     delete[] mapa;
-    this->id_mapa = rand()%CANTIDAD_MAPAS + UNO;
-    try{
+    this->id_mapa = rand() % CANTIDAD_MAPAS + UNO;
+    try {
         cargar_mapa(id_mapa);
-    } catch (const ErrorMapa&){}
+    } catch (const ErrorMapa&) {}
 }
 
 Mapa::~Mapa() {

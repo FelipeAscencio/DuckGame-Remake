@@ -1,5 +1,6 @@
 #include <exception>
 #include <iostream>
+
 #include <stdbool.h>
 
 #include "client_handler.h"
@@ -38,7 +39,7 @@ int main(int argc, const char* argv[]) {
         try {
             Client client(hostname, servicio);
             client.controlar_loop_juego();
-        } catch (const ErrorPartidaLlena& error){
+        } catch (const ErrorPartidaLlena& error) {
             std::cerr << MSJ_EXCEPCION_CONOCIDA << MSJ_PARTIDA_ESTA_LLENA << std::endl;
         }
 

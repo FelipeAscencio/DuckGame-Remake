@@ -7,6 +7,7 @@
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
+
 #include "spawn_place.h"
 
 #define MSJ_ERROR_CREAR_MAPA "Se produjo un error al intentar crear el mapa"
@@ -32,6 +33,7 @@ private:
 
     // Carga el mapa segun el 'id' correspondiente.
     void cargar_mapa(const int& id_mapa);
+
 public:
     // Constructor de la clase.
     explicit Mapa();

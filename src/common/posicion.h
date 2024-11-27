@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 #include <math.h>
 
 #define CERO 0
@@ -59,14 +60,15 @@ typedef struct Posicion {
         return resultado;
     }
 
-    // Se fija si el 'Pato' puede agarrar el loot, si es asi devuelve 'true', caso contrario devuelve 'false'.
-    bool igual_para_pickup(const Posicion& otra){
+    // Se fija si el 'Pato' puede agarrar el loot, si es asi devuelve 'true', caso contrario
+    // devuelve 'false'.
+    bool igual_para_pickup(const Posicion& otra) {
         float dx = abs(this->coordenada_x - otra.coordenada_x);
         float dy = abs(this->coordenada_y - otra.coordenada_y);
-        bool resultado = dx <= UNO_Y_MEDIO && dy <= TILE_A_METRO /DOS;
+        bool resultado = dx <= UNO_Y_MEDIO && dy <= TILE_A_METRO / DOS;
         return resultado;
     }
-    
+
 } posicion_t;
 
 #endif  // COMMON_POSICION_H_
