@@ -34,6 +34,8 @@ public:
     // Elimina la cola asociada a un cliente usando su ID.
     void eliminar_queue(int id_cliente);
 
+    bool encontrar_cliente(const int& id);
+
     // Deshabilito las copias.
     ListaQueues(const ListaQueues&) = delete;
     ListaQueues& operator=(const ListaQueues&) = delete;

@@ -13,15 +13,16 @@ using namespace ServerProtocol;
 // La clase 'Recibidor' se encarga de recibir los
 // comandos de los 'Clientes'.
 class Recibidor: public Thread {
+    friend class ThreadUsuario;
 private:
     Protocol protocol;
     Queue<comando_t>& queue_comandos;
-    std::atomic<bool> vivo;
+    std::atomic<bool>& vivo;
     const int id_cliente;
 
 public:
     // Constructor de la clase.
-    explicit Recibidor(Socket& s, Queue<comando_t>& q, const int& id_clientes);
+    explicit Recibidor(Socket& s, Queue<comando_t>& q, std::atomic<bool>& esta_vivo, const int& id_clientes);
 
     // Ejecuta el hilo del recibidor, procesando comandos hasta que el objeto esta marcado como
     // vivo.

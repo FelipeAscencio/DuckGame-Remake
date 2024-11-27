@@ -42,7 +42,6 @@ void Aceptador::run() {
                     aceptando_jugadores = false;
                 }
             }
-
             recolectar();
         } catch (const LibError& e) {
             if (!aceptando_jugadores) {

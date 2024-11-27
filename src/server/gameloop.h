@@ -33,6 +33,7 @@ private:
     std::vector<Municion> balas_volando;
     std::vector<Caja> cajas;
     int rondas_jugadas;
+    int ultimo_id_agregado;
 
     // Controla el flujo del juego de una ronda de la partida.
     void jugar_ronda();
@@ -79,6 +80,8 @@ private:
 
     // Envia el tablero de rondas a los 'Clientes'.
     void enviar_tablero_rondas();
+
+    void chequear_jugadores_desconectados();
 
 public:
     // Constructor de la clase.

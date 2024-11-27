@@ -12,7 +12,7 @@ ThreadUsuario::ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int i
         skt(std::move(s)),
         queue_sender(CANTIDAD_MAXIMA_ACCIONES),
         vivo(true),
-        r(skt, queue_comandos, id),
+        r(skt, queue_comandos, vivo, id),
         e(skt, queue_sender, vivo),
         id_cliente(id) {}
 
@@ -27,6 +27,8 @@ ThreadUsuario::~ThreadUsuario() {
     e.terminar_ejecucion();
     r.terminar_ejecucion();
     queue_sender.close();
-    skt.shutdown(RW_CLOSE);
-    skt.close();
+    try {
+        skt.shutdown(RW_CLOSE);
+        skt.close();
+    } catch (const LibError& e){}
 }

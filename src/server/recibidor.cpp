@@ -7,8 +7,8 @@
 #define EXCEPCION_INESPERADA "Se produjo una excepcion inesperada: "
 #define EXCEPCION_DESCONOCIDA "Se produjo una excepcion desconocida. "
 
-Recibidor::Recibidor(Socket& s, Queue<comando_t>& q, const int& id):
-        protocol(s), queue_comandos(q), vivo(true), id_cliente(id) {}
+Recibidor::Recibidor(Socket& s, Queue<comando_t>& q, std::atomic<bool>& esta_vivo, const int& id):
+        protocol(s), queue_comandos(q), vivo(esta_vivo), id_cliente(id) {}
 
 void Recibidor::run() {
     while (vivo) {
@@ -18,6 +18,9 @@ void Recibidor::run() {
                 if (Protocol::accion_valida(cmd.accion)) {
                     queue_comandos.try_push(cmd);
                 }
+            } else {
+                this->vivo = false;
+                break;
             }
         } catch (const ClosedQueue& e) {
             syslog(LOG_INFO, "%s\n", e.what());

@@ -13,9 +13,12 @@ void Enviador::run() {
             EstadoJuego estado_actual = queue_estados.pop();
             if (!protocol.enviar(estado_actual)) {
                 break;
+            } else {
+                if (!vivo){
+                    break;
+                }
             }
         } catch (const ClosedQueue& e) {
-            syslog(LOG_INFO, "%s\n", e.what());
             break;
         }
     }

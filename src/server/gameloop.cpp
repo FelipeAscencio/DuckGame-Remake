@@ -34,7 +34,7 @@
 #define VALOR_ENTRE_RONDAS 0xFC
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(), rondas_jugadas(CERO) {
+        queue(q), juego_activo(true), queues_clientes(l), mapa(), rondas_jugadas(CERO), ultimo_id_agregado(CERO) {
     mapa.inicializar_puntos_spawn(puntos_spawn);
     inicializar_cajas();
 }
@@ -55,8 +55,23 @@ void Gameloop::chequear_nuevos_jugadores() {
 
     if (cantidad_jugadores < cantidad_queues) {
         for (size_t i = cantidad_jugadores; i < cantidad_queues; i++) {
-            jugadores.push_back(new Pato(i, mapa));
+            jugadores.push_back(new Pato(ultimo_id_agregado, mapa));
+            ultimo_id_agregado++;
             jugadores_vivos.push_back(true);
+        }
+    }
+}
+
+void Gameloop::chequear_jugadores_desconectados(){
+    size_t cantidad_jugadores = jugadores.size();
+    for(size_t i = 0; i < cantidad_jugadores; i++){
+        int id = jugadores[i]->id_jugador;
+        if (!queues_clientes.encontrar_cliente(id)){
+            Pato* pato = jugadores[i];
+            jugadores.erase(jugadores.begin() + i);
+            delete pato;
+            jugadores_vivos.erase(jugadores_vivos.begin() + i);
+            break;
         }
     }
 }
@@ -242,6 +257,7 @@ void Gameloop::chequear_posiciones() {
 
 void Gameloop::loop_juego() {
     chequear_nuevos_jugadores();
+    chequear_jugadores_desconectados();
     if (!jugadores.empty()) {
         chequear_posiciones();
         actualizar_estado_jugadores();

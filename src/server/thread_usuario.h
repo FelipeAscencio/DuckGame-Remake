@@ -26,7 +26,7 @@ public:
     void iniciar();
 
     // Devuelve el estado del hilo.
-    bool esta_vivo() { return this->vivo; }
+    bool esta_vivo() { return r.vivo; }
 
     // Marca el hilo como no vivo, indicando que debe cortar la conexion.
     void cortar_conexion();

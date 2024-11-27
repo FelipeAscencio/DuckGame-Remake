@@ -24,6 +24,17 @@ void ListaQueues::agregar_queue(Queue<EstadoJuego>& q, int id_cliente) {
     lista_queues.push_back(std::make_pair(std::ref(q), id_cliente));
 }
 
+bool ListaQueues::encontrar_cliente(const int& id){
+    auto i = lista_queues.begin();
+    bool cliente_encontrado = false;
+    while (i != lista_queues.end() && !cliente_encontrado){
+        if (i->second == id)
+            cliente_encontrado = true;
+        i++;
+    }
+    return cliente_encontrado;
+}
+
 void ListaQueues::eliminar_queue(int id) {
     std::lock_guard<std::mutex> lck(mtx);
     auto i = lista_queues.begin();
