@@ -88,6 +88,7 @@ bool Client::primer_contacto_con_servidor(){
         std::cout << "Partida creada con exito. El id de su partida es: " << codigo_partida << std::endl;
     } else {
         do {
+            std::cout << "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar:\n";
             std::getline(std::cin, linea);
         } while (linea.size() != 6);
         
