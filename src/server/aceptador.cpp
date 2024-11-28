@@ -13,7 +13,7 @@
 #define CERO 0
 #define MAX_CLIENTES_POR_PARTIDA 8
 #define RW_CLOSE 2
-#define VALOR_DUMMY 0xFF
+#define VALOR_DUMMY 0xCC
 
 Aceptador::Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l):
         skt(servname), aceptando_jugadores(true), queue_juego(q), queues_clientes(l) {}
@@ -59,6 +59,14 @@ void Aceptador::run() {
     }
 }
 
+void Aceptador::dejar_de_aceptar(){
+    this->aceptando_jugadores = false;
+    try {
+        this->skt.shutdown(RW_CLOSE);
+        this->skt.close();
+    } catch (const LibError& e){}
+}
+
 void Aceptador::eliminar_cliente(ThreadUsuario* jugador) {
     jugador->cortar_conexion();
     int id = jugador->get_id();
@@ -84,7 +92,9 @@ Aceptador::~Aceptador() {
 
     jugadores.clear();
     queue_juego.close();
-    skt.shutdown(RW_CLOSE);
-    skt.close();
-    this->join();
+    try {
+        skt.shutdown(RW_CLOSE);
+        skt.close();
+    } catch (const LibError& e){}
+    // this->join();
 }

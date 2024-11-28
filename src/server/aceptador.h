@@ -35,7 +35,7 @@ public:
     virtual void run() override;
 
     // Cambia el estado del hilo para que no siga aceptando usuarios.
-    void dejar_de_aceptar() { this->aceptando_jugadores = false; }
+    void dejar_de_aceptar();
 
     // Destructor de la clase.
     ~Aceptador() override;

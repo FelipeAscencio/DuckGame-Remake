@@ -101,6 +101,7 @@ float buscar_dispersion(const dispersion_e& dispersion) {
 
 bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
+    if (posicion_mapa[0] == -1 || posicion_mapa[1] == -1) return false;
     if (fuera_de_rango(mapa))
         return false;
 
@@ -127,6 +128,7 @@ bool Municion::avanzar(Mapa& mapa) {
     } else {
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
         inc = subiendo ? MENOS_UNO : UNO;
+        if (borde_bloque && (posicion_mapa[0] == 0 || posicion_mapa[0] == mapa.largo -1)) lado = 0;
         if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES){
             return false;
         }

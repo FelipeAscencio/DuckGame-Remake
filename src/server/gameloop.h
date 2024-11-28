@@ -93,7 +93,7 @@ public:
     virtual void run() override;
 
     // Cambia el estado del juego a 'finalizado'.
-    void finalizar_juego() { this->juego_activo = false; }
+    void finalizar_juego();
 
     // Devuelve el estado del juego (true si sigue activo, false en caso contrario).
     bool jugando() { return juego_activo; }

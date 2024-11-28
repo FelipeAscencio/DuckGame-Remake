@@ -29,6 +29,8 @@ public:
     // Cambia el estado del bool vivo del hilo de 'true' a 'false'.
     void stop() override;
 
+    bool esta_vivo() { return this->vivo; }
+
     // Deshabilito las copias.
     RecibidorCliente(const RecibidorCliente&) = delete;
     RecibidorCliente& operator=(const RecibidorCliente&) = delete;

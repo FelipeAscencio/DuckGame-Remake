@@ -30,6 +30,7 @@
 #define ID_SPAWN_CASCO 1
 #define ID_SPAWN_ARMADURA 2
 #define ID_SPAWN_ARMA 3
+#define KILL_PLAYER 0x66
 
 #define VALOR_ENTRE_RONDAS 0xFC
 
@@ -257,7 +258,7 @@ void Gameloop::chequear_posiciones() {
 
 void Gameloop::loop_juego() {
     chequear_nuevos_jugadores();
-    chequear_jugadores_desconectados();
+    // chequear_jugadores_desconectados();
     if (!jugadores.empty()) {
         chequear_posiciones();
         actualizar_estado_jugadores();
@@ -266,14 +267,26 @@ void Gameloop::loop_juego() {
         control_balas();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
-            if (jugadores.size() > UNO) {
-                for (Pato* p: jugadores) {
-                    if (cmd.id_cliente == p->id_jugador) {
-                        p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados,
-                                           armaduras_tiradas, puntos_spawn, balas_volando, cajas);
+            if (cmd.accion == KILL_PLAYER){
+                for (size_t i = 0; i < jugadores.size(); i++){
+                    if (jugadores[i]->id_jugador == cmd.id_cliente){
+                        Pato* auxiliar = jugadores[i];
+                        jugadores.erase(jugadores.begin() + i);
+                        jugadores_vivos.erase(jugadores_vivos.begin() + i);
+                        queues_clientes.eliminar_queue(cmd.id_cliente);
+                        delete auxiliar;
                     }
                 }
-            }
+            } else{
+                if (jugadores.size() > UNO) {
+                    for (Pato* p: jugadores) {
+                        if (cmd.id_cliente == p->id_jugador) {
+                            p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados,
+                                            armaduras_tiradas, puntos_spawn, balas_volando, cajas);
+                        }
+                    }
+                }
+            } 
         }
     }
 
@@ -333,25 +346,20 @@ void Gameloop::resetear_jugadores() {
 }
 
 void Gameloop::jugar_ronda() {
-    while (!hay_ganador()) {
+    while (!hay_ganador() && juego_activo) {
         auto t1 = std::chrono::steady_clock::now();
         unsigned long frame_count = CERO;
 
-        // Definir el intervalo de tiempo ideal para cada frame en milisegundos
         int ms_per_frame = MIL / ConfigJuego::FPS;
         loop_juego();
 
-        // Calcular el tiempo transcurrido desde el inicio de este frame
         auto t2 = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
-        // Dormir el tiempo restante para completar el intervalo de 30 ConfigJuego::FPS
         if (elapsed < ms_per_frame) {
             std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
         }
 
-        // Actualizar `t1` sumando un intervalo fijo para mantener la consistencia en el tiempo de
-        // frames
         t1 += std::chrono::milliseconds(ms_per_frame);
         frame_count++;
     }
@@ -393,9 +401,14 @@ void Gameloop::enviar_tablero_rondas() {
     }
 }
 
+void Gameloop::finalizar_juego(){
+    this->juego_activo = false;
+}
+
 void Gameloop::run() {
     enviar_estado_juego(true);
-    while (juego_activo && !fin_partida()) {
+    while (juego_activo) {
+        if (fin_partida()) break;
         jugar_ronda();
         rondas_jugadas += UNO;
         if ((rondas_jugadas % CINCO) == CERO) {
@@ -406,8 +419,8 @@ void Gameloop::run() {
 
         resetear_atributos();
     }
-
-    enviar_estado_juego(false);
+    if (juego_activo)
+        enviar_estado_juego(false);
     this->juego_activo = false;
 }
 
@@ -438,4 +451,5 @@ Gameloop::~Gameloop() {
     puntos_spawn.clear();
     armas_tiradas.clear();
     jugadores.clear();
+    // this->join();
 }

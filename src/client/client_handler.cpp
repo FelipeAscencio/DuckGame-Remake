@@ -16,7 +16,9 @@
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
 #define RW_CLOSE 2
-#define ID_DUMMY 0xFF
+#define ID_DUMMY 0xCC
+#define MIL 1000
+#define FPS 30
 
 using namespace SDL2pp;
 
@@ -75,13 +77,26 @@ void Client::controlar_loop_juego() {
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     dibujador.emplace(renderer, this->id, cola_recibidor);
     iniciar_hilos();
-    while (this->jugador_activo) {
+    while (this->recibidor.esta_vivo()) {
+        auto t1 = std::chrono::steady_clock::now();
+        unsigned long frame_count = CERO;
+
+        int ms_per_frame = MIL/FPS;
+    
         controlador.manejar_eventos(this->jugador_activo);
         if (dibujador) {
             dibujador->renderizar(renderer, this->jugador_activo);
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP));
+        auto t2 = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+
+        if (elapsed < ms_per_frame) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
+        }
+
+        t1 += std::chrono::milliseconds(ms_per_frame);
+        frame_count++;
     }
 
     terminar_musica(musica_fondo);

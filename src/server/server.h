@@ -40,6 +40,8 @@ public:
     // Permito el movimiento del objeto.
     Server(Server&&) = default;
     Server& operator=(Server&&) = default;
+
+    ~Server();
 };
 
 #endif  // SERVER_SERVER_H_

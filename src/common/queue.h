@@ -7,7 +7,7 @@
 #include <mutex>
 #include <queue>
 
-#define CANTIDAD_MAXIMA_ACCIONES 20
+#define CANTIDAD_MAXIMA_ACCIONES 500
 
 struct ClosedQueue: public std::runtime_error {
     ClosedQueue(): std::runtime_error("The queue is closed") {}

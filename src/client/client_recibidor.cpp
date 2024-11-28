@@ -9,6 +9,7 @@ void RecibidorCliente::run() {
     while (this->vivo) {
         EstadoJuego estado_actual;
         if (!protocolo.recibir(estado_actual)) {
+            this->vivo = false;
             break;
         }
 
