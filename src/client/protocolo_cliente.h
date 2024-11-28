@@ -32,6 +32,14 @@ public:
     // Constructor de la clase.
     explicit ProtocoloCliente(Socket& s);
 
+    bool recibir_mensaje_bienvenida(std::string& msj);
+
+    bool enviar_respuesta(const uint8_t& rta);
+
+    bool recibir_id();
+
+    bool enviar_codigo_partida(const std::string& codigo);
+
     // Envia la accion del 'Cliente' al 'Server'.
     bool enviar(const char& accion);
 

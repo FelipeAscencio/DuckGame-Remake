@@ -19,6 +19,8 @@
 #define ID_DUMMY 0xCC
 #define MIL 1000
 #define FPS 30
+#define NUEVA_PARTIDA 0x01
+#define PARTIDA_EXISTENTE 0x02
 
 using namespace SDL2pp;
 
@@ -28,13 +30,9 @@ Client::Client(const char* hostname, const char* servicio):
         jugador_activo(true),
         controlador(cola_enviador),
         socket(hostname, servicio),
-        protocolo(socket),
+        protocolo(socket), id(-1),
         enviador(protocolo, cola_enviador, id),
-        recibidor(protocolo, cola_recibidor) {
-    id = protocolo.id_cliente;
-    if (id == ID_DUMMY)
-        throw ErrorPartidaLlena();
-}
+        recibidor(protocolo, cola_recibidor) {}
 
 Mix_Music* Client::iniciar_musica() {
     if (Mix_OpenAudio(FRECUENCIA_HZ, MIX_DEFAULT_FORMAT, AUDIO_ESTEREO, BUFFER_AUDIO) < CERO) {
@@ -69,7 +67,44 @@ void Client::finalizar_hilos() {
     recibidor.join();
 }
 
+bool Client::primer_contacto_con_servidor(){
+    std::string bienvenida;
+    if (!protocolo.recibir_mensaje_bienvenida(bienvenida))
+        return false;
+    std::cout << bienvenida << std::endl;
+    std::string linea;
+    int respuesta;
+    do{
+        std::getline(std::cin, linea);
+        respuesta = (int)(linea[0] - 0x30);
+    } while (respuesta != NUEVA_PARTIDA && respuesta != PARTIDA_EXISTENTE);
+
+    if (!protocolo.enviar_respuesta(respuesta))
+        return false;
+    if (respuesta == NUEVA_PARTIDA){
+        std::string codigo_partida;
+        if (!protocolo.recibir_mensaje_bienvenida(codigo_partida))
+            return false;
+        std::cout << "Partida creada con exito. El id de su partida es: " << codigo_partida << std::endl;
+    } else {
+        do {
+            std::getline(std::cin, linea);
+        } while (linea.size() != 6);
+        
+        if (!protocolo.enviar_codigo_partida(linea))
+            return false;
+
+    }
+    if (!protocolo.recibir_id())
+        return false;
+    this->id = protocolo.id_cliente;
+    return true;
+}
+
 void Client::controlar_loop_juego() {
+    if (!primer_contacto_con_servidor())
+        return;
+
     Mix_Music* musica_fondo = iniciar_musica();
     SDL sdl(SDL_INIT_VIDEO);
     Window window(DUCK_GAME_STR, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ANCHO_MIN,
@@ -77,7 +112,7 @@ void Client::controlar_loop_juego() {
     Renderer renderer(window, MENOS_UNO, SDL_RENDERER_ACCELERATED);
     dibujador.emplace(renderer, this->id, cola_recibidor);
     iniciar_hilos();
-    while (this->recibidor.esta_vivo()) {
+    while (this->jugador_activo && this->recibidor.esta_vivo()) {
         auto t1 = std::chrono::steady_clock::now();
         unsigned long frame_count = CERO;
 
@@ -106,9 +141,8 @@ Client::~Client() {
     finalizar_hilos();
     try {
         this->socket.shutdown(RW_CLOSE);
+        this->socket.close();
     } catch (const LibError& e) {
         std::cerr << e.what() << std::endl;
     }
-
-    this->socket.close();
 }

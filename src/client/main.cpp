@@ -40,7 +40,7 @@ int main(int argc, const char* argv[]) {
             Client client(hostname, servicio);
             client.controlar_loop_juego();
         } catch (const ErrorPartidaLlena& error) {
-            std::cerr << MSJ_EXCEPCION_CONOCIDA << MSJ_PARTIDA_ESTA_LLENA << std::endl;
+            // std::cerr << MSJ_EXCEPCION_CONOCIDA << MSJ_PARTIDA_ESTA_LLENA << std::endl;
         }
 
         return EXITO;

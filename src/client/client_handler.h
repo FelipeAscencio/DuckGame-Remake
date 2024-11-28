@@ -46,6 +46,8 @@ private:
     EnviadorCliente enviador;
     RecibidorCliente recibidor;
 
+    bool primer_contacto_con_servidor();
+
     // Inicia la musica de fondo y devuelve un puntero a la misma.
     Mix_Music* iniciar_musica();
 

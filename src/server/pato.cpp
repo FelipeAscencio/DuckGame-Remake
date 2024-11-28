@@ -451,7 +451,7 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas,
         }
     }
 
-    for (size_t i = CERO; i < spawn.size(); i++) {
+    for (size_t i = CERO; i < cajas.size(); i++) {
         if (this->posicion.igual_para_pickup(cajas[i].posicion)) {
             alguno = true;
             tipo_pickup = cajas[i].contenido;

@@ -1,4 +1,5 @@
 #include "client/protocolo_cliente.h"
+#include <netinet/in.h>
 
 #define CERO 0
 #define UNO 1
@@ -46,6 +47,8 @@
 #define FIN_MENSAJE 0xFE
 #define FIN_COMUNICACION 0xFF
 
+#define ID_DUMMY 0xCC
+
 #define DERECHA 'D'
 #define IZQUIERDA 'A'
 #define ARRIBA 'W'
@@ -85,11 +88,35 @@ static std::map<char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA},
                                            {CHEAT_CASCO, ACCION_CASCO},
                                            {CHEAT_RONDAS, ACCION_RONDAS}};
 
-ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt) {
-    bool closed = false;
-    s.recvall(&id_cliente, sizeof(id_cliente), &closed);
-    if (closed)
-        throw ErrorConstructor();
+ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt), id_cliente(-1) {}
+
+bool ProtocoloCliente::recibir_mensaje_bienvenida(std::string& msj){
+    uint16_t size;
+    bool was_closed = false;
+    s.recvall(&size, sizeof(size), &was_closed);
+    if (was_closed) return false;
+    size = ntohs(size);
+    std::vector<uint8_t> bytes(size);
+    s.recvall(bytes.data(), bytes.size(), &was_closed);
+    if (was_closed) return false;
+    msj.clear();
+    for (uint8_t b: bytes){
+        msj += (char)b;
+    }
+    return true;
+}
+
+bool ProtocoloCliente::enviar_respuesta(const uint8_t& rta){
+    bool was_closed = false;
+    uint8_t aux = rta;
+    s.sendall(&aux, sizeof(aux), &was_closed);
+    return !was_closed;
+}
+
+bool ProtocoloCliente::recibir_id(){
+    bool was_closed = false;
+    s.recvall(&id_cliente, sizeof(id_cliente), &was_closed);
+    return !was_closed;
 }
 
 uint8_t ProtocoloCliente::parsear_comando(char accion) {
@@ -107,6 +134,16 @@ bool ProtocoloCliente::enviar(const char& accion) {
         return false;
 
     s.sendall(&comando, sizeof(comando), &was_closed);
+    return !was_closed;
+}
+
+bool ProtocoloCliente::enviar_codigo_partida(const std::string& codigo){
+    std::vector<uint8_t> bytes;
+    for(char c: codigo){
+        bytes.push_back(toascii(c));
+    }
+    bool was_closed = false;
+    s.sendall(bytes.data(), bytes.size(), &was_closed);
     return !was_closed;
 }
 

@@ -22,6 +22,8 @@ target_sources(taller_server
     thread_usuario.cpp
     config_juego.cpp
     caja.cpp
+    partida.cpp
+    control_teclado.cpp
     PUBLIC
     # .h files
     aceptador.h
@@ -44,4 +46,6 @@ target_sources(taller_server
     thread_usuario.h
     config_juego.h
     caja.h
+    partida.h
+    control_teclado.h
     )

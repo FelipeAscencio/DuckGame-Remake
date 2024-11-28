@@ -10,6 +10,7 @@
 
 #include "queues_jugadores.h"
 #include "thread_usuario.h"
+#include "partida.h"
 
 // La clase 'Aceptador' controla la logica de la conexion
 // (conexion y desconexion) del 'Cliente' con el 'Server'.
@@ -18,8 +19,9 @@ private:
     Socket skt;
     std::list<ThreadUsuario*> jugadores;
     std::atomic<bool> aceptando_jugadores;
-    Queue<comando_t>& queue_juego;
-    ListaQueues& queues_clientes;
+    std::vector<Partida*>& partidas;
+
+    bool enviar_mensaje_inicial(Socket& s, const std::string& mensaje);
 
     // Recolecta y elimina los hilos de jugadores que hayan finalizado.
     void recolectar();
@@ -27,9 +29,11 @@ private:
     // Elimina al cliente representado por 'jugador' de las colas y libera su memoria.
     void eliminar_cliente(ThreadUsuario* jugador);
 
+    bool recibir_respuesta_cliente(uint8_t& rta, Socket& s);
+
 public:
     // Constructor de la clase.
-    explicit Aceptador(const char* servname, Queue<comando_t>& q, ListaQueues& l);
+    explicit Aceptador(const char* servname, std::vector<Partida*>& partidas);
 
     // Inicia el hilo que acepta la conexion de los 'Clientes' con el 'Server'.
     virtual void run() override;

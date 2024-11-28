@@ -10,21 +10,19 @@
 #include "server/aceptador.h"
 #include "server/gameloop.h"
 #include "server/queues_jugadores.h"
+#include "partida.h"
+#include "control_teclado.h"
 
 // La clase 'Server' implementa la logica del
 // control de los hilos del mismo.
 class Server {
 private:
-    Queue<comando_t> queue_juego;
-    ListaQueues lista_queues;
+    std::vector<Partida*> partidas_en_juego;
     Aceptador a;
-    Gameloop g;
+    ControladorTeclado c;
 
     // Inicia el proceso para aceptar conexiones de jugadores.
     void comenzar_a_aceptar();
-
-    // Inicia el ciclo principal del juego.
-    void comenzar_juego();
 
 public:
     // Constructor de la clase.
