@@ -10,6 +10,8 @@
 #define UNO 1
 #define DOS 2
 #define TRES 3
+#define MIN_X_MAPA 1
+#define MAX_X_MAPA 199
 
 #define VALOR_DISPERSION_NULA 0
 #define VALOR_DISPERSION_BAJA 0.5
@@ -143,6 +145,13 @@ bool Municion::avanzar(Mapa& mapa) {
 
         this->posicion_actual.coordenada_x += AVANZAR * lado;
         this->posicion_actual.coordenada_y += AVANZAR * inc * dis;
+    }
+
+    // Si las balas llegan al borde del mapa, se sacan para que no sean visibles.
+    if (posicion_actual.coordenada_x <= MIN_X_MAPA){
+        posicion_actual.coordenada_x = MENOS_UNO;
+    } else if (posicion_actual.coordenada_x >= MAX_X_MAPA){
+        posicion_actual.coordenada_x = MENOS_UNO;
     }
 
     return true;

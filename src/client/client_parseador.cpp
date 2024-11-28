@@ -9,7 +9,7 @@
 #define MEDIA_TIRA_SPRITES 3
 #define TIRA_COMPLETA_CAJAS 4
 #define TAMANIO_SPRITE_GRANDE 32
-#define TAMANIO_SPRITES_BUG 31  // Hay algunos sprites que no llegan justo a 32.
+#define TAMANIO_SPRITES_BUG 30  // Hay algunos sprites que no llegan justo a 32.
 #define TAMANIO_SPRITE_MEDIANO 16
 #define TAMANIO_SPRITE_MEDIANO_BUG 15  // Hay algunos sprites que no llegan justo a 16.
 #define TAMANIO_SPRITE_CHICO 8
@@ -23,25 +23,25 @@
 #define INICIO_ARMADURA_X 387
 #define INICIO_ARMADURA_Y 13
 #define INICIO_CASCO_X 387
-#define INICIO_CASCO_Y 213
+#define INICIO_CASCO_Y 214
 #define INICIO_AK_47_X 1
 #define INICIO_AK_47_Y 20
 #define INICIO_BALAS_AK_X 2
-#define INICIO_BALAS_AK_Y 205
+#define INICIO_BALAS_AK_Y 206
 #define INICIO_ESCOPETA_X 1
 #define INICIO_ESCOPETA_Y 26
 #define INICIO_BALAS_ESCOPETA_X 48
 #define INICIO_BALAS_ESCOPETA_Y 119
 #define INICIO_MANGUM_X 1
-#define INICIO_MAGNUM_Y 47
+#define INICIO_MAGNUM_Y 48
 #define INICIO_BALAS_MAGNUM_X 48
 #define INICIO_BALAS_MAGNUM_Y 89
 #define INICIO_SNIPER_X 36
 #define INICIO_SNIPER_Y 237
 #define INICIO_BALAS_SNIPER_X 35
-#define INICIO_BALAS_SNIPER_Y 62
+#define INICIO_BALAS_SNIPER_Y 63
 #define INICIO_LASER_X 336
-#define INICIO_LASER_Y 94
+#define INICIO_LASER_Y 95
 #define INICIO_BALAS_LASER_X 1
 #define INICIO_BALAS_LASER_Y 139
 #define INICIO_CASCO_LOOT_X 602
@@ -164,7 +164,7 @@ std::vector<SDL_Rect> Parseador::obtener_sprites_equipamiento() {
 std::vector<SDL_Rect> Parseador::obtener_sprites_escopeta() {
     // Obtiene los sprites del arma.
     std::vector<SDL_Rect> sprites_escopeta;
-    int tamanio_sprite = TAMANIO_SPRITES_BUG - DOS;
+    int tamanio_sprite = TAMANIO_SPRITES_BUG - UNO;
     int x_inicial = INICIO_ESCOPETA_X;
     int y_inicial = INICIO_ESCOPETA_Y;
     iterador_de_parseo(sprites_escopeta, UNO, x_inicial, y_inicial, tamanio_sprite);
