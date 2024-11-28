@@ -47,7 +47,7 @@
 #define OFFSET_X_CASCO_AGACHADO_IZQ -0.027
 #define OFFSET_Y_CASCO_AGACHADO 0.016
 #define OFFSET_Y_CAJA -0.005
-#define OFFSET_ZOOM 200
+#define OFFSET_ZOOM 100
 #define ANGULO_NULO 0.0
 #define ANGULO_90 90.0
 #define ANGULO_270 270.0
@@ -165,7 +165,7 @@ SDL2pp::Rect Dibujador::calcular_dst_rect(float& x, float& y, float& escala) {
     return SDL2pp::Rect(dst_x, dst_y, ancho_escalado, alto_escalado);
 }
 
-void Dibujador::dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
+void Dibujador::dibujar_pato_pintado(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
                                      const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int& id,
                                      const double& angle, SDL_RendererFlip& flip) {
     SDL_Color color_mod;
@@ -218,10 +218,8 @@ void Dibujador::dibujar_sprite(SDL2pp::Renderer& renderer, SDL2pp::Texture& spri
     }
 
     if (id >= CERO && id < OCHO) {
-        if (id != this->id_jugador) {
-            dibujar_pato_enemigo(renderer, sprite_sheet, sprite, dst_rect, id, angle, flip);
-            return;
-        }
+        dibujar_pato_pintado(renderer, sprite_sheet, sprite, dst_rect, id, angle, flip);
+        return;
     }
 
     renderer.Copy(sprite_sheet, SDL2pp::Optional<SDL2pp::Rect>(sprite),
@@ -708,23 +706,35 @@ void Dibujador::reiniciar_valores_zoom() {
 
 void Dibujador::verificar_valores_zoom() {
     this->x_min -= OFFSET_ZOOM;
-    if (this->x_min < CERO) {
-        this->x_min = CERO;
-    }
-
     this->y_min -= OFFSET_ZOOM;
-    if (this->y_min < CERO) {
-        this->y_min = CERO;
-    }
-
     this->x_max += OFFSET_ZOOM;
-    if (this->x_max > ANCHO_VENTANA) {
-        this->x_max = ANCHO_VENTANA;
+    this->y_max += OFFSET_ZOOM;
+    if (this->x_min < CERO) this->x_min = CERO;
+    if (this->y_min < CERO) this->y_min = CERO;
+    if (this->x_max > ANCHO_VENTANA) this->x_max = ANCHO_VENTANA;
+    if (this->y_max > ALTO_VENTANA) this->y_max = ALTO_VENTANA;
+    int ancho_actual = this->x_max - this->x_min;
+    int alto_actual = this->y_max - this->y_min;
+
+    // Calcula la relacion de aspecto de la ventana (La que buscamos es 4:3).
+    const float relacion_aspecto = static_cast<float>(ANCHO_VENTANA) / ALTO_VENTANA;
+
+    // Ajustar el rectangulo visible para mantener la relacion de aspecto
+    float ancho_deseado = alto_actual * relacion_aspecto;
+    float alto_deseado = ancho_actual / relacion_aspecto;
+
+    // Si el ancho actual es mayor al deseado, ajustamos el alto.
+    if (ancho_actual > ancho_deseado) {
+        int ajuste = (alto_actual - static_cast<int>(ancho_actual / relacion_aspecto)) / DOS;
+        this->y_min += ajuste;
+        this->y_max -= ajuste;
     }
 
-    this->y_max += OFFSET_ZOOM;
-    if (this->y_max > ALTO_VENTANA) {
-        this->y_max = ALTO_VENTANA;
+    // Si el alto actual es mayor al deseado, ajustamos el ancho.
+    else if (alto_actual > alto_deseado) {
+        int ajuste = (ancho_actual - static_cast<int>(alto_actual * relacion_aspecto)) / DOS;
+        this->x_min += ajuste;
+        this->x_max -= ajuste;
     }
 }
 
@@ -776,9 +786,9 @@ void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
     TTF_Quit();
 }
 
-void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual) {
+void Dibujador::dibujar_tablero(SDL2pp::Renderer& renderer) {
     std::vector<int> puntajes(OCHO, CERO);
-    for (const auto& pato: estado_actual.info_patos) {
+    for (const auto& pato: this->ultimo_estado_recibido.info_patos) {
         int id = pato.id;
         puntajes[id] = pato.rondas_ganadas;
     }
@@ -799,7 +809,7 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
         if (estado_actual.ingame == false) {
             if ((estado_actual.rondas_jugadas % CINCO) == CERO &&
                 estado_actual.rondas_jugadas != CERO) {
-                dibujar_tablero(renderer, estado_actual);
+                dibujar_tablero(renderer);
                 return;
             }
         }

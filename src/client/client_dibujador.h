@@ -65,8 +65,8 @@ private:
     // Convierte el 'X' e 'Y' recibido en el valor relativo en relacion al 'X' e 'Y' maximos.
     std::pair<float, float> convertir_a_relativo(float& x, float& y);
 
-    // Dibuja el pato enemigo con el color correspondiente segun su id.
-    void dibujar_pato_enemigo(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
+    // Dibuja el pato pintado segun el color correspondiente a su id.
+    void dibujar_pato_pintado(SDL2pp::Renderer& renderer, SDL2pp::Texture& sprite_sheet,
                               const SDL_Rect& sprite, SDL2pp::Rect& dst_rect, const int& id,
                               const double& angle, SDL_RendererFlip& flip);
 
@@ -175,7 +175,7 @@ private:
     void dibujar_puntos_tablero(SDL2pp::Renderer& renderer, const std::vector<int>& puntajes);
 
     // Dibuja el 'tablero' con los puntajes actuales del juego.
-    void dibujar_tablero(SDL2pp::Renderer& renderer, EstadoJuego& estado_actual);
+    void dibujar_tablero(SDL2pp::Renderer& renderer);
 
 public:
     // Constructor de la clase.
