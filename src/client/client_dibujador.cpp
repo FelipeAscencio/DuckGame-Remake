@@ -827,3 +827,13 @@ void Dibujador::renderizar(SDL2pp::Renderer& renderer, bool& jugador_activo) {
         std::this_thread::sleep_for(std::chrono::seconds(FINAL_SLEEP));
     }
 }
+
+Dibujador::~Dibujador() {
+    Mix_FreeChunk(sonido_ak);
+    Mix_FreeChunk(sonido_explosion);
+    Mix_FreeChunk(sonido_laser);
+    Mix_FreeChunk(sonido_pistola);
+    Mix_FreeChunk(sonido_escopeta);
+    Mix_FreeChunk(sonido_sniper);
+    Mix_FreeChunk(sonido_quack);
+}

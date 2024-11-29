@@ -192,6 +192,9 @@ public:
     // Permito el movimiento del objeto.
     Dibujador(Dibujador&&) = default;
     Dibujador& operator=(Dibujador&&) = default;
+
+    // Destructor de la clase.
+    ~Dibujador();
 };
 
 #endif  // CLIENT_DIBUJADOR_H

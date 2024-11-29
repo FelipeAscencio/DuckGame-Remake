@@ -45,7 +45,7 @@ int main(int argc, const char* argv[]) {
 
         return EXITO;
     } catch (const std::exception& error) {
-        std::cerr << MSJ_EXCEPCION_CONOCIDA << MSJ_PARTIDA_ESTA_LLENA << std::endl;
+        std::cerr << MSJ_EXCEPCION_CONOCIDA << error.what() << std::endl;
         return FALLA;
     } catch (...) {
         std::cerr << MSJ_EXCEPCION_DESCONOCIDA << std::endl;

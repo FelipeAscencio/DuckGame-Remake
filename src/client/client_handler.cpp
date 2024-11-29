@@ -135,6 +135,7 @@ void Client::controlar_loop_juego() {
         frame_count++;
     }
 
+    renderer.Clear();
     terminar_musica(musica_fondo);
 }
 
