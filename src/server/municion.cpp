@@ -129,7 +129,7 @@ bool Municion::avanzar(Mapa& mapa) {
         this->posicion_actual.coordenada_x += AVANZAR * inc * dis;
     } else {
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
-        inc = subiendo ? MENOS_UNO : UNO;
+        inc = this->inclinacion == PARA_ARRIBA ? MENOS_UNO : UNO;
         if (borde_bloque && (posicion_mapa[0] == 0 || posicion_mapa[0] == mapa.largo -1)) lado = 0;
         if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES){
             return false;

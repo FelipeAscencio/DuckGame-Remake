@@ -571,7 +571,9 @@ int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion) {
 }
 
 void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+    int i = 0;
     for (auto& bala: estado_actual.info_balas) {
+        i++;
         float escala = ESCALA_SPRITES_CHICOS;
         float x = bala.pos.coordenada_x;
         float y = bala.pos.coordenada_y;

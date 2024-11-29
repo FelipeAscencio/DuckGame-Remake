@@ -82,6 +82,7 @@ posicion_t Arma::ajustar_posicion_disparo(const orientacion_e& direccion){
     } else {
         dy = -DIFERENCIA_SPAWN_BALA;
     }
+    
     return (posicion_t(this->posicion_spawn.coordenada_x + dx, this->posicion_spawn.coordenada_y + dy));
 }
 
