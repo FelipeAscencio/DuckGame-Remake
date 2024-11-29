@@ -12,7 +12,7 @@
 
 ---
 
-## Manuales e Informes (técnicos y de uso)
+## Manuales e Informes (Técnicos y de uso)
 
 Dentro de la carpeta 'documentation' se encuentran los 5 manuales e informes del juego.
 - 'Manual de Instalación'.

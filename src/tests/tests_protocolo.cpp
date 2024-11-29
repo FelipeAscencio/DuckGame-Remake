@@ -53,7 +53,6 @@ TEST_F(SocketTest, MoverseHaciaLaDerecha) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, MoverseHaciaLaIzquierda) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -84,7 +83,6 @@ TEST_F(SocketTest, MoverseHaciaLaIzquierda) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, MirarHaciaArriba) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -115,7 +113,6 @@ TEST_F(SocketTest, MirarHaciaArriba) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, Agacharse) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -146,7 +143,6 @@ TEST_F(SocketTest, Agacharse) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, SaltarAletear) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -177,7 +173,6 @@ TEST_F(SocketTest, SaltarAletear) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, Agarrar) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -208,7 +203,6 @@ TEST_F(SocketTest, Agarrar) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, Disparar) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -239,7 +233,6 @@ TEST_F(SocketTest, Disparar) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, Cuack) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -270,7 +263,6 @@ TEST_F(SocketTest, Cuack) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatInmortalidad) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -301,7 +293,6 @@ TEST_F(SocketTest, CheatInmortalidad) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatRecargar) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -332,7 +323,6 @@ TEST_F(SocketTest, CheatRecargar) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatArmadura) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -363,7 +353,6 @@ TEST_F(SocketTest, CheatArmadura) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatCasco) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -394,7 +383,6 @@ TEST_F(SocketTest, CheatCasco) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatRondas) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -425,7 +413,6 @@ TEST_F(SocketTest, CheatRondas) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatAK) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -456,7 +443,6 @@ TEST_F(SocketTest, CheatAK) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatShotgun) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -487,7 +473,6 @@ TEST_F(SocketTest, CheatShotgun) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatMagnum) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -518,7 +503,6 @@ TEST_F(SocketTest, CheatMagnum) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatLaser) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -549,7 +533,6 @@ TEST_F(SocketTest, CheatLaser) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, CheatSniper) {
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -580,7 +563,6 @@ TEST_F(SocketTest, CheatSniper) {
     server_thread.join();
 }
 
-// TESTS.
 TEST_F(SocketTest, EnviarEstadoDelJuego) {
     // Inicializacion de un estado de juego generico a enviar.
     EstadoJuego estado_enviado;

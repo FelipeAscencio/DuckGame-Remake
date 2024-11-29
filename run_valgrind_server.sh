@@ -3,7 +3,7 @@
 # Obtener el directorio del script para ubicar la carpeta "build".
 SCRIPT_DIR="$(dirname "$0")"
 
-# Cambiar al directorio "build" relativo a la ubicación del script.
+# Cambiar al directorio "build" relativo a la ubicacion del script.
 cd "$SCRIPT_DIR/src/build" || exit
 
 # Obtener el directorio del archivo de 'valgrind'.
