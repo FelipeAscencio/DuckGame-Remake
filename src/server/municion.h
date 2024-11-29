@@ -2,12 +2,13 @@
 #ifndef MUNICION_H
 #define MUNICION_H
 
-#include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <iostream>
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
+
 #include "mapa.h"
 
 // 'Enum' que encapsula los tipos de dispersion de las balas.

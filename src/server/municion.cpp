@@ -98,7 +98,8 @@ float buscar_dispersion(const dispersion_e& dispersion) {
 
 bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
-    if (posicion_mapa[CERO] == MENOS_UNO || posicion_mapa[UNO] == MENOS_UNO) return false;
+    if (posicion_mapa[CERO] == MENOS_UNO || posicion_mapa[UNO] == MENOS_UNO)
+        return false;
     if (fuera_de_rango(mapa))
         return false;
 
@@ -125,11 +126,14 @@ bool Municion::avanzar(Mapa& mapa) {
     } else {
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
         inc = this->inclinacion == PARA_ARRIBA ? MENOS_UNO : UNO;
-        if (borde_bloque && (posicion_mapa[CERO] == CERO || posicion_mapa[CERO] == mapa.largo MENOS_UNO)) lado = CERO;
-        if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES){
+        if (borde_bloque &&
+            (posicion_mapa[CERO] == CERO || posicion_mapa[CERO] == mapa.largo MENOS_UNO))
+            lado = CERO;
+        if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO &&
+            mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES) {
             return false;
         }
-        
+
         dis = buscar_dispersion(this->dispersion);
         if (dis != CERO) {
             if (mapa.piso_bloque(this->posicion_actual) || techo) {
@@ -144,9 +148,9 @@ bool Municion::avanzar(Mapa& mapa) {
     }
 
     // Si las balas llegan al borde del mapa, se sacan para que no sean visibles.
-    if (posicion_actual.coordenada_x <= MIN_X_MAPA){
+    if (posicion_actual.coordenada_x <= MIN_X_MAPA) {
         posicion_actual.coordenada_x = MENOS_UNO;
-    } else if (posicion_actual.coordenada_x >= MAX_X_MAPA){
+    } else if (posicion_actual.coordenada_x >= MAX_X_MAPA) {
         posicion_actual.coordenada_x = MENOS_UNO;
     }
 

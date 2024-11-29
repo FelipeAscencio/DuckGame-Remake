@@ -4,6 +4,7 @@
 
 #include <atomic>
 #include <sstream>
+
 #include <syslog.h>
 
 #include "../common/queue.h"
@@ -16,6 +17,7 @@ using namespace ServerProtocol;
 // comandos de los 'Clientes'.
 class Recibidor: public Thread {
     friend class ThreadUsuario;
+
 private:
     Protocol protocol;
     Queue<comando_t>& queue_comandos;
@@ -24,7 +26,8 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Recibidor(Socket& s, Queue<comando_t>& q, std::atomic<bool>& esta_vivo, const int& id_clientes);
+    explicit Recibidor(Socket& s, Queue<comando_t>& q, std::atomic<bool>& esta_vivo,
+                       const int& id_clientes);
 
     // Ejecuta el hilo del recibidor, procesando comandos hasta que el objeto esta marcado como
     // vivo.

@@ -28,7 +28,7 @@ dispersion_e obtener_dispersion(int bala_disparada) {
 inclinacion_e obtener_inclinacion(int bala_disparada) {
     if (bala_disparada < DOS)
         return NO_TIENE;
-    
+
     if (bala_disparada < CUATRO)
         return PARA_ARRIBA;
 

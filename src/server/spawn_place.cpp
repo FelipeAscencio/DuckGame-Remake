@@ -27,14 +27,14 @@ bool Spawn::spawnear() {
     this->iteraciones_desde_spawn++;
     if (!libre)
         return false;
-    
+
     if (iteraciones_desde_spawn < ITERACIONES_MINIMAS_RESPAWN)
         return false;
 
     if (iteraciones_desde_spawn % ConfigJuego::FPS == CERO) {
         if (rand() % CANTIDAD_ITEM_LOOTEABLES != nro_random_spawn)
             return false;
-        
+
         libre = false;
         contenido = (rand() % VARIANTES_DE_LOOT) + UNO;
         return true;

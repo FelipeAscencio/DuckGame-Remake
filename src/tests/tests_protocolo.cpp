@@ -1,11 +1,12 @@
+#include <chrono>
 #include <cstdint>
 #include <cstdlib>
-#include <stdio.h>
 #include <memory>
 #include <thread>
-#include <chrono>
+
 #include <arpa/inet.h>
 #include <gtest/gtest.h>
+#include <stdio.h>
 
 #include "../client/protocolo_cliente.h"
 #include "../server/protocol.h"
@@ -19,8 +20,7 @@ const char* localhost = "127.0.0.1";
 const char* server_port = "8085";
 
 // Declaracion de la clase utilizada para los tests.
-class SocketTest : public ::testing::Test {
-};
+class SocketTest: public ::testing::Test {};
 
 // TESTS.
 TEST_F(SocketTest, MoverseHaciaLaDerecha) {
@@ -33,7 +33,8 @@ TEST_F(SocketTest, MoverseHaciaLaDerecha) {
         int comando_cliente = 1;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -43,7 +44,7 @@ TEST_F(SocketTest, MoverseHaciaLaDerecha) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'D'; // Accion a enviar.
+        const char accion = 'D';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -63,7 +64,8 @@ TEST_F(SocketTest, MoverseHaciaLaIzquierda) {
         int comando_cliente = 2;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -73,7 +75,7 @@ TEST_F(SocketTest, MoverseHaciaLaIzquierda) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'A'; // Accion a enviar.
+        const char accion = 'A';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -93,7 +95,8 @@ TEST_F(SocketTest, MirarHaciaArriba) {
         int comando_cliente = 4;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -103,7 +106,7 @@ TEST_F(SocketTest, MirarHaciaArriba) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'W'; // Accion a enviar.
+        const char accion = 'W';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -123,7 +126,8 @@ TEST_F(SocketTest, Agacharse) {
         int comando_cliente = 3;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -133,7 +137,7 @@ TEST_F(SocketTest, Agacharse) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'S'; // Accion a enviar.
+        const char accion = 'S';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -153,7 +157,8 @@ TEST_F(SocketTest, SaltarAletear) {
         int comando_cliente = 5;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -163,7 +168,7 @@ TEST_F(SocketTest, SaltarAletear) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = ' '; // Accion a enviar.
+        const char accion = ' ';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -183,7 +188,8 @@ TEST_F(SocketTest, Agarrar) {
         int comando_cliente = 7;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -193,7 +199,7 @@ TEST_F(SocketTest, Agarrar) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'K'; // Accion a enviar.
+        const char accion = 'K';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -213,7 +219,8 @@ TEST_F(SocketTest, Disparar) {
         int comando_cliente = 6;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -223,7 +230,7 @@ TEST_F(SocketTest, Disparar) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'J'; // Accion a enviar.
+        const char accion = 'J';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -243,7 +250,8 @@ TEST_F(SocketTest, Cuack) {
         int comando_cliente = 8;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -253,7 +261,7 @@ TEST_F(SocketTest, Cuack) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'C'; // Accion a enviar.
+        const char accion = 'C';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -273,7 +281,8 @@ TEST_F(SocketTest, CheatInmortalidad) {
         int comando_cliente = 37;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -283,7 +292,7 @@ TEST_F(SocketTest, CheatInmortalidad) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'I'; // Accion a enviar.
+        const char accion = 'I';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -303,7 +312,8 @@ TEST_F(SocketTest, CheatRecargar) {
         int comando_cliente = 38;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -313,7 +323,7 @@ TEST_F(SocketTest, CheatRecargar) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'R'; // Accion a enviar.
+        const char accion = 'R';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -333,7 +343,8 @@ TEST_F(SocketTest, CheatArmadura) {
         int comando_cliente = 39;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -343,7 +354,7 @@ TEST_F(SocketTest, CheatArmadura) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'L'; // Accion a enviar.
+        const char accion = 'L';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -363,7 +374,8 @@ TEST_F(SocketTest, CheatCasco) {
         int comando_cliente = 40;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -373,7 +385,7 @@ TEST_F(SocketTest, CheatCasco) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'P'; // Accion a enviar.
+        const char accion = 'P';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -393,7 +405,8 @@ TEST_F(SocketTest, CheatRondas) {
         int comando_cliente = 41;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -403,7 +416,7 @@ TEST_F(SocketTest, CheatRondas) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = 'Z'; // Accion a enviar.
+        const char accion = 'Z';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -423,7 +436,8 @@ TEST_F(SocketTest, CheatAK) {
         int comando_cliente = 32;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -433,7 +447,7 @@ TEST_F(SocketTest, CheatAK) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = '1'; // Accion a enviar.
+        const char accion = '1';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -453,7 +467,8 @@ TEST_F(SocketTest, CheatShotgun) {
         int comando_cliente = 33;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -463,7 +478,7 @@ TEST_F(SocketTest, CheatShotgun) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = '2'; // Accion a enviar.
+        const char accion = '2';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -483,7 +498,8 @@ TEST_F(SocketTest, CheatMagnum) {
         int comando_cliente = 34;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -493,7 +509,7 @@ TEST_F(SocketTest, CheatMagnum) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = '3'; // Accion a enviar.
+        const char accion = '3';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -513,7 +529,8 @@ TEST_F(SocketTest, CheatLaser) {
         int comando_cliente = 35;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -523,7 +540,7 @@ TEST_F(SocketTest, CheatLaser) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = '4'; // Accion a enviar.
+        const char accion = '4';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -543,7 +560,8 @@ TEST_F(SocketTest, CheatSniper) {
         int comando_cliente = 36;
         bool resultado_servidor = protocolo_server.recibir(cmd, 1);
         ASSERT_TRUE(resultado_servidor) << "Error: No se pudo recibir la accion en el servidor.";
-        ASSERT_EQ(cmd.accion, comando_cliente) << "Error: El comando recibido no coincide con el esperado.";
+        ASSERT_EQ(cmd.accion, comando_cliente)
+                << "Error: El comando recibido no coincide con el esperado.";
     });
 
     // Sleep necesario para que este listo el server para aceptar al cliente.
@@ -553,7 +571,7 @@ TEST_F(SocketTest, CheatSniper) {
     std::thread client_thread([&]() {
         Socket client_socket(localhost, server_port);
         ProtocoloCliente protocolo_cliente(client_socket);
-        const char accion = '5'; // Accion a enviar.
+        const char accion = '5';  // Accion a enviar.
         bool resultado_cliente = protocolo_cliente.enviar(accion);
         ASSERT_TRUE(resultado_cliente) << "Error: No se pudo enviar la accion desde el cliente.";
     });
@@ -578,18 +596,16 @@ TEST_F(SocketTest, EnviarEstadoDelJuego) {
     estado_enviado.ingame = true;
 
     // Informacion de patos.
-    estado_enviado.info_patos.emplace_back(
-        InformacionPato(1, posicion_t(15, 25), true, false, 0, true, false,  
-                        orientacion_e::DERECHA, estado_pato_e::PARADO, 
-                        sonido_e::DISPARANDO, 1));
+    estado_enviado.info_patos.emplace_back(InformacionPato(
+            1, posicion_t(15, 25), true, false, 0, true, false, orientacion_e::DERECHA,
+            estado_pato_e::PARADO, sonido_e::DISPARANDO, 1));
 
     // Informacion de armas.
     estado_enviado.info_armas.emplace_back(InformacionArma(1, posicion_t(32, 41)));
 
     // Informacion de balas.
-    estado_enviado.info_balas.emplace_back(
-        InformacionBala(1, posicion_t(65, 78), inclinacion_e::NO_TIENE, 
-                        orientacion_e::DERECHA));
+    estado_enviado.info_balas.emplace_back(InformacionBala(
+            1, posicion_t(65, 78), inclinacion_e::NO_TIENE, orientacion_e::DERECHA));
 
     // Informacion de armaduras.
     estado_enviado.info_armaduras.emplace_back(posicion_t(23, 46));
@@ -598,8 +614,7 @@ TEST_F(SocketTest, EnviarEstadoDelJuego) {
     estado_enviado.info_cascos.emplace_back(posicion_t(51, 33));
 
     // Informacion de cajas.
-    estado_enviado.info_cajas.emplace_back(InformacionCaja(
-        posicion_t(72, 83), damage_e::INTACTA));
+    estado_enviado.info_cajas.emplace_back(InformacionCaja(posicion_t(72, 83), damage_e::INTACTA));
 
     // Hilo del servidor.
     std::thread server_thread([&]() {
@@ -619,7 +634,8 @@ TEST_F(SocketTest, EnviarEstadoDelJuego) {
         ProtocoloCliente protocolo_cliente(client_socket);
         EstadoJuego estado_recibido;
         bool resultado_recepcion = protocolo_cliente.recibir(estado_recibido);
-        ASSERT_TRUE(resultado_recepcion) << "Error: No se pudo recibir el estado del juego desde el servidor.";
+        ASSERT_TRUE(resultado_recepcion)
+                << "Error: No se pudo recibir el estado del juego desde el servidor.";
 
         // Comprueba que todos los campos del 'EstadoJuego' sean iguales.
         ASSERT_EQ(estado_recibido.cantidad_jugadores, estado_enviado.cantidad_jugadores);
@@ -632,7 +648,7 @@ TEST_F(SocketTest, EnviarEstadoDelJuego) {
         ASSERT_EQ(estado_recibido.id_mapa, estado_enviado.id_mapa);
         ASSERT_EQ(estado_recibido.rondas_jugadas, estado_enviado.rondas_jugadas);
         ASSERT_EQ(estado_recibido.ingame, estado_enviado.ingame);
-        
+
         // Verifica que todos los campos de los vectores sean iguales.
         const auto& pato_enviado = estado_enviado.info_patos[0];
         const auto& pato_recibido = estado_recibido.info_patos[0];
@@ -669,11 +685,15 @@ TEST_F(SocketTest, EnviarEstadoDelJuego) {
         ASSERT_EQ(caja_enviada.posicion.coordenada_y, caja_recibida.posicion.coordenada_y);
         ASSERT_EQ(caja_enviada.estado, caja_recibida.estado);
 
-        ASSERT_EQ(estado_recibido.info_cascos[0].coordenada_x, estado_enviado.info_cascos[0].coordenada_x);
-        ASSERT_EQ(estado_recibido.info_cascos[0].coordenada_y, estado_enviado.info_cascos[0].coordenada_y);
-        
-        ASSERT_EQ(estado_recibido.info_armaduras[0].coordenada_x, estado_enviado.info_armaduras[0].coordenada_x);
-        ASSERT_EQ(estado_recibido.info_armaduras[0].coordenada_y, estado_enviado.info_armaduras[0].coordenada_y);
+        ASSERT_EQ(estado_recibido.info_cascos[0].coordenada_x,
+                  estado_enviado.info_cascos[0].coordenada_x);
+        ASSERT_EQ(estado_recibido.info_cascos[0].coordenada_y,
+                  estado_enviado.info_cascos[0].coordenada_y);
+
+        ASSERT_EQ(estado_recibido.info_armaduras[0].coordenada_x,
+                  estado_enviado.info_armaduras[0].coordenada_x);
+        ASSERT_EQ(estado_recibido.info_armaduras[0].coordenada_y,
+                  estado_enviado.info_armaduras[0].coordenada_y);
     });
 
     // Espera a que los hilos terminen.

@@ -7,6 +7,7 @@
 #include "../common/estado_juego.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
+
 #include "protocolo_cliente.h"
 
 // La clase 'RecibidorCliente' se encarga de mandar los estados que recibe

@@ -2,10 +2,9 @@
 #ifndef SERVER_PATO_H_
 #define SERVER_PATO_H_
 
-#include <iostream>
-#include <mutex>
 #include <cstdlib>
 #include <iostream>
+#include <mutex>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -16,13 +15,14 @@
 #include "../common/posicion.h"
 #include "server/arma.h"
 #include "server/mapa.h"
+
 #include "ak47.h"
+#include "caja.h"
 #include "config_juego.h"
 #include "magnum.h"
 #include "p_p_laser.h"
 #include "shotgun.h"
 #include "sniper.h"
-#include "caja.h"
 
 #define CERO 0
 #define CINCO 5

@@ -24,5 +24,5 @@ ThreadUsuario::~ThreadUsuario() {
     try {
         skt.shutdown(RW_CLOSE);
         skt.close();
-    } catch (const LibError& e){}
+    } catch (const LibError& e) {}
 }

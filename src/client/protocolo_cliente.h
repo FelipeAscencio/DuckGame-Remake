@@ -5,18 +5,19 @@
 #include <iostream>
 #include <map>
 #include <vector>
+
 #include <netinet/in.h>
 
 #include "../common/comando.h"
 #include "../common/estado_juego.h"
 #include "../common/socket.h"
 
-#define MSJ_ERROR_CREACION_PROTOCOLO "Error en la creacion del protocolo, fallo el socket para recibir el ID del cliente"
+#define MSJ_ERROR_CREACION_PROTOCOLO \
+    "Error en la creacion del protocolo, fallo el socket para recibir el ID del cliente"
 
 // Struct de error en la construccion del 'Protocolo'.
 struct ErrorConstructor: public std::runtime_error {
-    ErrorConstructor():
-            std::runtime_error(MSJ_ERROR_CREACION_PROTOCOLO) {}
+    ErrorConstructor(): std::runtime_error(MSJ_ERROR_CREACION_PROTOCOLO) {}
 };
 
 // La clase 'ProtocoloCliente' controla la comunicacion
@@ -27,7 +28,7 @@ class ProtocoloCliente {
 private:
     Socket& s;
     int id_cliente;
-    
+
     // Convierte el comando en formato 'char' al byte correspondiente.
     uint8_t parsear_comando(char accion);
 

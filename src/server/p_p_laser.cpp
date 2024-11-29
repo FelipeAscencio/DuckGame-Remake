@@ -15,7 +15,7 @@ inclinacion_e obtener_inclinacion(const int& bala) {
         return NO_TIENE;
     if (bala == UNO)
         return PARA_ARRIBA;
-    
+
     return PARA_ABAJO;
 }
 

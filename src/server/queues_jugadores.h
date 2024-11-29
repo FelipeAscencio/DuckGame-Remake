@@ -7,6 +7,7 @@
 #include <mutex>
 #include <string>
 #include <utility>
+
 #include <syslog.h>
 
 #include "../common/estado_juego.h"

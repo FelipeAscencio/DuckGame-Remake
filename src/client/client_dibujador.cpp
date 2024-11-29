@@ -712,10 +712,14 @@ void Dibujador::verificar_valores_zoom() {
     this->y_min -= OFFSET_ZOOM;
     this->x_max += OFFSET_ZOOM;
     this->y_max += OFFSET_ZOOM;
-    if (this->x_min < CERO) this->x_min = CERO;
-    if (this->y_min < CERO) this->y_min = CERO;
-    if (this->x_max > ANCHO_VENTANA) this->x_max = ANCHO_VENTANA;
-    if (this->y_max > ALTO_VENTANA) this->y_max = ALTO_VENTANA;
+    if (this->x_min < CERO)
+        this->x_min = CERO;
+    if (this->y_min < CERO)
+        this->y_min = CERO;
+    if (this->x_max > ANCHO_VENTANA)
+        this->x_max = ANCHO_VENTANA;
+    if (this->y_max > ALTO_VENTANA)
+        this->y_max = ALTO_VENTANA;
     int ancho_actual = this->x_max - this->x_min;
     int alto_actual = this->y_max - this->y_min;
 

@@ -535,7 +535,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa,
                             Municion aux(m);
                             balas_volando.push_back(aux);
                         }
-                        
+
                         delete arma_equipada;
                     }
                 }

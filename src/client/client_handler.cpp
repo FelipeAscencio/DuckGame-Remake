@@ -5,9 +5,11 @@
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
 #define MSJ_PARTIDA_CREADA_EXITOSA "Partida creada con exito. El id de su partida es: "
-#define MSJ_INGRESE_ID  "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar: "
+#define MSJ_INGRESE_ID \
+    "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar: "
 #define MSJ_ID_INEXISTENTE "ID de partida inexistente."
-#define INGRESO_INVALIDO "0" // ID de partida invalido, para detectar que no se pudo conectar a una partida.
+#define INGRESO_INVALIDO \
+    "0"  // ID de partida invalido, para detectar que no se pudo conectar a una partida.
 
 #define MENOS_UNO -1
 #define CERO 0
@@ -35,7 +37,8 @@ Client::Client(const char* hostname, const char* servicio):
         jugador_activo(true),
         controlador(cola_enviador),
         socket(hostname, servicio),
-        protocolo(socket), id(MENOS_UNO),
+        protocolo(socket),
+        id(MENOS_UNO),
         enviador(protocolo, cola_enviador, id),
         recibidor(protocolo, cola_recibidor) {}
 
@@ -72,14 +75,14 @@ void Client::finalizar_hilos() {
     recibidor.join();
 }
 
-bool Client::ingresar_nueva_partida(){
+bool Client::ingresar_nueva_partida() {
     std::string codigo_partida;
-    if (!protocolo.recibir_mensaje_bienvenida(codigo_partida)){
+    if (!protocolo.recibir_mensaje_bienvenida(codigo_partida)) {
         return false;
     }
 
     std::cout << MSJ_PARTIDA_CREADA_EXITOSA << codigo_partida << std::endl;
-    if (!protocolo.recibir_id()){
+    if (!protocolo.recibir_id()) {
         return false;
     }
 
@@ -87,22 +90,22 @@ bool Client::ingresar_nueva_partida(){
     return true;
 }
 
-bool Client::loop_ingresar_partida_existente(){
+bool Client::loop_ingresar_partida_existente() {
     do {
         std::string linea;
         std::cout << MSJ_INGRESE_ID << std::endl;
         std::getline(std::cin, linea);
-        if (linea.size() == CANT_NUMEROS_PARTIDA){
-            if (!protocolo.enviar_codigo_partida(linea)){
+        if (linea.size() == CANT_NUMEROS_PARTIDA) {
+            if (!protocolo.enviar_codigo_partida(linea)) {
                 return false;
             }
-        
-            if (!protocolo.recibir_id()){
+
+            if (!protocolo.recibir_id()) {
                 return false;
             }
 
             this->id = protocolo.id_cliente;
-            if (this->id <= MAX_ID_JUGADOR){
+            if (this->id <= MAX_ID_JUGADOR) {
                 return true;
             }
 
@@ -111,25 +114,25 @@ bool Client::loop_ingresar_partida_existente(){
     } while (true);
 }
 
-bool Client::primer_contacto_con_servidor(){
+bool Client::primer_contacto_con_servidor() {
     std::string bienvenida;
-    if (!protocolo.recibir_mensaje_bienvenida(bienvenida)){
+    if (!protocolo.recibir_mensaje_bienvenida(bienvenida)) {
         return false;
     }
 
     std::cout << bienvenida << std::endl;
     std::string linea;
     int respuesta;
-    do{
+    do {
         std::getline(std::cin, linea);
         respuesta = (int)(linea[POS_PRIMER_ELEMENTO] - CONSTANTE_CASTEO_LINEA);
     } while (respuesta != NUEVA_PARTIDA && respuesta != PARTIDA_EXISTENTE);
 
-    if (!protocolo.enviar_respuesta(respuesta)){
+    if (!protocolo.enviar_respuesta(respuesta)) {
         return false;
     }
 
-    if (respuesta == NUEVA_PARTIDA){
+    if (respuesta == NUEVA_PARTIDA) {
         return ingresar_nueva_partida();
     } else {
         return loop_ingresar_partida_existente();
@@ -137,7 +140,7 @@ bool Client::primer_contacto_con_servidor(){
 }
 
 void Client::controlar_loop_juego() {
-    if (!primer_contacto_con_servidor()){
+    if (!primer_contacto_con_servidor()) {
         return;
     }
 
@@ -151,7 +154,7 @@ void Client::controlar_loop_juego() {
     while (this->jugador_activo && this->recibidor.esta_vivo()) {
         auto t1 = std::chrono::steady_clock::now();
         unsigned long frame_count = CERO;
-        int ms_per_frame = MIL/FPS;
+        int ms_per_frame = MIL / FPS;
         controlador.manejar_eventos(this->jugador_activo);
         if (dibujador) {
             dibujador->renderizar(renderer, this->jugador_activo);

@@ -5,8 +5,9 @@
 #include <iostream>
 
 #include "../common/orientacion.h"
-#include "config_juego.h"
+
 #include "arma.h"
+#include "config_juego.h"
 
 // Esta clase implementa la logica del arma 'AK-47'.
 class AK47: public Arma {

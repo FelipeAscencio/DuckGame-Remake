@@ -3,17 +3,19 @@
 #define SERVER_SERVER_H_
 
 #include <iostream>
-#include <vector>
-#include <time.h>
 #include <string>
+#include <vector>
+
+#include <time.h>
 
 #include "../common/comando.h"
 #include "../common/queue.h"
 #include "server/aceptador.h"
 #include "server/gameloop.h"
 #include "server/queues_jugadores.h"
-#include "partida.h"
+
 #include "control_teclado.h"
+#include "partida.h"
 
 // La clase 'Server' implementa la logica del
 // control de los hilos del mismo.

@@ -6,15 +6,17 @@
 #include <list>
 #include <utility>
 #include <vector>
-#include <syslog.h>
-#include <netinet/in.h>
 
+#include <netinet/in.h>
+#include <syslog.h>
+
+#include "../common/liberror.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
-#include "../common/liberror.h"
+
+#include "partida.h"
 #include "queues_jugadores.h"
 #include "thread_usuario.h"
-#include "partida.h"
 
 // La clase 'Aceptador' controla la logica de la conexion
 // (conexion y desconexion) del 'Cliente' con el 'Server'.

@@ -5,6 +5,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 #include <yaml-cpp/yaml.h>
 
 // La clase 'ConfigJuego' se encarga de manejar el archivo "YAML"

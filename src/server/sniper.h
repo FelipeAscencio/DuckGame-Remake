@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "../common/orientacion.h"
+
 #include "arma.h"
 
 // Esta clase implementa la logica del arma 'Sniper'.

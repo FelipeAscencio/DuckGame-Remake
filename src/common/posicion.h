@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 #include <math.h>
 
 #define CERO 0
@@ -62,13 +63,14 @@ typedef struct Posicion {
         return resultado;
     }
 
-    // Se fija si una bala choca contra una caja, devuelve 'true' en caso de colision o 'false' en caso contrario.
-    bool hit_caja(const Posicion& otra, const int& id){
+    // Se fija si una bala choca contra una caja, devuelve 'true' en caso de colision o 'false' en
+    // caso contrario.
+    bool hit_caja(const Posicion& otra, const int& id) {
         int hit_box_x = HIT_BOX_CAJA;
-        if (id == ID_SHOTGUN || id == ID_PP_LASER){
+        if (id == ID_SHOTGUN || id == ID_PP_LASER) {
             hit_box_x = TILE_A_METRO;
         }
-        
+
         float dx = abs(this->coordenada_x - otra.coordenada_x);
         float dy = abs(this->coordenada_y - otra.coordenada_y);
         bool resultado = (dx < hit_box_x && dy < (TILE_A_METRO));

@@ -10,7 +10,7 @@ void Enviador::run() {
             if (!protocol.enviar(estado_actual)) {
                 break;
             } else {
-                if (!vivo){
+                if (!vivo) {
                     break;
                 }
             }

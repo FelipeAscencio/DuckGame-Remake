@@ -5,6 +5,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2pp/SDL2pp.hh>
@@ -12,6 +13,7 @@
 #include "../common/estado_juego.h"
 #include "../common/orientacion.h"
 #include "../common/queue.h"
+
 #include "client_parseador.h"
 
 using namespace SDL2pp;

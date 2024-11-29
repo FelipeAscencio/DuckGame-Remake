@@ -3,11 +3,11 @@
 #define MAGNUM_H
 
 #include <iostream>
-#include <iostream>
 
-#include "config_juego.h"
 #include "../common/orientacion.h"
+
 #include "arma.h"
+#include "config_juego.h"
 
 // Esta clase implementa la logica del arma 'Magnum'.
 class Magnum: public Arma {

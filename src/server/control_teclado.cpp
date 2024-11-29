@@ -4,12 +4,12 @@
 
 #define EXIT "q"
 
-ControladorTeclado::ControladorTeclado():vivo(true){}
+ControladorTeclado::ControladorTeclado(): vivo(true) {}
 
-void ControladorTeclado::run(){
+void ControladorTeclado::run() {
     std::string linea;
-    while (std::getline(std::cin, linea)){
-        if (linea == EXIT){
+    while (std::getline(std::cin, linea)) {
+        if (linea == EXIT) {
             break;
         }
     }

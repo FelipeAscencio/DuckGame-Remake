@@ -3,11 +3,11 @@
 #define P_P_LASER_H
 
 #include <iostream>
-#include <iostream>
 
 #include "../common/orientacion.h"
-#include "config_juego.h"
+
 #include "arma.h"
+#include "config_juego.h"
 
 // Esta clase implementa la logica del arma 'Pew Pew Laser'.
 class PewPewLaser: public Arma {

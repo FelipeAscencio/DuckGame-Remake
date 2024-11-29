@@ -14,6 +14,7 @@
 #include "common/estado_fisico.h"
 #include "common/orientacion.h"
 #include "common/posicion.h"
+
 #include "informacion_arma.h"
 
 #define CERO 0

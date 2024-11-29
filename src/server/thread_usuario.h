@@ -3,10 +3,12 @@
 #define THREAD_USUARIO_H
 
 #include <utility>
+
 #include <syslog.h>
 
 #include "../common/liberror.h"
 #include "../common/queue.h"
+
 #include "enviador.h"
 #include "recibidor.h"
 

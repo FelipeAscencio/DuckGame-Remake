@@ -18,7 +18,12 @@
 #define KILL_PLAYER 0x66
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
-        queue(q), juego_activo(true), queues_clientes(l), mapa(), rondas_jugadas(CERO), ultimo_id_agregado(CERO) {
+        queue(q),
+        juego_activo(true),
+        queues_clientes(l),
+        mapa(),
+        rondas_jugadas(CERO),
+        ultimo_id_agregado(CERO) {
     mapa.inicializar_puntos_spawn(puntos_spawn);
     inicializar_cajas();
 }
@@ -46,11 +51,11 @@ void Gameloop::chequear_nuevos_jugadores() {
     }
 }
 
-void Gameloop::chequear_jugadores_desconectados(){
+void Gameloop::chequear_jugadores_desconectados() {
     size_t cantidad_jugadores = jugadores.size();
-    for(size_t i = CERO; i < cantidad_jugadores; i++){
+    for (size_t i = CERO; i < cantidad_jugadores; i++) {
         int id = jugadores[i]->id_jugador;
-        if (!queues_clientes.encontrar_cliente(id)){
+        if (!queues_clientes.encontrar_cliente(id)) {
             Pato* pato = jugadores[i];
             jugadores.erase(jugadores.begin() + i);
             delete pato;
@@ -210,11 +215,12 @@ void Gameloop::chequear_posiciones() {
         }
 
         for (size_t i = CERO; i < cajas.size(); i++) {
-            if (!cajas[i].destruida){
+            if (!cajas[i].destruida) {
 
                 if (mapa.posicion_en_mapa(balas_volando[i].posicion_actual) ==
                     mapa.posicion_en_mapa(cajas[i].posicion)) {
-                    if (balas_volando[i].posicion_actual.hit_caja(cajas[i].posicion, balas_volando[i].id_arma)) {
+                    if (balas_volando[i].posicion_actual.hit_caja(cajas[i].posicion,
+                                                                  balas_volando[i].id_arma)) {
                         cajas[i].recibir_disparo();
                         if (cajas[i].destruida) {
                             int spawn = cajas[i].destruir();
@@ -224,10 +230,12 @@ void Gameloop::chequear_posiciones() {
                                 armaduras_tiradas.push_back(cajas[i].posicion);
                             } else if (spawn == ID_SPAWN_ARMA) {
                                 int id_arma = (rand() % CANT_IDS_ARMAS) + UNO;
-                                armas_tiradas.push_back(InformacionArma(id_arma, cajas[i].posicion));
+                                armas_tiradas.push_back(
+                                        InformacionArma(id_arma, cajas[i].posicion));
                             }
 
-                            std::vector<int> caja_en_mapa = mapa.posicion_en_mapa(cajas[i].posicion);
+                            std::vector<int> caja_en_mapa =
+                                    mapa.posicion_en_mapa(cajas[i].posicion);
                             mapa.mapa[caja_en_mapa[UNO]][caja_en_mapa[CERO]] = CERO;
                         }
 
@@ -252,9 +260,9 @@ void Gameloop::loop_juego() {
         control_balas();
         comando_t cmd;
         if (queue.try_pop(cmd)) {
-            if (cmd.accion == KILL_PLAYER){
-                for (size_t i = CERO; i < jugadores.size(); i++){
-                    if (jugadores[i]->id_jugador == cmd.id_cliente){
+            if (cmd.accion == KILL_PLAYER) {
+                for (size_t i = CERO; i < jugadores.size(); i++) {
+                    if (jugadores[i]->id_jugador == cmd.id_cliente) {
                         Pato* auxiliar = jugadores[i];
                         jugadores.erase(jugadores.begin() + i);
                         jugadores_vivos.erase(jugadores_vivos.begin() + i);
@@ -262,16 +270,17 @@ void Gameloop::loop_juego() {
                         delete auxiliar;
                     }
                 }
-            } else{
+            } else {
                 if (jugadores.size() > UNO) {
                     for (Pato* p: jugadores) {
                         if (cmd.id_cliente == p->id_jugador) {
                             p->realizar_accion(cmd.accion, mapa, armas_tiradas, cascos_tirados,
-                                            armaduras_tiradas, puntos_spawn, balas_volando, cajas);
+                                               armaduras_tiradas, puntos_spawn, balas_volando,
+                                               cajas);
                         }
                     }
                 }
-            } 
+            }
         }
     }
 
@@ -384,14 +393,13 @@ void Gameloop::enviar_tablero_rondas() {
     }
 }
 
-void Gameloop::finalizar_juego(){
-    this->juego_activo = false;
-}
+void Gameloop::finalizar_juego() { this->juego_activo = false; }
 
 void Gameloop::run() {
     enviar_estado_juego(true);
     while (juego_activo) {
-        if (fin_partida()) break;
+        if (fin_partida())
+            break;
         jugar_ronda();
         rondas_jugadas += UNO;
         if ((rondas_jugadas % CINCO) == CERO) {
@@ -432,7 +440,7 @@ Gameloop::~Gameloop() {
             delete jugadores[i];
         }
     }
-    
+
     puntos_spawn.clear();
     armas_tiradas.clear();
     jugadores.clear();

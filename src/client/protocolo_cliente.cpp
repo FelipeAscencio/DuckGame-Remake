@@ -78,31 +78,33 @@ static std::map<char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA},
 
 ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt), id_cliente(MENOS_UNO) {}
 
-bool ProtocoloCliente::recibir_mensaje_bienvenida(std::string& msj){
+bool ProtocoloCliente::recibir_mensaje_bienvenida(std::string& msj) {
     uint16_t size;
     bool was_closed = false;
     s.recvall(&size, sizeof(size), &was_closed);
-    if (was_closed) return false;
+    if (was_closed)
+        return false;
     size = ntohs(size);
     std::vector<uint8_t> bytes(size);
     s.recvall(bytes.data(), bytes.size(), &was_closed);
-    if (was_closed) return false;
+    if (was_closed)
+        return false;
     msj.clear();
-    for (uint8_t b: bytes){
+    for (uint8_t b: bytes) {
         msj += (char)b;
     }
 
     return true;
 }
 
-bool ProtocoloCliente::enviar_respuesta(const uint8_t& rta){
+bool ProtocoloCliente::enviar_respuesta(const uint8_t& rta) {
     bool was_closed = false;
     uint8_t aux = rta;
     s.sendall(&aux, sizeof(aux), &was_closed);
     return !was_closed;
 }
 
-bool ProtocoloCliente::recibir_id(){
+bool ProtocoloCliente::recibir_id() {
     bool was_closed = false;
     s.recvall(&id_cliente, sizeof(id_cliente), &was_closed);
     return !was_closed;
@@ -126,12 +128,12 @@ bool ProtocoloCliente::enviar(const char& accion) {
     return !was_closed;
 }
 
-bool ProtocoloCliente::enviar_codigo_partida(const std::string& codigo){
+bool ProtocoloCliente::enviar_codigo_partida(const std::string& codigo) {
     std::vector<uint8_t> bytes;
-    for(char c: codigo){
+    for (char c: codigo) {
         bytes.push_back(toascii(c));
     }
-    
+
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
     return !was_closed;
