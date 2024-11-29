@@ -29,7 +29,8 @@
 #define POS_PRIMER_ELEMENTO 0
 #define CONSTANTE_CASTEO_LINEA 0x30
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 Client::Client(const char* hostname, const char* servicio):
         cola_enviador(),

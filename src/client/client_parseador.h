@@ -7,7 +7,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 // La clase 'Parseador' se encarga de obtener
 // y agrupar todos los 'sprites' a utilizar.
@@ -28,7 +29,7 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Parseador();
+    Parseador();
 
     // Devuelve los 'sprites' de movimiento del 'pato blanco'.
     std::vector<SDL_Rect> obtener_sprites_pato();

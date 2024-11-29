@@ -9,7 +9,8 @@
 
 #include "../common/queue.h"
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 // La clase 'Controlador' implementa la logica
 // del control de los eventos del 'Cliente'.

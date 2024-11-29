@@ -54,9 +54,9 @@ bool Aceptador::loop_ingreso_partida_usuario(Socket& peer) {
         }
 
         codigo = std::accumulate(bytes.begin(), bytes.end(), std::string(),
-                         [](const std::string& acc, uint8_t c) {
-                             return acc + std::to_string(c - CONSTANTE_CASTEO_CODIGO);
-                         });
+                                 [](const std::string& acc, uint8_t c) {
+                                     return acc + std::to_string(c - CONSTANTE_CASTEO_CODIGO);
+                                 });
 
         bool partida_existente = false;
         size_t i = CERO;
@@ -69,7 +69,7 @@ bool Aceptador::loop_ingreso_partida_usuario(Socket& peer) {
             i++;
         }
 
-        
+
         int valor_dummy = ID_INGRESO_INVALIDO;
         peer.sendall(&valor_dummy, sizeof(valor_dummy), &was_closed);
         if (was_closed) {

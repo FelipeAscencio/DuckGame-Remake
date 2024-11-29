@@ -20,7 +20,8 @@
 #define COMANDO_CHEAT_RECARGAR 'R'
 #define COMANDO_CHEAT_RONDAS 'Z'
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 Controlador::Controlador(Queue<char>& cola_enviador): cola_eventos(cola_enviador) {}
 

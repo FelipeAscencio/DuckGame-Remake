@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"

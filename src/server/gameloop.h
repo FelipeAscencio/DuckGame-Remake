@@ -4,8 +4,9 @@
 
 #include <algorithm>
 #include <atomic>
-#include <vector>
 #include <numeric>
+#include <vector>
+
 #include <time.h>
 
 #include "../common/comando.h"

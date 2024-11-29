@@ -11,7 +11,8 @@
 #include "../common/thread.h"
 #include "server/protocol.h"
 
-using namespace ServerProtocol;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace ServerProtocol;  // NOLINT(build/namespaces)
 
 // La clase 'Recibidor' se encarga de recibir los
 // comandos de los 'Clientes'.

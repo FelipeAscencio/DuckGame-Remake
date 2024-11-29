@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <string>
 #include <thread>
 #include <vector>
 
@@ -24,7 +25,8 @@
 #define MSJ_PARTIDA_LLENA \
     "La partida esta llena, no se puede inicializar el cliente en este momento"
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 // 'Struct' utilizado para encapsular el error de la partida llena.
 struct ErrorPartidaLlena: public std::runtime_error {

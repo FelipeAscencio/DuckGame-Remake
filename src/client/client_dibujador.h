@@ -2,8 +2,10 @@
 #ifndef CLIENT_DIBUJADOR_H
 #define CLIENT_DIBUJADOR_H
 
+#include <algorithm>
 #include <string>
 #include <thread>
+#include <utility>
 #include <vector>
 
 #include <SDL2/SDL.h>
@@ -16,7 +18,8 @@
 
 #include "client_parseador.h"
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 // La clase 'Dibujador' implementa la logica
 // del dibujo de la partida para el 'Cliente'.

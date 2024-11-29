@@ -4,8 +4,10 @@
 
 #include <iostream>
 #include <map>
+#include <numeric>
+#include <string>
 #include <vector>
-#include <numeric> 
+
 #include <netinet/in.h>
 
 #include "../common/comando.h"

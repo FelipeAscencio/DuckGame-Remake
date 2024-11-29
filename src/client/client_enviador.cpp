@@ -13,8 +13,9 @@ void EnviadorCliente::run() {
             if (accion == COMANDO_EXIT) {
                 this->vivo = false;
                 break;
-            } else if (!protocolo.enviar(accion))
+            } else if (!protocolo.enviar(accion)) {
                 break;
+            }
         } catch (const ClosedQueue& error) {
             std::cerr << error.what() << std::endl;
         }

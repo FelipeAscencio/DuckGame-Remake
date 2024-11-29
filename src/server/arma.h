@@ -42,9 +42,6 @@ protected:
     // segun la direccion
     posicion_t ajustar_posicion_disparo(const orientacion_e& direccion);
 
-    // Verifica si el arma puede ser agarrada nuevamente.
-    bool puede_agarrarse();
-
     // Realiza el chequeo de avance de las balas
     virtual void control_atributos(Mapa& mapa);
 
@@ -62,26 +59,11 @@ public:
     // Realiza el chequeo de rango y paredes para cada una de las balas disparadas
     void chequeo_balas(Mapa& mapa);
 
-    // Marca el arma como "agarrada" por un jugador.
-    void agarrar();
-
-    // Marca el arma como "soltada" y la libera del estado de "agarrada".
-    void soltar();
-
     // Indica si el arma tiene retroceso.
     bool tiene_retroceso();
 
-    // Devuelve el alcance maximo del arma.
-    int obtener_alcance();
-
     // Retorna el numero de municiones restantes en el arma.
     int municiones_restantes();
-
-    // Verifica si el arma esta actualmente en uso.
-    bool en_uso();
-
-    // Devuelve la posicion inicial del arma al momento de su aparicion.
-    posicion_t obtener_posicion_inicial();
 
     // Devuelve el 'id' del Arma.
     int obtener_id() const { return id_arma; }

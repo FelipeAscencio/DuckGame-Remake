@@ -12,7 +12,8 @@
 #include "../common/thread.h"
 #include "server/protocol.h"
 
-using namespace ServerProtocol;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace ServerProtocol;  // NOLINT(build/namespaces)
 
 // La clase 'Enviador' se encarga de enviar los
 // estados del juego a los 'Clientes'.

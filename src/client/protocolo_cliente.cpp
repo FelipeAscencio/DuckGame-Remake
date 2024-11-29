@@ -90,10 +90,9 @@ bool ProtocoloCliente::recibir_mensaje_bienvenida(std::string& msj) {
     if (was_closed)
         return false;
     msj.clear();
-    msj = std::accumulate(bytes.begin(), bytes.end(), msj,
-                      [](const std::string& acc, uint8_t b) {
-                          return acc + static_cast<char>(b);
-                      });
+    msj = std::accumulate(bytes.begin(), bytes.end(), msj, [](const std::string& acc, uint8_t b) {
+        return acc + static_cast<char>(b);
+    });
 
     return true;
 }

@@ -70,9 +70,10 @@ bool Gameloop::hay_ganador() {
         return false;
 
     size_t vivos = jugadores.size();
-    vivos = std::accumulate(jugadores_vivos.begin(), jugadores_vivos.end(), vivos, [](int acc, const auto& pato) {
-        return pato ? acc : acc - UNO;  // Si pato es nulo, resta UNO de 'vivos'.
-    });
+    vivos = std::accumulate(
+            jugadores_vivos.begin(), jugadores_vivos.end(), vivos, [](int acc, const auto& pato) {
+                return pato ? acc : acc - UNO;  // Si pato es nulo, resta UNO de 'vivos'.
+            });
 
     return vivos == UNO;
 }

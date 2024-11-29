@@ -16,26 +16,11 @@ Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, co
         agarrada(false),
         soltada(false) {}
 
-void Arma::agarrar() { this->agarrada = true; }
-
 void Arma::recargar() { this->municiones = municiones_iniciales; }
-
-void Arma::soltar() {
-    this->agarrada = false;
-    this->soltada = true;
-}
-
-bool Arma::puede_agarrarse() { return !this->soltada; }
 
 bool Arma::tiene_retroceso() { return this->retroceso; }
 
-int Arma::obtener_alcance() { return this->alcance; }
-
-posicion_t Arma::obtener_posicion_inicial() { return posicion_spawn; }
-
 int Arma::municiones_restantes() { return this->municiones; }
-
-bool Arma::en_uso() { return this->agarrada; }
 
 void Arma::eliminar_bala(const int& indice) {
     balas.erase(balas.begin() + indice);
@@ -60,9 +45,9 @@ void Arma::chequeo_balas(Mapa& mapa) {
                 no_borre_ninguno = false;
                 break;
             } else {
-                if (balas[i].avanzar(mapa))
+                if (balas[i].avanzar(mapa)) {
                     i++;
-                else {
+                } else {
                     eliminar_bala(i);
                     no_borre_ninguno = false;
                     break;

@@ -8,7 +8,8 @@
 PewPewLaser::PewPewLaser(posicion_t posicion_inicial):
         Arma(ID_PP_LASER, PEW_PEW_LASER, ConfigJuego::ALCANCE_MINIMO_PP_LASER,
              ConfigJuego::MUNICIONES_PP_LASER, false, posicion_inicial),
-        alcance_maximo(ConfigJuego::ALCANCE_MAXIMO_PP_LASER), iteraciones_desde_disparo(CERO) {}
+        alcance_maximo(ConfigJuego::ALCANCE_MAXIMO_PP_LASER),
+        iteraciones_desde_disparo(CERO) {}
 
 inclinacion_e obtener_inclinacion(const int& bala) {
     if (bala == CERO)

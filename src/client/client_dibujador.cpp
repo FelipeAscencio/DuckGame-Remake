@@ -111,7 +111,8 @@
 // depende del dibujador, sino del mapa actual.
 float OFFSET_GENERAL_Y;  // '0.06' para el 'mapa 1' y '0.05' para el 'mapa 2'.
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 Dibujador::Dibujador(Renderer& renderer, const int id, Queue<EstadoJuego>& cola_recibidor):
         id_jugador(id),
@@ -145,7 +146,11 @@ Dibujador::Dibujador(Renderer& renderer, const int id, Queue<EstadoJuego>& cola_
         sonido_pistola(Mix_LoadWAV((DATA_PATH SONIDO_PISTOLA))),
         sonido_escopeta(Mix_LoadWAV((DATA_PATH SONIDO_ESCOPETA))),
         sonido_sniper(Mix_LoadWAV((DATA_PATH SONIDO_SNIPER))),
-        sonido_quack(Mix_LoadWAV((DATA_PATH SONIDO_QUACK))), x_min(ANCHO_VENTANA), y_min(ALTO_VENTANA), x_max(CERO), y_max(CERO) {}
+        sonido_quack(Mix_LoadWAV((DATA_PATH SONIDO_QUACK))),
+        x_min(ANCHO_VENTANA),
+        y_min(ALTO_VENTANA),
+        x_max(CERO),
+        y_max(CERO) {}
 
 std::pair<float, float> Dibujador::convertir_a_relativo(float& x, float& y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
@@ -351,8 +356,9 @@ void Dibujador::dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y,
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, const float& x_relativo, const float& y_relativo,
-                                  orientacion_e& orientacion, estado_pato_e& estado) {
+void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, const float& x_relativo,
+                                  const float& y_relativo, orientacion_e& orientacion,
+                                  estado_pato_e& estado) {
     float offset_y = (y_relativo * OFFSET_GENERAL_Y) + OFFSET_Y_SNIPER;
     if (estado == ESTADO_AGACHADO) {
         if (orientacion == DERECHA) {
@@ -402,9 +408,9 @@ void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, flo
     }
 }
 
-void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, const float& x_relativo,
-                                   const float& y_relativo, orientacion_e orientacion,
-                                   estado_pato_e& estado) {
+void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala,
+                                   const float& x_relativo, const float& y_relativo,
+                                   orientacion_e orientacion, estado_pato_e& estado) {
     if (orientacion == ARRIBA) {
         orientacion = DERECHA;
     }
@@ -726,15 +732,12 @@ void Dibujador::verificar_valores_zoom() {
     float ancho_deseado = alto_actual * relacion_aspecto;
     float alto_deseado = ancho_actual / relacion_aspecto;
 
-    // Si el ancho actual es mayor al deseado, ajustamos el alto.
+    // Si el ancho actual es mayor al deseado, ajustamos el alto o viceversa.
     if (ancho_actual > ancho_deseado) {
         int ajuste = (alto_actual - static_cast<int>(ancho_actual / relacion_aspecto)) / DOS;
         this->y_min += ajuste;
         this->y_max -= ajuste;
-    }
-
-    // Si el alto actual es mayor al deseado, ajustamos el ancho.
-    else if (alto_actual > alto_deseado) {
+    } else if (alto_actual > alto_deseado) {
         int ajuste = (ancho_actual - static_cast<int>(alto_actual * relacion_aspecto)) / DOS;
         this->x_min += ajuste;
         this->x_max -= ajuste;

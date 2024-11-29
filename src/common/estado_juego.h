@@ -128,7 +128,7 @@ struct EstadoJuego {
     std::vector<InformacionCaja> info_cajas;
 
     // Primer constructor del struct.
-    explicit EstadoJuego():
+    EstadoJuego():
             cantidad_jugadores(CERO),
             cantidad_armas(CERO),
             cantidad_balas(CERO),

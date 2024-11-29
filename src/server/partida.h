@@ -4,8 +4,10 @@
 
 #include <atomic>
 #include <iostream>
+#include <list>
 #include <mutex>
 #include <string>
+#include <utility>
 
 #include "../common/comando.h"
 #include "../common/queue.h"

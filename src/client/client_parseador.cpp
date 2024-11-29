@@ -49,7 +49,8 @@
 #define INICIO_ARMADURA_LOOT_X 585
 #define INICIO_ARMADURA_LOOT_Y 289
 
-using namespace SDL2pp;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace SDL2pp;  // NOLINT(build/namespaces)
 
 Parseador::Parseador() {}
 

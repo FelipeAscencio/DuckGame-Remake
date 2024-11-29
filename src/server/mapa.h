@@ -37,7 +37,7 @@ private:
 
 public:
     // Constructor de la clase.
-    explicit Mapa();
+    Mapa();
 
     // Convierte una posicion en coordenadas del mapa a unidades de "tiles".
     std::vector<int> posicion_en_mapa(const posicion_t& posicion);

@@ -13,7 +13,8 @@
 
 #define SLEEP_DE_ACEPTACION 100
 
-using namespace ServerProtocol;
+// Suprimimos el reporte en 'CPPLINT' de los 'namespaces'.
+using namespace ServerProtocol;  // NOLINT(build/namespaces)
 
 // DEFINICION DE LAS VARIABLES GLOBALES.
 const char* localhost = "127.0.0.1";
