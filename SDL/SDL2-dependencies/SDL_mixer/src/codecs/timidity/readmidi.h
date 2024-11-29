@@ -13,6 +13,6 @@
 
 #define read_midi_file TIMI_NAMESPACE(read_midi_file)
 
-extern MidiEvent* read_midi_file(MidiSong* song, Sint32* count, Sint32* sp);
+extern MidiEvent *read_midi_file(MidiSong *song, Sint32 *count, Sint32 *sp);
 
 #endif /* TIMIDITY_READMIDI_H */

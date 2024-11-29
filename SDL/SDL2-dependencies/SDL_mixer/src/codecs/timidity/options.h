@@ -12,25 +12,24 @@
 /* When a patch file can't be opened, one of these extensions is
    appended to the filename and the open is tried again.
  */
-#define PATCH_EXT_LIST \
-    { ".pat", 0 }
+#define PATCH_EXT_LIST { ".pat", 0 }
 
 /* Acoustic Grand Piano seems to be the usual default instrument. */
 #define DEFAULT_PROGRAM 0
 
 /* 9 here is MIDI channel 10, which is the standard percussion channel.
-   Some files (notably C:\WINDOWS\CANYON.MID) think that 16 is one too.
+   Some files (notably C:\WINDOWS\CANYON.MID) think that 16 is one too. 
    On the other hand, some files know that 16 is not a drum channel and
    try to play music on it. This is now a runtime option, so this isn't
    a critical choice anymore. */
-#define DEFAULT_DRUMCHANNELS (1 << 9)
+#define DEFAULT_DRUMCHANNELS (1<<9)
 
 /* In percent. */
-#define DEFAULT_AMPLIFICATION 70
+#define DEFAULT_AMPLIFICATION 	70
 
 /* Default polyphony */
 /* #define DEFAULT_VOICES	32 */
-#define DEFAULT_VOICES 256
+#define DEFAULT_VOICES	256
 
 /* 1000 here will give a control ratio of 22:1 with 22 kHz output.
    Higher CONTROLS_PER_SECOND values allow more accurate rendering
@@ -70,7 +69,7 @@
 /* change FRACTION_BITS above, not these */
 #define INTEGER_BITS (32 - FRACTION_BITS)
 #define INTEGER_MASK (0xFFFFFFFF << FRACTION_BITS)
-#define FRACTION_MASK (~INTEGER_MASK)
+#define FRACTION_MASK (~ INTEGER_MASK)
 
 /* This is enforced by some computations that must fit in an int */
 #define MAX_CONTROL_RATIO 255
@@ -84,12 +83,12 @@
 
 /* These affect general volume */
 #define GUARD_BITS 3
-#define AMP_BITS (15 - GUARD_BITS)
+#define AMP_BITS (15-GUARD_BITS)
 
-#define MAX_AMP_VALUE ((1 << (AMP_BITS + 1)) - 1)
+#define MAX_AMP_VALUE ((1<<(AMP_BITS+1))-1)
 
-#define TIM_FSCALE(a, b) (float)((a) * (double)(1 << (b)))
-#define TIM_FSCALENEG(a, b) (float)((a) * (1.0L / (double)(1 << (b))))
+#define TIM_FSCALE(a,b) (float)((a) * (double)(1<<(b)))
+#define TIM_FSCALENEG(a,b) (float)((a) * (1.0L / (double)(1<<(b))))
 
 /* Vibrato and tremolo Choices of the Day */
 #define SWEEP_TUNING 38
