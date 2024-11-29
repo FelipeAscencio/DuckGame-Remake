@@ -2,6 +2,7 @@
 
 #define CERO 0
 #define UNO 1
+#define DIFERENCIA_SPAWN_BALA 3
 
 Arma::Arma(const int& id, const std::string& nombre_arma, const int& alcance, const int& municiones,
            bool tiene_retroceso, posicion_t posicion_inicial):
@@ -75,11 +76,11 @@ posicion_t Arma::ajustar_posicion_disparo(const orientacion_e& direccion){
     float dx = 0;
     float dy = 0;
     if (direccion == DERECHA){
-        dx = CERO_Y_MEDIO;
+        dx = DIFERENCIA_SPAWN_BALA;
     } else if (direccion == IZQUIERDA){
-        dx = -CERO_Y_MEDIO;
+        dx = -DIFERENCIA_SPAWN_BALA;
     } else {
-        dy = -CERO_Y_MEDIO;
+        dy = -DIFERENCIA_SPAWN_BALA;
     }
     return (posicion_t(this->posicion_spawn.coordenada_x + dx, this->posicion_spawn.coordenada_y + dy));
 }
