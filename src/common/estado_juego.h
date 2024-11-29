@@ -75,7 +75,7 @@ struct InformacionBala {
     orientacion_e direccion;
 
     // Primera variante del constructor del struct.
-    explicit InformacionBala(Municion m):
+    explicit InformacionBala(const Municion& m):
             id_arma(m.id_arma),
             pos(m.posicion_actual),
             inclinacion(m.inclinacion),

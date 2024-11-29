@@ -22,7 +22,7 @@ class AK47: public Arma {
 
 public:
     // Constructor de la clase.
-    AK47(posicion_t posicion_inicial);
+    explicit AK47(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;

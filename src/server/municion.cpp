@@ -105,7 +105,6 @@ bool Municion::avanzar(Mapa& mapa) {
 
     bool borde_bloque = mapa.borde_bloque(this->posicion_actual, this->sentido);
     bool techo = mapa.techo_bloque(this->posicion_actual);
-    int lado;
     int inc;
     float dis;
     int arriba_de_todo = posicion_mapa[UNO] == CERO ? CERO : UNO;
@@ -124,6 +123,7 @@ bool Municion::avanzar(Mapa& mapa) {
         this->posicion_actual.coordenada_y -= AVANZAR;
         this->posicion_actual.coordenada_x += AVANZAR * inc * dis;
     } else {
+        int lado;
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
         inc = this->inclinacion == PARA_ARRIBA ? MENOS_UNO : UNO;
         if (borde_bloque &&

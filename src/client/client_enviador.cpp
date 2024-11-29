@@ -7,8 +7,8 @@ EnviadorCliente::EnviadorCliente(ProtocoloCliente& protocol, Queue<char>& queue,
 
 void EnviadorCliente::run() {
     while (this->vivo) {
-        char accion;
         try {
+            char accion;
             accion = cola_comandos.pop();
             if (accion == COMANDO_EXIT) {
                 this->vivo = false;

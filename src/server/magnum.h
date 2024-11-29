@@ -13,7 +13,7 @@
 class Magnum: public Arma {
 public:
     // Constructor de la clase.
-    Magnum(posicion_t posicion_inicial);
+    explicit Magnum(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;

@@ -32,7 +32,7 @@ private:
 
 public:
     // Constructor de la clase.
-    Partida(const std::string& id_partida);
+    explicit Partida(const std::string& id_partida);
 
     // Genera un codigo de partida aleatorio.
     static std::string generar_codigo();

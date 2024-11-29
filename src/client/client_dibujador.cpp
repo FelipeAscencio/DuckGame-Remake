@@ -145,7 +145,7 @@ Dibujador::Dibujador(Renderer& renderer, const int id, Queue<EstadoJuego>& cola_
         sonido_pistola(Mix_LoadWAV((DATA_PATH SONIDO_PISTOLA))),
         sonido_escopeta(Mix_LoadWAV((DATA_PATH SONIDO_ESCOPETA))),
         sonido_sniper(Mix_LoadWAV((DATA_PATH SONIDO_SNIPER))),
-        sonido_quack(Mix_LoadWAV((DATA_PATH SONIDO_QUACK))) {}
+        sonido_quack(Mix_LoadWAV((DATA_PATH SONIDO_QUACK))), x_min(ANCHO_VENTANA), y_min(ALTO_VENTANA), x_max(CERO), y_max(CERO) {}
 
 std::pair<float, float> Dibujador::convertir_a_relativo(float& x, float& y) {
     float x_convertido = static_cast<float>(x) / MAX_COORD_X;
@@ -280,7 +280,7 @@ void Dibujador::dibujar_pato_vivo(SDL2pp::Renderer& renderer, float& escala, int
 }
 
 void Dibujador::dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                                      float& y_relativo, orientacion_e orientacion,
+                                      const float& y_relativo, orientacion_e orientacion,
                                       estado_pato_e& estado) {
     if (orientacion == ARRIBA) {
         orientacion = DERECHA;
@@ -351,7 +351,7 @@ void Dibujador::dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y,
                   SDL2pp::Optional<SDL2pp::Point>(), flip);
 }
 
-void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo, float& y_relativo,
+void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, const float& x_relativo, const float& y_relativo,
                                   orientacion_e& orientacion, estado_pato_e& estado) {
     float offset_y = (y_relativo * OFFSET_GENERAL_Y) + OFFSET_Y_SNIPER;
     if (estado == ESTADO_AGACHADO) {
@@ -367,7 +367,7 @@ void Dibujador::renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo,
 
 void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
                                   float& y_relativo, orientacion_e& orientacion,
-                                  estado_pato_e& estado, int& id_arma) {
+                                  estado_pato_e& estado, const int& id_arma) {
     SDL2pp::Texture* sprite_sheet = nullptr;
     std::vector<SDL_Rect>* sprites = nullptr;
     if (id_arma == ID_PEW_PEW_LASER) {
@@ -402,8 +402,8 @@ void Dibujador::dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, flo
     }
 }
 
-void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                                   float& y_relativo, orientacion_e orientacion,
+void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, const float& x_relativo,
+                                   const float& y_relativo, orientacion_e orientacion,
                                    estado_pato_e& estado) {
     if (orientacion == ARRIBA) {
         orientacion = DERECHA;
@@ -440,10 +440,6 @@ void Dibujador::dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, fl
 
 void Dibujador::reproducir_disparo_ak() {
     Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_ak, CANTIDAD_DE_REPRODUCCIONES);
-}
-
-void Dibujador::reproducir_explosion() {
-    Mix_PlayChannel(CUALQUIER_CANAL_LIBRE, this->sonido_explosion, CANTIDAD_DE_REPRODUCCIONES);
 }
 
 void Dibujador::reproducir_disparo_escopeta() {
@@ -484,7 +480,7 @@ void Dibujador::reproducir_sonido_pato(const int& id_arma, const sonido_e& sonid
     }
 }
 
-void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_patos(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& pato: estado_actual.info_patos) {
         float escala = ESCALA_SPRITES_GRANDES;
         int id = pato.id;
@@ -527,7 +523,7 @@ void Dibujador::dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-SDL2pp::Texture* Dibujador::obtener_sprite_sheet_arma_bala(int& id_arma) {
+SDL2pp::Texture* Dibujador::obtener_sprite_sheet_arma_bala(const int& id_arma) {
     if (id_arma == ID_PEW_PEW_LASER) {
         return &this->sprite_sheet_laser;
     } else if (id_arma == ID_AK) {
@@ -543,7 +539,7 @@ SDL2pp::Texture* Dibujador::obtener_sprite_sheet_arma_bala(int& id_arma) {
     return nullptr;
 }
 
-std::vector<SDL_Rect>* Dibujador::obtener_sprites_arma_bala(int& id_arma) {
+std::vector<SDL_Rect>* Dibujador::obtener_sprites_arma_bala(const int& id_arma) {
     if (id_arma == ID_PEW_PEW_LASER) {
         return &this->sprites_laser;
     } else if (id_arma == ID_AK) {
@@ -571,7 +567,7 @@ int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion) {
     return CERO;
 }
 
-void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_balas(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     int i = CERO;
     for (auto& bala: estado_actual.info_balas) {
         i++;
@@ -598,7 +594,7 @@ void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_armas(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& arma: estado_actual.info_armas) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = arma.posicion.coordenada_x;
@@ -619,7 +615,7 @@ void Dibujador::dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& rend
     }
 }
 
-void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_cascos(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& casco: estado_actual.info_cascos) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = casco.coordenada_x;
@@ -633,7 +629,7 @@ void Dibujador::dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& ren
     }
 }
 
-void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_armaduras(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& armadura: estado_actual.info_armaduras) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = armadura.coordenada_x;
@@ -647,7 +643,7 @@ void Dibujador::dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& 
     }
 }
 
-void Dibujador::dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
+void Dibujador::dibujar_cajas(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
     for (auto& caja: estado_actual.info_cajas) {
         float escala = ESCALA_SPRITES_GRANDES;
         float x = caja.posicion.coordenada_x;

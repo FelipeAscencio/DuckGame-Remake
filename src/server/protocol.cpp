@@ -158,8 +158,15 @@ bool ServerProtocol::Protocol::_enviar(const std::vector<uint8_t>& bytes) {
 bool ServerProtocol::Protocol::enviar(const EstadoJuego& estado_actual) {
     // Envia el 'id' ganador (o el dummy).
     bool envio_correcto = _enviar(serializar_ganador(estado_actual.id_ganador));
-    envio_correcto = _enviar(serializar_cantidades(estado_actual));
+    if (envio_correcto == false){
+        return false;
+    }
 
+    envio_correcto = _enviar(serializar_cantidades(estado_actual));
+    if (envio_correcto == false){
+        return false;
+    }
+    
     // Envia el 'id' del mapa actual.
     envio_correcto = _enviar(serializar_mapa(estado_actual.id_mapa));
 

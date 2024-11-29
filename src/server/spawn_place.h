@@ -27,7 +27,7 @@ private:
 
 public:
     // Constructor de la clase.
-    Spawn(posicion_t posicion);
+    explicit Spawn(posicion_t posicion);
 
     // Spawnea un nuevo 'loot' en la zona de 'Spawn'.
     bool spawnear();

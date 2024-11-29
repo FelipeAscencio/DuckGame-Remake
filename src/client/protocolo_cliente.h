@@ -5,7 +5,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
-
+#include <numeric> 
 #include <netinet/in.h>
 
 #include "../common/comando.h"

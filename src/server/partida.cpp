@@ -50,8 +50,8 @@ void Partida::eliminar_cliente(ThreadUsuario* jugador) {
 std::string Partida::generar_codigo() {
     std::string codigo;
     int i = CERO;
-    int caracter;
     while (i < CANTIDAD_DIGITOS_ID) {
+        int caracter;
         caracter = (rand() % DIEZ);
         codigo += std::to_string(caracter);
         i++;

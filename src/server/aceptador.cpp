@@ -53,30 +53,28 @@ bool Aceptador::loop_ingreso_partida_usuario(Socket& peer) {
             return false;
         }
 
-        for (uint8_t c: bytes) {
-            codigo += std::to_string(c - CONSTANTE_CASTEO_CODIGO);
-        }
+        codigo = std::accumulate(bytes.begin(), bytes.end(), std::string(),
+                         [](const std::string& acc, uint8_t c) {
+                             return acc + std::to_string(c - CONSTANTE_CASTEO_CODIGO);
+                         });
 
         bool partida_existente = false;
         size_t i = CERO;
-        while (i < partidas.size() && !partida_existente) {
+        while (i < partidas.size()) {
             if (partidas[i]->get_codigo() == codigo) {
                 partidas[i]->agregar_jugador(std::move(peer));
-                partida_existente = true;
                 return true;
             }
 
             i++;
         }
 
-        if (!partida_existente) {
-            bool was_closed = false;
-            int valor_dummy = ID_INGRESO_INVALIDO;
-            peer.sendall(&valor_dummy, sizeof(valor_dummy), &was_closed);
-            if (was_closed) {
-                aceptando_jugadores = false;
-                return false;
-            }
+        
+        int valor_dummy = ID_INGRESO_INVALIDO;
+        peer.sendall(&valor_dummy, sizeof(valor_dummy), &was_closed);
+        if (was_closed) {
+            aceptando_jugadores = false;
+            return false;
         }
     }
 }

@@ -17,7 +17,7 @@ private:
 
 public:
     // Constructor de la clase.
-    PewPewLaser(posicion_t posicion_inicial);
+    explicit PewPewLaser(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;

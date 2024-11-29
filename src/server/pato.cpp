@@ -374,9 +374,7 @@ void Pato::control_pre_comando(Mapa& mapa, std::vector<Municion>& balas_volando)
         }
     }
 
-    if (this->sonido != SILENCIO) {
-        this->sonido = SILENCIO;
-    }
+    this->sonido = SILENCIO;
 }
 
 void Pato::recibir_disparo() {
@@ -489,7 +487,8 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas,
         }
     }
     if (pickup) {
-        for (size_t i = CERO; i < spawn.size(); i++) {
+        i = CERO;
+        for (i = CERO; i < spawn.size(); i++) {
             if (this->posicion.igual_para_pickup(spawn[i].posicion)) {
                 spawn[i].liberar();
             }

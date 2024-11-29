@@ -107,9 +107,6 @@ private:
     // Reproduce el sonido del 'disparo de ak'.
     void reproducir_disparo_ak();
 
-    // Reproduce el sonido de la 'explosion'.
-    void reproducir_explosion();
-
     // Reproduce el sonido de la 'disparo de escopeta'.
     void reproducir_disparo_escopeta();
 

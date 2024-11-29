@@ -12,7 +12,7 @@
 class Sniper: public Arma {
 public:
     // Constructor de la clase.
-    Sniper(posicion_t posicion_inicial);
+    explicit Sniper(posicion_t posicion_inicial);
 
     // Sobreescritura del metodo de disparo.
     bool disparar(const orientacion_e& direccion, Mapa& mapa) override;

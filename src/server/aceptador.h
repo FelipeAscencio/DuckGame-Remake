@@ -6,7 +6,8 @@
 #include <list>
 #include <utility>
 #include <vector>
-
+#include <numeric>
+#include <string>
 #include <netinet/in.h>
 #include <syslog.h>
 

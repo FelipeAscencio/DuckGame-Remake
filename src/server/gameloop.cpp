@@ -70,10 +70,9 @@ bool Gameloop::hay_ganador() {
         return false;
 
     size_t vivos = jugadores.size();
-    for (auto pato: jugadores_vivos) {
-        if (!pato)
-            vivos -= UNO;
-    }
+    vivos = std::accumulate(jugadores_vivos.begin(), jugadores_vivos.end(), vivos, [](int acc, const auto& pato) {
+        return pato ? acc : acc - UNO;  // Si pato es nulo, resta UNO de 'vivos'.
+    });
 
     return vivos == UNO;
 }
@@ -214,7 +213,8 @@ void Gameloop::chequear_posiciones() {
             }
         }
 
-        for (size_t i = CERO; i < cajas.size(); i++) {
+        i = CERO;
+        for (i = CERO; i < cajas.size(); i++) {
             if (!cajas[i].destruida) {
 
                 if (mapa.posicion_en_mapa(balas_volando[i].posicion_actual) ==
