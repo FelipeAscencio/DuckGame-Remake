@@ -1,6 +1,5 @@
 #include <exception>
 #include <iostream>
-
 #include <stdbool.h>
 
 #include "client_handler.h"

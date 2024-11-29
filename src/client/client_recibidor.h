@@ -7,7 +7,6 @@
 #include "../common/estado_juego.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
-
 #include "protocolo_cliente.h"
 
 // La clase 'RecibidorCliente' se encarga de mandar los estados que recibe
@@ -29,6 +28,7 @@ public:
     // Cambia el estado del bool vivo del hilo de 'true' a 'false'.
     void stop() override;
 
+    // Devuelve 'true' si el hilo esta vivo, o 'false' en caso contrario.
     bool esta_vivo() { return this->vivo; }
 
     // Deshabilito las copias.

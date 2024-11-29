@@ -1,6 +1,13 @@
 #include "client_handler.h"
 
-#include "../common/liberror.h"
+#define DUCK_GAME_STR "Duck Game"
+#define MUSICA_FONDO "/arcade-song.mp3"
+#define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
+#define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
+#define MSJ_PARTIDA_CREADA_EXITOSA "Partida creada con exito. El id de su partida es: "
+#define MSJ_INGRESE_ID  "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar: "
+#define MSJ_ID_INEXISTENTE "ID de partida inexistente."
+#define INGRESO_INVALIDO "0" // ID de partida invalido, para detectar que no se pudo conectar a una partida.
 
 #define MENOS_UNO -1
 #define CERO 0
@@ -12,14 +19,6 @@
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2
 #define SLEEP 100
-#define DUCK_GAME_STR "Duck Game"
-#define MUSICA_FONDO "/arcade-song.mp3"
-#define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
-#define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
-#define INGRESO_INVALIDO "0" // ID de partida invalido, para detectar que no se pudo conectar a una partida.
-#define MSJ_PARTIDA_CREADA_EXITOSA "Partida creada con exito. El id de su partida es: "
-#define MSJ_INGRESE_ID  "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar: "
-#define MSJ_ID_INEXISTENTE "ID de partida inexistente."
 #define RW_CLOSE 2
 #define ID_DUMMY 0xCC
 #define MIL 1000
@@ -27,6 +26,8 @@
 #define NUEVA_PARTIDA 0x01
 #define PARTIDA_EXISTENTE 0x02
 #define MAX_ID_JUGADOR 7
+#define POS_PRIMER_ELEMENTO 0
+#define CONSTANTE_CASTEO_LINEA 0x30
 
 using namespace SDL2pp;
 
@@ -36,7 +37,7 @@ Client::Client(const char* hostname, const char* servicio):
         jugador_activo(true),
         controlador(cola_enviador),
         socket(hostname, servicio),
-        protocolo(socket), id(-1),
+        protocolo(socket), id(MENOS_UNO),
         enviador(protocolo, cola_enviador, id),
         recibidor(protocolo, cola_recibidor) {}
 
@@ -123,7 +124,7 @@ bool Client::primer_contacto_con_servidor(){
     int respuesta;
     do{
         std::getline(std::cin, linea);
-        respuesta = (int)(linea[0] - 0x30);
+        respuesta = (int)(linea[POS_PRIMER_ELEMENTO] - CONSTANTE_CASTEO_LINEA);
     } while (respuesta != NUEVA_PARTIDA && respuesta != PARTIDA_EXISTENTE);
 
     if (!protocolo.enviar_respuesta(respuesta)){

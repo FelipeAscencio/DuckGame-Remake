@@ -6,19 +6,18 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
 #include "../common/estado_juego.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
-
 #include "client_controlador.h"
 #include "client_dibujador.h"
 #include "client_enviador.h"
 #include "client_recibidor.h"
 #include "protocolo_cliente.h"
+#include "../common/liberror.h"
 
 #define MSJ_PARTIDA_LLENA \
     "La partida esta llena, no se puede inicializar el cliente en este momento"
@@ -46,10 +45,14 @@ private:
     EnviadorCliente enviador;
     RecibidorCliente recibidor;
 
+    // Controla la comunicacion inicial con el servidor para ingresar a una nueva partida creada.
     bool ingresar_nueva_partida();
 
+    // Entabla la comunicacion (y el loop para controlar errores de ID)
+    // para conectarse a una partida ya existente en el servidor.
     bool loop_ingresar_partida_existente();
 
+    // Entabla el primer contacto con el servidor.
     bool primer_contacto_con_servidor();
 
     // Inicia la musica de fondo y devuelve un puntero a la misma.

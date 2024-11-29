@@ -23,6 +23,7 @@
 #define RUTA_LOSE_SCREEN "/losescreen.png"
 #define RUTA_MAPA_1 "/mapa1.png"
 #define RUTA_MAPA_2 "/mapa2.png"
+
 #define ID_MAPA_OVERWORLD 1
 #define ID_MAPA_INFIERNO 2
 #define CUALQUIER_CANAL_LIBRE -1
@@ -571,7 +572,7 @@ int Dibujador::obtener_indice_sprite(inclinacion_e& inclinacion) {
 }
 
 void Dibujador::dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer) {
-    int i = 0;
+    int i = CERO;
     for (auto& bala: estado_actual.info_balas) {
         i++;
         float escala = ESCALA_SPRITES_CHICOS;

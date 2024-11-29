@@ -16,7 +16,6 @@ void RecibidorCliente::run() {
         try {
             cola_estados.try_push(estado_actual);
             if (estado_actual.id_ganador != SEGUIR_JUGANDO) {
-                // this->vivo = false;
                 break;
             }
         } catch (const ClosedQueue& error) {

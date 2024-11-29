@@ -3,7 +3,6 @@
 #define CLIENT_PARSEADOR_H
 
 #include <vector>
-
 #include <SDL2/SDL.h>
 #include <SDL2pp/SDL2pp.hh>
 

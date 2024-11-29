@@ -1,6 +1,6 @@
 #include "client/protocolo_cliente.h"
-#include <netinet/in.h>
 
+#define MENOS_UNO -1
 #define CERO 0
 #define UNO 1
 #define DOS 2
@@ -16,8 +16,8 @@
 #define DOCE 12
 #define TRECE 13
 #define CATORCE 14
-#define BYTE_NULO 0x00
 
+#define BYTE_NULO 0x00
 #define ACCION_DERECHA 0x01
 #define ACCION_IZQUIERDA 0x02
 #define ACCION_AGACHARSE 0x03
@@ -88,7 +88,7 @@ static std::map<char, uint8_t> acciones = {{DERECHA, ACCION_DERECHA},
                                            {CHEAT_CASCO, ACCION_CASCO},
                                            {CHEAT_RONDAS, ACCION_RONDAS}};
 
-ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt), id_cliente(-1) {}
+ProtocoloCliente::ProtocoloCliente(Socket& skt): s(skt), id_cliente(MENOS_UNO) {}
 
 bool ProtocoloCliente::recibir_mensaje_bienvenida(std::string& msj){
     uint16_t size;
@@ -103,6 +103,7 @@ bool ProtocoloCliente::recibir_mensaje_bienvenida(std::string& msj){
     for (uint8_t b: bytes){
         msj += (char)b;
     }
+
     return true;
 }
 
@@ -142,6 +143,7 @@ bool ProtocoloCliente::enviar_codigo_partida(const std::string& codigo){
     for(char c: codigo){
         bytes.push_back(toascii(c));
     }
+    
     bool was_closed = false;
     s.sendall(bytes.data(), bytes.size(), &was_closed);
     return !was_closed;
@@ -262,7 +264,7 @@ bool ProtocoloCliente::recibir(EstadoJuego& estado_actual) {
         s.recvall(&leido, sizeof(leido), &was_closed);
         float x = caja[CERO] + (caja[UNO] / TILE_A_METRO);
         float y = caja[DOS] + (caja[TRES] / TILE_A_METRO);
-        InformacionCaja c(posicion_t(x, y), (damage_e)caja[4]);
+        InformacionCaja c(posicion_t(x, y), (damage_e)caja[CUATRO]);
         estado_actual.agregar_caja(c);
         caja.clear();
         caja.resize(CINCO);
