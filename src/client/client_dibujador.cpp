@@ -9,7 +9,7 @@
 #define RUTA_SPR_PISTOLA "/sprites-pistola.png"
 #define RUTA_SPR_SNIPER "/sprites-sniper.png"
 #define RUTA_FUENTE "/fuente_arcade.ttf"
-#define MSJ_ERROR_TFF "Error al inicializar SDL_ttf: "
+#define MSJ_ERROR_TTF "Error al inicializar SDL_ttf: "
 #define MSJ_ERROR_RENDER_TXT "Error al renderizar texto: "
 #define PUNTAJE_STR "Puntaje: "
 #define SONIDO_AK "/ak.mp3"
@@ -759,7 +759,7 @@ void Dibujador::mostrar_estado_juego(SDL2pp::Renderer& renderer) {
 void Dibujador::dibujar_puntos_tablero(SDL2pp::Renderer& renderer,
                                        const std::vector<int>& puntajes) {
     if (TTF_Init() == MENOS_UNO) {
-        std::cerr << MSJ_ERROR_TFF << TTF_GetError() << std::endl;
+        std::cerr << MSJ_ERROR_TTF << TTF_GetError() << std::endl;
         return;
     }
 

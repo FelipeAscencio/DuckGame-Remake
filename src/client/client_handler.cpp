@@ -18,9 +18,7 @@
 #define FRECUENCIA_HZ 44100
 #define BUFFER_AUDIO 2048
 #define AUDIO_ESTEREO 2
-#define SLEEP 100
 #define RW_CLOSE 2
-#define ID_DUMMY 0xCC
 #define MIL 1000
 #define FPS 30
 #define NUEVA_PARTIDA 0x01

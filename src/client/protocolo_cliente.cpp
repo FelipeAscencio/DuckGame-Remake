@@ -37,18 +37,6 @@
 #define ACCION_CASCO 0x28
 #define ACCION_RONDAS 0x29
 
-#define CODIGO_PATO 0x05
-#define CODIGO_ARMA 0x06
-#define CODIGO_BALA 0x07
-#define CODIGO_ARMADURA 0x08
-#define CODIGO_CASCO 0x09
-#define CODIGO_CAJA 0x0A
-#define CODIGO_CANTIDADES 0x0B
-#define FIN_MENSAJE 0xFE
-#define FIN_COMUNICACION 0xFF
-
-#define ID_DUMMY 0xCC
-
 #define DERECHA 'D'
 #define IZQUIERDA 'A'
 #define ARRIBA 'W'

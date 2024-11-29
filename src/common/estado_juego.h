@@ -14,7 +14,6 @@
 #include "common/estado_fisico.h"
 #include "common/orientacion.h"
 #include "common/posicion.h"
-
 #include "informacion_arma.h"
 
 #define CERO 0
@@ -136,8 +135,8 @@ struct EstadoJuego {
             cantidad_cascos(CERO),
             cantidad_cajas(CERO),
             id_ganador(ID_GANADOR),
-            id_mapa(0),
-            rondas_jugadas(0),
+            id_mapa(CERO),
+            rondas_jugadas(CERO),
             ingame(false) {}
 
     // Segundo constructor del struct.
@@ -150,7 +149,7 @@ struct EstadoJuego {
             cantidad_cajas(CERO),
             id_ganador(ID_GANADOR),
             id_mapa(mapa),
-            rondas_jugadas(0),
+            rondas_jugadas(CERO),
             ingame(false) {}
 
     // Verifica la existencia de la id recibida por parametro.

@@ -5,7 +5,6 @@
 #include <iostream>
 
 #include "../server/arma.h"
-
 #include "posicion.h"
 
 // 'Struct' que encapsula la informacion de todas las armas del juego.

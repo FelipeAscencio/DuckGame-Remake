@@ -5,7 +5,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
 #include <math.h>
 
 #define CERO 0
@@ -16,6 +15,7 @@
 #define TILE_A_METRO 10
 #define ID_SHOTGUN 4
 #define ID_PP_LASER 1
+#define HIT_BOX_CAJA 1
 
 // 'Struct' que define la posicion en relacion al eje 'X' e 'Y' de una entidad.
 typedef struct Posicion {
@@ -62,11 +62,13 @@ typedef struct Posicion {
         return resultado;
     }
 
+    // Se fija si una bala choca contra una caja, devuelve 'true' en caso de colision o 'false' en caso contrario.
     bool hit_caja(const Posicion& otra, const int& id){
-        int hit_box_x = 1;
+        int hit_box_x = HIT_BOX_CAJA;
         if (id == ID_SHOTGUN || id == ID_PP_LASER){
             hit_box_x = TILE_A_METRO;
         }
+        
         float dx = abs(this->coordenada_x - otra.coordenada_x);
         float dy = abs(this->coordenada_y - otra.coordenada_y);
         bool resultado = (dx < hit_box_x && dy < (TILE_A_METRO));
