@@ -1,7 +1,6 @@
 target_sources(taller_common
     PRIVATE
     # .cpp files
-    foo.cpp
     liberror.cpp
     resolver.cpp
     resolvererror.cpp
@@ -11,7 +10,6 @@ target_sources(taller_common
     comando.h
     estado_fisico.h
     estado_juego.h
-    foo.h
     liberror.h
     orientacion.h
     posicion.h

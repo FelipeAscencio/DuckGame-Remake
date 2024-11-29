@@ -145,7 +145,11 @@ if(TALLER_TESTS)
 
    # target for testing
    # HEY!! TODO XXX: Change the name of the executable to the one you like!
-   add_executable(taller_tests)
+   add_executable(taller_tests
+	tests/tests_protocolo.cpp
+	client/protocolo_cliente.cpp
+	server/protocol.cpp
+)
 
    # HEY!! TODO XXX: I'm assuming that the code under testing is in taller_common
    # Change this if you have to.
