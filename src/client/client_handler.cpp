@@ -2,8 +2,9 @@
 
 #include "../common/liberror.h"
 
-#define CERO 0
 #define MENOS_UNO -1
+#define CERO 0
+#define CANT_NUMEROS_PARTIDA 6
 #define ANCHO_MIN 960
 #define ALTO_MIN 720
 #define VOLUMEN_MUSICA 2  // '2' Recomendado.
@@ -15,12 +16,17 @@
 #define MUSICA_FONDO "/arcade-song.mp3"
 #define ERROR_INICIAR_MIX "Error al inicializar SDL_mixer: "
 #define ERROR_CARGAR_MUSICA "Error al cargar la musica de fondo: "
+#define INGRESO_INVALIDO "0" // ID de partida invalido, para detectar que no se pudo conectar a una partida.
+#define MSJ_PARTIDA_CREADA_EXITOSA "Partida creada con exito. El id de su partida es: "
+#define MSJ_INGRESE_ID  "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar: "
+#define MSJ_ID_INEXISTENTE "ID de partida inexistente."
 #define RW_CLOSE 2
 #define ID_DUMMY 0xCC
 #define MIL 1000
 #define FPS 30
 #define NUEVA_PARTIDA 0x01
 #define PARTIDA_EXISTENTE 0x02
+#define MAX_ID_JUGADOR 7
 
 using namespace SDL2pp;
 
@@ -67,10 +73,51 @@ void Client::finalizar_hilos() {
     recibidor.join();
 }
 
+bool Client::ingresar_nueva_partida(){
+    std::string codigo_partida;
+    if (!protocolo.recibir_mensaje_bienvenida(codigo_partida)){
+        return false;
+    }
+
+    std::cout << MSJ_PARTIDA_CREADA_EXITOSA << codigo_partida << std::endl;
+    if (!protocolo.recibir_id()){
+        return false;
+    }
+
+    this->id = protocolo.id_cliente;
+    return true;
+}
+
+bool Client::loop_ingresar_partida_existente(){
+    do {
+        std::string linea;
+        std::cout << MSJ_INGRESE_ID << std::endl;
+        std::getline(std::cin, linea);
+        if (linea.size() == CANT_NUMEROS_PARTIDA){
+            if (!protocolo.enviar_codigo_partida(linea)){
+                return false;
+            }
+        
+            if (!protocolo.recibir_id()){
+                return false;
+            }
+
+            this->id = protocolo.id_cliente;
+            if (this->id <= MAX_ID_JUGADOR){
+                return true;
+            }
+
+            std::cout << MSJ_ID_INEXISTENTE << std::endl;
+        }
+    } while (true);
+}
+
 bool Client::primer_contacto_con_servidor(){
     std::string bienvenida;
-    if (!protocolo.recibir_mensaje_bienvenida(bienvenida))
+    if (!protocolo.recibir_mensaje_bienvenida(bienvenida)){
         return false;
+    }
+
     std::cout << bienvenida << std::endl;
     std::string linea;
     int respuesta;
@@ -79,32 +126,21 @@ bool Client::primer_contacto_con_servidor(){
         respuesta = (int)(linea[0] - 0x30);
     } while (respuesta != NUEVA_PARTIDA && respuesta != PARTIDA_EXISTENTE);
 
-    if (!protocolo.enviar_respuesta(respuesta))
+    if (!protocolo.enviar_respuesta(respuesta)){
         return false;
-    if (respuesta == NUEVA_PARTIDA){
-        std::string codigo_partida;
-        if (!protocolo.recibir_mensaje_bienvenida(codigo_partida))
-            return false;
-        std::cout << "Partida creada con exito. El id de su partida es: " << codigo_partida << std::endl;
-    } else {
-        do {
-            std::cout << "Ingrese por favor el ID de 6 numeros de la partida a la que se quiere conectar:\n";
-            std::getline(std::cin, linea);
-        } while (linea.size() != 6);
-        
-        if (!protocolo.enviar_codigo_partida(linea))
-            return false;
-
     }
-    if (!protocolo.recibir_id())
-        return false;
-    this->id = protocolo.id_cliente;
-    return true;
+
+    if (respuesta == NUEVA_PARTIDA){
+        return ingresar_nueva_partida();
+    } else {
+        return loop_ingresar_partida_existente();
+    }
 }
 
 void Client::controlar_loop_juego() {
-    if (!primer_contacto_con_servidor())
+    if (!primer_contacto_con_servidor()){
         return;
+    }
 
     Mix_Music* musica_fondo = iniciar_musica();
     SDL sdl(SDL_INIT_VIDEO);
@@ -116,9 +152,7 @@ void Client::controlar_loop_juego() {
     while (this->jugador_activo && this->recibidor.esta_vivo()) {
         auto t1 = std::chrono::steady_clock::now();
         unsigned long frame_count = CERO;
-
         int ms_per_frame = MIL/FPS;
-    
         controlador.manejar_eventos(this->jugador_activo);
         if (dibujador) {
             dibujador->renderizar(renderer, this->jugador_activo);
@@ -126,7 +160,6 @@ void Client::controlar_loop_juego() {
 
         auto t2 = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-
         if (elapsed < ms_per_frame) {
             std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
         }

@@ -46,6 +46,10 @@ private:
     EnviadorCliente enviador;
     RecibidorCliente recibidor;
 
+    bool ingresar_nueva_partida();
+
+    bool loop_ingresar_partida_existente();
+
     bool primer_contacto_con_servidor();
 
     // Inicia la musica de fondo y devuelve un puntero a la misma.

@@ -31,6 +31,10 @@ private:
 
     bool recibir_respuesta_cliente(uint8_t& rta, Socket& s);
 
+    void crear_nueva_partida(Socket& peer);
+
+    bool loop_ingreso_partida_usuario(Socket& peer);
+
 public:
     // Constructor de la clase.
     explicit Aceptador(const char* servname, std::vector<Partida*>& partidas);
