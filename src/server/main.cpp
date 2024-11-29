@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include "server/server.h"
-
 #include "config_juego.h"
 
 #define RUTA_ARCHIVO_YAML "../config_juego.yaml"

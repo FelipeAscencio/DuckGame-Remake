@@ -7,6 +7,7 @@
 #include <mutex>
 #include <utility>
 
+#include "config_juego.h"
 #include "../common/posicion.h"
 
 // La clase 'Spawn' implementa la logica de los Spawn Places.

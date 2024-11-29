@@ -1,9 +1,5 @@
 #include "magnum.h"
 
-#include <iostream>
-
-#include "config_juego.h"
-
 #define MAGNUM "Magnum"
 
 #define CERO 0

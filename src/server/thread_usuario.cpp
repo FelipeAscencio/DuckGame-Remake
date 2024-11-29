@@ -1,11 +1,5 @@
 #include "server/thread_usuario.h"
 
-#include <utility>
-
-#include <syslog.h>
-
-#include "../common/liberror.h"
-
 #define RW_CLOSE 2
 
 ThreadUsuario::ThreadUsuario(Socket&& s, Queue<comando_t>& queue_comandos, int id):

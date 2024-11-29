@@ -1,17 +1,5 @@
 #include "server/gameloop.h"
 
-#include <algorithm>
-
-#include <time.h>
-
-#include "ak47.h"
-#include "config_juego.h"
-#include "magnum.h"
-#include "p_p_laser.h"
-#include "shotgun.h"
-#include "sniper.h"
-#include "spawn_place.h"
-
 #define MENOS_UNO -1
 #define CERO 0
 #define UNO 1
@@ -19,11 +7,8 @@
 #define TRES 3
 #define CINCO 5
 #define DIEZ 10
-#define CIEN 100
 #define MIL 1000
-
 #define INGAME 1
-#define CADA_5_RONDAS 2
 #define GANADOR 3
 #define CANTIDAD_ITERACIONES_TABLERO 70
 #define CANT_IDS_ARMAS 5
@@ -31,8 +16,6 @@
 #define ID_SPAWN_ARMADURA 2
 #define ID_SPAWN_ARMA 3
 #define KILL_PLAYER 0x66
-
-#define VALOR_ENTRE_RONDAS 0xFC
 
 Gameloop::Gameloop(Queue<comando_t>& q, ListaQueues& l):
         queue(q), juego_activo(true), queues_clientes(l), mapa(), rondas_jugadas(CERO), ultimo_id_agregado(CERO) {
@@ -65,7 +48,7 @@ void Gameloop::chequear_nuevos_jugadores() {
 
 void Gameloop::chequear_jugadores_desconectados(){
     size_t cantidad_jugadores = jugadores.size();
-    for(size_t i = 0; i < cantidad_jugadores; i++){
+    for(size_t i = CERO; i < cantidad_jugadores; i++){
         int id = jugadores[i]->id_jugador;
         if (!queues_clientes.encontrar_cliente(id)){
             Pato* pato = jugadores[i];
@@ -261,7 +244,6 @@ void Gameloop::chequear_posiciones() {
 
 void Gameloop::loop_juego() {
     chequear_nuevos_jugadores();
-    // chequear_jugadores_desconectados();
     if (!jugadores.empty()) {
         chequear_posiciones();
         actualizar_estado_jugadores();
@@ -271,7 +253,7 @@ void Gameloop::loop_juego() {
         comando_t cmd;
         if (queue.try_pop(cmd)) {
             if (cmd.accion == KILL_PLAYER){
-                for (size_t i = 0; i < jugadores.size(); i++){
+                for (size_t i = CERO; i < jugadores.size(); i++){
                     if (jugadores[i]->id_jugador == cmd.id_cliente){
                         Pato* auxiliar = jugadores[i];
                         jugadores.erase(jugadores.begin() + i);
@@ -335,6 +317,7 @@ bool Gameloop::fin_partida() {
 
     if (maximas_ganadas < DIEZ)
         ganador_unico = false;
+
     return ganador_unico;
 }
 
@@ -352,13 +335,10 @@ void Gameloop::jugar_ronda() {
     while (!hay_ganador() && juego_activo) {
         auto t1 = std::chrono::steady_clock::now();
         unsigned long frame_count = CERO;
-
         int ms_per_frame = MIL / ConfigJuego::FPS;
         loop_juego();
-
         auto t2 = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-
         if (elapsed < ms_per_frame) {
             std::this_thread::sleep_for(std::chrono::milliseconds(ms_per_frame - elapsed));
         }
@@ -424,6 +404,7 @@ void Gameloop::run() {
     }
     if (juego_activo)
         enviar_estado_juego(false);
+
     this->juego_activo = false;
 }
 
@@ -451,6 +432,7 @@ Gameloop::~Gameloop() {
             delete jugadores[i];
         }
     }
+    
     puntos_spawn.clear();
     armas_tiradas.clear();
     jugadores.clear();

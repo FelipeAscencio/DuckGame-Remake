@@ -7,6 +7,7 @@
 #include <mutex>
 #include <string>
 #include <utility>
+#include <syslog.h>
 
 #include "../common/estado_juego.h"
 #include "../common/queue.h"
@@ -34,6 +35,7 @@ public:
     // Elimina la cola asociada a un cliente usando su ID.
     void eliminar_queue(int id_cliente);
 
+    // Encuentra un cliente en base a un 'ID'.
     bool encontrar_cliente(const int& id);
 
     // Deshabilito las copias.

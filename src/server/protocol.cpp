@@ -1,9 +1,5 @@
 #include "server/protocol.h"
 
-#include <vector>
-
-#include <netinet/in.h>
-
 #define CODIGO_PATO 0x05
 #define CODIGO_ARMA 0x06
 #define CODIGO_BALA 0x07
@@ -19,22 +15,8 @@
 #define FIN_COMUNICACION 0xFF
 
 #define MOVER_DERECHA 1
-#define MOVER_IZQUIERDA 2
-#define AGACHARSE 3
-#define MIRAR_HACIA_ARRIBA 4
-#define SALTAR_O_ALETEAR 5
-#define DISPARAR 6
-#define AGARRAR 7
 #define CUAK 8
 #define CHEAT_AK 32
-#define CHEAT_SG 33
-#define CHEAT_MAGNUM 34
-#define CHEAT_LASER 35
-#define CHEAT_SNIPER 36
-#define CHEAT_INMORTALIDAD 37
-#define CHEAT_RECARGAR 38
-#define CHEAT_ARMADURA 39
-#define CHEAT_CASCO 40
 #define CHEAT_RONDAS 41
 
 #define PRIMERA_POSICION 0

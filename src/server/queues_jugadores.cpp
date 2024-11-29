@@ -1,7 +1,5 @@
 #include "queues_jugadores.h"
 
-#include <syslog.h>
-
 ListaQueues::ListaQueues() {}
 
 void ListaQueues::broadcast(const EstadoJuego& estado_actual) {
@@ -32,6 +30,7 @@ bool ListaQueues::encontrar_cliente(const int& id){
             cliente_encontrado = true;
         i++;
     }
+    
     return cliente_encontrado;
 }
 

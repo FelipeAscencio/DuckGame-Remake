@@ -73,8 +73,8 @@ void Arma::chequeo_balas(Mapa& mapa) {
 }
 
 posicion_t Arma::ajustar_posicion_disparo(const orientacion_e& direccion){
-    float dx = 0;
-    float dy = 0;
+    float dx = CERO;
+    float dy = CERO;
     if (direccion == DERECHA){
         dx = DIFERENCIA_SPAWN_BALA;
     } else if (direccion == IZQUIERDA){

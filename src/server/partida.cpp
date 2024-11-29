@@ -1,13 +1,15 @@
 #include "partida.h"
-#include <string>
 
-#define ASCII_0 0x30
-#define ASCII_9 0x30
-#define MAX_PLAYERS 8
+#define MSJ_PARTIDA_CREADA "Partida creada con id: "
+
 #define DUMMY 0xCC
+#define MAX_PLAYERS 8
+#define CERO 0
+#define CANTIDAD_DIGITOS_ID 6
+#define DIEZ 10
 
-Partida::Partida(const std::string& id): id_partida(id), clientes(), queue(), juego(queue, clientes), ultimo_cliente_agregado(0){
-    std::cout << "Partida creada con id: " << this->id_partida << std::endl;
+Partida::Partida(const std::string& id): id_partida(id), clientes(), queue(), juego(queue, clientes), ultimo_cliente_agregado(CERO){
+    std::cout << MSJ_PARTIDA_CREADA << this->id_partida << std::endl;
     juego.start();
 }
 
@@ -19,13 +21,16 @@ void Partida::agregar_jugador(Socket&& peer){
         if (was_closed){
             terminar_partida();
         }
+
         return;
     }
+
     peer.sendall(&ultimo_cliente_agregado, sizeof(ultimo_cliente_agregado), &was_closed);
     if (was_closed){
         terminar_partida();
         return;
     }
+
     ThreadUsuario* jugador = new ThreadUsuario(std::move(peer), queue, ultimo_cliente_agregado);
     clientes.agregar_queue(jugador->obtener_queue(), ultimo_cliente_agregado);
     ultimo_cliente_agregado++; 
@@ -43,13 +48,14 @@ void Partida::eliminar_cliente(ThreadUsuario* jugador) {
 
 std::string Partida::generar_codigo(){
     std::string codigo;
-    int i = 0;
+    int i = CERO;
     int caracter;
-    while (i < 6){
-        caracter = (rand()%10);
+    while (i < CANTIDAD_DIGITOS_ID){
+        caracter = (rand()%DIEZ);
         codigo += std::to_string(caracter);
         i++;
     }
+
     return codigo;
 }
 
@@ -65,12 +71,12 @@ void Partida::buscar_jugadores_desconectados(){
 }
 
 void Partida::terminar_partida(){
-    // this->partida_en_curso = false;
     juego.finalizar_juego();
     juego.join();
     for (auto& j: jugadores) {
         eliminar_cliente(j);
     }
+
     jugadores.clear();
     queue.close();
 }

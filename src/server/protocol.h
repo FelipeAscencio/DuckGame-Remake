@@ -5,6 +5,7 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include <netinet/in.h>
 
 #include "../common/comando.h"
 #include "../common/estado_juego.h"

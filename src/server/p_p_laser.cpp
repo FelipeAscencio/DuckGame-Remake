@@ -1,9 +1,5 @@
 #include "p_p_laser.h"
 
-#include <iostream>
-
-#include "config_juego.h"
-
 #define PEW_PEW_LASER "Pew-Pew Laser"
 
 #define CERO 0
@@ -19,12 +15,14 @@ inclinacion_e obtener_inclinacion(const int& bala) {
         return NO_TIENE;
     if (bala == UNO)
         return PARA_ARRIBA;
+    
     return PARA_ABAJO;
 }
 
 dispersion_e obtener_dispersion(const int& bala) {
     if (bala == CERO)
         return NO;
+
     return MEDIA;
 }
 

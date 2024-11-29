@@ -8,7 +8,6 @@
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
-
 #include "mapa.h"
 #include "municion.h"
 
@@ -82,6 +81,7 @@ public:
     // Devuelve la posicion inicial del arma al momento de su aparicion.
     posicion_t obtener_posicion_inicial();
 
+    // Devuelve el 'id' del Arma.
     int obtener_id() const { return id_arma; }
 
     // Restaura la cantidad de municiones restantes del arma

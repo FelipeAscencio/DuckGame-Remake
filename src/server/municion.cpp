@@ -1,10 +1,6 @@
 #include "municion.h"
 
-#include <cmath>
-#include <cstdlib>
-
 #define AVANZAR 0.75
-
 #define MENOS_UNO -1
 #define CERO 0
 #define UNO 1
@@ -12,7 +8,6 @@
 #define TRES 3
 #define MIN_X_MAPA 1
 #define MAX_X_MAPA 199
-
 #define VALOR_DISPERSION_NULA 0
 #define VALOR_DISPERSION_BAJA 0.5
 #define VALOR_DISPERSION_MEDIA 1
@@ -103,7 +98,7 @@ float buscar_dispersion(const dispersion_e& dispersion) {
 
 bool Municion::avanzar(Mapa& mapa) {
     std::vector<int> posicion_mapa = mapa.posicion_en_mapa(this->posicion_actual);
-    if (posicion_mapa[0] == -1 || posicion_mapa[1] == -1) return false;
+    if (posicion_mapa[CERO] == MENOS_UNO || posicion_mapa[UNO] == MENOS_UNO) return false;
     if (fuera_de_rango(mapa))
         return false;
 
@@ -130,10 +125,11 @@ bool Municion::avanzar(Mapa& mapa) {
     } else {
         lado = this->sentido == DERECHA ? UNO : MENOS_UNO;
         inc = this->inclinacion == PARA_ARRIBA ? MENOS_UNO : UNO;
-        if (borde_bloque && (posicion_mapa[0] == 0 || posicion_mapa[0] == mapa.largo -1)) lado = 0;
+        if (borde_bloque && (posicion_mapa[CERO] == CERO || posicion_mapa[CERO] == mapa.largo MENOS_UNO)) lado = CERO;
         if (borde_bloque && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != CERO && mapa.mapa[posicion_mapa[UNO]][posicion_mapa[CERO] + lado] != TRES){
             return false;
         }
+        
         dis = buscar_dispersion(this->dispersion);
         if (dis != CERO) {
             if (mapa.piso_bloque(this->posicion_actual) || techo) {

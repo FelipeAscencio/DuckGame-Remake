@@ -4,10 +4,14 @@
 
 #include <atomic>
 #include <list>
+#include <utility>
+#include <vector>
+#include <syslog.h>
+#include <netinet/in.h>
 
 #include "../common/queue.h"
 #include "../common/thread.h"
-
+#include "../common/liberror.h"
 #include "queues_jugadores.h"
 #include "thread_usuario.h"
 #include "partida.h"
@@ -21,6 +25,7 @@ private:
     std::atomic<bool> aceptando_jugadores;
     std::vector<Partida*>& partidas;
 
+    // Envia el mensaje inicial al Cliente.
     bool enviar_mensaje_inicial(Socket& s, const std::string& mensaje);
 
     // Recolecta y elimina los hilos de jugadores que hayan finalizado.
@@ -29,10 +34,13 @@ private:
     // Elimina al cliente representado por 'jugador' de las colas y libera su memoria.
     void eliminar_cliente(ThreadUsuario* jugador);
 
+    // Recibe la respuesta inicial del cliente.
     bool recibir_respuesta_cliente(uint8_t& rta, Socket& s);
 
+    // Crea una nueva partida en el servidor.
     void crear_nueva_partida(Socket& peer);
 
+    // Controla el loop de ingreso para usuarios a partidas existentes.
     bool loop_ingreso_partida_usuario(Socket& peer);
 
 public:

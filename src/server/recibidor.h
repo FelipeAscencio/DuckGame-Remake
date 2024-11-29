@@ -3,6 +3,8 @@
 #define SERVER_RECIBIDOR_H_
 
 #include <atomic>
+#include <sstream>
+#include <syslog.h>
 
 #include "../common/queue.h"
 #include "../common/thread.h"

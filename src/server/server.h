@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+#include <time.h>
+#include <string>
 
 #include "../common/comando.h"
 #include "../common/queue.h"

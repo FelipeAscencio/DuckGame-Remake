@@ -1,11 +1,9 @@
 #include "server/mapa.h"
 
-#include <fstream>
-#include <string>
-
 #define MSJ_ERROR_ARCHIVO_MAPA "Error leyendo archivo del mapa"
 #define ARCHIVO_MAPA "../data/mapa_"
 #define TXT ".txt"
+
 #define MENOS_UNO -1
 #define CERO 0
 #define UNO 1
@@ -15,6 +13,7 @@
 #define CANTIDAD_MAPAS 2
 #define ID_PRIMER_MAPA 1
 #define CONSTANTE_AUXILIAR_CHAR_MAPA 48
+#define TILE_A_METRO 10
 
 #define ID_PRIMER_PATO 0
 #define ID_SEGUNDO_PATO 1

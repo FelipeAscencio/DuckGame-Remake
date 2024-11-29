@@ -1,6 +1,6 @@
 #include "control_teclado.h"
-#include <string>
 
+#include <string>
 
 #define EXIT "q"
 
@@ -14,8 +14,4 @@ void ControladorTeclado::run(){
         }
     }
     this->vivo = false;
-    // this->join();
 }
-
-
-

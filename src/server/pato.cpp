@@ -1,22 +1,8 @@
 #include "server/pato.h"
 
-#include <cstdlib>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
-
-#include "ak47.h"
-#include "config_juego.h"
-#include "magnum.h"
-#include "p_p_laser.h"
-#include "shotgun.h"
-#include "sniper.h"
-
 #define MOVER_DERECHA 0.5
 #define MOVER_IZQUIERDA -0.5
 #define SALTO_Y_CAIDA 0.49
-
 #define COMANDO_DERECHA 1
 #define COMANDO_IZQUIERDA 2
 #define COMANDO_AGACHARSE 3
@@ -35,11 +21,9 @@
 #define CHEAT_ARMADUAR 39
 #define CHEAT_CASCO 40
 #define CHEAT_RONDAS 41
-
 #define POS_X 0
 #define POS_Y 1
 #define ITERACIONES_PARA_ARRIBA 20
-
 #define CERO 0
 #define UNO 1
 #define UNO_Y_MEDIO 1.5
@@ -80,6 +64,7 @@ bool Pato::buscar_pared(Mapa& mapa, const orientacion_e& direccion,
     int lado = (direccion == DERECHA) ? UNO : -UNO;
     if (tile_actual[POS_X] == mapa.largo - UNO)
         return false;
+
     if (direccion == DERECHA && bloque_x == mapa.largo)
         return false;
 
@@ -142,7 +127,7 @@ void Pato::saltar() {
 }
 
 void Pato::aletear() {
-    if (iteraciones_desde_aleteo < ConfigJuego::FPS / 2) {
+    if (iteraciones_desde_aleteo < ConfigJuego::FPS / DOS) {
         return;
     }
 
@@ -434,6 +419,7 @@ void Pato::equipar_arma(const int& id_arma, std::vector<Municion>& balas_volando
         this->arma_equipada = new Shotgun(pos);
     else
         this->arma_equipada = new Sniper(pos);
+
     this->posee_arma = true;
 }
 
@@ -460,8 +446,10 @@ void Pato::pickup(std::vector<InformacionArma>& armas_tiradas,
 
     if (!alguno)
         return;
+
     if (tipo_pickup == CERO)
         return;
+
     bool pickup = false;
     size_t i = CERO;
     if (tipo_pickup == TRES) {
@@ -547,6 +535,7 @@ void Pato::realizar_accion(const int& accion, Mapa& mapa,
                             Municion aux(m);
                             balas_volando.push_back(aux);
                         }
+                        
                         delete arma_equipada;
                     }
                 }

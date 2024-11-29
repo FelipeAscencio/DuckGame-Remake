@@ -1,9 +1,5 @@
 #include "server/recibidor.h"
 
-#include <sstream>
-
-#include <syslog.h>
-
 #define EXCEPCION_INESPERADA "Se produjo una excepcion inesperada: "
 #define EXCEPCION_DESCONOCIDA "Se produjo una excepcion desconocida. "
 #define KILL_PLAYER 0x66

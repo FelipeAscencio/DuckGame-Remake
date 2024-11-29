@@ -1,23 +1,17 @@
 #include "aceptador.h"
 
-#include <utility>
-#include <vector>
-
-#include <syslog.h>
-#include <netinet/in.h>
-#include "../common/liberror.h"
-
-#define EXCEPCION_ESPERADA "Se produjo una excepcion esperada: "
 #define EXCEPCION_INESPERADA "Se produjo una excepcion inesperada: "
 #define EXCEPCION_DESCONOCIDA "Se produjo una excepcion desconocida. "
+#define MENSAJE_INICIAL "Bienvenido a una nueva partida de DuckGame. Desea crear una nueva partida (1) o ingresar a una ya existente (2)?"
+
 #define CERO 0
-#define MAX_CLIENTES_POR_PARTIDA 8
 #define RW_CLOSE 2
 #define VALOR_DUMMY 0xCC
-#define MENSAJE_INICIAL "Bienvenido a una nueva partida de DuckGame. Desea crear una nueva partida (1) o ingresar a una ya existente (2)?"
 #define NUEVA_PARTIDA 0x01
 #define UNIRSE_A_PARTIDA 0x02
 #define ID_INGRESO_INVALIDO 9 // 'ID' invalido, que le avisa al cliente que no existe la partida a la que quiere ingresar.
+#define TAMANIO_CODIGO_PARTIDA 6
+#define CONSTANTE_CASTEO_CODIGO 0x30
 
 Aceptador::Aceptador(const char* servname, std::vector<Partida*>& partidas_en_juego):
         skt(servname), aceptando_jugadores(true), partidas(partidas_en_juego) {}
@@ -27,13 +21,14 @@ void Aceptador::crear_nueva_partida(Socket& peer){
     std::string codigo;
     do {
         codigo = Partida::generar_codigo();
-        size_t i = 0;
+        size_t i = CERO;
         codigo_valido = true;
         while (i < partidas.size()){
             if (codigo == partidas[i]->get_codigo()){
                 codigo_valido = false;
                 break;
             }
+            
             i++;
         }
     } while (!codigo_valido);
@@ -47,7 +42,7 @@ void Aceptador::crear_nueva_partida(Socket& peer){
 bool Aceptador::loop_ingreso_partida_usuario(Socket& peer){
     while (true){
         std::string codigo;
-        std::vector<uint8_t> bytes(6);
+        std::vector<uint8_t> bytes(TAMANIO_CODIGO_PARTIDA);
         bool was_closed = false;
         peer.recvall(bytes.data(), bytes.size(), &was_closed);
         if (was_closed){
@@ -56,11 +51,11 @@ bool Aceptador::loop_ingreso_partida_usuario(Socket& peer){
         }
 
         for (uint8_t c: bytes){
-            codigo += std::to_string(c - 0x30);
+            codigo += std::to_string(c - CONSTANTE_CASTEO_CODIGO);
         }
 
         bool partida_existente = false;
-        size_t i = 0;
+        size_t i = CERO;
         while (i < partidas.size() && !partida_existente){
             if (partidas[i]->get_codigo() == codigo){
                 partidas[i]->agregar_jugador(std::move(peer));
@@ -97,12 +92,8 @@ void Aceptador::run() {
                     break;
                 }
             }
-            // recolectar();
         } catch (const LibError& e) {
-            if (!aceptando_jugadores) {
-                // syslog(LOG_INFO, "%s%s. No hay clientes esperando a ser aceptados\n",
-                //        EXCEPCION_ESPERADA, e.what());
-            } else {
+            if (aceptando_jugadores) {
                 syslog(LOG_ERR, "%s%s\n", EXCEPCION_INESPERADA, e.what());
             }
 
@@ -128,7 +119,7 @@ bool Aceptador::enviar_mensaje_inicial(Socket& s, const std::string& mensaje){
     s.sendall(&size, sizeof(size), &was_closed);
     if (was_closed) return false;
     std::vector<uint8_t> bytes;
-    for(size_t i = 0; i < mensaje.size(); i++){
+    for(size_t i = CERO; i < mensaje.size(); i++){
         bytes.push_back(toascii(mensaje[i]));
     }
 
@@ -144,25 +135,9 @@ void Aceptador::dejar_de_aceptar(){
     } catch (const LibError& e){}
 }
 
-// void Aceptador::eliminar_cliente(ThreadUsuario* jugador) {
-//     jugador->cortar_conexion();
-//     int id = jugador->get_id();
-//     queues_clientes.eliminar_queue(id);
-//     delete jugador;
-// }
-
-// void Aceptador::recolectar() {
-//     for (size_t i = 0; i < partidas.size(); i++){
-//         partidas[i]->buscar_jugadores_desconectados();
-//         if (!partidas[i]->en_curso())
-//             partidas[i]->terminar_partida();
-//     }
-// }
-
 Aceptador::~Aceptador() {
     try {
         skt.shutdown(RW_CLOSE);
         skt.close();
     } catch (const LibError& e){}
-    // this->join();
 }

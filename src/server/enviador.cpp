@@ -1,9 +1,5 @@
 #include "enviador.h"
 
-#include <syslog.h>
-
-#include "../common/liberror.h"
-
 Enviador::Enviador(Socket& s, Queue<EstadoJuego>& q, std::atomic<bool>& esta_vivo):
         protocol(s), queue_estados(q), vivo(esta_vivo) {}
 

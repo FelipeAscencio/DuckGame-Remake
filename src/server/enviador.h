@@ -3,10 +3,12 @@
 #define SERVER_ENVIADOR_H_
 
 #include <atomic>
+#include <syslog.h>
 
 #include "../common/estado_juego.h"
 #include "../common/queue.h"
 #include "../common/thread.h"
+#include "../common/liberror.h"
 #include "server/protocol.h"
 
 using namespace ServerProtocol;

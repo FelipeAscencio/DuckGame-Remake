@@ -1,9 +1,5 @@
 #include "shotgun.h"
 
-#include <iostream>
-
-#include "config_juego.h"
-
 #define SHOTGUN "Shotgun"
 
 #define CERO 0
@@ -32,6 +28,7 @@ dispersion_e obtener_dispersion(int bala_disparada) {
 inclinacion_e obtener_inclinacion(int bala_disparada) {
     if (bala_disparada < DOS)
         return NO_TIENE;
+    
     if (bala_disparada < CUATRO)
         return PARA_ARRIBA;
 

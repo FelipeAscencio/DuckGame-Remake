@@ -4,6 +4,8 @@
 
 #include <atomic>
 #include <vector>
+#include <algorithm>
+#include <time.h>
 
 #include "../common/comando.h"
 #include "../common/estado_juego.h"
@@ -13,7 +15,13 @@
 #include "server/mapa.h"
 #include "server/pato.h"
 #include "server/queues_jugadores.h"
-
+#include "ak47.h"
+#include "config_juego.h"
+#include "magnum.h"
+#include "p_p_laser.h"
+#include "shotgun.h"
+#include "sniper.h"
+#include "spawn_place.h"
 #include "caja.h"
 
 // La clase 'Gameloop' implementa la logica del bucle

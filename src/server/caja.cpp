@@ -1,6 +1,7 @@
 #include "caja.h"
 
 #define CERO 0
+#define CUATRO 4
 
 Caja::Caja(const posicion_t& pos, const int& id_caja):
         posicion(pos), estado(INTACTA), destruida(false), id(id_caja), contenido(CERO) {}
@@ -20,6 +21,6 @@ void Caja::recibir_disparo() {
 int Caja::destruir() {
     mtx = std::make_unique<std::mutex>();
     std::lock_guard<std::mutex> lck(*mtx);
-    contenido = rand() % 4;
+    contenido = rand() % CUATRO;
     return contenido;
 }

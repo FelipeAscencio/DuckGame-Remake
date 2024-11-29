@@ -1,10 +1,7 @@
 #include "ak47.h"
 
-#include <iostream>
-
-#include "config_juego.h"
-
 #define AK_47 "AK-47"
+
 #define CERO 0
 #define UNO 1
 #define BALAS_POR_DISPARO 1

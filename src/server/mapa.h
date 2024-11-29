@@ -4,14 +4,14 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 #include "../common/orientacion.h"
 #include "../common/posicion.h"
-
 #include "spawn_place.h"
 
 #define MSJ_ERROR_CREAR_MAPA "Se produjo un error al intentar crear el mapa"
-#define TILE_A_METRO 10
 
 // 'Struct' auxiliar para encapsular un error.
 struct ErrorMapa: public std::runtime_error {
