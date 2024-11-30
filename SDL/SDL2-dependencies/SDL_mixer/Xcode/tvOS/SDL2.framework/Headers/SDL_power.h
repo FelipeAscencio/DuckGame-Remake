@@ -29,7 +29,6 @@
  */
 
 #include <SDL2/SDL_stdinc.h>
-
 #include <SDL2/begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
@@ -39,13 +38,12 @@ extern "C" {
 /**
  *  The basic state for the system's power supply.
  */
-typedef enum
-{
-    SDL_POWERSTATE_UNKNOWN,      /**< cannot determine power status */
-    SDL_POWERSTATE_ON_BATTERY,   /**< Not plugged in, running on the battery */
-    SDL_POWERSTATE_NO_BATTERY,   /**< Plugged in, no battery available */
-    SDL_POWERSTATE_CHARGING,     /**< Plugged in, charging battery */
-    SDL_POWERSTATE_CHARGED       /**< Plugged in, battery charged */
+typedef enum {
+    SDL_POWERSTATE_UNKNOWN,    /**< cannot determine power status */
+    SDL_POWERSTATE_ON_BATTERY, /**< Not plugged in, running on the battery */
+    SDL_POWERSTATE_NO_BATTERY, /**< Plugged in, no battery available */
+    SDL_POWERSTATE_CHARGING,   /**< Plugged in, charging battery */
+    SDL_POWERSTATE_CHARGED     /**< Plugged in, battery charged */
 } SDL_PowerState;
 
 
@@ -75,7 +73,7 @@ typedef enum
  *
  * \since This function is available since SDL 2.0.0.
  */
-extern DECLSPEC SDL_PowerState SDLCALL SDL_GetPowerInfo(int *secs, int *pct);
+extern DECLSPEC SDL_PowerState SDLCALL SDL_GetPowerInfo(int* secs, int* pct);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

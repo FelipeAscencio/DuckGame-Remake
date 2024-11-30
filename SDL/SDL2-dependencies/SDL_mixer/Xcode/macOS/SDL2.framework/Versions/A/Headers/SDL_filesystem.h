@@ -29,7 +29,6 @@
 #define SDL_filesystem_h_
 
 #include <SDL2/SDL_stdinc.h>
-
 #include <SDL2/begin_code.h>
 
 /* Set up for C function definitions, even when using C++ */
@@ -75,7 +74,7 @@ extern "C" {
  *
  * \sa SDL_GetPrefPath
  */
-extern DECLSPEC char *SDLCALL SDL_GetBasePath(void);
+extern DECLSPEC char* SDLCALL SDL_GetBasePath(void);
 
 /**
  * Get the user-and-app-specific path where files can be written.
@@ -132,7 +131,7 @@ extern DECLSPEC char *SDLCALL SDL_GetBasePath(void);
  *
  * \sa SDL_GetBasePath
  */
-extern DECLSPEC char *SDLCALL SDL_GetPrefPath(const char *org, const char *app);
+extern DECLSPEC char* SDLCALL SDL_GetPrefPath(const char* org, const char* app);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

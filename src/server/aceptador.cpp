@@ -58,7 +58,6 @@ bool Aceptador::loop_ingreso_partida_usuario(Socket& peer) {
                                      return acc + std::to_string(c - CONSTANTE_CASTEO_CODIGO);
                                  });
 
-        bool partida_existente = false;
         size_t i = CERO;
         while (i < partidas.size()) {
             if (partidas[i]->get_codigo() == codigo) {

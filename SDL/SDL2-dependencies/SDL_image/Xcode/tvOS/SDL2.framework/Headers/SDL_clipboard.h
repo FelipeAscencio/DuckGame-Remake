@@ -29,7 +29,6 @@
 #define SDL_clipboard_h_
 
 #include <SDL2/SDL_stdinc.h>
-
 #include <SDL2/begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
@@ -50,7 +49,7 @@ extern "C" {
  * \sa SDL_GetClipboardText
  * \sa SDL_HasClipboardText
  */
-extern DECLSPEC int SDLCALL SDL_SetClipboardText(const char *text);
+extern DECLSPEC int SDLCALL SDL_SetClipboardText(const char* text);
 
 /**
  * Get UTF-8 text from the clipboard, which must be freed with SDL_free().
@@ -68,7 +67,7 @@ extern DECLSPEC int SDLCALL SDL_SetClipboardText(const char *text);
  * \sa SDL_HasClipboardText
  * \sa SDL_SetClipboardText
  */
-extern DECLSPEC char * SDLCALL SDL_GetClipboardText(void);
+extern DECLSPEC char* SDLCALL SDL_GetClipboardText(void);
 
 /**
  * Query whether the clipboard exists and contains a non-empty text string.

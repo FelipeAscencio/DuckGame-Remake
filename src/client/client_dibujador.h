@@ -89,23 +89,26 @@ private:
 
     // Dibuja la armadura de un pato.
     void dibujar_armadura_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                               float& y_relativo, orientacion_e orientacion, estado_pato_e& estado);
+                               const float& y_relativo, orientacion_e orientacion,
+                               estado_pato_e& estado);
 
     // Dibuja el sniper (Metodo particular porque es el unico sprite que no es cuadrado).
     void dibujar_sniper(SDL2pp::Renderer& renderer, float x, float y, orientacion_e orientacion);
 
     // Preparar la renderizacion del sprite, para luego dibujarlo.
-    void renderizar_sniper(SDL2pp::Renderer& renderer, float& x_relativo, float& y_relativo,
-                           orientacion_e& orientacion, estado_pato_e& estado);
+    void renderizar_sniper(SDL2pp::Renderer& renderer, const float& x_relativo,
+                           const float& y_relativo, orientacion_e& orientacion,
+                           estado_pato_e& estado);
 
     // Dibuja el arma de un pato.
     void dibujar_arma_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
                            float& y_relativo, orientacion_e& orientacion, estado_pato_e& estado,
-                           int& id_arma);
+                           const int& id_arma);
 
     // Dibuja el casco de un pato.
-    void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, float& x_relativo,
-                            float& y_relativo, orientacion_e orientacion, estado_pato_e& estado);
+    void dibujar_casco_pato(SDL2pp::Renderer& renderer, float& escala, const float& x_relativo,
+                            const float& y_relativo, orientacion_e orientacion,
+                            estado_pato_e& estado);
 
     // Reproduce el sonido del 'disparo de ak'.
     void reproducir_disparo_ak();
@@ -129,31 +132,31 @@ private:
     void reproducir_sonido_pato(const int& id_arma, const sonido_e& sonido);
 
     // Dibuja los patos del 'estado_actual' en la ventana.
-    void dibujar_patos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_patos(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Obtiene el 'Sprite Sheet' del arma o bala correspondiente al ID recibido.
-    SDL2pp::Texture* obtener_sprite_sheet_arma_bala(int& id_arma);
+    SDL2pp::Texture* obtener_sprite_sheet_arma_bala(const int& id_arma);
 
     // Obtiene los 'Sprites' del arma o bala correspondiente al ID recibido.
-    std::vector<SDL_Rect>* obtener_sprites_arma_bala(int& id_arma);
+    std::vector<SDL_Rect>* obtener_sprites_arma_bala(const int& id_arma);
 
     // Obtiene el indice del perdigon actual de la bala.
     int obtener_indice_sprite(inclinacion_e& inclinacion);
 
     // Dibuja las balas del 'estado_actual' en la ventana.
-    void dibujar_balas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_balas(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja las armas spawneadas en el piso.
-    void dibujar_armas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_armas(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja los cascos spawneados en el piso.
-    void dibujar_cascos(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_cascos(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja las armaduras spawneadas en el piso.
-    void dibujar_armaduras(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_armaduras(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja las cajas spawneadas en el piso en su respectivo estado (INTACTA - ROTA - MUY_ROTA).
-    void dibujar_cajas(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
+    void dibujar_cajas(const EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
 
     // Dibuja el 'estado_actual' de la partida.
     void dibujar_estado_juego(EstadoJuego& estado_actual, SDL2pp::Renderer& renderer);
