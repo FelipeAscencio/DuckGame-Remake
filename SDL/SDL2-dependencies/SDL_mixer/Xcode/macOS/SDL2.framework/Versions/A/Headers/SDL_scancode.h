@@ -40,7 +40,8 @@
  *  The values in this enumeration are based on the USB usage page standard:
  *  https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf
  */
-typedef enum {
+typedef enum
+{
     SDL_SCANCODE_UNKNOWN = 0,
 
     /**
@@ -206,10 +207,10 @@ typedef enum {
                                         *   LESS-THAN SIGN and GREATER-THAN SIGN
                                         *   in a Swiss German, German, or French
                                         *   layout. */
-    SDL_SCANCODE_APPLICATION = 101,    /**< windows contextual menu, compose */
-    SDL_SCANCODE_POWER = 102,          /**< The USB document says this is a status flag,
-                                        *   not a physical key - but some Mac keyboards
-                                        *   do have a power key. */
+    SDL_SCANCODE_APPLICATION = 101, /**< windows contextual menu, compose */
+    SDL_SCANCODE_POWER = 102, /**< The USB document says this is a status flag,
+                               *   not a physical key - but some Mac keyboards
+                               *   do have a power key. */
     SDL_SCANCODE_KP_EQUALS = 103,
     SDL_SCANCODE_F13 = 104,
     SDL_SCANCODE_F14 = 105,
@@ -228,7 +229,7 @@ typedef enum {
     SDL_SCANCODE_MENU = 118,
     SDL_SCANCODE_SELECT = 119,
     SDL_SCANCODE_STOP = 120,
-    SDL_SCANCODE_AGAIN = 121, /**< redo */
+    SDL_SCANCODE_AGAIN = 121,   /**< redo */
     SDL_SCANCODE_UNDO = 122,
     SDL_SCANCODE_CUT = 123,
     SDL_SCANCODE_COPY = 124,
@@ -237,10 +238,10 @@ typedef enum {
     SDL_SCANCODE_MUTE = 127,
     SDL_SCANCODE_VOLUMEUP = 128,
     SDL_SCANCODE_VOLUMEDOWN = 129,
-    /* not sure whether there's a reason to enable these */
-    /*     SDL_SCANCODE_LOCKINGCAPSLOCK = 130,  */
-    /*     SDL_SCANCODE_LOCKINGNUMLOCK = 131, */
-    /*     SDL_SCANCODE_LOCKINGSCROLLLOCK = 132, */
+/* not sure whether there's a reason to enable these */
+/*     SDL_SCANCODE_LOCKINGCAPSLOCK = 130,  */
+/*     SDL_SCANCODE_LOCKINGNUMLOCK = 131, */
+/*     SDL_SCANCODE_LOCKINGSCROLLLOCK = 132, */
     SDL_SCANCODE_KP_COMMA = 133,
     SDL_SCANCODE_KP_EQUALSAS400 = 134,
 
@@ -333,12 +334,12 @@ typedef enum {
     SDL_SCANCODE_RALT = 230, /**< alt gr, option */
     SDL_SCANCODE_RGUI = 231, /**< windows, command (apple), meta */
 
-    SDL_SCANCODE_MODE = 257, /**< I'm not sure if this is really not covered
-                              *   by any of the above, but since there's a
-                              *   special KMOD_MODE for it I'm adding it here
-                              */
+    SDL_SCANCODE_MODE = 257,    /**< I'm not sure if this is really not covered
+                                 *   by any of the above, but since there's a
+                                 *   special KMOD_MODE for it I'm adding it here
+                                 */
 
-    /* @} */ /* Usage page 0x07 */
+    /* @} *//* Usage page 0x07 */
 
     /**
      *  \name Usage page 0x0C
@@ -365,7 +366,7 @@ typedef enum {
     SDL_SCANCODE_AC_REFRESH = 273,
     SDL_SCANCODE_AC_BOOKMARKS = 274,
 
-    /* @} */ /* Usage page 0x0C */
+    /* @} *//* Usage page 0x0C */
 
     /**
      *  \name Walther keys
@@ -387,7 +388,7 @@ typedef enum {
     SDL_SCANCODE_APP1 = 283,
     SDL_SCANCODE_APP2 = 284,
 
-    /* @} */ /* Walther keys */
+    /* @} *//* Walther keys */
 
     /**
      *  \name Usage page 0x0C (additional media keys)
@@ -399,7 +400,7 @@ typedef enum {
     SDL_SCANCODE_AUDIOREWIND = 285,
     SDL_SCANCODE_AUDIOFASTFORWARD = 286,
 
-    /* @} */ /* Usage page 0x0C (additional media keys) */
+    /* @} *//* Usage page 0x0C (additional media keys) */
 
     /* Add any other keys here. */
 

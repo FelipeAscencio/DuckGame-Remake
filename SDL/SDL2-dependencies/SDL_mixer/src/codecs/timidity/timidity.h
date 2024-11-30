@@ -20,61 +20,79 @@ typedef Sint32 final_volume_t;
 
 /* Maximum polyphony. */
 /* #define MAX_VOICES	48 */
-#define MAX_VOICES 256
-#define MAXCHAN 16
+#define MAX_VOICES	256
+#define MAXCHAN	16
 /* #define MAXCHAN	64 */
-#define MAXBANK 128
+#define MAXBANK	128
 
 typedef struct {
-    Sint32 loop_start, loop_end, data_length, sample_rate, low_freq, high_freq, root_freq;
-    Sint32 envelope_rate[6], envelope_offset[6];
-    float volume;
-    sample_t* data;
-    Sint32 tremolo_sweep_increment, tremolo_phase_increment, vibrato_sweep_increment,
-            vibrato_control_ratio;
-    Uint8 tremolo_depth, vibrato_depth, modes;
-    Sint8 panning, note_to_use;
+  Sint32
+    loop_start, loop_end, data_length,
+    sample_rate, low_freq, high_freq, root_freq;
+  Sint32
+    envelope_rate[6], envelope_offset[6];
+  float
+    volume;
+  sample_t *data;
+  Sint32 
+    tremolo_sweep_increment, tremolo_phase_increment, 
+    vibrato_sweep_increment, vibrato_control_ratio;
+  Uint8
+    tremolo_depth, vibrato_depth,
+    modes;
+  Sint8
+    panning, note_to_use;
 } Sample;
 
 typedef struct {
-    int bank, program, volume, sustain, panning, pitchbend, expression,
-            mono, /* one note only on this channel -- not implemented yet */
-            pitchsens;
-    /* chorus, reverb... Coming soon to a 300-MHz, eight-way superscalar
-       processor near you */
-    float pitchfactor; /* precomputed pitch bend factor to save some fdiv's */
+  int
+    bank, program, volume, sustain, panning, pitchbend, expression, 
+    mono, /* one note only on this channel -- not implemented yet */
+    pitchsens;
+  /* chorus, reverb... Coming soon to a 300-MHz, eight-way superscalar
+     processor near you */
+  float
+    pitchfactor; /* precomputed pitch bend factor to save some fdiv's */
 } Channel;
 
 typedef struct {
-    Uint8 status, channel, note, velocity;
-    Sample* sample;
-    Sint32 orig_frequency, frequency, sample_offset, sample_increment, envelope_volume,
-            envelope_target, envelope_increment, tremolo_sweep, tremolo_sweep_position,
-            tremolo_phase, tremolo_phase_increment, vibrato_sweep, vibrato_sweep_position;
+  Uint8
+    status, channel, note, velocity;
+  Sample *sample;
+  Sint32
+    orig_frequency, frequency,
+    sample_offset, sample_increment,
+    envelope_volume, envelope_target, envelope_increment,
+    tremolo_sweep, tremolo_sweep_position,
+    tremolo_phase, tremolo_phase_increment,
+    vibrato_sweep, vibrato_sweep_position;
+  
+  final_volume_t left_mix, right_mix;
 
-    final_volume_t left_mix, right_mix;
-
-    float left_amp, right_amp, tremolo_volume;
-    Sint32 vibrato_sample_increment[VIBRATO_SAMPLE_INCREMENTS];
-    int vibrato_phase, vibrato_control_ratio, vibrato_control_counter, envelope_stage,
-            control_counter, panning, panned;
+  float
+    left_amp, right_amp, tremolo_volume;
+  Sint32
+    vibrato_sample_increment[VIBRATO_SAMPLE_INCREMENTS];
+  int
+    vibrato_phase, vibrato_control_ratio, vibrato_control_counter,
+    envelope_stage, control_counter, panning, panned;
 
 } Voice;
 
 typedef struct {
-    int samples;
-    Sample* sample;
+  int samples;
+  Sample *sample;
 } Instrument;
 
 /* Shared data */
 typedef struct {
-    char* name;
-    int note, amp, pan, strip_loop, strip_envelope, strip_tail;
+  char *name;
+  int note, amp, pan, strip_loop, strip_envelope, strip_tail;
 } ToneBankElement;
 
 typedef struct {
-    ToneBankElement* tone;
-    Instrument* instrument[128];
+  ToneBankElement *tone;
+  Instrument *instrument[128];
 } ToneBank;
 
 typedef struct {
@@ -84,26 +102,26 @@ typedef struct {
 
 typedef struct _MidiEventList {
     MidiEvent event;
-    struct _MidiEventList* next;
+    struct _MidiEventList *next;
 } MidiEventList;
 
 typedef struct {
     int oom; /* malloc() failed */
     int playing;
-    SDL_RWops* rw;
+    SDL_RWops *rw;
     Sint32 rate;
     Sint32 encoding;
     float master_volume;
     Sint32 amplification;
-    ToneBank* tonebank[MAXBANK];
-    ToneBank* drumset[MAXBANK];
-    Instrument* default_instrument;
+    ToneBank *tonebank[MAXBANK];
+    ToneBank *drumset[MAXBANK];
+    Instrument *default_instrument;
     int default_program;
-    void (*write)(void* dp, Sint32* lp, Sint32 c);
+    void (*write)(void *dp, Sint32 *lp, Sint32 c);
     int buffer_size;
-    sample_t* resample_buffer;
-    Sint32* common_buffer;
-    Sint32* buffer_pointer;
+    sample_t *resample_buffer;
+    Sint32 *common_buffer;
+    Sint32 *buffer_pointer;
     /* These would both fit into 32 bits, but they are often added in
        large multiples, so it's simpler to have two roomy ints */
     /* samples per MIDI delta-t */
@@ -118,9 +136,9 @@ typedef struct {
     Sint32 lost_notes;
     Sint32 cut_notes;
     Sint32 samples;
-    MidiEvent* events;
-    MidiEvent* current_event;
-    MidiEventList* evlist;
+    MidiEvent *events;
+    MidiEvent *current_event;
+    MidiEventList *evlist;
     Sint32 current_sample;
     Sint32 event_count;
     Sint32 at;
@@ -129,18 +147,18 @@ typedef struct {
 
 /* Some of these are not defined in timidity.c but are here for convenience */
 
-extern int Timidity_Init(const char* config_file);
+extern int Timidity_Init(const char *config_file);
 extern int Timidity_Init_NoConfig(void);
-extern void Timidity_SetVolume(MidiSong* song, int volume);
-extern int Timidity_PlaySome(MidiSong* song, void* stream, Sint32 len);
-extern MidiSong* Timidity_LoadSong(SDL_RWops* rw, SDL_AudioSpec* audio);
-extern void Timidity_Start(MidiSong* song);
-extern void Timidity_Seek(MidiSong* song, Uint32 ms);
-extern Uint32 Timidity_GetSongLength(MidiSong* song); /* returns millseconds */
-extern Uint32 Timidity_GetSongTime(MidiSong* song);   /* returns millseconds */
-extern void Timidity_Stop(MidiSong* song);
-extern int Timidity_IsActive(MidiSong* song);
-extern void Timidity_FreeSong(MidiSong* song);
+extern void Timidity_SetVolume(MidiSong *song, int volume);
+extern int Timidity_PlaySome(MidiSong *song, void *stream, Sint32 len);
+extern MidiSong *Timidity_LoadSong(SDL_RWops *rw, SDL_AudioSpec *audio);
+extern void Timidity_Start(MidiSong *song);
+extern void Timidity_Seek(MidiSong *song, Uint32 ms);
+extern Uint32 Timidity_GetSongLength(MidiSong *song); /* returns millseconds */
+extern Uint32 Timidity_GetSongTime(MidiSong *song);   /* returns millseconds */
+extern void Timidity_Stop(MidiSong *song);
+extern int Timidity_IsActive(MidiSong *song);
+extern void Timidity_FreeSong(MidiSong *song);
 extern void Timidity_Exit(void);
 
 #ifdef __cplusplus
